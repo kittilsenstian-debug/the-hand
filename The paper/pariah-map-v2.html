@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Body — From Hand to World</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #0a0a0a;
+  --surface: #141414;
+  --text: #c8c0b4;
+  --text-dim: #6b6560;
+  --text-faint: #3d3832;
+  --white: #e8e0d4;
+  --accent: #c4956a;
+  --left: #8a6a5a;
+  --right: #5a6a8a;
+  --mid: #6a8a6a;
+  --rule: #252220;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: var(--void); color: var(--text); height: 100%; overflow: hidden; }
+body { font-family: 'Spectral', Georgia, serif; font-size: 15px; line-height: 1.7; font-weight: 300; }
+svg { display: block; width: 100%; height: 100%; }
+
+#title {
+  position: fixed; top: 20px; left: 24px; z-index: 5;
+}
+#title h1 {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 300;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--text-dim);
+}
+#title .sub {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: var(--text-faint); letter-spacing: 2px; margin-top: 4px;
+}
+
+#controls {
+  position: fixed; top: 20px; right: 24px; z-index: 5;
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; max-width: 500px;
+}
+#controls button {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase;
+  background: var(--surface); border: 1px solid var(--rule);
+  color: var(--text-dim); padding: 6px 12px; cursor: pointer;
+  border-radius: 2px; transition: all 0.2s;
+}
+#controls button.active {
+  color: var(--accent); border-color: var(--accent);
+  background: rgba(196,149,106,0.08);
+}
+#controls button:hover { color: var(--text); border-color: var(--text-dim); }
+
+#legend {
+  position: fixed; bottom: 20px; left: 20px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: var(--text-faint); letter-spacing: 1px; line-height: 2; z-index: 5;
+}
+
+@media (max-width: 800px) {
+  #controls { top: auto; bottom: 60px; right: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div id="title">
+  <h1>The Body</h1>
+  <div class="sub">hand &rarr; body &rarr; world &mdash; the shadow reveals the next level</div>
+</div>
+
+<div id="controls">
+  <button id="btn-body" class="active" onclick="toggle('body')">Body</button>
+  <button id="btn-bilateral" class="active" onclick="toggle('bilateral')">Bilateral Z&#8322;</button>
+  <button id="btn-algebra" onclick="toggle('algebra')">Algebra</button>
+  <button id="btn-axes" onclick="toggle('axes')">Three axes</button>
+  <button id="btn-hands" class="active" onclick="toggle('hands')">Hands</button>
+  <button id="btn-hierarchy" onclick="toggle('hierarchy')">Hierarchy</button>
+  <button id="btn-numbers" onclick="toggle('numbers')">Numbers</button>
+</div>
+
+<svg id="map" viewBox="0 0 1200 800">
+<defs>
+  <linearGradient id="leftGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#8a6a5a" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#8a6a5a" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="rightGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#5a6a8a" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#5a6a8a" stop-opacity="0.08"/>
+  </linearGradient>
+</defs>
+
+<!-- LAYERS -->
+<g id="layer-bilateral"></g>
+<g id="layer-axes" style="display:none"></g>
+<g id="layer-body"></g>
+<g id="layer-hands"></g>
+<g id="layer-algebra" style="display:none"></g>
+<g id="layer-hierarchy" style="display:none"></g>
+<g id="layer-numbers" style="display:none"></g>
+
+</svg>
+
+<div id="legend">
+  <div><span style="color:#8a6a5a">&block;</span> 28-dim (left) &nbsp; <span style="color:#5a6a8a">&block;</span> 28*-dim (right)</div>
+  <div><span style="color:#6a8a6a">&block;</span> 133 (midline, internal)</div>
+  <div style="margin-top:4px; color:#3d3832">The shadow (2.Ru) turns a hand into a body</div>
+</div>
+
+<script>
+const CX = 540, CY = 400;
+
+function svgEl(tag, attrs) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  return el;
+}
+
+function addText(parent, x, y, text, opts = {}) {
+  const t = svgEl('text', {
+    x, y, fill: opts.color || '#c8c0b4',
+    'font-family': opts.serif ? "'Spectral', serif" : "'IBM Plex Mono', monospace",
+    'font-size': opts.size || 10,
+    'text-anchor': opts.anchor || 'middle',
+    'dominant-baseline': opts.baseline || 'middle',
+    opacity: opts.opacity || 0.5,
+    'font-style': opts.italic ? 'italic' : 'normal',
+    'letter-spacing': opts.spacing || (opts.serif ? 0 : 1)
+  });
+  t.textContent = text;
+  parent.appendChild(t);
+  return t;
+}
+
+// ============================================================
+// BODY SILHOUETTE
+// ============================================================
+const bodyG = document.getElementById('layer-body');
+{
+  // Simple stylized body — lines and circles, da Vinci feel
+  const bodyColor = '#c8c0b4';
+  const bOp = 0.2;
+  const sw = 1.5;
+
+  // Head
+  bodyG.appendChild(svgEl('circle', { cx: CX, cy: 160, r: 38,
+    fill: 'none', stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+
+  // Neck
+  bodyG.appendChild(svgEl('line', { x1: CX, y1: 198, x2: CX, y2: 218,
+    stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+
+  // Shoulders
+  bodyG.appendChild(svgEl('line', { x1: CX - 110, y1: 228, x2: CX + 110, y2: 228,
+    stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+
+  // Torso outline
+  const torsoPath = `M${CX-80},228 L${CX-70},420 L${CX-30},430 L${CX},435 L${CX+30},430 L${CX+70},420 L${CX+80},228`;
+  bodyG.appendChild(svgEl('path', { d: torsoPath,
+    fill: 'none', stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+
+  // Left arm
+  bodyG.appendChild(svgEl('path', {
+    d: `M${CX-110},228 Q${CX-160},320 ${CX-170},390`,
+    fill: 'none', stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+  // Left forearm to hand
+  bodyG.appendChild(svgEl('path', {
+    d: `M${CX-170},390 Q${CX-175},430 ${CX-165},460`,
+    fill: 'none', stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+
+  // Right arm
+  bodyG.appendChild(svgEl('path', {
+    d: `M${CX+110},228 Q${CX+160},320 ${CX+170},390`,
+    fill: 'none', stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+  // Right forearm to hand
+  bodyG.appendChild(svgEl('path', {
+    d: `M${CX+170},390 Q${CX+175},430 ${CX+165},460`,
+    fill: 'none', stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+
+  // Left hand (circle)
+  bodyG.appendChild(svgEl('circle', { cx: CX - 165, cy: 475, r: 22,
+    fill: 'none', stroke: '#8a6a5a', 'stroke-width': 2, opacity: 0.35 }));
+
+  // Right hand (circle)
+  bodyG.appendChild(svgEl('circle', { cx: CX + 165, cy: 475, r: 22,
+    fill: 'none', stroke: '#5a6a8a', 'stroke-width': 2, opacity: 0.35 }));
+
+  // Left wrist dot
+  bodyG.appendChild(svgEl('circle', { cx: CX - 170, cy: 448, r: 3,
+    fill: '#c4956a', opacity: 0.4 }));
+  // Right wrist dot
+  bodyG.appendChild(svgEl('circle', { cx: CX + 170, cy: 448, r: 3,
+    fill: '#c4956a', opacity: 0.4 }));
+
+  // Left leg
+  bodyG.appendChild(svgEl('path', {
+    d: `M${CX-40},430 L${CX-70},580 L${CX-80},620`,
+    fill: 'none', stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+
+  // Right leg
+  bodyG.appendChild(svgEl('path', {
+    d: `M${CX+40},430 L${CX+70},580 L${CX+80},620`,
+    fill: 'none', stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+
+  // Left foot
+  bodyG.appendChild(svgEl('line', { x1: CX-90, y1: 620, x2: CX-65, y2: 620,
+    stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+  // Right foot
+  bodyG.appendChild(svgEl('line', { x1: CX+65, y1: 620, x2: CX+90, y2: 620,
+    stroke: bodyColor, 'stroke-width': sw, opacity: bOp }));
+
+  // Heart dot (center)
+  bodyG.appendChild(svgEl('circle', { cx: CX, cy: 290, r: 5,
+    fill: '#c4956a', opacity: 0.3 }));
+
+  // Labels
+  addText(bodyG, CX, 105, 'KNOWING', { size: 9, color: '#6a8a8a', spacing: 3, opacity: 0.4 });
+  addText(bodyG, CX, 118, 'sensory pole', { size: 10, color: '#6a8a8a', serif: true, italic: true, opacity: 0.3 });
+
+  addText(bodyG, CX, 660, 'HOLDING', { size: 9, color: '#8a6a4a', spacing: 3, opacity: 0.4 });
+  addText(bodyG, CX, 673, 'structural ground', { size: 10, color: '#8a6a4a', serif: true, italic: true, opacity: 0.3 });
+
+  addText(bodyG, CX - 165, 515, '28', { size: 14, color: '#8a6a5a', opacity: 0.5 });
+  addText(bodyG, CX - 165, 530, 'left hand', { size: 9, color: '#8a6a5a', serif: true, italic: true, opacity: 0.35 });
+
+  addText(bodyG, CX + 165, 515, '28*', { size: 14, color: '#5a6a8a', opacity: 0.5 });
+  addText(bodyG, CX + 165, 530, 'right hand', { size: 9, color: '#5a6a8a', serif: true, italic: true, opacity: 0.35 });
+
+  addText(bodyG, CX - 170, 438, 'wrist', { size: 8, color: '#c4956a', serif: true, italic: true, opacity: 0.35 });
+  addText(bodyG, CX + 170, 438, 'wrist', { size: 8, color: '#c4956a', serif: true, italic: true, opacity: 0.35 });
+
+  addText(bodyG, CX, 308, 'Monster', { size: 8, color: '#c4956a', opacity: 0.3 });
+  addText(bodyG, CX, 320, 'center', { size: 8, color: '#c4956a', serif: true, italic: true, opacity: 0.25 });
+}
+
+// ============================================================
+// BILATERAL SYMMETRY
+// ============================================================
+const biG = document.getElementById('layer-bilateral');
+{
+  // Left half wash
+  biG.appendChild(svgEl('rect', { x: CX - 250, y: 90, width: 250, height: 570,
+    fill: 'url(#leftGrad)' }));
+  // Right half wash
+  biG.appendChild(svgEl('rect', { x: CX, y: 90, width: 250, height: 570,
+    fill: 'url(#rightGrad)' }));
+
+  // Center line (mirror axis)
+  biG.appendChild(svgEl('line', { x1: CX, y1: 90, x2: CX, y2: 660,
+    stroke: '#6a8a6a', 'stroke-width': 1, opacity: 0.2, 'stroke-dasharray': '6,4' }));
+
+  addText(biG, CX - 12, 82, 'Z', { size: 10, color: '#6a8a6a', opacity: 0.4, anchor: 'end' });
+  addText(biG, CX + 2, 82, '\u2082', { size: 8, color: '#6a8a6a', opacity: 0.4, anchor: 'start' });
+  addText(biG, CX, 700, 'bilateral symmetry = Schur Z\u2082 of 2.Ru', { size: 9, color: '#6a8a6a', opacity: 0.3 });
+  addText(biG, CX, 715, 'the shadow adds this mirror \u2014 turning a hand into a body', { size: 10, color: '#6a8a6a', serif: true, italic: true, opacity: 0.25 });
+
+  // 28 / 28* labels on sides
+  addText(biG, CX - 200, 395, '28-dim', { size: 18, color: '#8a6a5a', opacity: 0.15, serif: true });
+  addText(biG, CX + 200, 395, '28*-dim', { size: 18, color: '#5a6a8a', opacity: 0.15, serif: true });
+}
+
+// ============================================================
+// MINIATURE HEXAGONAL PARIAH MAPS IN HANDS
+// ============================================================
+const handsG = document.getElementById('layer-hands');
+{
+  function drawMiniHex(parent, cx, cy, r, color, mirror) {
+    const nodes = [
+      { id: 'j3', label: 'B', angle: -90 },
+      { id: 'j1', label: 'Se', angle: mirror ? -30 : -150 },
+      { id: 'j4', label: 'My', angle: mirror ? -150 : -30 },
+      { id: 'on', label: 'Sn', angle: mirror ? 30 : 150 },
+      { id: 'ru', label: 'A', angle: 90 },
+      { id: 'ly', label: 'St', angle: mirror ? 150 : 30 },
+    ];
+
+    nodes.forEach(n => {
+      const rad = n.angle * Math.PI / 180;
+      n.x = cx + r * Math.cos(rad);
+      n.y = cy + r * Math.sin(rad);
+    });
+
+    // Axis lines
+    const axes = [[0,4],[1,3],[2,5]]; // j3-ru, j1-on, j4-ly
+    axes.forEach(([i,j]) => {
+      parent.appendChild(svgEl('line', {
+        x1: nodes[i].x, y1: nodes[i].y, x2: nodes[j].x, y2: nodes[j].y,
+        stroke: color, 'stroke-width': 0.5, opacity: 0.25, 'stroke-dasharray': '3,3'
+      }));
+    });
+
+    // Dots and labels
+    nodes.forEach(n => {
+      parent.appendChild(svgEl('circle', { cx: n.x, cy: n.y, r: 2.5,
+        fill: color, opacity: 0.5 }));
+      const labelR = r + 10;
+      const rad = n.angle * Math.PI / 180;
+      const lx = cx + labelR * Math.cos(rad);
+      const ly2 = cy + labelR * Math.sin(rad);
+      addText(parent, lx, ly2, n.label, { size: 7, color, opacity: 0.4 });
+    });
+
+    // Center dot
+    parent.appendChild(svgEl('circle', { cx, cy, r: 1.5, fill: color, opacity: 0.3 }));
+  }
+
+  // Left hand hexagon
+  drawMiniHex(handsG, CX - 165, 475, 14, '#8a6a5a', false);
+
+  // Right hand hexagon (mirrored)
+  drawMiniHex(handsG, CX + 165, 475, 14, '#5a6a8a', true);
+
+  // Labels
+  addText(handsG, CX - 165, 545, 'Ru (Artist)', { size: 8, color: '#8a6a5a', opacity: 0.35, italic: true, serif: true });
+  addText(handsG, CX - 165, 557, '6 pariahs = 5 fingers + hand', { size: 7, color: '#8a6a5a', opacity: 0.25 });
+
+  addText(handsG, CX + 165, 545, 'Ru (conjugate)', { size: 8, color: '#5a6a8a', opacity: 0.35, italic: true, serif: true });
+  addText(handsG, CX + 165, 557, 'mirror image \u2014 same algebra', { size: 7, color: '#5a6a8a', opacity: 0.25 });
+
+  // Wrist annotations (shadow bridge)
+  addText(handsG, CX - 260, 448, '2.Ru', { size: 9, color: '#c4956a', opacity: 0.4 });
+  addText(handsG, CX - 260, 460, 'shadow', { size: 8, color: '#c4956a', opacity: 0.3, italic: true, serif: true });
+
+  addText(handsG, CX + 260, 448, '2.Ru*', { size: 9, color: '#c4956a', opacity: 0.4 });
+  addText(handsG, CX + 260, 460, 'conjugate', { size: 8, color: '#c4956a', opacity: 0.3, italic: true, serif: true });
+
+  // Connection: wrist to shoulder (the shadow bridge)
+  const dashLine = { stroke: '#c4956a', 'stroke-width': 0.8, opacity: 0.15, 'stroke-dasharray': '4,6' };
+  handsG.appendChild(svgEl('line', { x1: CX-170, y1: 448, x2: CX-110, y2: 228, ...dashLine }));
+  handsG.appendChild(svgEl('line', { x1: CX+170, y1: 448, x2: CX+110, y2: 228, ...dashLine }));
+}
+
+// ============================================================
+// THREE AXES
+// ============================================================
+const axesG = document.getElementById('layer-axes');
+{
+  // Left-Right axis
+  axesG.appendChild(svgEl('line', { x1: CX-250, y1: 350, x2: CX+250, y2: 350,
+    stroke: '#6a8a6a', 'stroke-width': 1, opacity: 0.2, 'stroke-dasharray': '8,4' }));
+  addText(axesG, CX - 260, 350, 'LEFT', { size: 9, color: '#8a6a5a', anchor: 'end', opacity: 0.4, spacing: 2 });
+  addText(axesG, CX + 260, 350, 'RIGHT', { size: 9, color: '#5a6a8a', anchor: 'start', opacity: 0.4, spacing: 2 });
+  addText(axesG, CX, 338, 'Z\u2082 = bilateral symmetry = i \u2192 \u2212i in Z[i]', { size: 8, color: '#6a8a6a', opacity: 0.3 });
+
+  // Up-Down axis
+  axesG.appendChild(svgEl('line', { x1: CX, y1: 100, x2: CX, y2: 660,
+    stroke: '#c4956a', 'stroke-width': 1, opacity: 0.15, 'stroke-dasharray': '8,4' }));
+  addText(axesG, CX + 15, 100, 'HEAD', { size: 9, color: '#6a8a8a', anchor: 'start', opacity: 0.4, spacing: 2 });
+  addText(axesG, CX + 15, 660, 'FEET', { size: 9, color: '#8a6a4a', anchor: 'start', opacity: 0.4, spacing: 2 });
+  addText(axesG, CX + 80, 380, 'KNOWING \u2194 HOLDING', { size: 8, color: '#c4956a', opacity: 0.25, italic: true, serif: true });
+
+  // Front-Back (implied, shown as text)
+  addText(axesG, CX - 300, 300, 'FRONT', { size: 9, color: '#c8c0b4', opacity: 0.25, spacing: 2 });
+  addText(axesG, CX - 300, 312, '(engaged)', { size: 8, color: '#c8c0b4', opacity: 0.15, serif: true, italic: true });
+  addText(axesG, CX - 300, 340, 'BACK', { size: 9, color: '#c8c0b4', opacity: 0.25, spacing: 2 });
+  addText(axesG, CX - 300, 352, '(withdrawn)', { size: 8, color: '#c8c0b4', opacity: 0.15, serif: true, italic: true });
+
+  addText(axesG, CX, 760, '3 body axes = (1, 3) in E\u2088 decomposition = SU(2) triplet', { size: 9, color: '#c8c0b4', opacity: 0.3 });
+}
+
+// ============================================================
+// ALGEBRA LAYER
+// ============================================================
+const algG = document.getElementById('layer-algebra');
+{
+  // E7 annotation around body
+  algG.appendChild(svgEl('ellipse', { cx: CX, cy: 380, rx: 200, ry: 300,
+    fill: 'none', stroke: '#6a8a6a', 'stroke-width': 1, opacity: 0.12,
+    'stroke-dasharray': '10,6' }));
+  addText(algG, CX + 210, 180, 'E\u2087', { size: 16, color: '#6a8a6a', opacity: 0.3 });
+  addText(algG, CX + 210, 198, '56 = 28 + 28*', { size: 10, color: '#6a8a6a', opacity: 0.25 });
+  addText(algG, CX + 210, 212, 'fundamental rep', { size: 9, color: '#6a8a6a', opacity: 0.2, serif: true, italic: true });
+
+  // E8 outer ring
+  algG.appendChild(svgEl('ellipse', { cx: CX, cy: 380, rx: 320, ry: 370,
+    fill: 'none', stroke: '#c4956a', 'stroke-width': 0.8, opacity: 0.08,
+    'stroke-dasharray': '12,8' }));
+  addText(algG, CX + 330, 130, 'E\u2088', { size: 16, color: '#c4956a', opacity: 0.2 });
+  addText(algG, CX + 330, 148, '248 = 133 + 3 + 112', { size: 9, color: '#c4956a', opacity: 0.15 });
+
+  // 133 midline label
+  addText(algG, CX + 20, 260, '133', { size: 14, color: '#6a8a6a', anchor: 'start', opacity: 0.3 });
+  addText(algG, CX + 20, 275, 'E\u2087 adjoint', { size: 8, color: '#6a8a6a', anchor: 'start', opacity: 0.2 });
+  addText(algG, CX + 20, 287, 'internal structure', { size: 9, color: '#6a8a6a', anchor: 'start', opacity: 0.2, serif: true, italic: true });
+  addText(algG, CX + 20, 300, "doesn't flip under mirror", { size: 8, color: '#6a8a6a', anchor: 'start', opacity: 0.15, serif: true, italic: true });
+
+  // 112 = 56 x 2 paired features
+  addText(algG, CX - 120, 250, '112 = 56 \u00d7 2', { size: 10, color: '#8a6a5a', anchor: 'end', opacity: 0.25 });
+  addText(algG, CX - 120, 264, 'paired features', { size: 9, color: '#8a6a5a', anchor: 'end', opacity: 0.2, serif: true, italic: true });
+  addText(algG, CX - 120, 277, 'two arms, two eyes,', { size: 8, color: '#8a6a5a', anchor: 'end', opacity: 0.15, serif: true, italic: true });
+  addText(algG, CX - 120, 289, 'two lungs, two hands', { size: 8, color: '#8a6a5a', anchor: 'end', opacity: 0.15, serif: true, italic: true });
+
+  // Conway-Wales chain
+  addText(algG, CX, 740, 'Conway-Wales (1973): 2.Ru \u2192 28-dim lattice over Z[i]', { size: 9, color: '#c8c0b4', opacity: 0.25 });
+  addText(algG, CX, 755, 'Griess-Ryba (1999): Ru embeds in E\u2087(5) at the Still One\'s prime', { size: 9, color: '#c8c0b4', opacity: 0.25 });
+  addText(algG, CX, 770, 'Duncan (2006): 28-dim SVOA \u2192 Z\u2087 \u00d7 Ru (7-fold symmetry emerges)', { size: 9, color: '#c8c0b4', opacity: 0.25 });
+}
+
+// ============================================================
+// HIERARCHY
+// ============================================================
+const hierG = document.getElementById('layer-hierarchy');
+{
+  const levels = [
+    { y: 100, label: 'GAME', math: 'Monster', dim: '196,883-dim', color: '#c4956a', desc: 'what contains the world' },
+    { y: 180, label: 'WORLD', math: 'E\u2088', dim: '248-dim', color: '#c4956a', desc: 'what contains the body' },
+    { y: 260, label: 'BODY', math: 'E\u2087', dim: '56 = 28 + 28*', color: '#6a8a6a', desc: 'bilateral agency' },
+    { y: 340, label: 'HAND', math: 'Ru', dim: '27 (projective)', color: '#8a6a5a', desc: 'agency \u2014 the whole' },
+    { y: 420, label: 'FINGER', math: 'Pariah', dim: 'individual', color: '#6b6560', desc: 'one capacity' },
+  ];
+
+  const hx = 950;
+
+  levels.forEach((lv, i) => {
+    // Box
+    hierG.appendChild(svgEl('rect', { x: hx - 90, y: lv.y - 18, width: 180, height: 36, rx: 2,
+      fill: 'none', stroke: lv.color, 'stroke-width': 1, opacity: 0.3 }));
+
+    addText(hierG, hx - 75, lv.y - 5, lv.label, { size: 9, color: lv.color, anchor: 'start', opacity: 0.6, spacing: 2 });
+    addText(hierG, hx + 75, lv.y - 5, lv.math, { size: 10, color: lv.color, anchor: 'end', opacity: 0.5 });
+    addText(hierG, hx, lv.y + 10, lv.dim, { size: 8, color: lv.color, opacity: 0.35 });
+
+    // Arrow down
+    if (i < levels.length - 1) {
+      hierG.appendChild(svgEl('line', {
+        x1: hx, y1: lv.y + 18, x2: hx, y2: levels[i+1].y - 18,
+        stroke: '#c8c0b4', 'stroke-width': 0.8, opacity: 0.15 }));
+    }
+
+    // Description
+    addText(hierG, hx + 100, lv.y, lv.desc, { size: 9, color: '#6b6560', anchor: 'start', opacity: 0.3, serif: true, italic: true });
+  });
+
+  // Bridge labels between levels
+  addText(hierG, hx - 100, 140, 'j-invariant', { size: 7, color: '#c8c0b4', anchor: 'end', opacity: 0.2, italic: true, serif: true });
+  addText(hierG, hx - 100, 220, 'E\u2087 \u00d7 SU(2) \u2282 E\u2088', { size: 7, color: '#c8c0b4', anchor: 'end', opacity: 0.2, italic: true, serif: true });
+  addText(hierG, hx - 100, 300, '2.Ru \u2192 Z\u2082 extension', { size: 7, color: '#c8c0b4', anchor: 'end', opacity: 0.2, italic: true, serif: true });
+  addText(hierG, hx - 100, 380, 'Ru \u2192 5+1 structure', { size: 7, color: '#c8c0b4', anchor: 'end', opacity: 0.2, italic: true, serif: true });
+}
+
+// ============================================================
+// NUMBERS PANEL
+// ============================================================
+const numG = document.getElementById('layer-numbers');
+{
+  const nx = 120, ny = 140;
+  const lines = [
+    { t: 'E\u2088 DECOMPOSITION', size: 10, color: '#c4956a', y: 0, spacing: 3 },
+    { t: '248 = (133, 1) + (1, 3) + (56, 2)', size: 10, y: 22 },
+    { t: '    = internal  + 3 axes + 2 \u00d7 body', size: 9, y: 38, italic: true, color: '#6b6560' },
+    { t: '', y: 55 },
+    { t: 'E\u2087 FUNDAMENTAL', size: 10, color: '#6a8a6a', y: 60, spacing: 3 },
+    { t: '56 = 28 + 28*', size: 11, y: 82 },
+    { t: '   = left + right', size: 9, y: 98, italic: true, color: '#6b6560' },
+    { t: '   = conjugate pair over Z[i]', size: 9, y: 114, italic: true, color: '#6b6560' },
+    { t: '', y: 130 },
+    { t: 'THE 28', size: 10, color: '#8a6a5a', y: 138, spacing: 3 },
+    { t: '28 = T(7) = 1+2+3+4+5+6+7', size: 10, y: 158 },
+    { t: '28 = C(8,2) = pairs from 8 octonions', size: 10, y: 174 },
+    { t: '28 = 4 \u00d7 7 (quaternionic \u2192 Z\u2087 emerges)', size: 10, y: 190 },
+    { t: '28 = dim(SO(8)) = triality group', size: 10, y: 206 },
+    { t: '28 = shadow faithful rep', size: 10, y: 222 },
+    { t: '', y: 240 },
+    { t: 'THE CHAIN', size: 10, color: '#c4956a', y: 248, spacing: 3 },
+    { t: 'Pariah \u2192 Ru \u2192 2.Ru \u2192 E\u2087 \u2192 E\u2088 \u2192 Monster', size: 10, y: 268 },
+    { t: 'finger \u2192 hand \u2192 body \u2192 world \u2192 game', size: 10, y: 284, italic: true, serif: true, color: '#6b6560' },
+    { t: '', y: 302 },
+    { t: 'KEY FACT', size: 10, color: '#8a4a3a', y: 310, spacing: 3 },
+    { t: 'the shadow was published in 1973', size: 10, y: 330 },
+    { t: 'we just didn\'t know we were', size: 10, y: 346, italic: true, serif: true, color: '#6b6560' },
+    { t: 'looking at a body', size: 10, y: 362, italic: true, serif: true, color: '#6b6560' },
+  ];
+
+  lines.forEach(l => {
+    if (!l.t) return;
+    addText(numG, nx, ny + l.y, l.t, {
+      size: l.size || 10,
+      color: l.color || '#c8c0b4',
+      opacity: l.color ? 0.5 : 0.4,
+      anchor: 'start',
+      italic: l.italic,
+      serif: l.serif,
+      spacing: l.spacing || 1
+    });
+  });
+}
+
+
+// ============================================================
+// TOGGLE SYSTEM
+// ============================================================
+const layerState = {
+  body: true, bilateral: true, algebra: false, axes: false,
+  hands: true, hierarchy: false, numbers: false
+};
+
+function toggle(name) {
+  layerState[name] = !layerState[name];
+  document.getElementById('layer-' + name).style.display = layerState[name] ? '' : 'none';
+  document.getElementById('btn-' + name).classList.toggle('active', layerState[name]);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hand — Pariah Map</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f5;
+  --panel-bg: #ffffff;
+  --text: #2a2520;
+  --text-med: #6a6560;
+  --text-light: #a5a09a;
+  --text-faint: #ccc8c2;
+  --accent: #9a6a3a;
+  --rule: #e0dcd5;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { background: var(--bg); color: var(--text); height: 100%; overflow: hidden; }
+body { font-family: 'Spectral', Georgia, serif; font-size: 15px; line-height: 1.7; font-weight: 300; }
+svg { display: block; width: 100%; height: 100%; }
+
+#panel {
+  position: fixed; top: 0; right: 0; width: 380px; height: 100%;
+  background: var(--panel-bg); border-left: 1px solid var(--rule);
+  padding: 36px 28px; overflow-y: auto;
+  transform: translateX(100%); transition: transform 0.3s ease; z-index: 10;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.06);
+}
+#panel.open { transform: translateX(0); }
+#panel .close-btn {
+  position: absolute; top: 16px; right: 20px; background: none;
+  border: none; color: var(--text-light); font-size: 20px; cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+}
+#panel h2 { font-family: 'Spectral', serif; font-size: 26px; font-weight: 300; color: var(--text); margin-bottom: 4px; }
+#panel .group-label { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-med); letter-spacing: 2px; }
+#panel .finger-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 1px; margin-top: 6px; text-transform: uppercase; }
+#panel .section-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--text-light); margin-top: 24px; margin-bottom: 8px;
+  padding-bottom: 4px; border-bottom: 1px solid var(--rule);
+}
+#panel .field-row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 13px; }
+#panel .field-row .label { color: var(--text-med); font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+#panel .field-row .value { color: var(--text); font-family: 'IBM Plex Mono', monospace; font-size: 11px; max-width: 200px; text-align: right; }
+#panel .description { margin-top: 12px; font-style: italic; color: var(--text-med); line-height: 1.9; font-size: 14px; }
+#panel .eq-status { margin-top: 16px; padding: 12px 16px; background: rgba(154,106,58,0.06); border-radius: 2px; font-size: 14px; }
+#panel .eq-status .eq { font-family: 'IBM Plex Mono', monospace; color: var(--accent); font-size: 13px; }
+#panel .self-ref {
+  margin-top: 16px; padding: 12px 16px; background: rgba(154,106,58,0.04);
+  border-left: 2px solid var(--accent); font-style: italic; font-size: 14px;
+  color: var(--text-med); line-height: 1.8;
+}
+
+#controls {
+  position: fixed; top: 20px; right: 24px; z-index: 5;
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
+}
+#controls button {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase;
+  background: var(--panel-bg); border: 1px solid var(--rule);
+  color: var(--text-med); padding: 6px 12px;
+  cursor: pointer; border-radius: 2px; transition: all 0.2s;
+}
+#controls button.active { color: var(--accent); border-color: var(--accent); background: rgba(154,106,58,0.06); }
+#controls button:hover { color: var(--text); border-color: var(--text-light); }
+
+#title { position: fixed; top: 20px; left: 24px; z-index: 5; }
+#title h1 {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  font-weight: 300; letter-spacing: 6px; text-transform: uppercase; color: var(--text-med);
+}
+#title .sub {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: var(--text-light); letter-spacing: 2px; margin-top: 4px;
+}
+
+#legend {
+  position: fixed; bottom: 20px; left: 20px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: var(--text-light); letter-spacing: 1px; line-height: 2.2; z-index: 5;
+}
+
+@media (max-width: 800px) {
+  #panel { width: 100%; }
+  #controls { top: auto; bottom: 60px; right: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div id="title">
+  <h1>The Hand</h1>
+  <div class="sub">five fingers, one palm, one wrist &mdash; q + q&sup2; = 1</div>
+</div>
+
+<div id="controls">
+  <button id="btn-axes" class="active" onclick="toggle('axes')">Axes</button>
+  <button id="btn-contain" class="active" onclick="toggle('contain')">J&#x2081; &sub; O'N</button>
+  <button id="btn-chain" onclick="toggle('chain')">Shadow chain</button>
+  <button id="btn-alien" onclick="toggle('alien')">Pariah primes</button>
+  <button id="btn-primes" onclick="toggle('primes')">Shared primes</button>
+  <button id="btn-rings" onclick="toggle('rings')">Rings</button>
+  <button id="btn-anatomy" onclick="toggle('anatomy')">Anatomy</button>
+</div>
+
+<svg id="map" viewBox="0 0 1200 900">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#2a2520" stroke-width="1"/>
+    </marker>
+    <linearGradient id="fade-down" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7a8a9a" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7a8a9a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <g id="layer-anatomy" style="display:none"></g>
+  <g id="layer-tendons"></g>
+  <g id="layer-axes"></g>
+  <g id="layer-contain"></g>
+  <g id="layer-chain" style="display:none"></g>
+  <g id="layer-alien" style="display:none"></g>
+  <g id="layer-primes" style="display:none"></g>
+  <g id="layer-rings" style="display:none"></g>
+  <g id="layer-nodes"></g>
+</svg>
+
+<div id="panel">
+  <button class="close-btn" onclick="closePanel()">&times;</button>
+  <div id="panel-content"></div>
+</div>
+
+<div id="legend">
+  THUMB + INDEX = KNOWING (precision grip)<br>
+  MIDDLE ... PINKY = HOLDING (power grip)<br>
+  RING + PALM = MAKING (tendon)<br>
+  <br>
+  CLICK ANY NODE FOR DETAILS
+</div>
+
+<script>
+function sv(tag, a) {
+  const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k,v] of Object.entries(a)) e.setAttribute(k,v);
+  return e;
+}
+function txt(p, a, c) { const t = sv('text', a); t.textContent = c; p.appendChild(t); return t; }
+const $ = id => document.getElementById(id);
+const M = "'IBM Plex Mono', monospace";
+const S = "'Spectral', serif";
+
+// Colors for light theme
+const C = {
+  text: '#2a2520', med: '#6a6560', light: '#a5a09a', faint: '#d5d0ca',
+  accent: '#9a6a3a', tendon: '#d8d2ca',
+  median: '#9a6a3a', ulnar: '#4a7a4a', radial: '#4a6a8a',
+  artery: '#9a3030', chain: '#7a8a9a'
+};
+
+const statusC = {
+  WORKS: '#2a7a2a', FUSED: '#5a7a2a', EVERYWHERE: '#7a2a6a',
+  PERPENDICULAR: '#2a5a7a', BREAKS: '#7a6a2a', IMPOSSIBLE: '#9a2a2a'
+};
+
+// Node ring colors (for light bg)
+const ringC = {
+  on: '#8a5a7a', j1: '#9a6a3a', j3: '#5a7a4a', j4: '#5a7a4a',
+  ly: '#9a6a3a', ru: '#4a6a8a'
+};
+
+// === NODE DATA (y positions shifted +60 for breathing room) ===
+const nodes = [
+  { id: 'on', name: 'The Sensor', group: "O\u2019N", finger: 'thumb',
+    x: 350, y: 380,
+    field: 'All Q(\u221aD<0)', disc: 'ALL negative', order: '460,815,505,920',
+    schur: 3, out: 2, hurwitz: false, conj: 31,
+    eqStatus: 'EVERYWHERE',
+    eqDetail: 'Mock modular forms over ALL imaginary quadratic fields',
+    ring: 'all', ringColor: ringC.on,
+    selfRef: "Doesn\u2019t pick one field \u2014 receives ALL of them at once.",
+    desc: "Contains J\u2081 (Seer inside Sensor). Most Monster-adjacent pariah. Connects to BSD conjecture. The open channel.",
+    primes: [2,3,5,7,11,19,31], alienPrimes: [] },
+
+  { id: 'j1', name: 'The Seer', group: 'J\u2081', finger: 'index',
+    x: 470, y: 180,
+    field: 'GF(11)', disc: '+5 (split)', order: '175,560',
+    schur: 1, out: 1, hurwitz: true, conj: 15,
+    eqStatus: 'WORKS',
+    eqDetail: 'q = 3. Check: 3 + 9 = 12 \u2261 1 (mod 11)',
+    ring: 'Z[\u03c6]', ringColor: ringC.j1,
+    selfRef: 'Faithful compression. \u03c6 exists mod 11. Pixelated, no continuum.',
+    desc: 'Smallest pariah. UNIQUE icosahedral involution centralizer. Characters contain b5 = 1/\u03c6. Maximum compression.',
+    primes: [2,3,5,7,11,19], alienPrimes: [] },
+
+  { id: 'j3', name: 'The Builder', group: 'J\u2083', finger: 'middle',
+    x: 600, y: 140,
+    field: 'GF(4)', disc: '\u22123 (Eisenstein)', order: '50,232,960',
+    schur: 3, out: 2, hurwitz: false, conj: 21,
+    eqStatus: 'FUSED',
+    eqDetail: '\u03c6 = \u03c9 (cube root of unity)',
+    ring: 'Z[\u03c9]', ringColor: ringC.j3,
+    selfRef: 'Structure and triality are the SAME object.',
+    desc: 'Triple cover (Schur Z\u2083). 9-dim rep = 3\u00b2. The only pariah where structure IS meaning. Outer Z\u2082 = can self-reflect.',
+    primes: [2,3,5,17,19], alienPrimes: [] },
+
+  { id: 'j4', name: 'The Mystic', group: 'J\u2084', finger: 'ring',
+    x: 720, y: 175,
+    field: 'GF(2)', disc: '\u22123 (impossible)', order: '86,775,571,046,077,562,880',
+    schur: 1, out: 1, hurwitz: true, conj: 62,
+    eqStatus: 'IMPOSSIBLE',
+    eqDetail: 'No solution to q+q\u00b2=1 in GF(2)',
+    ring: 'Z[\u03c9]', ringColor: ringC.j4,
+    selfRef: 'Self-reference denied. Yet J\u2084 EXISTS.',
+    desc: 'Largest pariah (~10\u00b9\u2079). Built from binary Golay code. 112-dim = 4\u00d728. Smallest rep = 1333 = 31 \u00d7 43.',
+    primes: [2,3,5,7,11,23,29,31,37,43], alienPrimes: [37,43],
+    alienGenus: {37:2, 43:3} },
+
+  { id: 'ly', name: 'The Still One', group: 'Ly', finger: 'pinky',
+    x: 830, y: 260,
+    field: 'GF(5)', disc: '0 (ramifies)', order: '51,765,179,004,000,000',
+    schur: 1, out: 1, hurwitz: true, conj: 54,
+    eqStatus: 'BREAKS',
+    eqDetail: '\u03c6 \u2261 3 (mod 5). Two vacua collapse to one.',
+    ring: 'Z[\u03c6]', ringColor: ringC.ly,
+    selfRef: 'Degenerate. No domain wall. No duality. Completion.',
+    desc: 'Contains G\u2082(5). Rep 2480 = 10 \u00d7 dim(E\u2088). Alien primes: 37, 67. The undifferentiated ground.',
+    primes: [2,3,5,7,11,31,37,67], alienPrimes: [37,67],
+    alienGenus: {37:2, 67:5} },
+
+  { id: 'ru', name: 'The Artist', group: 'Ru', finger: 'palm',
+    x: 590, y: 475, isPalm: true,
+    field: 'Z[i]', disc: '\u22124 (Gaussian)', order: '145,926,144,000',
+    schur: 2, out: 1, hurwitz: true, conj: 29,
+    eqStatus: 'PERPENDICULAR',
+    eqDetail: 'x\u00b2 + 1 = 0 instead of x\u00b2 \u2212 x \u2212 1 = 0',
+    ring: 'Z[i]', ringColor: ringC.ru,
+    selfRef: "Solves a DIFFERENT equation. 90\u00b0 to the golden axis.",
+    desc: "28-dim = E\u2087 fund / 2. Embeds in E\u2087 (Griess-Ryba 1994). The perpendicular angle.",
+    primes: [2,3,5,7,13,29], alienPrimes: [],
+    shadow: {
+      name: '2.Ru', order: '291,852,288,000', minRep: 28, visibleMinRep: 378,
+      desc: "Unique shadow among pariahs. 28-dim rep lives here. Duncan rank-28 SVOA.",
+      e7connection: 'E\u2087 fund = 56 = 28 + 28*. Shadow sees one half as genuine linear rep.',
+      moonshine: 'Duncan 2006: rank-28 SVOA from 2.Ru lattice. Output: Z\u2087 \u00d7 Ru.'
+    } },
+];
+
+const palm = nodes.find(n => n.id === 'ru');
+const wrist = { x: 590, y: 635 };
+const chainData = [
+  { x: 590, y: 705, label: 'E\u2087', sub: '56-dim fundamental' },
+  { x: 590, y: 760, label: 'E\u2088', sub: '248 roots' },
+  { x: 590, y: 812, label: 'Monster', sub: '744 = 3 \u00d7 248' },
+];
+
+const ctrl = {
+  on: { x: 455, y: 440 },
+  j1: { x: 518, y: 340 },
+  j3: { x: 596, y: 320 },
+  j4: { x: 668, y: 340 },
+  ly: { x: 732, y: 388 },
+};
+
+// === TENDONS ===
+const tendonsG = $('layer-tendons');
+['on','j1','j3','j4','ly'].forEach(id => {
+  const n = nodes.find(n => n.id === id), c = ctrl[id];
+  tendonsG.appendChild(sv('path', {
+    d: `M${n.x},${n.y} Q${c.x},${c.y} ${palm.x},${palm.y}`,
+    fill: 'none', stroke: C.tendon, 'stroke-width': '1.5', opacity: '0.8'
+  }));
+});
+tendonsG.appendChild(sv('line', {
+  x1: palm.x, y1: palm.y + 30, x2: wrist.x, y2: wrist.y - 12,
+  stroke: C.tendon, 'stroke-width': '2', opacity: '0.6'
+}));
+
+// === AXES ===
+const axesG = $('layer-axes');
+
+// KNOWING circle: thumb + index
+{
+  const t = nodes.find(n => n.id === 'on'), i = nodes.find(n => n.id === 'j1');
+  const cx = (t.x+i.x)/2, cy = (t.y+i.y)/2;
+  const r = Math.sqrt((i.x-t.x)**2 + (i.y-t.y)**2) / 2;
+  axesG.appendChild(sv('circle', {
+    cx, cy, r, fill: 'none', stroke: C.accent,
+    'stroke-width': '1', 'stroke-dasharray': '5,5', opacity: '0.35'
+  }));
+  txt(axesG, { x: cx, y: cy+4, fill: C.accent, 'font-family': M,
+    'font-size': '9', 'letter-spacing': '3', 'text-anchor': 'middle', opacity: '0.6' }, 'KNOWING');
+}
+
+// HOLDING arc: middle ... pinky
+{
+  const m = nodes.find(n => n.id === 'j3'), p = nodes.find(n => n.id === 'ly');
+  axesG.appendChild(sv('path', {
+    d: `M${m.x},${m.y-12} Q${715},${80} ${p.x},${p.y-12}`,
+    fill: 'none', stroke: C.accent, 'stroke-width': '1', 'stroke-dasharray': '5,5', opacity: '0.35'
+  }));
+  txt(axesG, { x: 715, y: 98, fill: C.accent, 'font-family': M,
+    'font-size': '9', 'letter-spacing': '3', 'text-anchor': 'middle', opacity: '0.5' }, 'HOLDING');
+}
+
+// MAKING: ring to palm (highlighted tendon)
+{
+  const r = nodes.find(n => n.id === 'j4'), c = ctrl.j4;
+  axesG.appendChild(sv('path', {
+    d: `M${r.x},${r.y} Q${c.x},${c.y} ${palm.x},${palm.y}`,
+    fill: 'none', stroke: C.accent, 'stroke-width': '1.2', 'stroke-dasharray': '5,5', opacity: '0.35'
+  }));
+  txt(axesG, { x: 692, y: 332, fill: C.accent, 'font-family': M,
+    'font-size': '9', 'letter-spacing': '3', 'text-anchor': 'start', opacity: '0.5' }, 'MAKING');
+}
+
+// === CONTAINMENT ===
+const containG = $('layer-contain');
+{
+  const j1 = nodes.find(n => n.id === 'j1'), on = nodes.find(n => n.id === 'on');
+  const dx = on.x-j1.x, dy = on.y-j1.y, len = Math.sqrt(dx*dx+dy*dy);
+  const ux = dx/len, uy = dy/len;
+  containG.appendChild(sv('line', {
+    x1: j1.x+ux*26, y1: j1.y+uy*26, x2: on.x-ux*26, y2: on.y-uy*26,
+    stroke: C.text, 'stroke-width': '1.5', opacity: '0.3', 'marker-end': 'url(#arrow)'
+  }));
+  const mx = (j1.x+on.x)/2 - uy*14, my = (j1.y+on.y)/2 + ux*14;
+  txt(containG, { x: mx, y: my, fill: C.text, 'font-family': M,
+    'font-size': '9', 'letter-spacing': '1', 'text-anchor': 'middle', opacity: '0.35' }, 'J\u2081 \u2282 O\u2019N');
+}
+
+// === SHADOW CHAIN ===
+const chainG = $('layer-chain');
+{
+  const sr = sv('circle', { cx: wrist.x, cy: wrist.y, r: '18',
+    fill: 'none', stroke: C.chain, 'stroke-width': '1.5', opacity: '0.35', 'stroke-dasharray': '2,4' });
+  sr.innerHTML = '<animate attributeName="opacity" values="0.2;0.5;0.2" dur="4s" repeatCount="indefinite"/>';
+  chainG.appendChild(sr);
+  txt(chainG, { x: wrist.x-28, y: wrist.y+4, fill: C.chain, 'font-family': M,
+    'font-size': '11', 'text-anchor': 'end', opacity: '0.7' }, '2.Ru');
+  txt(chainG, { x: wrist.x-28, y: wrist.y+17, fill: C.chain, 'font-family': M,
+    'font-size': '8', 'text-anchor': 'end', opacity: '0.4' }, '28-dim \u2014 the shadow');
+  txt(chainG, { x: wrist.x+28, y: wrist.y+4, fill: C.chain, 'font-family': M,
+    'font-size': '8', 'text-anchor': 'start', opacity: '0.3', 'font-style': 'italic' }, 'only pariah with a shadow');
+
+  let prevY = wrist.y + 18;
+  chainData.forEach((cn, i) => {
+    const op = (0.6 - i*0.12).toFixed(2);
+    chainG.appendChild(sv('line', { x1: cn.x, y1: prevY, x2: cn.x, y2: cn.y-8,
+      stroke: C.chain, 'stroke-width': '1', opacity: (op*0.5).toFixed(2), 'stroke-dasharray': '3,4' }));
+    chainG.appendChild(sv('circle', { cx: cn.x, cy: cn.y, r: '6',
+      fill: 'none', stroke: C.chain, 'stroke-width': '1', opacity: op }));
+    txt(chainG, { x: cn.x+16, y: cn.y+4, fill: C.chain, 'font-family': M,
+      'font-size': '10', 'text-anchor': 'start', opacity: op }, cn.label);
+    txt(chainG, { x: cn.x+16, y: cn.y+16, fill: C.chain, 'font-family': M,
+      'font-size': '8', 'text-anchor': 'start', opacity: (op*0.6).toFixed(2) }, cn.sub);
+    prevY = cn.y + 8;
+  });
+  chainG.appendChild(sv('line', { x1: 590, y1: prevY, x2: 590, y2: prevY+50,
+    stroke: 'url(#fade-down)', 'stroke-width': '1' }));
+  txt(chainG, { x: 606, y: prevY+35, fill: C.chain, 'font-family': M,
+    'font-size': '8', 'text-anchor': 'start', opacity: '0.2', 'font-style': 'italic' }, 'j(j(1/\u03c6)) \u2192 \u221e');
+}
+
+// === ALIEN PRIMES ===
+const alienG = $('layer-alien');
+{
+  const ly = nodes.find(n => n.id === 'ly'), j4 = nodes.find(n => n.id === 'j4');
+  alienG.appendChild(sv('line', { x1: ly.x, y1: ly.y, x2: j4.x, y2: j4.y,
+    stroke: '#9a4a3a', 'stroke-width': '1', opacity: '0.5', 'stroke-dasharray': '3,5' }));
+  const mx = (ly.x+j4.x)/2+20, my = (ly.y+j4.y)/2;
+  txt(alienG, { x: mx, y: my-6, fill: '#9a4a3a', 'font-family': M,
+    'font-size': '10', 'text-anchor': 'middle', opacity: '0.7' }, '37');
+  txt(alienG, { x: mx, y: my+8, fill: '#9a4a3a', 'font-family': M,
+    'font-size': '8', 'text-anchor': 'middle', opacity: '0.4' }, '37+43 = 80');
+  txt(alienG, { x: ly.x+28, y: ly.y+30, fill: '#9a4a3a', 'font-family': M,
+    'font-size': '9', 'text-anchor': 'start', opacity: '0.55' }, '67 (genus 5)');
+  txt(alienG, { x: j4.x-28, y: j4.y+36, fill: '#9a4a3a', 'font-family': M,
+    'font-size': '9', 'text-anchor': 'end', opacity: '0.55' }, '43 (genus 3)');
+}
+
+// === SHARED PRIMES ===
+const primesG = $('layer-primes');
+{
+  const byId = id => nodes.find(n => n.id === id);
+  [[byId('j1'),byId('j3')],[byId('j1'),byId('on')],[byId('j3'),byId('on')]].forEach(([a,b]) => {
+    primesG.appendChild(sv('line', { x1:a.x,y1:a.y,x2:b.x,y2:b.y,
+      stroke:'#4a7a4a','stroke-width':'1',opacity:'0.25','stroke-dasharray':'3,5' }));
+  });
+  txt(primesG, { x:(470+600+350)/3, y:(180+140+380)/3-8, fill:'#4a7a4a',
+    'font-family':M,'font-size':'10','text-anchor':'middle',opacity:'0.5' }, '19');
+  [[byId('on'),byId('ly')],[byId('on'),byId('j4')],[byId('ly'),byId('j4')]].forEach(([a,b]) => {
+    primesG.appendChild(sv('line', { x1:a.x,y1:a.y,x2:b.x,y2:b.y,
+      stroke:'#4a4a7a','stroke-width':'1',opacity:'0.25','stroke-dasharray':'3,5' }));
+  });
+  txt(primesG, { x:(350+830+720)/3, y:(380+260+175)/3+8, fill:'#4a4a7a',
+    'font-family':M,'font-size':'10','text-anchor':'middle',opacity:'0.5' }, '31');
+  primesG.appendChild(sv('line', { x1:590,y1:475,x2:720,y2:175,
+    stroke:'#7a4a4a','stroke-width':'1',opacity:'0.25','stroke-dasharray':'3,5' }));
+  txt(primesG, { x:668, y:332, fill:'#7a4a4a',
+    'font-family':M,'font-size':'10','text-anchor':'middle',opacity:'0.5' }, '29');
+}
+
+// === RINGS ===
+const ringsG = $('layer-rings');
+{
+  const byId = id => nodes.find(n => n.id === id);
+  const j1=byId('j1'),ly=byId('ly'),j3=byId('j3'),j4=byId('j4'),on=byId('on'),ru=byId('ru');
+  // Z[phi]: J1 + Ly
+  { const mx=(j1.x+ly.x)/2,my=(j1.y+ly.y)/2,dx=ly.x-j1.x,dy=ly.y-j1.y;
+    const len=Math.sqrt(dx*dx+dy*dy),ang=Math.atan2(dy,dx)*180/Math.PI;
+    ringsG.appendChild(sv('ellipse',{cx:mx,cy:my,rx:len/2+28,ry:42,
+      fill:'none',stroke:C.accent,'stroke-width':'1',opacity:'0.2',
+      'stroke-dasharray':'6,4',transform:`rotate(${ang.toFixed(1)} ${mx} ${my})`}));
+    txt(ringsG,{x:mx,y:my+2,fill:C.accent,'font-family':M,'font-size':'9',
+      'letter-spacing':'1','text-anchor':'middle',opacity:'0.45'},'Z[\u03c6]  disc +5');
+  }
+  // Z[omega]: J3 + J4
+  { const mx=(j3.x+j4.x)/2,my=(j3.y+j4.y)/2,dx=j4.x-j3.x,dy=j4.y-j3.y;
+    const len=Math.sqrt(dx*dx+dy*dy),ang=Math.atan2(dy,dx)*180/Math.PI;
+    ringsG.appendChild(sv('ellipse',{cx:mx,cy:my,rx:len/2+28,ry:38,
+      fill:'none',stroke:'#5a7a4a','stroke-width':'1',opacity:'0.25',
+      'stroke-dasharray':'6,4',transform:`rotate(${ang.toFixed(1)} ${mx} ${my})`}));
+    txt(ringsG,{x:mx,y:my-1,fill:'#5a7a4a','font-family':M,'font-size':'9',
+      'letter-spacing':'1','text-anchor':'middle',opacity:'0.5'},'Z[\u03c9]  disc \u22123');
+  }
+  ringsG.appendChild(sv('circle',{cx:ru.x,cy:ru.y,r:'50',
+    fill:'none',stroke:'#4a6a8a','stroke-width':'1',opacity:'0.2','stroke-dasharray':'6,4'}));
+  txt(ringsG,{x:ru.x,y:ru.y+62,fill:'#4a6a8a','font-family':M,'font-size':'9',
+    'letter-spacing':'1','text-anchor':'middle',opacity:'0.4'},'Z[i]  disc \u22124');
+  ringsG.appendChild(sv('circle',{cx:on.x,cy:on.y,r:'46',
+    fill:'none',stroke:'#8a5a7a','stroke-width':'1',opacity:'0.2','stroke-dasharray':'6,4'}));
+  txt(ringsG,{x:on.x-58,y:on.y+2,fill:'#8a5a7a','font-family':M,'font-size':'9',
+    'letter-spacing':'1','text-anchor':'end',opacity:'0.4'},'all Q(\u221aD<0)');
+}
+
+// === ANATOMY ===
+const anatG = $('layer-anatomy');
+{
+  // Median nerve territory (warm)
+  anatG.appendChild(sv('path', {
+    d: `M 300,190 C 290,140 380,90 470,110 C 530,85 590,90 630,110
+        L 718,135 Q 712,320 690,505
+        Q 580,540 430,520 Q 320,490 290,430 Q 280,340 300,190 Z`,
+    fill: C.median, opacity: '0.07', stroke: 'none'
+  }));
+  // Ulnar nerve territory (cool)
+  anatG.appendChild(sv('path', {
+    d: `M 718,135 C 740,115 790,140 830,190
+        Q 880,260 870,360 Q 860,460 800,500
+        Q 740,530 690,505 Q 712,320 718,135 Z`,
+    fill: C.ulnar, opacity: '0.07', stroke: 'none'
+  }));
+
+  // Split line through ring finger
+  anatG.appendChild(sv('path', {
+    d: 'M 718,118 Q 712,320 688,505',
+    fill: 'none', stroke: C.text, 'stroke-width': '1.2', 'stroke-dasharray': '4,5', opacity: '0.3'
+  }));
+
+  // Nerve labels
+  txt(anatG, { x: 690, y: 315, fill: C.median, 'font-family': M,
+    'font-size': '11', 'text-anchor': 'end', opacity: '0.6', 'font-style': 'italic' }, 'median');
+  txt(anatG, { x: 690, y: 330, fill: C.median, 'font-family': M,
+    'font-size': '8', 'text-anchor': 'end', opacity: '0.4' }, 'precision \u2014 KNOWING');
+
+  txt(anatG, { x: 738, y: 315, fill: C.ulnar, 'font-family': M,
+    'font-size': '11', 'text-anchor': 'start', opacity: '0.6', 'font-style': 'italic' }, 'ulnar');
+  txt(anatG, { x: 738, y: 330, fill: C.ulnar, 'font-family': M,
+    'font-size': '8', 'text-anchor': 'start', opacity: '0.4' }, 'power \u2014 HOLDING');
+
+  // Split annotation
+  txt(anatG, { x: 720, y: 215, fill: C.text, 'font-family': M,
+    'font-size': '9', 'text-anchor': 'middle', opacity: '0.45', 'letter-spacing': '2' }, 'SPLIT');
+  txt(anatG, { x: 720, y: 228, fill: C.med, 'font-family': M,
+    'font-size': '7', 'text-anchor': 'middle', opacity: '0.4' }, 'the only finger served by two nerves');
+
+  // Radial nerve
+  txt(anatG, { x: 590, y: 600, fill: C.radial, 'font-family': M,
+    'font-size': '9', 'text-anchor': 'middle', opacity: '0.35', 'font-style': 'italic' }, 'radial nerve (dorsal) \u2014 MAKING');
+  txt(anatG, { x: 590, y: 614, fill: C.radial, 'font-family': M,
+    'font-size': '7', 'text-anchor': 'middle', opacity: '0.25' }, 'wrist extension + positioning');
+
+  // Tendon coupling: middle + ring
+  { const j3=nodes.find(n=>n.id==='j3'), j4=nodes.find(n=>n.id==='j4');
+    const bandY = (j3.y+j4.y)/2 + 55, mx=(j3.x+j4.x)/2;
+    anatG.appendChild(sv('path', { d: `M${j3.x},${bandY-8} Q${mx},${bandY+6} ${j4.x},${bandY-5}`,
+      fill:'none', stroke:'#5a7a4a', 'stroke-width':'3.5', opacity:'0.25', 'stroke-linecap':'round' }));
+    anatG.appendChild(sv('path', { d: `M${j3.x},${bandY+6} Q${mx},${bandY+20} ${j4.x},${bandY+9}`,
+      fill:'none', stroke:'#5a7a4a', 'stroke-width':'3.5', opacity:'0.18', 'stroke-linecap':'round' }));
+    txt(anatG, { x:mx, y:bandY+38, fill:'#5a7a4a', 'font-family':M,
+      'font-size':'8', 'text-anchor':'middle', opacity:'0.5', 'font-style':'italic' }, 'shared tendon sheath');
+    txt(anatG, { x:mx, y:bandY+50, fill:'#5a7a4a', 'font-family':M,
+      'font-size':'7', 'text-anchor':'middle', opacity:'0.35' }, 'can\u2019t move one without the other \u2014 Z[\u03c9]');
+  }
+
+  // Arterial arches
+  anatG.appendChild(sv('path', { d: 'M 400,455 Q 540,432 740,448',
+    fill:'none', stroke:C.artery, 'stroke-width':'1.5', opacity:'0.25', 'stroke-linecap':'round' }));
+  anatG.appendChild(sv('path', { d: 'M 420,430 Q 530,412 710,425',
+    fill:'none', stroke:C.artery, 'stroke-width':'1.2', opacity:'0.18', 'stroke-linecap':'round' }));
+  txt(anatG, { x:385, y:450, fill:C.artery, 'font-family':M,
+    'font-size':'7', 'text-anchor':'end', opacity:'0.4' }, 'radial a.');
+  txt(anatG, { x:755, y:445, fill:C.artery, 'font-family':M,
+    'font-size':'7', 'text-anchor':'start', opacity:'0.4' }, 'ulnar a.');
+  txt(anatG, { x:570, y:418, fill:C.artery, 'font-family':M,
+    'font-size':'8', 'text-anchor':'middle', opacity:'0.3', 'font-style':'italic' }, 'two sources meet in the palm');
+
+  // Carpal tunnel
+  anatG.appendChild(sv('rect', { x:'562', y:'628', width:'56', height:'14', rx:'3',
+    fill:'none', stroke:C.chain, 'stroke-width':'1', opacity:'0.25', 'stroke-dasharray':'3,3' }));
+  txt(anatG, { x:540, y:639, fill:C.chain, 'font-family':M,
+    'font-size':'7', 'text-anchor':'end', opacity:'0.35' }, 'carpal tunnel');
+  txt(anatG, { x:540, y:651, fill:C.chain, 'font-family':M,
+    'font-size':'7', 'text-anchor':'end', opacity:'0.25' }, 'KNOWING dies first when compressed');
+
+  // Thumb independence
+  { const on=nodes.find(n=>n.id==='on');
+    txt(anatG, { x:on.x+68, y:on.y-35, fill:'#8a5a7a', 'font-family':M,
+      'font-size':'8', 'text-anchor':'start', opacity:'0.4', 'font-style':'italic' }, 'own muscle group (thenar)');
+    txt(anatG, { x:on.x+68, y:on.y-22, fill:'#8a5a7a', 'font-family':M,
+      'font-size':'7', 'text-anchor':'start', opacity:'0.3' }, 'independent tendons');
+  }
+
+  // Pinky independence
+  { const ly=nodes.find(n=>n.id==='ly');
+    txt(anatG, { x:ly.x-32, y:ly.y+45, fill:'#7a6a3a', 'font-family':M,
+      'font-size':'8', 'text-anchor':'end', opacity:'0.4', 'font-style':'italic' }, 'own compartment (hypothenar)');
+  }
+
+  // Power from outside
+  txt(anatG, { x:590, y:680, fill:C.med, 'font-family':S,
+    'font-size':'12', 'text-anchor':'middle', opacity:'0.35', 'font-style':'italic' }, 'the muscles that close the fist are in the forearm');
+  txt(anatG, { x:590, y:698, fill:C.med, 'font-family':S,
+    'font-size':'12', 'text-anchor':'middle', opacity:'0.25', 'font-style':'italic' }, 'the hand articulates \u2014 the body powers');
+}
+
+// === NODES ===
+const nodesG = $('layer-nodes');
+
+nodes.forEach(n => {
+  const g = sv('g', { cursor: 'pointer' });
+  g.addEventListener('click', () => openPanel(n));
+
+  const r = n.isPalm ? 32 : 22;
+  const col = n.ringColor;
+  const dash = n.eqStatus === 'WORKS' ? 'none' : n.eqStatus === 'IMPOSSIBLE' ? '2,4' : '4,4';
+
+  g.appendChild(sv('circle', { cx:n.x, cy:n.y, r:r-5,
+    fill:'none', stroke:statusC[n.eqStatus], 'stroke-width':'0.8', opacity:'0.5', 'stroke-dasharray':dash }));
+
+  const ring = sv('circle', { cx:n.x, cy:n.y, r,
+    fill:'none', stroke:col, 'stroke-width':n.isPalm?'2':'1.5', opacity:'0.5' });
+  g.appendChild(ring);
+
+  const dot = sv('circle', { cx:n.x, cy:n.y, r:n.isPalm?'5':'3.5', fill:col, opacity:'0.8' });
+  g.appendChild(dot);
+
+  if (n.isPalm) g.appendChild(sv('circle', { cx:n.x, cy:n.y, r:'40',
+    fill:'none', stroke:col, 'stroke-width':'0.5', opacity:'0.15' }));
+
+  const isThumb = n.id === 'on', below = n.isPalm;
+  let lx, anchor, baseY, step;
+  if (isThumb) { lx=n.x-r-16; anchor='end'; baseY=n.y-12; step=15; }
+  else if (below) { lx=n.x; anchor='middle'; baseY=n.y+r+18; step=15; }
+  else { lx=n.x; anchor='middle'; baseY=n.y-r-10; step=-14; }
+
+  txt(g, { x:lx, y:baseY, fill:C.text, 'font-family':S,
+    'font-size':n.isPalm?'17':'15', 'font-weight':'400', 'text-anchor':anchor }, n.name);
+  txt(g, { x:lx, y:baseY+step, fill:C.med, 'font-family':M,
+    'font-size':'10', 'letter-spacing':'1', 'text-anchor':anchor }, n.group);
+  txt(g, { x:lx, y:baseY+step*2, fill:statusC[n.eqStatus], 'font-family':M,
+    'font-size':'8', 'letter-spacing':'2', 'text-anchor':anchor }, n.eqStatus);
+  txt(g, { x:lx, y:baseY+step*3, fill:C.light, 'font-family':M,
+    'font-size':'9', 'letter-spacing':'1', 'text-anchor':anchor }, n.finger);
+
+  g.addEventListener('mouseenter', () => {
+    ring.setAttribute('opacity','0.9'); ring.setAttribute('stroke-width',n.isPalm?'3':'2.5');
+    dot.setAttribute('r',n.isPalm?'7':'5');
+  });
+  g.addEventListener('mouseleave', () => {
+    ring.setAttribute('opacity','0.5'); ring.setAttribute('stroke-width',n.isPalm?'2':'1.5');
+    dot.setAttribute('r',n.isPalm?'5':'3.5');
+  });
+  nodesG.appendChild(g);
+});
+
+// Wrist dot
+{ const wg = sv('g', { cursor: 'pointer' });
+  wg.addEventListener('click', () => openPanel(nodes.find(n => n.id === 'ru')));
+  wg.appendChild(sv('circle', { cx:wrist.x, cy:wrist.y, r:'12',
+    fill:'none', stroke:C.chain, 'stroke-width':'1', opacity:'0.25', 'stroke-dasharray':'2,3' }));
+  wg.appendChild(sv('circle', { cx:wrist.x, cy:wrist.y, r:'2.5', fill:C.chain, opacity:'0.4' }));
+  nodesG.appendChild(wg);
+}
+
+txt(nodesG, { x:palm.x, y:palm.y-1, fill:C.faint, 'font-family':M,
+  'font-size':'12', 'letter-spacing':'2', 'text-anchor':'middle' }, 'q + q\u00b2 = 1');
+
+// === PANEL ===
+const gripMap = { on:'Precision grip', j1:'Precision grip', j3:'Power grip',
+  j4:'Power grip', ly:'Power grip', ru:'The hand itself' };
+
+function openPanel(n) {
+  $('panel-content').innerHTML = `
+    <h2>${n.name}</h2>
+    <div class="group-label">${n.group} &mdash; ${n.field}</div>
+    <div class="finger-label">${n.finger} &mdash; ${gripMap[n.id]}</div>
+    <div class="eq-status">
+      <div class="eq">q + q&sup2; = 1 &rarr; ${n.eqStatus}</div>
+      <div style="margin-top:6px;font-size:13px;color:var(--text-med)">${n.eqDetail}</div>
+    </div>
+    <div class="self-ref">${n.selfRef}</div>
+    <div class="section-label">Properties</div>
+    <div class="field-row"><span class="label">Order</span><span class="value">${n.order}</span></div>
+    <div class="field-row"><span class="label">Ring</span><span class="value">${n.ring}</span></div>
+    <div class="field-row"><span class="label">Discriminant</span><span class="value">${n.disc}</span></div>
+    <div class="field-row"><span class="label">Schur</span><span class="value">${n.schur}</span></div>
+    <div class="field-row"><span class="label">Outer Aut</span><span class="value">${n.out}</span></div>
+    <div class="field-row"><span class="label">Hurwitz</span><span class="value">${n.hurwitz?'Yes':'No'}</span></div>
+    <div class="field-row"><span class="label">Classes</span><span class="value">${n.conj}</span></div>
+    <div class="field-row"><span class="label">Primes</span><span class="value">${n.primes.join(', ')}</span></div>
+    ${n.alienPrimes.length?`<div class="field-row"><span class="label" style="color:#9a4a3a">Pariah primes</span>
+      <span class="value" style="color:#9a4a3a">${n.alienPrimes.join(', ')}</span></div>`:''}
+    ${n.alienGenus?`<div class="field-row"><span class="label" style="color:#9a4a3a">Genera</span>
+      <span class="value" style="color:#9a4a3a">${Object.entries(n.alienGenus).map(([p,g])=>p+'\u2192'+g).join(', ')}</span></div>`:''}
+    <div class="section-label">Nature</div>
+    <div class="description">${n.desc}</div>
+    ${n.shadow?`
+    <div class="section-label" style="color:#4a6a8a">The Shadow &mdash; ${n.shadow.name}</div>
+    <div class="field-row"><span class="label">Shadow order</span><span class="value">${n.shadow.order}</span></div>
+    <div class="field-row"><span class="label">Shadow rep</span><span class="value" style="color:#4a6a8a">${n.shadow.minRep}-dim</span></div>
+    <div class="field-row"><span class="label">Visible rep</span><span class="value">${n.shadow.visibleMinRep}-dim</span></div>
+    <div class="description" style="color:#4a6a8a">${n.shadow.desc}</div>
+    <div class="eq-status" style="background:rgba(74,106,138,0.06)">
+      <div class="eq" style="color:#4a6a8a">E&#x2087; connection</div>
+      <div style="margin-top:6px;font-size:12px;color:var(--text-med)">${n.shadow.e7connection}</div>
+    </div>
+    <div class="eq-status" style="background:rgba(74,106,138,0.03);margin-top:8px">
+      <div class="eq" style="color:#4a6a8a">Moonshine</div>
+      <div style="margin-top:6px;font-size:12px;color:var(--text-med)">${n.shadow.moonshine}</div>
+    </div>`:''}
+  `;
+  $('panel').classList.add('open');
+}
+
+function closePanel() { $('panel').classList.remove('open'); }
+
+const layerState = { axes:true, contain:true, chain:false, alien:false, primes:false, rings:false, anatomy:false };
+
+function toggle(name) {
+  layerState[name] = !layerState[name];
+  $('layer-'+name).style.display = layerState[name] ? '' : 'none';
+  $('btn-'+name).classList.toggle('active', layerState[name]);
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+</script>
+</body>
+</html>

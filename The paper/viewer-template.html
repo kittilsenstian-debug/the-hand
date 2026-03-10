@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONE RESONANCE</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --page: #ffffff;
+    --bg: #e8e4de;
+    --sidebar-bg: #f5f3f0;
+    --text: #2a2a2a;
+    --text-light: #666;
+    --text-faint: #999;
+    --accent: #8b7355;
+    --accent-light: #b8a88a;
+    --accent-fg: #5a6b55;
+    --border: #ddd;
+    --border-light: #eee;
+    --tag-bg: #f0ede8;
+    --page-width: 680px;
+    --page-height: 920px;
+    --page-pad-x: 72px;
+    --page-pad-top: 64px;
+    --page-pad-bot: 56px;
+    --psi0: #4a7a5a;
+    --psi1: #8a4a4a;
+    --capture: #6a4a7a;
+    --transition: #7a7a4a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-header { padding: 30px 24px 0; }
+  .sidebar h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 0 0 4px;
+  }
+  .sidebar .subtitle {
+    font-size: 13px;
+    color: var(--text-faint);
+    padding: 0 0 16px;
+    font-style: italic;
+  }
+
+  /* TAB SWITCHER */
+  .tab-switcher {
+    display: flex;
+    padding: 0 24px;
+    gap: 0;
+    margin-bottom: 16px;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 8px 0;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-faint);
+    transition: all 0.15s;
+  }
+  .tab-btn:first-child { border-radius: 4px 0 0 4px; }
+  .tab-btn:last-child { border-radius: 0 4px 4px 0; border-left: 0; }
+  .tab-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  .tab-btn:not(.active):hover {
+    background: rgba(0,0,0,0.03);
+    color: var(--text-light);
+  }
+
+  .sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 0 30px;
+  }
+  .part-header {
+    font-family: 'Inter', sans-serif;
+    padding: 20px 24px 6px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .part-subtitle {
+    padding: 0 24px 8px;
+    font-size: 12px;
+    color: var(--text-faint);
+    font-style: italic;
+  }
+  .chapter-item {
+    padding: 7px 24px 7px 36px;
+    cursor: pointer;
+    font-size: 14px;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+  }
+  .chapter-item:hover { background: rgba(0,0,0,0.03); color: var(--text); }
+  .chapter-item.active {
+    background: rgba(139,115,85,0.06);
+    border-left-color: var(--accent);
+    color: var(--text);
+  }
+  .chapter-item .ch-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: var(--text-faint);
+    min-width: 18px;
+  }
+  .chapter-item .ch-title { flex: 1; }
+  .chapter-item .ch-status {
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .ch-status.placeholder { color: var(--text-faint); }
+  .ch-status.draft { color: var(--accent); background: rgba(139,115,85,0.1); }
+  .ch-status.done { color: #5a8a5a; background: rgba(90,138,90,0.1); }
+  .sidebar-footer {
+    margin-top: 16px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: var(--text-faint);
+    line-height: 1.8;
+  }
+
+  /* FIELD GUIDE sidebar items */
+  .fg-section-header {
+    font-family: 'Inter', sans-serif;
+    padding: 20px 24px 6px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-fg);
+  }
+  .fg-item {
+    padding: 7px 24px 7px 36px;
+    cursor: pointer;
+    font-size: 14px;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+    color: var(--text-light);
+  }
+  .fg-item:hover { background: rgba(0,0,0,0.03); color: var(--text); }
+  .fg-item.active {
+    background: rgba(90,107,85,0.08);
+    border-left-color: var(--accent-fg);
+    color: var(--text);
+  }
+  .fg-item .fg-subtitle {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-top: 2px;
+  }
+
+  /* MAIN — page stack */
+  .main-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px 20px;
+  }
+  .pages-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding-bottom: 60px;
+  }
+  .page {
+    background: var(--page);
+    width: var(--page-width);
+    min-height: var(--page-height);
+    height: auto;
+    padding: var(--page-pad-top) var(--page-pad-x) var(--page-pad-bot);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .page-number {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: var(--text-faint);
+  }
+
+  /* TITLE PAGE */
+  .title-page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+  }
+  .title-page-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .title-page-content .tp-sub {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 60px;
+  }
+  .title-page-content .tp-author {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--text-faint);
+  }
+
+  /* CHAPTER HEADER */
+  .ch-part-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 4px;
+  }
+  .ch-heading {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--text);
+    margin-bottom: 28px;
+    line-height: 1.3;
+  }
+  .ch-heading .ch-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-faint);
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* DRAFT TEXT */
+  .draft-text {
+    font-size: 16px;
+    line-height: 1.82;
+    color: var(--text);
+    text-align: justify;
+    hyphens: auto;
+  }
+  .draft-text p { margin-bottom: 1em; }
+  .first-page .draft-text p:first-of-type::first-letter {
+    font-size: 3.2em;
+    float: left;
+    line-height: 0.85;
+    margin: 0.05em 0.12em 0 0;
+    color: var(--accent);
+    font-weight: 300;
+  }
+  .draft-text .separator {
+    text-align: center;
+    margin: 1.5em 0;
+    color: var(--text-faint);
+    letter-spacing: 8px;
+    font-size: 12px;
+  }
+
+  /* FIELD GUIDE CHAPTER STYLING (Part 5 chapters) */
+  .fg-chapter .ch-part-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-fg);
+  }
+  .fg-chapter .ch-heading {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--accent-fg);
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+  }
+  .fg-chapter .ch-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .fg-chapter .fg-species-bar {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 6px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .fg-chapter .fg-species-bar .psi0-tag {
+    color: var(--psi0);
+    margin-right: 16px;
+  }
+  .fg-chapter .fg-species-bar .psi1-tag {
+    color: var(--psi1);
+  }
+  .fg-chapter .draft-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.78;
+    color: var(--text);
+    text-align: left;
+    hyphens: none;
+  }
+  .fg-chapter .draft-text p { margin-bottom: 0.9em; }
+  .fg-chapter .draft-text p:first-of-type::first-letter {
+    font-size: inherit !important;
+    float: none !important;
+    margin: 0 !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+  }
+  .fg-chapter .draft-text .separator {
+    text-align: left;
+    margin: 1.8em 0 0.6em 0;
+    color: var(--accent-fg);
+    letter-spacing: 3px;
+    font-size: 9px;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+  .fg-chapter .draft-text em {
+    font-style: normal;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .fg-chapter .fg-observation-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    border-left: 2px solid var(--border);
+    margin: 12px 0;
+    line-height: 1.6;
+  }
+  .fg-chapter .fg-observation-note.psi0 { border-left-color: var(--psi0); }
+  .fg-chapter .fg-observation-note.psi1 { border-left-color: var(--psi1); }
+
+  /* EDITORIAL (for non-drafted chapters) */
+  .editorial {
+    margin-top: 24px;
+    padding: 20px 24px;
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    background: var(--sidebar-bg);
+  }
+  .editorial-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .editorial .intent {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-light);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .ed-section { margin-top: 16px; }
+  .ed-section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .ed-item {
+    padding: 6px 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-light);
+  }
+  .ed-item .label { font-weight: 600; color: var(--text); }
+  .ed-item .note { font-size: 12px; color: var(--text-faint); }
+  .ed-item + .ed-item { border-top: 1px solid var(--border-light); }
+  .concept-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0; }
+  .concept-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--tag-bg);
+    color: var(--accent);
+  }
+  .opening-quote {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-light);
+    padding: 10px 0 10px 18px;
+    border-left: 2px solid var(--border);
+    margin: 12px 0;
+  }
+  .no-draft-msg {
+    text-align: center;
+    padding: 30px 16px;
+    color: var(--text-faint);
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  /* FIELD GUIDE STYLES */
+  .fg-header {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-fg);
+    margin-bottom: 4px;
+  }
+  .fg-title {
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .fg-chain-subtitle {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 20px;
+  }
+  .fg-description {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 24px;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .fg-step {
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    border-left: 3px solid var(--border);
+  }
+  .fg-step.psi0 { border-left-color: var(--psi0); background: rgba(74,122,90,0.04); }
+  .fg-step.psi1 { border-left-color: var(--psi1); background: rgba(138,74,74,0.04); }
+  .fg-step.capture { border-left-color: var(--capture); background: rgba(106,74,122,0.04); }
+  .fg-step.transition { border-left-color: var(--transition); background: rgba(122,122,74,0.04); }
+  .fg-step-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .fg-step-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-light);
+  }
+  .fg-step-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: var(--text-faint);
+    margin-top: 6px;
+    font-style: italic;
+  }
+  .fg-punchline {
+    margin-top: 24px;
+    padding: 16px 20px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 400;
+    border-top: 2px solid var(--accent-fg);
+  }
+
+  /* COMPARISON TABLE */
+  .fg-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .fg-table th {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--border);
+    text-align: left;
+  }
+  .fg-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-light);
+    line-height: 1.5;
+    color: var(--text-light);
+    vertical-align: top;
+  }
+  .fg-table tr:hover td { background: rgba(0,0,0,0.015); }
+  .fg-table .scale-cell {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  /* SPECIMEN CARDS (for counterfeit chain) */
+  .fg-specimen {
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border-light);
+    background: var(--page);
+  }
+  .fg-specimen-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .fg-specimen-row {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 6px;
+  }
+  .fg-specimen-row strong {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  /* HOW TO TELL checklist */
+  .fg-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+  .fg-checklist li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .fg-checklist li::before {
+    content: '?';
+    position: absolute;
+    left: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-fg);
+  }
+
+  /* PARALLEL TABLE (tolerance, hangover, etc) */
+  .fg-parallel {
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border-left: 3px solid var(--border);
+  }
+  .fg-parallel-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .fg-parallel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .fg-parallel-grid .gpair-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
+
+  #measure {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    width: calc(var(--page-width) - var(--page-pad-x) * 2);
+    visibility: hidden;
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h1 id="sidebarTitle">ONE RESONANCE</h1>
+    <div class="subtitle" id="sidebarSubtitle">How one equation describes everything</div>
+    <div class="tab-switcher">
+      <div class="tab-btn active" id="tabBook" onclick="switchTab('book')">Book</div>
+      <div class="tab-btn" id="tabGuide" onclick="switchTab('guide')">Field Guide</div>
+    </div>
+  </div>
+  <div class="sidebar-content" id="sidebarContent"></div>
+</div>
+<div class="main-wrapper" id="mainWrapper">
+  <div class="pages-container" id="pagesContainer">
+    <div class="page">
+      <div class="title-page-content">
+        <h2>ONE RESONANCE</h2>
+        <div class="tp-sub">How one equation describes everything</div>
+        <div class="tp-author">Kristian Kittilsen</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="measure"></div>
+
+<script>
+let activeChapter = null;
+let activeChain = null;
+let currentTab = 'book';
+const bookData = %%BOOK_DATA%%;
+const guideData = %%GUIDE_DATA%%;
+
+function switchTab(tab) {
+  currentTab = tab;
+  activeChapter = null;
+  activeChain = null;
+
+  document.getElementById('tabBook').className = tab === 'book' ? 'tab-btn active' : 'tab-btn';
+  document.getElementById('tabGuide').className = tab === 'guide' ? 'tab-btn active' : 'tab-btn';
+
+  if (tab === 'book') {
+    document.getElementById('sidebarTitle').textContent = bookData.title;
+    document.getElementById('sidebarSubtitle').textContent = bookData.subtitle;
+    renderBookSidebar();
+    renderBookTitle();
+  } else {
+    document.getElementById('sidebarTitle').textContent = guideData.title;
+    document.getElementById('sidebarSubtitle').textContent = guideData.subtitle;
+    renderGuideSidebar();
+    renderGuideIntro();
+  }
+}
+
+// ============ BOOK ============
+function renderBookSidebar() {
+  const sb = document.getElementById('sidebarContent');
+  let html = '';
+  let totalCh = 0, written = 0, drafts = 0;
+  bookData.parts.forEach(p => p.chapters.forEach(ch => {
+    totalCh++;
+    if (ch.status === 'done') written++;
+    else if (ch.status === 'draft' || (ch.draft && ch.draft.trim())) drafts++;
+  }));
+  bookData.parts.forEach(part => {
+    html += `<div class="part-header">${part.title}</div>`;
+    html += `<div class="part-subtitle">${part.subtitle}</div>`;
+    part.chapters.forEach(ch => {
+      const idx = getGlobalIndex(ch.id);
+      const hasDraft = ch.draft && ch.draft.trim();
+      const status = hasDraft ? 'draft' : ch.status;
+      html += `<div class="chapter-item ${activeChapter === ch.id ? 'active' : ''}" onclick="selectChapter('${ch.id}')">
+        <span class="ch-num">${idx}</span>
+        <span class="ch-title">${ch.title}</span>
+        ${status !== 'placeholder' ? `<span class="ch-status ${status}">${status}</span>` : ''}
+      </div>`;
+    });
+  });
+  html += `<div class="sidebar-footer">${totalCh} chapters &middot; ${written + drafts} drafted &middot; ${totalCh - written - drafts} pending</div>`;
+  sb.innerHTML = html;
+}
+
+function renderBookTitle() {
+  const container = document.getElementById('pagesContainer');
+  container.innerHTML = `<div class="page"><div class="title-page-content">
+    <h2>${bookData.title}</h2>
+    <div class="tp-sub">${bookData.subtitle}</div>
+    <div class="tp-author">${bookData.author}</div>
+  </div></div>`;
+}
+
+function getGlobalIndex(chId) {
+  let idx = 0;
+  for (const part of bookData.parts) {
+    for (const ch of part.chapters) {
+      idx++;
+      if (ch.id === chId) return idx;
+    }
+  }
+  return 0;
+}
+
+function getChapter(id) {
+  for (const part of bookData.parts) {
+    for (const ch of part.chapters) {
+      if (ch.id === id) return { chapter: ch, part };
+    }
+  }
+  return null;
+}
+
+function selectChapter(id) {
+  activeChapter = id;
+  renderBookSidebar();
+  renderChapter(id);
+  document.getElementById('mainWrapper').scrollTop = 0;
+}
+
+function renderChapter(id) {
+  const { chapter: ch, part } = getChapter(id);
+  const container = document.getElementById('pagesContainer');
+  const idx = getGlobalIndex(id);
+  if (ch.draft && ch.draft.trim()) {
+    paginateDraft(ch, part, idx, container);
+  } else {
+    renderEditorialPages(ch, part, idx, container);
+  }
+}
+
+function paginateDraft(ch, part, idx, container) {
+  const isFG = part.id === 'part-5';
+  const fgClass = isFG ? ' fg-chapter' : '';
+  const headerHTML = isFG ? `
+    <div class="ch-part-label">FIELD GUIDE &mdash; OBSERVATION ${idx}</div>
+    <div class="ch-heading">${ch.title}</div>
+    <div class="fg-species-bar">
+      <span class="psi0-tag">&#9679; ψ₀ ground state</span>
+      <span class="psi1-tag">&#9679; ψ₁ narrator</span>
+    </div>
+  ` : `
+    <div class="ch-part-label">${part.title}</div>
+    <div class="ch-heading">
+      <span class="ch-number">Chapter ${idx}</span>
+      ${ch.title}
+    </div>
+  `;
+
+  let draftHTML = ch.draft;
+  if (isFG) {
+    // Transform separators into observation section headers
+    // Number them sequentially
+    let obsCount = 0;
+    draftHTML = draftHTML.replace(/<p class="separator">\* \* \*<\/p>/g, () => {
+      obsCount++;
+      return '<div class="separator">&mdash;</div>';
+    });
+  }
+
+  container.innerHTML = `<div class="page first-page${fgClass}">
+    ${headerHTML}
+    <div class="draft-text">${draftHTML}</div>
+  </div>`;
+}
+
+function renderEditorialPages(ch, part, idx, container) {
+  let content = `
+    <div class="ch-part-label">${part.title}</div>
+    <div class="ch-heading">
+      <span class="ch-number">Chapter ${idx}</span>
+      ${ch.title}
+    </div>
+    <div class="editorial">
+      <div class="editorial-label">Chapter Notes</div>
+      <div class="intent">${ch.intent}</div>
+  `;
+  if (ch.key_concepts && ch.key_concepts.length) {
+    content += `<div class="concept-tags">`;
+    ch.key_concepts.forEach(c => { content += `<span class="concept-tag">${c}</span>`; });
+    content += `</div>`;
+  }
+  if (ch.opens_with) {
+    content += `<div class="opening-quote">${ch.opens_with}</div>`;
+  }
+  content += renderEditorialSections(ch);
+  if (ch.ends_with) {
+    content += `<div class="ed-section">
+      <div class="ed-section-title">Closes with</div>
+      <div class="opening-quote">${ch.ends_with}</div>
+    </div>`;
+  }
+  content += `</div>`;
+  content += `<div class="no-draft-msg">Draft not yet written</div>`;
+  container.innerHTML = `<div class="page" style="height:auto; min-height: var(--page-height);">
+    ${content}
+    <div class="page-number">1</div>
+  </div>`;
+}
+
+function renderEditorialSections(ch) {
+  let html = '';
+  if (ch.analogies_needed && ch.analogies_needed.length) {
+    html += `<div class="ed-section"><div class="ed-section-title">Analogies Needed (${ch.analogies_needed.length})</div>`;
+    ch.analogies_needed.forEach(a => {
+      html += `<div class="ed-item"><span class="label">${a.concept}</span><br><span class="note">${a.note}</span></div>`;
+    });
+    html += `</div>`;
+  }
+  if (ch.illustrations_needed && ch.illustrations_needed.length) {
+    html += `<div class="ed-section"><div class="ed-section-title">Illustrations Needed (${ch.illustrations_needed.length})</div>`;
+    ch.illustrations_needed.forEach(il => {
+      html += `<div class="ed-item"><span class="label">${il.type}</span><br><span class="note">${il.description}</span></div>`;
+    });
+    html += `</div>`;
+  }
+  if (ch.connections_needed && ch.connections_needed.length) {
+    html += `<div class="ed-section"><div class="ed-section-title">Connections (${ch.connections_needed.length})</div>`;
+    ch.connections_needed.forEach(c => {
+      html += `<div class="ed-item"><span class="label">${c.from} &rarr; ${c.to}</span><br><span class="note">${c.note}</span></div>`;
+    });
+    html += `</div>`;
+  }
+  return html;
+}
+
+// ============ FIELD GUIDE ============
+function renderGuideSidebar() {
+  const sb = document.getElementById('sidebarContent');
+  let html = '';
+
+  // Species
+  html += `<div class="fg-section-header">The Two Species</div>`;
+  html += `<div class="fg-item ${activeChain === '_species' ? 'active' : ''}" onclick="selectGuide('_species')">
+    <div>ψ₀ and ψ₁</div>
+    <div class="fg-subtitle">Identification keys</div>
+  </div>`;
+
+  // Chains
+  html += `<div class="fg-section-header">Comparison Chains</div>`;
+  guideData.chains.forEach(chain => {
+    html += `<div class="fg-item ${activeChain === chain.id ? 'active' : ''}" onclick="selectGuide('${chain.id}')">
+      <div>${chain.title}</div>
+      <div class="fg-subtitle">${chain.subtitle}</div>
+    </div>`;
+  });
+
+  // Ancient symbols
+  if (guideData.ancient_symbols && guideData.ancient_symbols.length) {
+    html += `<div class="fg-section-header">Ancient Symbols</div>`;
+    html += `<div class="fg-item ${activeChain === '_symbols' ? 'active' : ''}" onclick="selectGuide('_symbols')">
+      <div>Symbols older than language</div>
+      <div class="fg-subtitle">${guideData.ancient_symbols.length} symbols mapped</div>
+    </div>`;
+  }
+
+  // Ancient field notes
+  if (guideData.ancient_field_notes && guideData.ancient_field_notes.length) {
+    html += `<div class="fg-section-header">Ancient Field Notes</div>`;
+    html += `<div class="fg-item ${activeChain === '_all_notes' ? 'active' : ''}" onclick="selectGuide('_all_notes')">
+      <div>All traditions</div>
+      <div class="fg-subtitle">${guideData.ancient_field_notes.length} passages mapped</div>
+    </div>`;
+    // Group by tradition
+    const traditions = [...new Set(guideData.ancient_field_notes.map(n => n.tradition))];
+    traditions.forEach(t => {
+      const count = guideData.ancient_field_notes.filter(n => n.tradition === t).length;
+      html += `<div class="fg-item ${activeChain === '_notes_' + t ? 'active' : ''}" onclick="selectGuide('_notes_${t}')" style="padding-left:48px; font-size:13px">
+        <div>${t} <span style="color:var(--text-faint); font-size:11px">(${count})</span></div>
+      </div>`;
+    });
+  }
+
+  // Observations
+  if (guideData.observations && guideData.observations.length) {
+    html += `<div class="fg-section-header">Field Observations</div>`;
+    guideData.observations.forEach(obs => {
+      html += `<div class="fg-item ${activeChain === obs.id ? 'active' : ''}" onclick="selectGuide('${obs.id}')">
+        <div>${obs.title}</div>
+      </div>`;
+    });
+  }
+
+  const noteCount = guideData.ancient_field_notes ? guideData.ancient_field_notes.length : 0;
+  const symCount = guideData.ancient_symbols ? guideData.ancient_symbols.length : 0;
+  html += `<div class="sidebar-footer">${guideData.chains.length} chains &middot; ${symCount} symbols &middot; ${noteCount} passages</div>`;
+  sb.innerHTML = html;
+}
+
+function renderGuideIntro() {
+  const container = document.getElementById('pagesContainer');
+  container.innerHTML = `<div class="page"><div class="title-page-content">
+    <h2 style="letter-spacing:6px">FIELD GUIDE</h2>
+    <div class="tp-sub">${guideData.subtitle}</div>
+    <div style="max-width:420px; margin-top:40px; font-size:15px; line-height:1.8; color:var(--text-light); text-align:center;">
+      ${guideData.intro}
+    </div>
+  </div></div>`;
+}
+
+function selectGuide(id) {
+  activeChain = id;
+  renderGuideSidebar();
+  if (id === '_species') {
+    renderSpecies();
+  } else if (id === '_symbols') {
+    renderSymbols();
+  } else if (id === '_all_notes') {
+    renderAncientNotes(null);
+  } else if (id.startsWith('_notes_')) {
+    renderAncientNotes(id.replace('_notes_', ''));
+  } else if (id.startsWith('obs-')) {
+    renderObservation(id);
+  } else {
+    renderChain(id);
+  }
+  document.getElementById('mainWrapper').scrollTop = 0;
+}
+
+function renderSpecies() {
+  const container = document.getElementById('pagesContainer');
+  const s = guideData.species;
+  const states = guideData.three_states;
+
+  let html = `<div class="page" style="height:auto; min-height:var(--page-height);">
+    <div class="fg-header">IDENTIFICATION</div>
+    <div class="fg-title">The Two Species</div>
+    <div class="fg-description">Everything in this field guide comes down to two things. Here's how to tell them apart.</div>
+  `;
+
+  // ψ₀
+  html += `<div style="margin-bottom:24px">
+    <div class="fg-step-label" style="color:var(--psi0); font-size:14px">${s.psi0.name}</div>`;
+  s.psi0.signature.forEach(sig => {
+    html += `<div style="padding:4px 0 4px 16px; font-size:14px; color:var(--text-light); border-left:2px solid var(--psi0)">${sig}</div>`;
+  });
+  html += `</div>`;
+
+  // ψ₁
+  html += `<div style="margin-bottom:24px">
+    <div class="fg-step-label" style="color:var(--psi1); font-size:14px">${s.psi1.name}</div>`;
+  s.psi1.signature.forEach(sig => {
+    html += `<div style="padding:4px 0 4px 16px; font-size:14px; color:var(--text-light); border-left:2px solid var(--psi1)">${sig}</div>`;
+  });
+  html += `</div>`;
+
+  // Three states
+  html += `<div style="margin-top:32px">
+    <div class="fg-step-label" style="font-size:13px; letter-spacing:2px">THREE STATES</div>`;
+  states.forEach(st => {
+    const color = st.name === 'Conscious engagement' ? 'var(--psi0)' :
+                  st.name === 'Withdrawal' ? 'var(--text-faint)' : 'var(--capture)';
+    html += `<div class="fg-step" style="border-left-color:${color}">
+      <div class="fg-step-label">${st.name}</div>
+      <div class="fg-step-text">${st.short}</div>
+      <div class="fg-step-meta">${st.result}</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+
+  container.innerHTML = html;
+}
+
+function renderChain(id) {
+  const chain = guideData.chains.find(c => c.id === id);
+  if (!chain) return;
+  const container = document.getElementById('pagesContainer');
+
+  let html = `<div class="page" style="height:auto; min-height:var(--page-height);">
+    <div class="fg-header">COMPARISON CHAIN</div>
+    <div class="fg-title">${chain.title}</div>
+    <div class="fg-chain-subtitle">${chain.subtitle}</div>
+    <div class="fg-description">${chain.description}</div>
+  `;
+
+  // Steps (generic chain)
+  if (chain.steps) {
+    chain.steps.forEach(step => {
+      const psiClass = step.psi || '';
+      html += `<div class="fg-step ${psiClass}">
+        <div class="fg-step-label">${step.label}</div>
+        <div class="fg-step-text">${step.description}</div>`;
+      if (step.traditions) html += `<div class="fg-step-meta">${step.traditions}</div>`;
+      if (step.gap_duration) html += `<div class="fg-step-meta">Gap: ${step.gap_duration}</div>`;
+      if (step.scale) html += `<div class="fg-step-meta">${step.scale}</div>`;
+      if (step.insight) html += `<div class="fg-step-text" style="margin-top:4px"><strong style="font-family:Inter;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--psi0)">Insight:</strong> ${step.insight}</div>`;
+      if (step.captured_as) html += `<div class="fg-step-text"><strong style="font-family:Inter;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--psi1)">Captured as:</strong> ${step.captured_as}</div>`;
+      if (step.time_to_capture) html += `<div class="fg-step-meta">Time to capture: ${step.time_to_capture}</div>`;
+      html += `</div>`;
+    });
+  }
+
+  // Columns table (withdrawal-armor-breakthrough style)
+  if (chain.columns && chain.rows) {
+    html += `<table class="fg-table"><thead><tr><th></th>`;
+    chain.columns.forEach(col => { html += `<th>${col}</th>`; });
+    html += `</tr></thead><tbody>`;
+    chain.rows.forEach(row => {
+      html += `<tr><td class="scale-cell">${row.scale}</td>`;
+      row.cells.forEach(cell => { html += `<td>${cell}</td>`; });
+      html += `</tr>`;
+    });
+    html += `</tbody></table>`;
+  }
+
+  // Parallels (cancer-cities, tolerance, sleep styles)
+  if (chain.parallels && chain.parallels[0] && chain.parallels[0].property) {
+    // cancer-cities style
+    html += `<table class="fg-table"><thead><tr><th></th><th>Cancer</th><th>City</th></tr></thead><tbody>`;
+    chain.parallels.forEach(p => {
+      html += `<tr><td class="scale-cell">${p.property}</td><td>${p.cancer}</td><td>${p.city}</td></tr>`;
+    });
+    html += `</tbody></table>`;
+  } else if (chain.parallels && chain.parallels[0] && chain.parallels[0].first_hit) {
+    // tolerance style
+    html += `<table class="fg-table"><thead><tr><th>Domain</th><th>First hit</th><th>Tolerance</th><th>Escalation</th><th>End state</th></tr></thead><tbody>`;
+    chain.parallels.forEach(p => {
+      html += `<tr><td class="scale-cell">${p.domain}</td><td>${p.first_hit}</td><td>${p.tolerance}</td><td>${p.escalation}</td><td>${p.end_state}</td></tr>`;
+    });
+    html += `</tbody></table>`;
+  } else if (chain.parallels && chain.parallels[0] && chain.parallels[0].decouple) {
+    // sleep-death style
+    html += `<table class="fg-table"><thead><tr><th></th><th>Decouple</th><th>Maintenance</th><th>Recouple</th></tr></thead><tbody>`;
+    chain.parallels.forEach(p => {
+      html += `<tr><td class="scale-cell">${p.domain}</td><td>${p.decouple}</td><td>${p.maintenance}</td><td>${p.recouple}</td></tr>`;
+    });
+    html += `</tbody></table>`;
+  } else if (chain.parallels && chain.parallels[0] && chain.parallels[0].fake_psi0) {
+    // hangover style
+    chain.parallels.forEach(p => {
+      html += `<div class="fg-parallel" style="border-left-color:var(--psi1)">
+        <div class="fg-parallel-label">${p.substance || p.domain}</div>
+        <div class="fg-parallel-grid">
+          <div><span class="gpair-label">The promise</span><br>${p.fake_psi0}</div>
+          <div><span class="gpair-label">The hangover</span><br>${p.hangover}</div>
+        </div>
+        <div class="fg-step-meta">${p.net}</div>
+      </div>`;
+    });
+    if (chain.contrast) {
+      html += `<div class="fg-parallel" style="border-left-color:var(--psi0)">
+        <div class="fg-parallel-label">${chain.contrast.method}</div>
+        <div class="fg-step-text">${chain.contrast.why_no_hangover}</div>
+      </div>`;
+    }
+  }
+
+  // Specimens (counterfeit chain)
+  if (chain.specimens) {
+    chain.specimens.forEach(sp => {
+      html += `<div class="fg-specimen">
+        <div class="fg-specimen-label">${sp.label}</div>
+        <div class="fg-specimen-row"><strong>The performance</strong><br>${sp.fake_psi0}</div>
+        <div class="fg-specimen-row"><strong>The tell</strong><br>${sp.tell}</div>
+        <div class="fg-specimen-row"><strong>Mechanism</strong><br>${sp.mechanism}</div>
+      </div>`;
+    });
+    if (chain.how_to_tell) {
+      html += `<div style="margin-top:20px"><div class="fg-step-label" style="letter-spacing:2px">HOW TO TELL</div>`;
+      html += `<ul class="fg-checklist">`;
+      chain.how_to_tell.forEach(q => { html += `<li>${q}</li>`; });
+      html += `</ul></div>`;
+    }
+  }
+
+  // Lineages (five-lineages)
+  if (chain.lineages) {
+    html += `<table class="fg-table"><thead><tr><th>Lineage</th><th>Example</th><th>Aromatics</th><th>Intelligence</th></tr></thead><tbody>`;
+    chain.lineages.forEach(l => {
+      html += `<tr><td class="scale-cell">${l.name}</td><td>${l.example}</td><td>${l.aromatics}</td><td>${l.intelligence}</td></tr>`;
+    });
+    html += `</tbody></table>`;
+    if (chain.control) {
+      html += `<div class="fg-step psi1" style="margin-top:16px">
+        <div class="fg-step-label">Control: ${chain.control.name}</div>
+        <div class="fg-step-text">${chain.control.description}</div>
+      </div>`;
+    }
+    if (chain.extra) {
+      html += `<div class="fg-description" style="margin-top:16px; font-style:italic">${chain.extra}</div>`;
+    }
+  }
+
+  // Spectrum (fashion-fascism)
+  if (chain.spectrum) {
+    chain.spectrum.forEach(sp => {
+      const intensity = sp.amplitude === 'Low' ? 0.15 : sp.amplitude === 'Medium-low' ? 0.25 :
+        sp.amplitude === 'Medium' ? 0.35 : sp.amplitude === 'High' ? 0.5 :
+        sp.amplitude === 'Very high' ? 0.7 : 0.9;
+      html += `<div class="fg-step" style="border-left: 3px solid rgba(138,74,74,${intensity})">
+        <div class="fg-step-label">${sp.label} <span style="font-size:10px;color:var(--text-faint);font-weight:400">${sp.amplitude}</span></div>
+        <div class="fg-step-text">${sp.description}</div>
+        <div class="fg-step-meta">Cost: ${sp.energy_cost}</div>
+      </div>`;
+    });
+  }
+
+  // Anatomy (meetings)
+  if (chain.anatomy) {
+    chain.anatomy.forEach(a => {
+      html += `<div class="fg-step">
+        <div class="fg-step-label">${a.phase}</div>
+        <div class="fg-step-text">${a.description}</div>
+      </div>`;
+    });
+    if (chain.contrast) {
+      html += `<div class="fg-description" style="margin-top:16px; padding:12px 16px; border-left:3px solid var(--psi0)">${chain.contrast}</div>`;
+    }
+  }
+
+  // Layers (arguments)
+  if (chain.layers) {
+    chain.layers.forEach(l => {
+      html += `<div class="fg-step">
+        <div class="fg-step-label">${l.level}</div>
+        <div class="fg-step-text"><em>"${l.what_it_sounds_like}"</em></div>
+        <div class="fg-step-text" style="margin-top:6px">${l.what_it_is}</div>
+      </div>`;
+    });
+  }
+
+  // Structure (imposter syndrome)
+  if (chain.structure) {
+    const st = chain.structure;
+    html += `<div class="fg-step"><div class="fg-step-text">${st.what_happens}</div></div>`;
+    html += `<div class="fg-step psi1"><div class="fg-step-label">Standard interpretation</div><div class="fg-step-text">${st.standard_interpretation}</div></div>`;
+    html += `<div class="fg-step psi0"><div class="fg-step-label">Reframe</div><div class="fg-step-text">${st.reframe}</div></div>`;
+    html += `<div class="fg-step"><div class="fg-step-label">The twist</div><div class="fg-step-text">${st.the_twist}</div></div>`;
+  }
+
+  // Specimens (pets)
+  if (chain.specimens_arr || chain.specimens) {
+    // already handled above
+  }
+
+  // Parallel at scale (narrator-awakens)
+  if (chain.parallel_at_scale) {
+    html += `<div style="margin-top:20px"><div class="fg-step-label" style="letter-spacing:2px">SAME PATTERN, OTHER SCALES</div>`;
+    chain.parallel_at_scale.forEach(p => {
+      html += `<div class="fg-step"><div class="fg-step-label">${p.scale}</div><div class="fg-step-text">${p.sequence}</div></div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Common signature
+  if (chain.common_signature) {
+    html += `<div class="fg-punchline" style="font-style:italic; font-size:14px; color:var(--text-light)">${chain.common_signature}</div>`;
+  }
+
+  // Punchline
+  if (chain.punchline) {
+    html += `<div class="fg-punchline">${chain.punchline}</div>`;
+  }
+
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+function renderObservation(id) {
+  const obs = guideData.observations.find(o => o.id === id);
+  if (!obs) return;
+  const container = document.getElementById('pagesContainer');
+
+  if (obs.draft && obs.draft.trim()) {
+    container.innerHTML = `<div class="page first-page" style="height:auto; min-height:var(--page-height);">
+      <div class="fg-header">FIELD OBSERVATION</div>
+      <div class="fg-title">${obs.title}</div>
+      <div class="draft-text">${obs.draft}</div>
+    </div>`;
+  } else {
+    container.innerHTML = `<div class="page" style="height:auto; min-height:var(--page-height);">
+      <div class="fg-header">FIELD OBSERVATION</div>
+      <div class="fg-title">${obs.title}</div>
+      <div class="no-draft-msg">Observation text pending — see ideas-content/ folder for drafts</div>
+    </div>`;
+  }
+}
+
+function renderSymbols() {
+  const container = document.getElementById('pagesContainer');
+  const symbols = guideData.ancient_symbols || [];
+  let html = `<div class="page" style="height:auto; min-height:var(--page-height);">
+    <div class="fg-header">ANCIENT SYMBOLS</div>
+    <div class="fg-title">Symbols Older Than Language</div>
+    <div class="fg-description">These symbols predate writing, predate organized religion, predate civilization. They were carved into stone, painted in caves, scratched into bone — by people who had no physics, no algebra, no vocabulary for what they were seeing. They saw it anyway.</div>
+  `;
+  symbols.forEach(sym => {
+    const borderColor = sym.mapping === 'psi0' ? 'var(--psi0)' :
+                         sym.mapping === 'psi1' ? 'var(--psi1)' :
+                         sym.mapping === 'structure' ? 'var(--accent)' : 'var(--accent-fg)';
+    html += `<div class="fg-specimen" style="border-left: 3px solid ${borderColor}; border-top: none; border-right: none; border-bottom: none;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:10px">
+        <span style="font-size:36px; line-height:1">${sym.symbol}</span>
+        <div>
+          <div class="fg-specimen-label" style="margin-bottom:2px">${sym.name}</div>
+          <div style="font-family:Inter; font-size:10px; color:var(--text-faint)">${sym.age}</div>
+        </div>
+      </div>
+      <div class="fg-specimen-row"><strong>Cultures</strong><br>${sym.cultures}</div>
+      <div class="fg-specimen-row"><strong>Framework mapping</strong><br>${sym.framework}</div>
+      <div class="fg-step-meta" style="margin-top:8px; font-style:normal">${sym.note}</div>
+    </div>`;
+  });
+  html += `<div class="fg-punchline">They didn't have the equation. They had the experience the equation describes. The symbols are field notes from 30,000 years of observation.</div>`;
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+function renderAncientNotes(tradition) {
+  const container = document.getElementById('pagesContainer');
+  let notes = guideData.ancient_field_notes || [];
+  if (tradition) notes = notes.filter(n => n.tradition === tradition);
+
+  const title = tradition || 'All Traditions';
+  const subtitle = tradition ? `ψ₀ and ψ₁ in ${tradition}` : 'What they all said, sorted';
+
+  let html = `<div class="page" style="height:auto; min-height:var(--page-height);">
+    <div class="fg-header">ANCIENT FIELD NOTES</div>
+    <div class="fg-title">${title}</div>
+    <div class="fg-chain-subtitle">${subtitle}</div>
+    <div class="fg-description">Every passage below was written by someone trying to describe the two things — or one of them — with the language available to them. The words are different. The pattern is the same.</div>
+  `;
+
+  // Stats bar
+  const psi0count = notes.filter(n => n.psi === 'psi0').length;
+  const psi1count = notes.filter(n => n.psi === 'psi1').length;
+  const bothcount = notes.filter(n => n.psi === 'both' || n.psi === 'relationship').length;
+  html += `<div style="display:flex; gap:16px; margin-bottom:24px; font-family:Inter; font-size:11px">
+    <span style="color:var(--psi0)">● ψ₀: ${psi0count}</span>
+    <span style="color:var(--psi1)">● ψ₁: ${psi1count}</span>
+    <span style="color:var(--accent-fg)">● Both: ${bothcount}</span>
+  </div>`;
+
+  notes.forEach(note => {
+    const borderColor = note.psi === 'psi0' ? 'var(--psi0)' :
+                         note.psi === 'psi1' ? 'var(--psi1)' : 'var(--accent-fg)';
+    const psiLabel = note.psi === 'psi0' ? 'ψ₀' :
+                     note.psi === 'psi1' ? 'ψ₁' : 'ψ₀↔ψ₁';
+    html += `<div class="fg-step" style="border-left-color:${borderColor}; margin-bottom:16px">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
+        <div class="fg-step-label" style="margin:0">${note.tradition}</div>
+        <span style="font-family:Inter; font-size:10px; padding:2px 8px; border-radius:3px; background:rgba(0,0,0,0.04); color:${borderColor}">${psiLabel}</span>
+      </div>
+      <blockquote style="font-size:15px; line-height:1.7; color:var(--text); margin:0 0 8px; padding-left:16px; border-left:2px solid var(--border-light); font-style:italic">"${note.quote}"</blockquote>
+      <div style="font-family:Inter; font-size:10px; color:var(--text-faint); margin-bottom:6px">${note.source} · ${note.date || ''}</div>
+      <div class="fg-step-text">${note.why}</div>
+    </div>`;
+  });
+
+  if (notes.length === 0) {
+    html += `<div class="no-draft-msg">Ancient field notes being compiled...</div>`;
+  }
+
+  html += `<div class="fg-punchline">Different words. Different centuries. Different continents. Same two things. Same pattern. Same field guide, written over and over, in every language humans ever spoke.</div>`;
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+// Init
+switchTab('book');
+</script>
+</body>
+</html>

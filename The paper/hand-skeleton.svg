@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="800" height="1100">
+  <defs>
+    <style>
+      .bone { fill: none; stroke: #3a3530; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      .bone-fill { fill: #f0ece6; stroke: #3a3530; stroke-width: 1.5; }
+      .joint { fill: #d8d2ca; stroke: #3a3530; stroke-width: 1; }
+      .ann-line { stroke: #9a6a3a; stroke-width: 0.8; stroke-dasharray: 3,4; }
+      .ann-text { font-family: 'Helvetica Neue', Arial, sans-serif; fill: #9a6a3a; }
+      .count-text { font-family: 'Helvetica Neue', Arial, sans-serif; fill: #2a2520; }
+      .label-text { font-family: Georgia, 'Times New Roman', serif; fill: #2a2520; }
+      .dim-text { font-family: 'Helvetica Neue', Arial, sans-serif; fill: #6a6560; }
+      .bracket { fill: none; stroke: #9a6a3a; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect width="800" height="1100" fill="#faf8f5"/>
+
+  <!-- Title -->
+  <text x="400" y="45" class="label-text" font-size="13" text-anchor="middle" letter-spacing="5" fill="#6a6560">THE SKELETON</text>
+
+  <!-- ==================== PHALANGES (finger bones) ==================== -->
+
+  <!-- THUMB (2 phalanges) — leftmost -->
+  <g id="thumb">
+    <!-- Distal phalanx -->
+    <rect x="148" y="190" width="28" height="52" rx="10" class="bone-fill"/>
+    <!-- Proximal phalanx -->
+    <rect x="145" y="255" width="34" height="65" rx="12" class="bone-fill"/>
+    <circle cx="162" cy="250" r="5" class="joint"/>
+    <circle cx="162" cy="325" r="5.5" class="joint"/>
+  </g>
+
+  <!-- INDEX (3 phalanges) -->
+  <g id="index">
+    <rect x="238" y="120" width="26" height="48" rx="9" class="bone-fill"/>
+    <rect x="235" y="180" width="32" height="55" rx="10" class="bone-fill"/>
+    <rect x="232" y="248" width="36" height="65" rx="11" class="bone-fill"/>
+    <circle cx="251" cy="175" r="4.5" class="joint"/>
+    <circle cx="250" cy="240" r="5" class="joint"/>
+    <circle cx="250" cy="318" r="5.5" class="joint"/>
+  </g>
+
+  <!-- MIDDLE (3 phalanges) -->
+  <g id="middle">
+    <rect x="328" y="100" width="26" height="48" rx="9" class="bone-fill"/>
+    <rect x="325" y="160" width="32" height="58" rx="10" class="bone-fill"/>
+    <rect x="322" y="232" width="38" height="68" rx="11" class="bone-fill"/>
+    <circle cx="341" cy="155" r="4.5" class="joint"/>
+    <circle cx="341" cy="225" r="5" class="joint"/>
+    <circle cx="341" cy="305" r="5.5" class="joint"/>
+  </g>
+
+  <!-- RING (3 phalanges) -->
+  <g id="ring">
+    <rect x="418" y="118" width="26" height="46" rx="9" class="bone-fill"/>
+    <rect x="415" y="176" width="32" height="55" rx="10" class="bone-fill"/>
+    <rect x="412" y="244" width="38" height="65" rx="11" class="bone-fill"/>
+    <circle cx="431" cy="172" r="4.5" class="joint"/>
+    <circle cx="431" cy="238" r="5" class="joint"/>
+    <circle cx="431" cy="314" r="5.5" class="joint"/>
+  </g>
+
+  <!-- PINKY (3 phalanges) -->
+  <g id="pinky">
+    <rect x="505" y="155" width="24" height="42" rx="8" class="bone-fill"/>
+    <rect x="502" y="208" width="30" height="50" rx="10" class="bone-fill"/>
+    <rect x="499" y="270" width="34" height="58" rx="11" class="bone-fill"/>
+    <circle cx="517" cy="203" r="4" class="joint"/>
+    <circle cx="517" cy="264" r="4.5" class="joint"/>
+    <circle cx="517" cy="333" r="5" class="joint"/>
+  </g>
+
+  <!-- ==================== METACARPALS (palm bones) ==================== -->
+
+  <g id="metacarpals">
+    <!-- Thumb metacarpal (angled) -->
+    <rect x="140" y="340" width="38" height="90" rx="14" class="bone-fill" transform="rotate(15, 159, 385)"/>
+    <!-- Index metacarpal -->
+    <rect x="230" y="332" width="38" height="105" rx="13" class="bone-fill"/>
+    <!-- Middle metacarpal -->
+    <rect x="320" y="320" width="40" height="115" rx="13" class="bone-fill"/>
+    <!-- Ring metacarpal -->
+    <rect x="410" y="328" width="38" height="108" rx="13" class="bone-fill"/>
+    <!-- Pinky metacarpal -->
+    <rect x="496" y="345" width="36" height="95" rx="13" class="bone-fill"/>
+  </g>
+
+  <!-- ==================== CARPALS (wrist bones) ==================== -->
+
+  <g id="carpals">
+    <!-- Row 1 (distal) - 4 bones -->
+    <ellipse cx="215" cy="470" rx="28" ry="22" class="bone-fill"/>
+    <ellipse cx="290" cy="462" rx="30" ry="24" class="bone-fill"/>
+    <ellipse cx="370" cy="460" rx="32" ry="24" class="bone-fill"/>
+    <ellipse cx="450" cy="465" rx="30" ry="22" class="bone-fill"/>
+    <!-- Row 2 (proximal) - 4 bones -->
+    <ellipse cx="230" cy="515" rx="32" ry="22" class="bone-fill"/>
+    <ellipse cx="310" cy="510" rx="30" ry="24" class="bone-fill"/>
+    <ellipse cx="390" cy="512" rx="32" ry="22" class="bone-fill"/>
+    <ellipse cx="460" cy="518" rx="28" ry="20" class="bone-fill"/>
+  </g>
+
+  <!-- ==================== FOREARM (radius/ulna stubs) ==================== -->
+
+  <g id="forearm">
+    <rect x="240" y="555" width="50" height="120" rx="18" class="bone-fill" opacity="0.5"/>
+    <rect x="370" y="555" width="50" height="120" rx="18" class="bone-fill" opacity="0.5"/>
+  </g>
+
+  <!-- ==================== ANNOTATIONS — LEFT SIDE ==================== -->
+
+  <!-- Phalanges bracket -->
+  <path d="M 105,110 L 95,110 L 95,330 L 105,330" class="bracket"/>
+  <text x="88" y="224" class="count-text" font-size="18" font-weight="bold" text-anchor="end">14</text>
+  <text x="88" y="242" class="ann-text" font-size="10" text-anchor="end">phalanges</text>
+  <text x="88" y="258" class="ann-text" font-size="10" text-anchor="end">= 2 + 4&times;3</text>
+
+  <!-- Thumb "2" annotation -->
+  <line x1="130" y1="216" x2="108" y2="216" class="ann-line"/>
+  <text x="102" y="220" class="count-text" font-size="14" font-weight="bold" text-anchor="end">2</text>
+
+  <!-- Other fingers "3" annotation -->
+  <line x1="555" y1="200" x2="575" y2="200" class="ann-line"/>
+  <text x="582" y="204" class="count-text" font-size="14" font-weight="bold" text-anchor="start">3</text>
+  <text x="582" y="218" class="dim-text" font-size="9" text-anchor="start">each</text>
+
+  <!-- 2 vs 3 annotation -->
+  <line x1="88" y1="275" x2="58" y2="325" class="ann-line"/>
+  <text x="52" y="340" class="ann-text" font-size="10" font-style="italic" text-anchor="end">the 2&#x2194;3</text>
+  <text x="52" y="354" class="ann-text" font-size="10" font-style="italic" text-anchor="end">oscillation</text>
+
+  <!-- Metacarpals bracket -->
+  <path d="M 105,332 L 95,332 L 95,445 L 105,445" class="bracket"/>
+  <text x="88" y="392" class="count-text" font-size="18" font-weight="bold" text-anchor="end">5</text>
+  <text x="88" y="408" class="ann-text" font-size="10" text-anchor="end">metacarpals</text>
+  <text x="88" y="422" class="ann-text" font-size="10" text-anchor="end">= 5 pariahs</text>
+
+  <!-- Carpals bracket -->
+  <path d="M 175,448 L 165,448 L 165,540 L 175,540" class="bracket"/>
+  <text x="158" y="496" class="count-text" font-size="18" font-weight="bold" text-anchor="end">8</text>
+  <text x="158" y="512" class="ann-text" font-size="10" text-anchor="end">carpals</text>
+  <text x="158" y="526" class="ann-text" font-size="10" text-anchor="end">= rank(E&#x2088;)</text>
+
+  <!-- ==================== ANNOTATIONS — RIGHT SIDE ==================== -->
+
+  <!-- Total count -->
+  <text x="620" y="395" class="count-text" font-size="28" font-weight="bold" text-anchor="start">27</text>
+  <text x="620" y="415" class="ann-text" font-size="11" text-anchor="start">total bones</text>
+  <line x1="545" y1="400" x2="615" y2="400" class="ann-line"/>
+
+  <!-- Jordan algebra -->
+  <text x="620" y="440" class="dim-text" font-size="10" text-anchor="start">= dim J&#x2083;(O)</text>
+  <text x="620" y="455" class="dim-text" font-size="9" text-anchor="start" font-style="italic">exceptional Jordan algebra</text>
+
+  <!-- 4-level hierarchy -->
+  <g id="hierarchy-annotation" transform="translate(620, 500)">
+    <text x="0" y="0" class="ann-text" font-size="10" font-weight="bold">4 levels:</text>
+    <text x="0" y="18" class="dim-text" font-size="9">phalanges (tips)</text>
+    <text x="0" y="32" class="dim-text" font-size="9">metacarpals (palm)</text>
+    <text x="0" y="46" class="dim-text" font-size="9">carpals (wrist)</text>
+    <text x="0" y="60" class="dim-text" font-size="9">forearm (body)</text>
+    <text x="100" y="18" class="ann-text" font-size="9">&#x2192; fingers</text>
+    <text x="100" y="32" class="ann-text" font-size="9">&#x2192; Ru</text>
+    <text x="100" y="46" class="ann-text" font-size="9">&#x2192; 2.Ru</text>
+    <text x="100" y="60" class="ann-text" font-size="9">&#x2192; Monster</text>
+  </g>
+
+  <!-- ==================== BOTTOM SECTION: WHAT BONES DON'T CARRY ==================== -->
+
+  <line x1="100" y1="720" x2="700" y2="720" stroke="#d8d2ca" stroke-width="1"/>
+
+  <text x="400" y="755" class="label-text" font-size="12" text-anchor="middle" font-style="italic" fill="#6a6560">The skeleton is the Monster&rsquo;s shadow.</text>
+  <text x="400" y="778" class="label-text" font-size="12" text-anchor="middle" font-style="italic" fill="#6a6560">The nerves are the pariahs&rsquo; actual relationships.</text>
+
+  <line x1="250" y1="800" x2="550" y2="800" stroke="#d8d2ca" stroke-width="0.5"/>
+
+  <!-- What bones carry -->
+  <g transform="translate(120, 830)">
+    <text x="0" y="0" class="count-text" font-size="10" font-weight="bold" letter-spacing="2">BONES CARRY</text>
+    <text x="0" y="20" class="dim-text" font-size="9">27 = exceptional Jordan algebra</text>
+    <text x="0" y="35" class="dim-text" font-size="9">8 carpals = rank of E&#x2088;</text>
+    <text x="0" y="50" class="dim-text" font-size="9">2 vs 3 phalanges = 2&#x2194;3 oscillation</text>
+    <text x="0" y="65" class="dim-text" font-size="9">14 = 2 + 4&times;3 = Pisot asymmetry</text>
+    <text x="0" y="80" class="dim-text" font-size="9">4-level hierarchy = tips to body</text>
+  </g>
+
+  <!-- What bones don't carry -->
+  <g transform="translate(440, 830)">
+    <text x="0" y="0" class="count-text" font-size="10" font-weight="bold" letter-spacing="2">NERVES CARRY</text>
+    <text x="0" y="20" class="dim-text" font-size="9">J&#x2081; &#x2282; O&rsquo;N = precision grip</text>
+    <text x="0" y="35" class="dim-text" font-size="9">Ring finger dual innervation = split</text>
+    <text x="0" y="50" class="dim-text" font-size="9">3 grips: knowing / holding / making</text>
+    <text x="0" y="65" class="dim-text" font-size="9">Thumb opposition = universal contact</text>
+    <text x="0" y="80" class="dim-text" font-size="9">Shared tendon (middle+ring) = Z[&#x03c9;]</text>
+  </g>
+
+  <!-- Source note -->
+  <text x="400" y="1070" class="dim-text" font-size="8" text-anchor="middle" font-style="italic">count the bones in your own hand</text>
+
+</svg>

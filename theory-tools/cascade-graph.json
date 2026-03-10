@@ -1,0 +1,493 @@
+{
+  "primitives": [
+    3,
+    5,
+    7
+  ],
+  "derived_modes": [
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15
+  ],
+  "nodes": [
+    {
+      "n": 3,
+      "F": 2,
+      "L": 4,
+      "residual": 2,
+      "parity": "ODD",
+      "matches_F": [],
+      "matches_L": [
+        "pyrimidine pi_e"
+      ]
+    },
+    {
+      "n": 4,
+      "F": 3,
+      "L": 7,
+      "residual": 4,
+      "parity": "EVEN",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 5,
+      "F": 5,
+      "L": 11,
+      "residual": 6,
+      "parity": "ODD",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 6,
+      "F": 8,
+      "L": 18,
+      "residual": 10,
+      "parity": "EVEN",
+      "matches_F": [],
+      "matches_L": [
+        "water MW",
+        "porphyrin pi_e"
+      ]
+    },
+    {
+      "n": 7,
+      "F": 13,
+      "L": 29,
+      "residual": 16,
+      "parity": "ODD",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 8,
+      "F": 21,
+      "L": 47,
+      "residual": 26,
+      "parity": "EVEN",
+      "matches_F": [
+        "DNA width"
+      ],
+      "matches_L": [
+        "ATP atoms"
+      ]
+    },
+    {
+      "n": 9,
+      "F": 34,
+      "L": 76,
+      "residual": 42,
+      "parity": "ODD",
+      "matches_F": [
+        "DNA pitch",
+        "Heme B carbons"
+      ],
+      "matches_L": [
+        "PP-IX atoms"
+      ]
+    },
+    {
+      "n": 10,
+      "F": 55,
+      "L": 123,
+      "residual": 68,
+      "parity": "EVEN",
+      "matches_F": [
+        "Chl a carbons"
+      ],
+      "matches_L": [
+        "M_H"
+      ]
+    },
+    {
+      "n": 11,
+      "F": 89,
+      "L": 199,
+      "residual": 110,
+      "parity": "ODD",
+      "matches_F": [
+        "AcCoA atoms"
+      ],
+      "matches_L": []
+    },
+    {
+      "n": 12,
+      "F": 144,
+      "L": 322,
+      "residual": 178,
+      "parity": "EVEN",
+      "matches_F": [
+        "H-bond stretch"
+      ],
+      "matches_L": []
+    },
+    {
+      "n": 13,
+      "F": 233,
+      "L": 521,
+      "residual": 288,
+      "parity": "ODD",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 14,
+      "F": 377,
+      "L": 843,
+      "residual": 466,
+      "parity": "EVEN",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 15,
+      "F": 610,
+      "L": 1364,
+      "residual": 754,
+      "parity": "ODD",
+      "matches_F": [
+        "613 THz"
+      ],
+      "matches_L": []
+    },
+    {
+      "n": 16,
+      "F": 987,
+      "L": 2207,
+      "residual": 1220,
+      "parity": "EVEN",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 17,
+      "F": 1597,
+      "L": 3571,
+      "residual": 1974,
+      "parity": "ODD",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 18,
+      "F": 2584,
+      "L": 5778,
+      "residual": 3194,
+      "parity": "EVEN",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 19,
+      "F": 4181,
+      "L": 9349,
+      "residual": 5168,
+      "parity": "ODD",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 20,
+      "F": 6765,
+      "L": 15127,
+      "residual": 8362,
+      "parity": "EVEN",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 21,
+      "F": 10946,
+      "L": 24476,
+      "residual": 13530,
+      "parity": "ODD",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 22,
+      "F": 17711,
+      "L": 39603,
+      "residual": 21892,
+      "parity": "EVEN",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 23,
+      "F": 28657,
+      "L": 64079,
+      "residual": 35422,
+      "parity": "ODD",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 24,
+      "F": 46368,
+      "L": 103682,
+      "residual": 57314,
+      "parity": "EVEN",
+      "matches_F": [],
+      "matches_L": []
+    },
+    {
+      "n": 25,
+      "F": 75025,
+      "L": 167761,
+      "residual": 92736,
+      "parity": "ODD",
+      "matches_F": [],
+      "matches_L": []
+    }
+  ],
+  "addresses": {
+    "alpha_s": {
+      "indices": [
+        1,
+        6,
+        9
+      ],
+      "expr": "(F(1)+F(6))/L(9)"
+    },
+    "sin2_tW": {
+      "indices": [
+        2,
+        8,
+        15
+      ],
+      "expr": "L(2)*L(8)/F(15)"
+    },
+    "1/3": {
+      "indices": [
+        4,
+        7,
+        15
+      ],
+      "expr": "L(4)*L(7)/F(15)"
+    },
+    "alpha_em": {
+      "indices": [
+        5,
+        8,
+        17
+      ],
+      "expr": "(F(5)+F(8))/L(17)"
+    },
+    "V_ud": {
+      "indices": [
+        3,
+        9
+      ],
+      "expr": "1-F(3)/L(9)"
+    },
+    "V_us": {
+      "indices": [
+        6,
+        11,
+        14
+      ],
+      "expr": "F(11)/(L(6)+F(14))"
+    },
+    "V_ub": {
+      "indices": [
+        6,
+        16
+      ],
+      "expr": "F(6)/L(16)"
+    },
+    "V_ts": {
+      "indices": [
+        7,
+        12
+      ],
+      "expr": "F(7)/L(12)"
+    },
+    "V_td": {
+      "indices": [
+        3,
+        13
+      ],
+      "expr": "F(3)/F(13)"
+    },
+    "V_tb": {
+      "indices": [
+        6,
+        19
+      ],
+      "expr": "1-F(6)/L(19)"
+    },
+    "sin2_12": {
+      "indices": [
+        3,
+        9
+      ],
+      "expr": "1/3-F(3)/L(9)"
+    },
+    "sin2_23": {
+      "indices": [
+        3,
+        11
+      ],
+      "expr": "1/2+L(3)/F(11)"
+    },
+    "sin2_13": {
+      "indices": [
+        4,
+        12
+      ],
+      "expr": "L(4)/L(12)"
+    },
+    "v": {
+      "indices": [
+        3,
+        16
+      ],
+      "expr": "F(16)/L(3)"
+    },
+    "M_W": {
+      "indices": [
+        3,
+        12
+      ],
+      "expr": "L(12)/L(3)"
+    },
+    "M_H": {
+      "indices": [
+        2,
+        14
+      ],
+      "expr": "F(14)/L(2)"
+    },
+    "gamma_I": {
+      "indices": [
+        5,
+        7,
+        15
+      ],
+      "expr": "F(5)*L(7)/F(15)"
+    },
+    "F(15)/613THz": {
+      "indices": [
+        15
+      ],
+      "expr": "F(15)=610"
+    },
+    "water": {
+      "indices": [
+        6
+      ],
+      "expr": "L(6)=18"
+    },
+    "DNA_pitch": {
+      "indices": [
+        9
+      ],
+      "expr": "F(9)=34"
+    },
+    "ATP": {
+      "indices": [
+        8
+      ],
+      "expr": "L(8)=47"
+    },
+    "g/2": {
+      "indices": [
+        8,
+        12
+      ],
+      "expr": "L(8)/F(12)"
+    },
+    "a_e": {
+      "indices": [
+        2,
+        18
+      ],
+      "expr": "L(2)/F(18)"
+    },
+    "alpha_2": {
+      "indices": [
+        2,
+        11
+      ],
+      "expr": "L(2)/F(11)"
+    },
+    "m_H/m_Z": {
+      "indices": [
+        5,
+        6
+      ],
+      "expr": "L(5)/F(6)"
+    },
+    "m_t/m_Z": {
+      "indices": [
+        11,
+        8
+      ],
+      "expr": "F(11)/L(8)"
+    },
+    "m_t/m_H": {
+      "indices": [
+        7,
+        15
+      ],
+      "expr": "L(7)^2/F(15)"
+    },
+    "f_pi": {
+      "indices": [
+        13,
+        3
+      ],
+      "expr": "L(13)/L(3)"
+    },
+    "R_c": {
+      "indices": [
+        5,
+        7
+      ],
+      "expr": "F(5)/L(7)"
+    },
+    "r_tensor": {
+      "indices": [
+        6,
+        12
+      ],
+      "expr": "L(6)/L(12)"
+    },
+    "y_b": {
+      "indices": [
+        2,
+        10
+      ],
+      "expr": "L(2)/L(10)"
+    }
+  },
+  "predictions": [
+    {
+      "position": "L(1)*L(6)/F(15)",
+      "value": 0.02951,
+      "note": "Near sin2_13 or Yukawa coupling"
+    },
+    {
+      "position": "L(2)*L(4)/F(15)",
+      "value": 0.03443,
+      "note": "Near alpha_2(M_Z) = 0.03378"
+    },
+    {
+      "position": "L(3)*L(7)/F(15)",
+      "value": 0.19016,
+      "note": "Near Omega_b/Omega_c = 0.186"
+    },
+    {
+      "position": "L(4)*L(9)/F(15)",
+      "value": 0.87213,
+      "note": "Near m_W/m_Z = 0.8815"
+    }
+  ]
+}
