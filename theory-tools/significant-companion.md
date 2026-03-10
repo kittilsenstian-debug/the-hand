@@ -38,14 +38,24 @@ CRITICISM 1: "The tree-level formula θ₃·φ/θ₄ appears from nowhere"
   (one Dirac fermion on the domain wall). This is a THEOREM,
   not a claim. [alpha_partition_ratio.py, Investigation 7]
 
-  The factor φ: The wall's vacuum expectation value is Φ₀ = φ.
-  In the Dvali-Shifman mechanism (1997), the 4D gauge coupling is:
+  The factor φ: NOT the VEV — the FLOQUET MULTIPLIER.
 
-    1/g²₄D ∝ ∫ Φ₀(x) · Z_wall dx = Φ₀ · (θ₃/θ₄)
+  The gauge zero mode at E=0 is evanescent (below the first band).
+  Its growth per period is the Floquet multiplier rho = 1/q = phi.
+  This is a THEOREM: E=0 is in the gap, the Lamé monodromy at E=0
+  has eigenvalues phi and 1/phi, and Tr(M) = sqrt(5).
 
-  The VEV φ multiplies the partition function ratio because the
-  gauge field couples to the scalar field whose value IS φ.
-  [alpha_partition_ratio.py, Investigation 5: "phi = vacuum value Φ₀"]
+  The decomposition:
+    1/alpha_tree = rho × (det_AP/det_P) = phi × theta3/theta4
+                 = [evanescent localization] × [one-loop threshold]
+
+  Both factors come from the spectral theory of ONE operator.
+  [alpha_tree_floquet.py, gap1_floquet_closure.py (Mar 10)]
+
+  Golden identities at E=0:
+    Delta(0) = phi + 1/phi = sqrt(5)
+    sinh(ln phi) = 1/2 EXACTLY
+    phi^2 - 1 = phi (self-referential — Floquet multiplier solves its own equation)
 
   ADDITIONALLY: The three SM couplings EXHAUST the generators of the
   Γ(2) modular form ring M*(Γ(2)) = C[θ₃, θ₄, η]:
