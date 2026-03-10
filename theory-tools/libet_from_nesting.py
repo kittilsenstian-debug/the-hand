@@ -23,7 +23,7 @@ We test EVERY proposed derivation and label:
   [DEAD]   = off by more than factor 2
   [EXACT]  = hits 500ms to within 5%
 
-Author: Claude + Kristian, Feb 28 2026
+Author: Claude + Stian, Feb 28 2026
 """
 
 import math

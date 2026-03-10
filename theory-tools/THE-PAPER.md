@@ -2,7 +2,7 @@
 
 ## A complete description of reality from a single self-referential equation
 
-**Author:** Kristian Kittilsen
+**Author:** Stian Kittilsen
 **Date:** March 2026
 **Status:** Living document. ~87% complete. 5 open gaps. 10 live experimental tests.
 

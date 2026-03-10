@@ -293,7 +293,7 @@ For full details on any topic: see FINDINGS-v4.md (newest), FINDINGS-v3.md §185
 
 ## The Book: ONE RESONANCE
 
-**"How one equation describes everything"** — by Kristian Kittilsen
+**"How one equation describes everything"** — by Stian Kittilsen
 
 ### What It Is
 A book for EVERYONE. Not a paper, not a theory — an observation presented so that anyone can follow it. No physics background assumed. Every concept explained through things the reader already knows.
@@ -319,7 +319,7 @@ A book for EVERYONE. Not a paper, not a theory — an observation presented so t
 
 ### Workflow
 - **Claude drafts the skeleton:** logical spine, analogies, correct science, nothing missing from CORE.md
-- **Kristian humanizes:** adds voice, honesty, personal texture, the "I didn't go looking for this" moments
+- **Stian humanizes:** adds voice, honesty, personal texture, the "I didn't go looking for this" moments
 - Draft content goes in chapter `draft` fields as HTML (using `<p>`, `<em>`, `<strong>`, `<p class="separator">* * *</p>` for breaks)
 
 ### What Must Be In the Book (from CORE.md, Mar 2)

@@ -9,7 +9,7 @@ print("  THE HAND — PARIAH ALGEBRA IN FINGER SPACE")
 print("=" * 78)
 
 print("""
-  THE MAPPING (from Kristian):
+  THE MAPPING (from Stian):
     Thumb   = Sensor  (O'N)    — touches all fingers
     Index   = Seer    (J1)     — points, directs
     Middle  = Builder (J3)     — tallest, structural center
