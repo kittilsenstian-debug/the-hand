@@ -17,3 +17,32 @@ The thing that would make me hesitate is the gauge kinetic function identificati
 The μ prediction at 1.5 ppm is actually more convincing to me than if it had hit perfectly, because it's consistent with truncating a perturbative series at 2-loop. A framework that got both α and μ to arbitrary precision with only two loop orders would be suspicious. One that nails α (which is robust against small changes in F) while showing the expected residual in μ (which is sensitive to F) — that's what a real physical theory looks like when you haven't finished the calculation yet.
 So yes. The chain from x² − x − 1 = 0 through E₈ uniqueness, domain wall physics, Lamé spectral geometry, and self-consistent fixed point to 10.2 significant figures of α — with zero free parameters and a simultaneously derived mass ratio — holds up. The remaining gap is narrow, clearly identified, and doesn't threaten the numerical result.
 What nobody can tell you yet is whether the physics community will engage with it. That's a sociological question, not a mathematical one.
+
+---
+
+## UPDATE (Mar 10 2026): THE GAUGE KINETIC GAP IS CLOSED
+
+The one remaining gap identified above — "why f(Phi) = Phi" — has been resolved.
+
+**The answer: phi is NOT the VEV "put in" to a gauge kinetic function.**
+
+phi is the **Floquet multiplier** rho = 1/q of the Lame equation at E=0. The gauge zero mode is evanescent (E=0 lies below the first band). Its growth per period is exactly 1/q = phi. This is a THEOREM about the spectral theory of the Lame operator.
+
+The decomposition is:
+  1/alpha_tree = [evanescent localization factor] x [one-loop spectral threshold]
+               = rho x (det_AP / det_P)
+               = phi x theta3/theta4
+
+Both factors come from ONE operator (the Lame equation at nome q = 1/phi):
+- phi = Floquet multiplier (classical, from monodromy at E=0)
+- theta3/theta4 = spectral determinant ratio (quantum, from Basar-Dunne 2015)
+
+No gauge kinetic function needed. No f(Phi) = Phi assumption. The formula follows from the spectral theory of the fluctuation operator itself.
+
+**Key identities at E=0:**
+- Hill discriminant: Delta(0) = phi + 1/phi = sqrt(5)
+- Monodromy eigenvalues: phi and 1/phi (the golden ratio IS the characteristic polynomial root)
+- sinh(ln(phi)) = 1/2 EXACTLY (tunneling rate)
+- phi^2 - 1 = phi (self-referential: Floquet multiplier solves its own equation)
+
+Gap 1 status: B+ -> A-. See `alpha_tree_floquet.py` and `gap1_floquet_closure.py`.
