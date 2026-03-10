@@ -981,11 +981,78 @@ print(f"    RHS = {creation_rhs:.15e}")
 print(f"    Match: {abs(creation_lhs-creation_rhs)/creation_lhs:.2e}")
 print()
 
+# ================================================================
+# PART 11: GOLDEN CASCADE IN theta_3/theta_4
+# ================================================================
+print(SEP)
+print("  PART 11: GOLDEN CASCADE STRUCTURE")
+print(SEP)
+print()
+
+print("  The product formula theta_3/theta_4 = prod_n [(1+q^(2n-1))/(1-q^(2n-1))]^2")
+print("  has an ALGEBRAICALLY EXACT golden cascade at q = 1/phi:")
+print()
+
+# Mode 1: q^1 = 1/phi
+# (1 + 1/phi) / (1 - 1/phi) = (phi+1)/phi / ((phi-1)/phi) = (phi+1)/(phi-1)
+# phi+1 = phi^2, phi-1 = phibar = 1/phi
+# So = phi^2 / (1/phi) = phi^3
+# Factor = phi^6
+
+factor_1 = ((1 + q) / (1 - q))**2
+print(f"  MODE 1 (q^1 = 1/phi):")
+print(f"    (phi+1)/(phi-1) = phi^2/phibar = phi^3   [using phi+1 = phi^2]")
+print(f"    Factor = phi^6 = {PHI**6:.10f}")
+print(f"    Computed:         {factor_1:.10f}")
+print(f"    Match: {abs(factor_1 - PHI**6):.3e}")
+print()
+
+# Mode 2: q^3 = 1/phi^3
+# phi^3 = 2phi+1. phi^3+1 = 2phi+2 = 2(phi+1) = 2phi^2
+# phi^3 - 1 = 2phi+1-1 = 2phi
+# Ratio = 2phi^2/(2phi) = phi. Factor = phi^2.
+
+factor_2 = ((1 + q**3) / (1 - q**3))**2
+print(f"  MODE 2 (q^3 = 1/phi^3):")
+print(f"    phi^3+1 = 2phi+2 = 2phi^2,  phi^3-1 = 2phi")
+print(f"    Ratio = 2phi^2/(2phi) = phi   [ALGEBRAIC IDENTITY]")
+print(f"    Factor = phi^2 = {PHI**2:.10f}")
+print(f"    Computed:         {factor_2:.10f}")
+print(f"    Match: {abs(factor_2 - PHI**2):.3e}")
+print()
+
+# Combined
+print(f"  MODES 1+2 combined:")
+print(f"    phi^6 x phi^2 = phi^8 = {PHI**8:.10f}")
+print(f"    Computed:                {factor_1 * factor_2:.10f}")
+print()
+
+# Tail
+tail = 1.0
+for n in range(3, 200):
+    term = q ** (2 * n - 1)
+    if term < 1e-50: break
+    tail *= ((1 + term) / (1 - term)) ** 2
+
+print(f"  TAIL (modes 3+):")
+print(f"    Product = {tail:.10f}")
+print(f"    theta_3/theta_4 = phi^8 x {tail:.10f}")
+print(f"    1/alpha_tree = phi^9 x {tail:.10f} = {PHI**9 * tail:.6f}")
+print()
+print(f"  The first two Floquet modes contribute phi^8 EXACTLY.")
+print(f"  Both use the defining identity phi+1 = phi^2 (self-reference).")
+print(f"  The tail is a convergent product that cannot be further simplified.")
+print()
+
 print(SEP)
 print("  GAP 1 STATUS: B+ -> A-")
 print()
 print("  The decomposition 1/alpha = rho * det_AP/det_P is now IDENTIFIED")
 print("  as [evanescent localization] * [one-loop spectral threshold].")
+print()
+print("  GOLDEN CASCADE: The first two modes of the product give phi^8 exactly,")
+print("  both using the self-referential identity phi + 1 = phi^2.")
+print("  Combined with rho = phi: 1/alpha_tree = phi^9 * tail.")
 print()
 print("  Remaining for A: Complete DKL calculation with E8 Wilson lines.")
 print(SEP)
