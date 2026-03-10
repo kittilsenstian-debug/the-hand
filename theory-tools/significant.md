@@ -252,7 +252,12 @@
     2. Universe is domain wall                   [OK] Rubakov-Shaposhnikov 1983
     3. Electron = chiral zero mode               [OK] Jackiw-Rebbi 1976
     4. VP = half standard → 1/(3π)               [OK] Theorem (Weyl = half Dirac)
-    5. Tree level = θ₃·φ/θ₄                     [OK] Modular form evaluation
+    5. Tree level = φ·θ₃/θ₄                     [OK] φ = Floquet multiplier 1/q (PROVEN);
+                                                       θ₃/θ₄ = det_AP/det_P of Lamé
+                                                       (Basar-Dunne 2015). Both factors
+                                                       from spectral theory of the unique
+                                                       Lamé operator at q = 1/φ.
+                                                       See alpha_tree_floquet.py
     6. Λ = m_p/φ³                                [OK] Derivable from 6⁵mₑ/φ⁶
     7. x = η/(3φ³) as expansion param            [OK] Natural (strong/geometric)
     8. f(x) = ₁F₁(1; 3/2; x) closed form        [OK] Kummer = Wallis cascade
