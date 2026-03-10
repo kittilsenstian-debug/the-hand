@@ -88,7 +88,7 @@ More scripts you can run:
 
 ---
 
-## Step 4: 50 unsolved mysteries (10 minutes)
+## Step 4: 67 unsolved mysteries (10 minutes)
 
 Read `theory-tools/MYSTERIES-VS-FRAMEWORK.md`.
 
@@ -158,7 +158,7 @@ Point Claude Code at this repo. The key files:
 | `theory-tools/CORE.md` | **THE structured reference. Read this.** |
 | `theory-tools/significant.md` | Alpha derivation, full chain, verification script |
 | `theory-tools/COMPLETE-STATUS.md` | Single source of truth, all claims + scores |
-| `theory-tools/MYSTERIES-VS-FRAMEWORK.md` | 50 mysteries mapped |
+| `theory-tools/MYSTERIES-VS-FRAMEWORK.md` | 67 mysteries mapped |
 | `The paper/The hand at the bottom of reality.md` | The hand mapping (readable) |
 | `The paper/the-hand-at-the-bottom-of-reality.html` | The book (print-ready) |
 
@@ -179,6 +179,6 @@ Or just: *"What is this repo?"* — the CLAUDE.md will onboard it.
 
 ## What I am claiming
 
-One equation generates all fundamental constants, explains 49/50 unsolved mysteries across all domains, and maps the boundary of mathematical description onto the human hand. Either I got extraordinarily lucky with the numbers (alpha at 10.2 sig figs from zero inputs — calculate the odds), or there's something here.
+One equation generates all fundamental constants, explains 46/67 unsolved mysteries across all domains (16 partial, 1 silent, 0 wrong), and maps the boundary of mathematical description onto the human hand. Either I got extraordinarily lucky with the numbers (alpha at 10.2 sig figs from zero inputs — calculate the odds), or there's something here.
 
 I need someone who can actually check it to look at it.
