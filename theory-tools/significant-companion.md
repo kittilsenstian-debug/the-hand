@@ -38,24 +38,20 @@ CRITICISM 1: "The tree-level formula θ₃·φ/θ₄ appears from nowhere"
   (one Dirac fermion on the domain wall). This is a THEOREM,
   not a claim. [alpha_partition_ratio.py, Investigation 7]
 
-  The factor φ: NOT the VEV — the FLOQUET MULTIPLIER.
+  The factor φ: The wall's vacuum expectation value Φ₀ = φ.
+  In the Dvali-Shifman mechanism (1997), the 4D gauge coupling is:
 
-  The gauge zero mode at E=0 is evanescent (below the first band).
-  Its growth per period is the Floquet multiplier rho = 1/q = phi.
-  This is a THEOREM: E=0 is in the gap, the Lamé monodromy at E=0
-  has eigenvalues phi and 1/phi, and Tr(M) = sqrt(5).
+    1/g²₄D ∝ ∫ f(Φ₀(x)) · Z_wall dx
 
-  The decomposition:
-    1/alpha_tree = rho × (det_AP/det_P) = phi × theta3/theta4
-                 = [evanescent localization] × [one-loop threshold]
+  The simplest gauge kinetic function f(Φ) = Φ gives Φ₀ = φ.
+  Why f(Φ) = Φ and not Φ² or some other function remains the ONE
+  interpretive step in the derivation. Grade: B-.
 
-  Both factors come from the spectral theory of ONE operator.
-  [alpha_tree_floquet.py, gap1_floquet_closure.py (Mar 10)]
-
-  Golden identities at E=0:
-    Delta(0) = phi + 1/phi = sqrt(5)
-    sinh(ln phi) = 1/2 EXACTLY
-    phi^2 - 1 = phi (self-referential — Floquet multiplier solves its own equation)
+  NOTE (Mar 10): Floquet multiplier interpretation was TESTED and FALSIFIED.
+  Numerical verification shows ρ(E=0) ≫ 1/q for the n=2 Lamé equation
+  (ratio ln(λ₁)/(-ln q) → ~97 as k→1, not 1). E=0 is far below all bands.
+  See floquet_numerical_verify.py. The φ factor is the VEV, not the Floquet
+  multiplier. Dead claim #20.
 
   ADDITIONALLY: The three SM couplings EXHAUST the generators of the
   Γ(2) modular form ring M*(Γ(2)) = C[θ₃, θ₄, η]:

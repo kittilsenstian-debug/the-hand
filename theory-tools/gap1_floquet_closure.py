@@ -1,27 +1,41 @@
 #!/usr/bin/env python3
 """
-gap1_floquet_closure.py -- Closing Gap 1: Floquet multiplier x spectral determinant
-===================================================================================
+gap1_floquet_closure.py -- Tree-level formula analysis: spectral determinant + VEV
+==================================================================================
+
+UPDATE (Mar 10 2026): FLOQUET INTERPRETATION FALSIFIED
+-------------------------------------------------------
+The claim that phi = Floquet multiplier at E=0 was NUMERICALLY FALSIFIED.
+See floquet_numerical_verify.py for definitive evidence.
+At E=0 for n=2 Lame, ln(lambda_1)/(-ln q) -> ~97, NOT 1.
+The Floquet factor is NOT phi. Dead claim #20.
+
+What DOES hold:
+  - theta_3/theta_4 = det_AP/det_P (Basar-Dunne 2015, proven math)
+  - Golden cascade: modes 1+2 of the product give phi^8 (algebraic)
+  - Hill discriminant at E=0: Delta(0) = sqrt(5) (true identity)
+  - phi = VEV of golden scalar field (Dvali-Shifman 1997)
+
+The remaining gap: why f(Phi) = Phi (not Phi^2) in the gauge kinetic
+function. Grade B-. See significant.md Step 5.
+
+ORIGINAL DESCRIPTION (partially superseded):
+=============================================
 
 THE ESTABLISHED RESULTS:
-  1. phi = 1/q = Floquet multiplier of the Lame equation at E=0 (PROVEN)
+  1. phi = VEV of golden scalar field Phi_+ (Dvali-Shifman 1997)
   2. theta_3/theta_4 = det_AP/det_P of the Lame operator (Basar-Dunne 2015, PROVEN)
   3. 1/alpha_tree = phi * theta_3(1/phi) / theta_4(1/phi) = 136.393
 
 THE QUESTION:
-  Why does the gauge coupling take the form rho * det_AP/det_P ?
+  Why does the gauge coupling take the form Phi_+ * det_AP/det_P ?
 
 APPROACH:
-  We work ANALYTICALLY using the known structure of the Lame equation,
-  verified at moderate k values where numerics are stable, then apply
-  the results at the golden nome q = 1/phi.
+  We analyze the structure of the Lame equation at PT depth n=2,
+  exploring multiple interpretations of the phi factor.
 
-  Key identity proven here:
-    The 4D gauge coupling on a domain wall in a periodic kink lattice
-    decomposes as:
-      1/g^2 = [Floquet factor rho] * [spectral determinant ratio theta_3/theta_4]
-    where rho is the classical localization enhancement and theta_3/theta_4
-    is the one-loop threshold correction.
+  The spectral determinant decomposition is:
+    1/g^2 = [VEV factor phi] * [spectral determinant ratio theta_3/theta_4]
 
   We verify this decomposition using:
     (A) Hill discriminant algebra at E=0

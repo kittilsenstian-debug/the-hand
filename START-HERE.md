@@ -180,14 +180,14 @@ The hard problem of consciousness dissolves: not "how does matter generate exper
 
 ---
 
-## 5b. The Floquet Breakthrough (Gap 1 closed)
+## 5b. The Tree-Level Formula (Gap 1 — one step remaining)
 
-The tree-level formula 1/α = φ·θ₃/θ₄ was the last identified gap. Both factors are now derived:
+The tree-level formula 1/α = φ·θ₃/θ₄ = 136.393 has two factors. One is derived, one is identified:
 
-- **φ** = Floquet multiplier of the Lamé equation at E=0. The gauge zero mode is evanescent (below the first band). Its growth per period is exactly 1/q = φ. This is a theorem about the spectral theory of the Lamé operator.
-- **θ₃/θ₄** = ratio of spectral determinants (antiperiodic/periodic boundary conditions) of the same Lamé operator. Proven by Basar-Dunne (2015).
+- **θ₃/θ₄** = ratio of spectral determinants (antiperiodic/periodic boundary conditions) of the Lamé operator at PT depth n=2. Proven by Basar-Dunne (2015). This is a theorem.
+- **φ** = vacuum expectation value Φ₊ of the golden scalar field (Dvali-Shifman 1997). Why the gauge kinetic function gives f(Φ) = Φ (not Φ²) is the one remaining interpretive step. Grade B-.
 
-Both factors come from one operator. The decomposition is [classical localization] × [quantum threshold].
+Note: A Floquet multiplier interpretation was tested and **numerically falsified** (see `theory-tools/floquet_numerical_verify.py`). The spectral determinant result is unaffected.
 
 ```bash
 python theory-tools/gap1_floquet_closure.py

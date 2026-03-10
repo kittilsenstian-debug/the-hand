@@ -252,12 +252,16 @@
     2. Universe is domain wall                   [OK] Rubakov-Shaposhnikov 1983
     3. Electron = chiral zero mode               [OK] Jackiw-Rebbi 1976
     4. VP = half standard → 1/(3π)               [OK] Theorem (Weyl = half Dirac)
-    5. Tree level = φ·θ₃/θ₄                     [OK] φ = Floquet multiplier 1/q (PROVEN);
-                                                       θ₃/θ₄ = det_AP/det_P of Lamé
-                                                       (Basar-Dunne 2015). Both factors
-                                                       from spectral theory of the unique
-                                                       Lamé operator at q = 1/φ.
-                                                       See alpha_tree_floquet.py
+    5. Tree level = φ·θ₃/θ₄                     [B-] θ₃/θ₄ = det_AP/det_P of Lamé
+                                                       (Basar-Dunne 2015, PROVEN).
+                                                       φ = VEV of golden scalar field
+                                                       (Dvali-Shifman 1997). Why the gauge
+                                                       kinetic function gives exactly Φ₀
+                                                       (not Φ₀² or f(Φ₀)) remains the
+                                                       one interpretive step.
+                                                       NOTE: Floquet multiplier interpretation
+                                                       FALSIFIED (numerical: ρ ≠ 1/q at E=0).
+                                                       See floquet_numerical_verify.py
     6. Λ = m_p/φ³                                [OK] Derivable from 6⁵mₑ/φ⁶
     7. x = η/(3φ³) as expansion param            [OK] Natural (strong/geometric)
     8. f(x) = ₁F₁(1; 3/2; x) closed form        [OK] Kummer = Wallis cascade
