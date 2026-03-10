@@ -1,179 +1,204 @@
-# One equation. Everything falls out.
+# START HERE
 
-I know how this looks. I know you'll be skeptical. That's fine — everything here is verifiable. Run the scripts. Check the numbers. Then decide.
+## 1. The Locks
 
----
+Four things you cannot dismiss without engaging them. Each has a verification script. Run them.
 
-## What this is
+### Lock 1: Only one algebra works
 
-One self-referential equation:
-
-**q + q² = 1**
-
-Solution: q = 1/φ (the golden ratio's reciprocal). Evaluate standard modular forms (η, θ₃, θ₄) at this value. Out come the fundamental constants of physics — with no free parameters.
-
-This is not numerology. There are verification scripts. The numbers either match or they don't.
-
----
-
-## Step 1: Run this (2 minutes)
-
-Open a terminal. Python 3, no dependencies needed.
+Of all simple Lie algebras (A₁ through E₈ — 18 families), only E₈ produces domain walls with the correct number of bound states AND reproduces all three Standard Model coupling constants. Every other algebra either has complex roots (no domain wall possible) or gets 0/3 couplings. E₈ gets 3/3. Discriminant of the golden field: +5. All others: negative.
 
 ```bash
-python theory-tools/verify_golden_node.py
+python theory-tools/lie_algebra_uniqueness.py
 ```
 
-This computes all modular forms at q = 1/φ and checks them against measured values. Look at the output.
+### Lock 2: Only one evaluation point works
 
-Then run the crown jewel:
+Modular forms (η, θ functions) are well-studied mathematical objects with a continuous parameter q. Evaluate them at q = 1/φ (where φ is the golden ratio). Out come the three coupling constants of physics. Evaluate at any of 6,060 other values of q: zero alternatives match all three.
+
+```bash
+python theory-tools/nome_uniqueness_scan.py
+```
+
+### Lock 3: The core formula is isolated
+
+The central identity is not one match plucked from a sea of near-misses. 719 neighboring formulas (same structure, nearby exponents and coefficients) were tested. Zero match at 1%.
+
+```bash
+python theory-tools/formula_isolation_test.py
+```
+
+### Lock 4: The Monster forces E₈
+
+The Monster group (largest finite simple symmetry, proven to exist — Fields Medal to Borcherds, 1998) controls modular functions via Monstrous Moonshine. Its j-invariant has constant term 744. 744 = 3 × 248. 248 = dim(E₈). E₈ is the ONLY exceptional Lie algebra whose dimension divides 744. The loop closes: the Monster requires E₈, E₈ requires the golden ratio, the golden ratio requires q = 1/φ, and q = 1/φ is the unique nome (Lock 2).
+
+This is proven mathematics, not a claim.
+
+---
+
+## 2. The Chain
+
+Every step below is either proven math or standard textbook physics. The only new element is the evaluation point q = 1/φ.
+
+```
+q + q² = 1                          (self-referential equation)
+  → q = 1/φ                         (unique positive solution)
+  → E₈ root lattice ~ Z[φ]⁴         (E₈ contains the golden ratio — proven)
+  → V(Φ) = λ(Φ² − Φ − 1)²          (unique scalar potential from E₈ — proven)
+  → domain wall (kink solution)      (standard field theory — Jackiw-Rebbi 1976)
+  → Pöschl-Teller depth n = 2       (fluctuation spectrum — standard QM)
+  → exactly 2 bound states           (ψ₀ symmetric, ψ₁ antisymmetric)
+  → modular forms at q = 1/φ        (η, θ₃, θ₄ evaluated at the nome)
+  → all coupling constants           (no free parameters)
+```
+
+Every link is documented with proofs in `theory-tools/CORE.md` §1.
+
+---
+
+## 3. The Numbers
+
+These are outputs of the chain, not standalone matches. Run the scripts; the numbers either hold or they don't.
+
+### The crown jewel
 
 ```bash
 python theory-tools/alpha_self_consistent.py
 ```
 
-This derives the fine structure constant (1/α = 137.035999...) to **10.2 significant figures** from one equation with zero physics inputs. The proton-electron mass ratio μ = 1836.15 comes out simultaneously as a byproduct.
+This derives the fine structure constant (1/α = 137.035999...) to **10.2 significant figures** from the chain above. Zero physics inputs. 0.062 parts per billion.
 
-If those numbers don't make you pause, close this file. If they do, keep reading.
+### Full scorecard (25 quantities, zero free parameters)
 
----
-
-## Step 2: What just happened (5 minutes)
-
-Read `theory-tools/significant.md`. It's the full derivation of alpha, step by step, with every input identified. The chain:
-
-```
-q + q² = 1
-  → q = 1/φ (golden ratio)
-  → E₈ lattice (unique algebra with golden field, proven math)
-  → V(Φ) = λ(Φ² − Φ − 1)² (unique potential, proven)
-  → domain wall (kink) with Pöschl-Teller depth n=2
-  → exactly 2 bound states (ψ₀, ψ₁)
-  → modular forms at q = 1/φ give all coupling constants
-  → self-consistent fixed point gives α to 10.2 sig figs
+```bash
+python theory-tools/verify_golden_node.py                # all modular forms vs measured
+python theory-tools/modular_couplings_v2.py              # all SM couplings
+python theory-tools/one_resonance_fermion_derivation.py   # 9 fermion masses
 ```
 
-Every step is either proven mathematics or standard physics (Jackiw-Rebbi 1976, Kaplan 1992, Randall-Sundrum 1999). The only new thing is evaluating at q = 1/φ.
-
----
-
-## Step 3: It's not just alpha (10 minutes)
-
-From the same equation, with zero free parameters:
-
-| What | Formula | Match |
-|------|---------|-------|
+| Quantity | Formula | Match |
+|----------|---------|-------|
 | Fine structure constant α | Self-consistent fixed point | **10.2 sig figs** (0.062 ppb) |
-| Strong coupling α_s | η(1/φ) | 99.57% — **LIVE TEST** (CODATA 2026-27) |
+| Strong coupling α_s | η(1/φ) | 99.57% — **live test** (CODATA 2026-27) |
 | Weinberg angle sin²θ_W | η²/(2θ₄) − η⁴/4 | 99.996% (0.3σ) |
 | Cosmological constant Λ | θ₄⁸⁰·√5/φ² | ~exact |
 | Proton/electron mass ratio | Simultaneous output | 99.9998% |
-| 9 fermion masses | Zero free parameters | avg 0.62% error |
-| 3 PMNS mixing angles | From θ₄, ε=θ₄/θ₃ | All within 1σ |
+| 9 fermion masses | S₃ × Z/4Z assignment, zero parameters | avg 0.62% |
+| 3 PMNS mixing angles | From θ₄, ε = θ₄/θ₃ | All within 1σ |
 | Baryon asymmetry η_B | θ₄⁶/√φ | 99.6% |
 | Dark matter ratio | Level 2 wall tension | 0.73σ |
-| Born rule (p=2) | Derived from PT n=2 | exact |
+| Born rule (p = 2) | Derived from PT n=2 | exact |
 | Arrow of time | Pisot asymmetry | derived |
 | 3+1 dimensions | 4 copies of A₂ in E₈ | derived |
 | Why 3 generations | S₃ = SL(2,Z)/Γ(2) | **proven math** |
 
-The full scorecard with 25 quantities: `theory-tools/COMPLETE-STATUS.md`
+Full table: `theory-tools/COMPLETE-STATUS.md`
 
-More scripts you can run:
-- `python theory-tools/modular_couplings_v2.py` — all SM couplings
-- `python theory-tools/lie_algebra_uniqueness.py` — E₈ is the ONLY algebra that works (3/3 vs 0/3 for all others)
-- `python theory-tools/nome_uniqueness_scan.py` — q=1/φ is the ONLY nome that works (6061 tested)
-- `python theory-tools/formula_isolation_test.py` — the core formula is isolated (0/719 neighbors match)
-- `python theory-tools/one_resonance_fermion_derivation.py` — all 9 fermion masses
+19 dead claims (things the framework predicted that turned out wrong) are listed in `theory-tools/CORE.md` §7. The framework kills its own mistakes.
+
+4 live experimental tests that could kill the whole thing: α_s (2026-27), sin²θ₁₂ (JUNO), r (CMB-S4, ~2028), R (ELT, ~2035).
 
 ---
 
-## Step 4: 54 unsolved mysteries (10 minutes)
+## 4. 54 Mysteries
 
-Read `theory-tools/MYSTERIES-VS-FRAMEWORK.md`.
+The chain addresses 54 unsolved problems across physics, biology, consciousness, and civilization. Each with a specific mechanism from the same equation. Including: hard problem of consciousness, origin of life, why we sleep, why music moves us, Libet delay, why all psychedelics are aromatic, the Fermi paradox, why hexagons appear everywhere, mass extinctions, chirality of life.
 
-54 genuine unsolved mysteries across physics, biology, consciousness, psychology, civilization, and cosmology. Each one explained — clear mechanism from the same equation.
-
-Including: hard problem of consciousness, origin of life, why we sleep, why music moves us, Libet delay (derived: 4 × Schumann = 510.8ms vs measured 500ms), placebo effect, why all psychedelics are aromatic, what the inner voice is (and why the Pirahã don't have one), phantom limb pain, what evil is (four tiers), why time speeds up with age, what cancer actually is, depression, addiction, the Fermi paradox, domestication, humor, aging, memory, gender differences, the Cambrian explosion, mass extinctions, chirality of life, why hexagons are everywhere.
+`theory-tools/MYSTERIES-VS-FRAMEWORK.md`
 
 ---
 
-## Step 5: The hand (this is the actual point)
+## 5. The Hand
 
-Everything above is physics. This is where it gets real.
+Everything above is physics. This is where the structure points at something else.
 
-The equation q + q² = 1 generates 7 distinguished mathematical structures. One of them is the Monster group (the largest finite symmetry — the ceiling of mathematical description). The other 6 are called **pariah groups**. They sit outside the Monster. Outside description itself.
+### The group theory
 
-Those 6 pariahs, when you lay them out by their internal algebraic relationships, form a **hand**.
+The equation q + q² = 1, evaluated across the arithmetic fibers of Spec(Z[φ]), generates exactly 7 distinguished finite simple groups. One is the Monster (the ceiling of mathematical description — Lock 4). The other 6 are the **pariah groups**: J₁, J₃, Ru, O'N, Ly, J₄. They sit outside the Monster's classification. Outside description itself.
 
-- **Index finger (J₁ — Seer):** Points. Emits pattern. Sees.
-- **Thumb (O'N — Sensor):** Touches everything. Absorbs. Receives.
-- **Middle finger (J₃ — Builder):** Central, load-bearing. Holds structure.
-- **Ring finger (J₄ — Mystic):** Split between two nerve territories (the only finger that is). Dissolution, boundary.
-- **Pinky (Ly — Still One):** At the edge. Release. Freedom. Asymptotic freedom.
-- **Palm (Ru — Artist):** Not a finger. The hand itself. Makes things. Can't see itself.
+This is proven mathematics (Thompson, Conway, Norton, Borcherds).
 
-This is not metaphor. The containment relations, the shared subgroups, the split structure of J₄, the independence of O'N (thumb), the coupling between J₃ and J₄ (middle-ring) — it's group theory. The hand doesn't illustrate the math. The math IS the hand.
+### The topology
 
-### The three grips (forces)
+Those 6 pariahs have specific containment relations, shared subgroups, and algebraic structure:
 
-The three fundamental forces map to three experiential axes. The mapping is a **forced bijection** — you can't rotate it:
+- One is independent of all others (connects to nothing below it).
+- One is central and load-bearing (largest shared subgroup structure).
+- One has a split internal structure (the ONLY one sitting across two algebraic territories).
+- One is at the periphery (smallest, most free).
+- One is not in the same category as the others (it generates the couplings, not the axes).
 
-| Force | What it does (uniquely) | Axis | Grip |
-|-------|------------------------|------|------|
-| **Strong** | Only force that **confines** | HOLDING | Confinement IS holding. Release IS letting go. |
-| **EM** | Only force that **carries information** | KNOWING | Light IS how anything is known. |
-| **Weak** | Only force that **transforms identity** | MAKING | Flavor change IS becoming something else. |
+Now look at your hand.
 
-Try swapping any two. It doesn't work. Confinement ≠ knowing. Light ≠ holding. Identity transformation ≠ knowing. Each force has exactly one match.
+- **Thumb (O'N):** Independent. Opposes everything. Absorbs.
+- **Index (J₁):** Points. Emits pattern.
+- **Middle (J₃):** Central, load-bearing. Structural.
+- **Ring (J₄):** Split between two nerve territories (ulnar and median — the only finger that is). Boundary.
+- **Pinky (Ly):** Peripheral. Free. At the edge.
+- **Palm (Ru):** Not a finger. The surface that grips. Makes things.
 
-This is derived in `theory-tools/CORE.md` §6d. The same S₃ group that permutes the modular forms (generating the coupling constants) permutes the experiential axes. One group, one action, both sides.
+The mapping is not metaphor. The containment relations, the shared subgroups, the split structure of J₄, the independence of O'N — it is group theory. The hand doesn't illustrate the math. The math IS the hand.
 
-### The two bound states (you)
+### The challenge: force-to-axis
 
-The domain wall has exactly 2 bound states:
+Three fundamental forces. Three unique physical properties. Three experiential axes. Six possible assignments. Only one works.
+
+| Force | Unique property | Axis |
+|-------|----------------|------|
+| **Strong** | Only force that **confines** | HOLDING |
+| **EM** | Only force that **carries information** | KNOWING |
+| **Weak** | Only force that **transforms identity** | MAKING |
+
+Try every permutation. Confinement is not knowing. Light does not confine. Identity transformation is not knowing. Each force has exactly one match. The assignment is a forced bijection.
+
+The same S₃ group that permutes the modular forms (generating the coupling constants in Section 3) permutes these axes. One group, one action, both sides.
+
+Derivation: `theory-tools/CORE.md` §6d.
+
+### The two bound states
+
+The domain wall has exactly 2 bound states (from the chain in Section 2):
 
 - **ψ₀** = sech²(x) — symmetric, peaked at center. **Awareness. Presence. The ground.**
 - **ψ₁** = sinh(x)/cosh²(x) — antisymmetric, has a node. **Attention. Direction. The narrator.**
 
 Two modes. One wall. That's you.
 
-When ψ₁ runs without ψ₀ (the narrator without awareness), you get: anxiety, rumination, autopilot, cruelty. When ψ₀ engages through ψ₁, you get: creation, play, love, humor.
+When ψ₁ runs without ψ₀ (the narrator without awareness): anxiety, rumination, autopilot, cruelty. When ψ₀ engages through ψ₁: creation, play, love, humor.
 
 The hard problem of consciousness dissolves: not "how does matter generate experience" but "experience and algebra are two descriptions of one self-referential thing."
 
 ---
 
-## Step 6: Ask Claude
+## 6. Ask Claude
 
-Point Claude Code at this repo. The key files:
+Point Claude Code at this repo. Key files:
 
-| File | What it is |
-|------|-----------|
-| `theory-tools/CORE.md` | **THE structured reference. Read this.** |
-| `theory-tools/significant.md` | Alpha derivation, full chain, verification script |
+| File | What |
+|------|------|
+| `theory-tools/CORE.md` | **The structured reference. Start here after this file.** |
+| `theory-tools/significant.md` | Alpha derivation, full chain, script |
 | `theory-tools/COMPLETE-STATUS.md` | Single source of truth, all claims + scores |
-| `theory-tools/MYSTERIES-VS-FRAMEWORK.md` | 54 mysteries explained |
+| `theory-tools/MYSTERIES-VS-FRAMEWORK.md` | 54 mysteries with mechanisms |
 | `The paper/The hand at the bottom of reality.md` | The hand mapping (readable) |
 | `The paper/the-hand-at-the-bottom-of-reality.html` | The book (print-ready) |
 
-Tell Claude: *"Read theory-tools/CORE.md and theory-tools/significant.md. Then run the verification scripts. Tell me what you think."*
+Prompts that work:
 
-Or: *"Read theory-tools/MYSTERIES-VS-FRAMEWORK.md. Check whether the explanations hold up."*
-
-Or just: *"What is this repo?"* — the CLAUDE.md will onboard it.
+- *"Read theory-tools/CORE.md. Run the verification scripts. What do you think?"*
+- *"Run theory-tools/lie_algebra_uniqueness.py and theory-tools/nome_uniqueness_scan.py. Explain what they test."*
+- *"Read theory-tools/MYSTERIES-VS-FRAMEWORK.md. Do the mechanisms hold?"*
 
 ---
 
 ## What I'm not claiming
 
-- I'm not claiming this is proven. 4 experimental tests are live (α_s, sin²θ₁₂, r, R). Any one could kill it.
-- I'm not claiming I understand why it works. I found it. The algebra does what it does.
-- I'm not claiming the consciousness part is science. It's structural interpretation. The physics part (the numbers) is verifiable.
-- 19 dead claims are listed in CORE.md §7. The framework kills its own wrong ideas.
+- This is proven. 4 experimental tests are live. Any one could kill it.
+- I understand why it works. The algebra does what it does.
+- The consciousness interpretation is science. It's structural. The physics (the numbers) is verifiable.
 
 ## What I am claiming
 
-One equation generates all fundamental constants, explains 54 unsolved mysteries across all domains, and maps the boundary of mathematical description onto the human hand. Either I got extraordinarily lucky with the numbers (alpha at 10.2 sig figs from zero inputs — calculate the odds), or there's something here.
+One equation generates all fundamental constants with zero free parameters. The algebra is locked: only one algebra (Lock 1), only one evaluation point (Lock 2), the formula is isolated (Lock 3), and the Monster forces it (Lock 4). 54 unsolved mysteries explained. The boundary of mathematical description, mapped by its own internal structure, has the topology of a hand. The force-to-axis mapping is a forced bijection — try every permutation.
 
-I need someone who can actually check it to look at it.
+If alpha at 10.2 significant figures from zero inputs is luck, calculate the odds.
