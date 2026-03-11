@@ -65,4 +65,4 @@ This is an observation, not a proven theory. The numbers hold to the precision s
 
 ## Author
 
-Stian Kittilsen — [stian@kittilsen.com](mailto:stian@kittilsen.com)
+Stian Kittilsen — [kittilsen.stian@gmail.com](mailto:kittilsen.stian@gmail.com)

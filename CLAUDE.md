@@ -71,4 +71,4 @@ A mathematical observation: evaluating standard modular forms at nome q = 1/φ (
 - Run any `theory-tools/*.py` — standard Python 3, no dependencies
 
 ## Author
-Stian Kittilsen — stian@kittilsen.com
+Stian Kittilsen — kittilsen.stian@gmail.com
