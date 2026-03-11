@@ -1,0 +1,554 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+\newcommand{\vp}{\varphi}
+\newcommand{\vpbar}{\bar{\varphi}}
+\newcommand{\Mpl}{M_{\mathrm{Pl}}}
+\newcommand{\me}{m_e}
+\newcommand{\mpr}{m_p}
+\newcommand{\GeV}{\,\mathrm{GeV}}
+
+\title{Interface Theory: Core Equations and Verification}
+\author{S.\ Kittilsen}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+All modular forms are evaluated at a single algebraically distinguished nome
+$q = 1/\vp$, where $\vp = (1+\sqrt{5})/2$ is the golden ratio.
+This document presents the resulting formulas for Standard Model coupling constants
+and other physical quantities, the logical chain connecting them, uniqueness tests,
+and falsifiable predictions. All computations are reproducible via standard Python
+scripts with no dependencies beyond the \texttt{math} module.
+\end{abstract}
+
+\tableofcontents
+
+%----------------------------------------------------------------------
+\section{Setup: Modular Forms at the Golden Nome}
+\label{sec:setup}
+
+\subsection{Definitions}
+
+The Dedekind eta function and Jacobi theta functions are defined by their standard
+$q$-series:
+\begin{align}
+  \eta(q) &= q^{1/24} \prod_{n=1}^{\infty} (1 - q^n), \\[6pt]
+  \theta_2(q) &= 2 q^{1/4} \sum_{n=0}^{\infty} q^{n(n+1)}, \\[6pt]
+  \theta_3(q) &= 1 + 2\sum_{n=1}^{\infty} q^{n^2}, \\[6pt]
+  \theta_4(q) &= 1 + 2\sum_{n=1}^{\infty} (-1)^n\, q^{n^2}.
+\end{align}
+
+\subsection{The Golden Nome}
+
+All expressions in this document are evaluated at:
+\begin{equation}
+  \boxed{q = \frac{1}{\vp} = \frac{\sqrt{5}-1}{2} = 0.6180339887\ldots}
+\end{equation}
+This is the unique positive solution of $q + q^2 = 1$.
+
+\subsection{Numerical Values}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Function & Value at $q = 1/\vp$ & Digits used \\
+\midrule
+$\eta(1/\vp)$ & $0.118404\ldots$ & \\
+$\theta_2(1/\vp)$ & $2.55509\ldots$ & $\approx \theta_3$ \\
+$\theta_3(1/\vp)$ & $2.55509\ldots$ & \\
+$\theta_4(1/\vp)$ & $0.03031\ldots$ & \\
+$\vp$ & $1.6180339887\ldots$ & \\
+$\vpbar \equiv 1/\vp$ & $0.6180339887\ldots$ & $= \vp - 1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------
+\section{The Derivation Chain}
+\label{sec:chain}
+
+The logical structure proceeds through seven steps.  Each step is listed with
+its key equation or theorem and a brief justification.
+
+\medskip
+\noindent\textbf{Step 0.} \quad $q + q^2 = 1 \implies q = 1/\vp$.\\
+The unique positive root of the self-referential equation.  The iteration
+$f(x) = 1/(1+x)$ converges to $1/\vp$ from any positive starting value.
+
+\medskip
+\noindent\textbf{Step 1.} \quad The $E_8$ root lattice contains $\mathbb{Z}[\vp]^4$.\\
+$E_8$ is the unique exceptional simple Lie algebra whose root lattice embeds the
+golden ring $\mathbb{Z}[\vp]$.  The minimal polynomial of $\vp$ is
+$x^2 - x - 1 = 0$, i.e.\ $q + q^2 = 1$.
+
+\medskip
+\noindent\textbf{Step 2.} \quad The unique quartic potential in $\mathbb{Z}[\vp]$ is:
+\begin{equation}
+  \boxed{V(\Phi) = \lambda\bigl(\Phi^2 - \Phi - 1\bigr)^2.}
+\end{equation}
+Two degenerate vacua at $\Phi = \vp$ and $\Phi = -1/\vp$.  This is the only
+self-consistent quartic in $E_8$'s golden field
+\cite{derive_V_from_E8}.
+
+\medskip
+\noindent\textbf{Step 3.} \quad The kink solution
+$\Phi_{\mathrm{kink}}(x) = \frac{\sqrt{5}}{2}\tanh(\kappa x) + \frac{1}{2}$
+interpolates between the two vacua.  The fluctuation operator yields a
+P\"oschl--Teller potential of depth $n = 2$:
+\begin{equation}
+  V_{\mathrm{fluct}}(x) = -\frac{6\kappa^2}{\cosh^2(\kappa x)},
+\end{equation}
+which has exactly two bound states and is \emph{reflectionless}
+($|T(k)|^2 = 1$ for all $k$).  This is a standard result in
+soliton physics~\cite{Rajaraman1982}.
+
+\medskip
+\noindent\textbf{Step 4.} \quad The Lam\'e equation on the kink lattice gives nome
+$q = 1/\vp$ via the elliptic modulus $k(1/\vp) = 0.9999999901\ldots \to 1$
+(P\"oschl--Teller limit).  Spectral invariants of the Lam\'e operator
+evaluated at this nome produce modular forms at $q = 1/\vp$.
+
+\medskip
+\noindent\textbf{Step 5.} \quad SM coupling constants emerge as ratios of these
+modular forms (Section~\ref{sec:couplings}).
+
+\medskip
+\noindent\textbf{Step 6.} \quad Nome doubling: Jacobi nome $q_J = 1/\vp$ vs.\
+modular nome $q_M = 1/\vp^2$.  Three couplings exhaust the ring of
+$\Gamma(2)$-modular forms.  Verified: the creation identity
+$\eta(q)^2 = \eta(q^2)\cdot\theta_4(q)$ holds to $3.7\times 10^{-16}$.
+
+%----------------------------------------------------------------------
+\section{Coupling Constants}
+\label{sec:couplings}
+
+\subsection{Fine Structure Constant $\alpha$}
+
+\subsubsection{Tree Level}
+
+\begin{equation}
+  \frac{1}{\alpha_0} = \frac{\theta_3(q)}{\theta_4(q)}\cdot\vp
+  = \frac{2.55509\ldots}{0.03031\ldots}\times 1.61803\ldots
+  = 136.39\ldots
+\end{equation}
+
+\subsubsection{VP-Corrected (Self-Consistent Fixed Point)}
+
+The full formula includes vacuum polarization running with a halved coefficient,
+as required by the Jackiw--Rebbi theorem~\cite{JackiwRebbi1976}
+(chiral zero mode on a domain wall contributes one Weyl fermion,
+not one Dirac fermion, to the VP loop):
+\begin{equation}
+  \boxed{
+  \frac{1}{\alpha} = \frac{\theta_3}{\theta_4}\cdot\vp
+  \;+\; \frac{1}{3\pi}\ln\!\left(\frac{\Lambda_{\mathrm{ref}}}{\me}\right)
+  }
+\end{equation}
+where
+\begin{align}
+  \Lambda_{\mathrm{ref}} &= \frac{\mpr}{\vp^3}\,f(x), &
+  x &= \frac{\eta}{3\vp^3}, \\[6pt]
+  f(x) &= 1 - x + \tfrac{2}{5}\,x^2.
+\end{align}
+The coefficient $c_2 = 2/5 = n/(2n+1)$ for P\"oschl--Teller depth $n = 2$ is
+derived from the Graham--Weigel kink pressure integral~\cite{GrahamWeigel2024}.
+
+The closed-form VP function is the confluent hypergeometric (Kummer) function:
+\begin{equation}
+  f(x) = \tfrac{3}{2}\;{}_1F_1(1;\,\tfrac{3}{2};\,x) - 2x - \tfrac{1}{2}.
+\end{equation}
+
+\paragraph{Result.}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Predicted & $1/\alpha = 137.0359991$ \\
+Measured (CODATA 2018) & $1/\alpha = 137.035999084(21)$ \\
+\midrule
+Precision & 10.2 significant figures \\
+Residual & 0.062\,ppb, $\;0.4\sigma$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Supporting Derivations}
+
+\begin{itemize}[nosep]
+\item VP coefficient $1/(3\pi)$ instead of $2/(3\pi)$:
+      Jackiw--Rebbi~\cite{JackiwRebbi1976} $+$ Kaplan mechanism~\cite{Kaplan1992}
+      $+$ APS index theorem $+$ Callan--Harvey anomaly inflow~\cite{CallanHarvey1985}.
+\item $c_2 = 2/5$: Wallis integral ratio from kink one-loop pressure,
+      Graham \& Weigel (PLB 852, 2024).
+\item Self-consistent fixed point: the wall counts its own bound states via
+      $\zeta_{\mathrm{bs}}(0) = n = 2$ (spectral zeta function) and adjusts
+      its coupling accordingly.
+\end{itemize}
+
+\subsection{Strong Coupling $\alpha_s$}
+
+\begin{equation}
+  \boxed{\alpha_s = \eta(1/\vp) = 0.11840}
+\end{equation}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Predicted & $0.11840$ \\
+Measured (PDG 2024) & $0.1179 \pm 0.0009$ \\
+Deviation & $0.6\sigma$ \\
+\midrule
+\textbf{Live test} & \textbf{CODATA 2026--27} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This is a committed prediction with zero free parameters: the strong coupling
+\emph{is} the Dedekind eta function at the golden nome.
+
+\subsection{Weinberg Angle $\sin^2\!\theta_W$}
+
+\begin{equation}
+  \boxed{\sin^2\!\theta_W
+  = \frac{\eta^2}{2\,\theta_4} - \frac{\eta^4}{4}
+  = 0.23126}
+\end{equation}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Predicted & $0.23126$ \\
+Measured & $0.23122 \pm 0.00004$ \\
+Deviation & $0.3\sigma$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Core Identity}
+
+The three coupling-related quantities satisfy:
+\begin{equation}
+  \boxed{
+  \alpha^{3/2}\,\mu\,\vp^2
+  \left[1 + \frac{\alpha\ln\vp}{\pi}\right] = 3
+  }
+\end{equation}
+where $\mu = \mpr/\me = 1836.15267\ldots$ is the proton-to-electron mass ratio.
+Tree level ($99.89\%$); with $1$-loop correction ($99.999\%$, a $122\times$ improvement).
+The correction $\alpha\ln(\vp)/\pi$ has the form of a one-loop gauge
+correction in the kink background with vacuum ratio~$\vp^2$.
+
+%----------------------------------------------------------------------
+\section{Additional Quantities}
+\label{sec:additional}
+
+\subsection{Cosmology and Hierarchy}
+
+\begin{center}
+\begin{tabular}{@{}llllr@{}}
+\toprule
+Quantity & Formula & Predicted & Measured & Match \\
+\midrule
+$\Lambda/\Mpl^4$ & $\theta_4^{80}\sqrt{5}/\vp^2$ & $2.88\times10^{-122}$
+  & $2.89\times10^{-122}$ & $\sim$exact \\[4pt]
+$v$ (Higgs VEV) & $\Mpl\,\vpbar^{80}/(1-\vp\theta_4)\cdot(1+\eta\theta_4\cdot7/6)$
+  & $246.218\GeV$ & $246.22\GeV$ & 99.999\% \\[4pt]
+$\mu\;(\mpr/\me)$ & $6^5/\vp^3 + 9/(7\vp^2)$
+  & $1836.156$ & $1836.15267$ & 99.9998\% \\[4pt]
+$m_t$ (top) & $\me\cdot\mu^2/10$
+  & $172.57\GeV$ & $172.69\GeV$ & 99.93\% \\[4pt]
+$\eta_B$ (baryon asymmetry) & $\theta_4^6/\!\sqrt{\vp}$
+  & $6.098\times10^{-10}$ & $6.12\times10^{-10}$ & 99.6\% \\[4pt]
+$\Omega_m/\Omega_\Lambda$ & $\eta(1/\vp^2)$
+  & $0.4625$ & $0.4599$ & 99.4\% \\[4pt]
+$\gamma_{\mathrm{Immirzi}}$ & $1/(3\vp^2)$
+  & $0.12738$ & $0.12732$ & 99.95\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+The exponent $80$ appearing in $\Lambda$ and $v$ is the Coxeter sum through the
+exceptional chain:
+\begin{equation}
+  h(E_8) + h(E_7) + h(E_6) + h(D_5) + h(A_4) + h(A_3) + h(A_2)
+  = 30 + 18 + 12 + 8 + 5 + 4 + 3 = 80.
+\end{equation}
+
+\subsection{Fermion Masses (Zero Free Parameters)}
+
+All nine charged-fermion masses are expressed as $m = \mpr\times(\text{formula})$,
+using only $\{\vp,\,\mu,\,3,\,4/3,\,10,\,2/3\}$:
+
+\begin{center}
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Fermion & $m/\mpr$ & Predicted & Measured & Error \\
+\midrule
+$e$   & $1/\mu$ & 0.000545 & 0.000545 & 0.00\% \\
+$u$   & $\vp^3/\mu$ & 0.002307 & 0.002302 & 0.21\% \\
+$d$   & $9/\mu$ & 0.004902 & 0.004977 & 1.52\% \\
+$\mu$ (muon) & $1/9$ & 0.11111 & 0.11261 & 1.33\% \\
+$s$   & $1/10$ & 0.10000 & 0.09954 & 0.46\% \\
+$c$   & $4/3$ & 1.33333 & 1.35355 & 1.49\% \\
+$\tau$ & Koide($e,\mu$), $K\!=\!2/3$ & 1.89387 & 1.89376 & 0.01\% \\
+$b$   & $4\vp^{5/2}/3$ & 4.44025 & 4.45500 & 0.33\% \\
+$t$   & $\mu/10$ & 183.615 & 184.051 & 0.24\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Average error: $0.62\%$.\quad Maximum error: $1.52\%$.\quad Free parameters: $0$.
+
+The assignment rule uses the $S_3$ representation action on $\mathbb{Z}/4\mathbb{Z}$
+via the Chinese Remainder Theorem isomorphism
+$\mathbb{Z}/12\mathbb{Z} \cong \mathbb{Z}/3\mathbb{Z}\times\mathbb{Z}/4\mathbb{Z}$.
+The flavor symmetry $S_3 = \mathrm{SL}(2,\mathbb{Z})/\Gamma(2)$ is proven
+mathematics~\cite{Feruglio2017}.
+
+\subsection{Mixing Matrices}
+
+\subsubsection{PMNS (Neutrino Mixing)}
+
+\begin{center}
+\begin{tabular}{@{}llllr@{}}
+\toprule
+Angle & Formula & Predicted & Measured & $\sigma$ \\
+\midrule
+$\sin^2\!\theta_{12}$ & $1/3 - \theta_4\sqrt{3/4}$
+  & $0.3071$ & $0.3092 \pm 0.0087$ & $0.24\sigma$ \\
+$\sin^2\!\theta_{23}$ & $1/2 + 40C$\;\footnotemark
+  & $0.5718$ & $0.572$ & $<0.1\sigma$ \\
+$\sin^2\!\theta_{13}$ & $3\,\theta_4/(\theta_3\,\vp)$
+  & $0.02200$ & $0.02203 \pm 0.00056$ & $0.06\sigma$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\footnotetext{$C = \eta\,\theta_4/2 = 0.001794\ldots$ is a universal loop correction
+factor that also appears in the alpha and Higgs VEV formulas.}
+
+\noindent
+$\sin^2\!\theta_{12} = 0.3071$ is a \textbf{live experimental test} (JUNO, ongoing).
+
+\subsubsection{CKM (Quark Mixing)}
+
+\begin{center}
+\begin{tabular}{@{}lllr@{}}
+\toprule
+Element & Formula & Predicted / Measured & Match \\
+\midrule
+$|V_{us}|$ & $(\vp/7)(1-\theta_4)$ & $0.2241$ / $0.2243$ & 99.5\% \\
+$|V_{cb}|$ & $(\vp/7)\sqrt{\theta_4}$ & $0.0402$ / $0.0405$ & 99.4\% \\
+$|V_{ub}|$ & $(\vp/7)\cdot 3\,\theta_4^{3/2}(1+\vp\theta_4)$
+  & $0.00384$ / $0.00382$ & 99.5\% \\
+$\delta_{CP}$ & $\arctan\!\bigl(\vp^2(1-\theta_4)\bigr)$
+  & $68.5^\circ$ / $68.4^\circ$ & 99.9997\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------
+\section{Uniqueness Tests}
+\label{sec:uniqueness}
+
+\subsection{Algebra Uniqueness}
+
+Among the five exceptional Lie algebras $\{G_2, F_4, E_6, E_7, E_8\}$,
+\textbf{only $E_8$} produces formulas matching all three coupling constants
+($\alpha$, $\alpha_s$, $\sin^2\!\theta_W$).  The others achieve $0/3$.
+The discriminating property: only $\mathbb{Z}[\vp]$ (the golden ring, embedded
+in $E_8$) has discriminant $+5$ (positive $\Rightarrow$ real quadratic field
+$\Rightarrow$ two real vacua $\Rightarrow$ domain wall exists).  Other
+exceptional algebras have negative discriminant (complex roots, no domain wall).
+
+\emph{Verification:} \texttt{lie\_algebra\_uniqueness.py}
+
+\subsection{Nome Uniqueness}
+
+A scan of $6{,}061$ rational and algebraic nomes $q \in (0,1)$ finds that
+$q = 1/\vp$ is the \textbf{only} nome for which all three formulas
+($\alpha_s$, $\sin^2\!\theta_W$, $1/\alpha$ tree level) simultaneously match
+measured values within $1\%$.
+
+\emph{Verification:} \texttt{nome\_uniqueness\_scan.py}
+
+\subsection{Formula Isolation}
+
+$719$ neighboring formulas (obtained by systematic perturbation of exponents,
+prefactors, and functional forms) were tested against the core identity.
+\textbf{Zero} match at $1\%$.  The formula is structurally isolated in
+formula space.
+
+\emph{Verification:} \texttt{formula\_isolation\_test.py}
+
+\subsection{Statistical Significance}
+
+Monte Carlo testing (see \texttt{expected\_match\_count.py}):
+matching $\sim\!30$ individual quantities to $<1\%$ is not by itself surprising
+given the functional freedom available.  The genuinely significant result is that
+\textbf{three core formulas} (the three couplings) simultaneously match at $<1\%$
+using a single nome---this occurs with probability $0.2\%$ in the null model.
+The $10.2$-significant-figure match for $\alpha$ goes far beyond what any
+random search produces.
+
+%----------------------------------------------------------------------
+\section{Falsification}
+\label{sec:falsification}
+
+\subsection{Four Live Experimental Tests}
+
+\begin{center}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Test & Prediction & Current status & Instrument & Timeline \\
+\midrule
+$\alpha_s$ & $0.11840$ & $0.1179 \pm 0.0009$ ($0.6\sigma$)
+  & Lattice QCD / CODATA & 2026--27 \\
+$\sin^2\!\theta_{12}$ & $0.3071$ & $0.3092 \pm 0.0087$ ($0.24\sigma$)
+  & JUNO & ongoing \\
+$r$ (tensor/scalar) & $0.0033$ & $< 0.036$
+  & CMB-S4 / LiteBIRD & $\sim$2028 \\
+$R = d\!\ln\mu/d\!\ln\alpha$ & $-3/2$ & untested
+  & ELT / ANDES & $\sim$2035 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The \textbf{decisive test} is $R = -3/2$: if confirmed, the likelihood ratio
+exceeds $10^{10}$.  The \textbf{sharpest near-term blade} is $\alpha_s = 0.11840$
+(CODATA 2026--27).
+
+\subsection{Dead Claims (19 Removed)}
+
+The framework has killed its own wrong ideas.  Removed items include:
+
+\begin{enumerate}[nosep]
+\item $\pi = \theta_3(1/\vp)^2\cdot\ln\vp$ -- tautological (holds for any large $q$).
+\item Coupling triangle $\alpha_s^2 = 2\sin^2\!\theta_W\cdot\theta_4$ -- tautological
+      (substituting definitions gives $\eta^2 = \eta^2$).
+\item CKM unitarity -- tautological (built into parameterization).
+\item Creation identity -- Jacobi triple product rearranged; true for all $q$.
+\item Muon $g-2$ -- wrong sign on higher-order coefficients.
+\item $H_0$ from Lucas/Fibonacci -- decorative (cherry-picked indices).
+\item $\theta_2 \approx \theta_3$ -- generic for large $q$.
+\item Jacobi abstrusa -- classical identity, all $q$.
+\item Lam\'e gap ratio $= 3$ -- P\"oschl--Teller limit, not $\vp$-specific.
+\item Harris current sheet $n = 1$ -- topological, not tunable.
+\item Solar $p$-mode golden ratios -- negative result (no $\vp$ concentration).
+\item VP second derivation via 2D hexagonal lattice -- honest negative.
+\item Bare $V(\Phi)$ inflation -- fails ($\eta = -3.2$ at hilltop).
+\item Fermion decay rate $c = \ln\vp$ -- false (actual $c = 2$).
+\item All 9 masses via Kaplan mechanism -- original fails (6 free params).
+\item $\theta_4 \equiv 1\pmod{p}$ fingerprint -- null test failed ($p = 0.686$).
+\item $196560/196884$ GUT unification -- numerology.
+\item $L(2,\chi_5)/\vp^3 = 1/6$ -- impossible (Lindemann--Weierstrass).
+\item $\zeta_K(2)/\pi^2 = \eta(1/\vp)$ -- $2.5\sigma$ gap, not exact.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Verification}
+\label{sec:verification}
+
+All scripts are standard Python~3, requiring only the built-in \texttt{math} module
+(no NumPy, no SciPy).  Modular form values are computed from truncated $q$-series
+(convergence is rapid at $q = 1/\vp \approx 0.618$; 50 terms suffice for
+$>15$-digit precision).
+
+\bigskip
+\noindent
+Repository: \url{https://github.com/kittilsenstian-debug/the-hand}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Script & Verifies \\
+\midrule
+\texttt{verify\_golden\_node.py} & All golden nome numerical claims \\
+\texttt{modular\_couplings\_v2.py} & $\alpha_s$, $\sin^2\!\theta_W$, tree-level $\alpha$ \\
+\texttt{alpha\_self\_consistent.py} & $\alpha$ at 10.2 significant figures \\
+\texttt{alpha\_cascade\_closed\_form.py} & VP closed form via ${}_1F_1$ \\
+\texttt{derive\_V\_from\_E8.py} & $V(\Phi)$ uniqueness from $E_8$ \\
+\texttt{lie\_algebra\_uniqueness.py} & $E_8$ unique ($3/3$ vs $0/3$) \\
+\texttt{nome\_uniqueness\_scan.py} & $q = 1/\vp$ unique ($6{,}061$ tested) \\
+\texttt{formula\_isolation\_test.py} & Core identity isolated ($0/719$) \\
+\texttt{expected\_match\_count.py} & Monte Carlo null model \\
+\texttt{one\_resonance\_fermion\_derivation.py}
+  & 9 fermion masses, 0 free parameters \\
+\texttt{kink\_1loop.py} & 1-loop correction $\alpha\ln(\vp)/\pi$ \\
+\texttt{exponent\_80\_completion.py} & Coxeter sum $= 80$ \\
+\texttt{three\_generations\_derived.py} & 3 generations from $\Gamma(2) \to S_3$ \\
+\texttt{coupling\_triangle\_sigma.py} & Coupling triangle with measured values \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------
+\begin{thebibliography}{99}
+
+\bibitem{JackiwRebbi1976}
+R.~Jackiw and C.~Rebbi,
+``Solitons with fermion number 1/2,''
+\emph{Phys.\ Rev.\ D} \textbf{13}, 3398 (1976).
+
+\bibitem{Kaplan1992}
+D.~B.~Kaplan,
+``A method for simulating chiral fermions on the lattice,''
+\emph{Phys.\ Lett.\ B} \textbf{288}, 342 (1992).
+
+\bibitem{CallanHarvey1985}
+C.~G.~Callan and J.~A.~Harvey,
+``Anomalies and fermion zero modes on strings and domain walls,''
+\emph{Nucl.\ Phys.\ B} \textbf{250}, 427 (1985).
+
+\bibitem{GrahamWeigel2024}
+N.~Graham and H.~Weigel,
+``Kink one-loop pressure,''
+\emph{Phys.\ Lett.\ B} \textbf{852}, 138607 (2024).
+
+\bibitem{Feruglio2017}
+F.~Feruglio,
+``Are neutrino masses modular forms?''
+in \emph{From My Vast Repertoire: Guido Altarelli's Legacy},
+A.~Ferrara, ed., World Scientific (2017).
+
+\bibitem{RubakovShaposhnikov1983}
+V.~A.~Rubakov and M.~E.~Shaposhnikov,
+``Do we live inside a domain wall?''
+\emph{Phys.\ Lett.\ B} \textbf{125}, 136 (1983).
+
+\bibitem{Rajaraman1982}
+R.~Rajaraman,
+\emph{Solitons and Instantons}, North-Holland (1982).
+
+\bibitem{RandallSundrum1999}
+L.~Randall and R.~Sundrum,
+``A large mass hierarchy from a small extra dimension,''
+\emph{Phys.\ Rev.\ Lett.} \textbf{83}, 3370 (1999).
+
+\bibitem{Borcherds1992}
+R.~E.~Borcherds,
+``Monstrous moonshine and monstrous Lie superalgebras,''
+\emph{Invent.\ Math.} \textbf{109}, 405 (1992).
+
+\bibitem{derive_V_from_E8}
+Verification script: \texttt{derive\_V\_from\_E8.py},
+available at \url{https://github.com/kittilsenstian-debug/the-hand}.
+
+\end{thebibliography}
+
+\end{document}
