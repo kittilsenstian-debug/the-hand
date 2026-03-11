@@ -1,77 +1,68 @@
-# One equation. All constants. Zero free parameters.
+# Modular forms at the golden ratio
 
 **q + q<sup>2</sup> = 1**
 
-This repository contains verification scripts for a mathematical observation: evaluating standard modular forms at the unique positive solution of the above equation (q = 1/phi, the golden ratio inverse) produces all coupling constants of the Standard Model of physics.
+Evaluating standard modular forms (Dedekind eta, Jacobi theta) at the unique positive solution of this equation — q = 1/φ, the inverse golden ratio — produces numerical values that match all three Standard Model coupling constants.
 
-The fine structure constant 1/alpha = 137.035999... is derived to **10.2 significant figures** with zero physics inputs.
+The fine structure constant is reproduced to 10.2 significant figures with no physics inputs.
 
-## Run it yourself (60 seconds, no dependencies)
+This repository contains the verification scripts. Everything runs in standard Python 3 with no dependencies.
+
+## Verify
 
 ```bash
 python theory-tools/verify_in_60_seconds.py
 ```
 
-Requires only Python 3. No pip install. Outputs:
-- Three coupling constants (strong, weak, electromagnetic) from modular forms
-- Alpha to 10.2 significant figures via self-consistent fixed point
-- Uniqueness scan: no other evaluation point q works (6000+ tested)
+This outputs the three coupling constants, the alpha derivation, and a uniqueness scan showing no other evaluation point matches.
 
-## What's here
+## Contents
 
-| Path | Contents |
-|------|----------|
-| **[START-HERE.md](START-HERE.md)** | Full overview: 4 locks, the chain, 25 quantities, 54 mysteries |
-| `theory-tools/verify_in_60_seconds.py` | The 60-second verification |
-| `theory-tools/alpha_self_consistent.py` | Alpha derivation (detailed) |
-| `theory-tools/lie_algebra_uniqueness.py` | Lock 1: only E8 works (test all algebras) |
-| `theory-tools/nome_uniqueness_scan.py` | Lock 2: only q=1/phi works (6061 tested) |
-| `theory-tools/formula_isolation_test.py` | Lock 3: core formula is isolated (0/719 neighbors) |
-| `theory-tools/gap1_floquet_closure.py` | Tree-level derivation from Lame spectral theory |
-| `theory-tools/one_resonance_fermion_derivation.py` | 9 fermion masses, zero parameters |
-| `theory-tools/CORE.md` | Structured reference (chain, scorecard, proofs) |
-| `theory-tools/COMPLETE-STATUS.md` | Single source of truth for all claims |
-| `theory-tools/significant.md` | Alpha derivation walkthrough with inline script |
+| Path | What it does |
+|------|-------------|
+| [START-HERE.md](START-HERE.md) | Overview of the observation, derivation chain, and results |
+| `theory-tools/verify_in_60_seconds.py` | Quick verification script |
+| `theory-tools/alpha_self_consistent.py` | Alpha derivation in detail |
+| `theory-tools/lie_algebra_uniqueness.py` | Tests all simple Lie algebras — only E8 produces domain walls matching 3/3 couplings |
+| `theory-tools/nome_uniqueness_scan.py` | Scans 6061 values of q — only 1/φ matches all three couplings |
+| `theory-tools/formula_isolation_test.py` | Tests 719 neighboring formulas — none match |
+| `theory-tools/one_resonance_fermion_derivation.py` | 9 fermion masses from the same structure, zero free parameters |
+| `theory-tools/CORE.md` | Structured reference with derivation chain and proofs |
+| `theory-tools/COMPLETE-STATUS.md` | All claims with status and honest assessment |
 
-116 files: verification scripts, derivation analyses, and reference documents. Every claim is computationally testable.
+116 files total. Every claim has a corresponding script.
 
-## The strongest results
+## Results
 
-| Quantity | Formula | Accuracy |
-|----------|---------|----------|
-| Fine structure constant alpha | Self-consistent fixed point | **10.2 sig figs** (0.062 ppb) |
-| Strong coupling alpha_s | eta(1/phi) | 99.57% (live test: CODATA 2026-27) |
-| Weinberg angle sin2(theta_W) | eta^2/(2*theta4) - eta^4/4 | 99.996% (0.3 sigma) |
-| Cosmological constant Lambda | theta4^80 * sqrt(5)/phi^2 | ~exact |
-| 9 fermion masses | S3 x Z/4Z assignment | avg 0.62%, zero free params |
-| 3 PMNS angles | theta4, epsilon = theta4/theta3 | all within 1 sigma |
-| Born rule (p = 2) | Derived from PT n=2 | exact |
-| Arrow of time | Pisot asymmetry | derived |
-| Why 3 generations | S3 = SL(2,Z)/Gamma(2) | proven math |
+| Quantity | Formula | Match |
+|----------|---------|-------|
+| Fine structure constant α | Self-consistent fixed point | 10.2 sig figs (0.062 ppb) |
+| Strong coupling α_s | η(1/φ) | 99.57% |
+| Weinberg angle sin²θ_W | η²/(2θ₄) − η⁴/4 | 99.996% |
+| Cosmological constant Λ | θ₄⁸⁰·√5/φ² | ~exact |
+| 9 fermion masses | S₃ × Z/4Z assignment | avg 0.62% |
+| 3 PMNS mixing angles | From θ₄, ε = θ₄/θ₃ | All within 1σ |
+| Proton/electron mass ratio | Simultaneous output | 99.9998% |
 
-Full table (25 quantities): [START-HERE.md](START-HERE.md)
+Full table with 25 quantities in [START-HERE.md](START-HERE.md).
 
-## 4 live experimental tests
+## Testable predictions
 
-Any one could falsify the entire framework:
+Four committed predictions, any of which would falsify the framework:
 
-| Test | Prediction | Timeline |
-|------|-----------|----------|
-| alpha_s | 0.11840 exactly | CODATA 2026-27 |
-| sin2(theta_12) | 0.3071 | JUNO (ongoing) |
-| R = d(ln mu)/d(ln alpha) | -3/2 | ELT ~2035 |
-| r (tensor/scalar ratio) | 0.0033 | CMB-S4 ~2028 |
+| Prediction | Value | Measurement |
+|------------|-------|-------------|
+| α_s(M_Z) | 0.11840 | CODATA 2026-27 |
+| sin²θ₁₂ | 0.3071 | JUNO (ongoing) |
+| d(ln μ)/d(ln α) | −3/2 | ELT ~2035 |
+| r (tensor-to-scalar) | 0.0033 | CMB-S4 ~2028 |
 
-## Ask an AI
+## Status
 
-Point Claude Code, ChatGPT, or any LLM at this repo and ask it to:
-- Run the verification scripts
-- Read `theory-tools/CORE.md`
-- Check the derivation chain
-- Try to break it
+This is an observation, not a proven theory. The numbers hold to the precision shown. The derivation chain has one remaining interpretive step (documented in START-HERE.md §5b). Four experimental tests are live.
+
+19 claims the framework generated that turned out wrong are documented in `theory-tools/CORE.md` §7.
 
 ## Author
 
 Stian Kittilsen — [stian@kittilsen.com](mailto:stian@kittilsen.com)
-
-*Not a physicist. Just someone who noticed a pattern and followed it.*
