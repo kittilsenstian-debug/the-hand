@@ -205,8 +205,6 @@ Point Claude Code at this repo. Key files:
 | `theory-tools/significant.md` | Alpha derivation, full chain, script |
 | `theory-tools/COMPLETE-STATUS.md` | Single source of truth, all claims + scores |
 | `theory-tools/MYSTERIES-VS-FRAMEWORK.md` | 54 mysteries with mechanisms |
-| `The paper/The hand at the bottom of reality.md` | The hand mapping (readable) |
-| `The paper/the-hand-at-the-bottom-of-reality.html` | The book (print-ready) |
 
 Prompts that work:
 

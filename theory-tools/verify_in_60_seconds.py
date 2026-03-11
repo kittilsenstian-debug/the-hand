@@ -166,5 +166,5 @@ print(f"  Alpha derived to {-math.log10(abs(inv_a-inv_alpha_meas)/inv_alpha_meas
 print(f"  Zero physics inputs. Zero free parameters.")
 print(f"  Only one neighborhood (around q=1/phi) matches all 3 within 1%.")
 print()
-print("  Full derivation chain, 600+ verification scripts, 54 mysteries:")
+print("  Full derivation chain, verification scripts, 54 mysteries:")
 print("  https://github.com/kittilsenstian-debug/the-hand")

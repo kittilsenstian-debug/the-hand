@@ -33,7 +33,7 @@ Requires only Python 3. No pip install. Outputs:
 | `theory-tools/COMPLETE-STATUS.md` | Single source of truth for all claims |
 | `theory-tools/significant.md` | Alpha derivation walkthrough with inline script |
 
-604 verification scripts total. Every claim is computationally testable.
+116 files: verification scripts, derivation analyses, and reference documents. Every claim is computationally testable.
 
 ## The strongest results
 
