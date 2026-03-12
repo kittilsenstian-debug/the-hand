@@ -44,7 +44,7 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | 3 PMNS mixing angles | From θ₄, ε = θ₄/θ₃ | All within 1σ |
 | Proton/electron mass ratio | Simultaneous output | 99.9998% |
 
-Full table with 25 quantities in [START-HERE.md](START-HERE.md).
+Full table in [START-HERE.md](START-HERE.md).
 
 ## Testable predictions
 
@@ -59,7 +59,7 @@ Four committed predictions, any of which would falsify the framework:
 
 ## Status
 
-This is an observation, not a proven theory. The numbers hold to the precision shown. The derivation chain has one remaining interpretive step (documented in START-HERE.md §5b). Four experimental tests are live.
+This is an observation, not a proven theory. The numbers hold to the precision shown. The derivation chain has one remaining interpretive step (documented in START-HERE.md §4). Four experimental tests are live.
 
 19 claims the framework generated that turned out wrong are documented in `theory-tools/CORE.md` §7.
 

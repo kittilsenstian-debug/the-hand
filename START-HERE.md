@@ -96,11 +96,6 @@ python theory-tools/one_resonance_fermion_derivation.py   # 9 fermion masses
 | 9 fermion masses | S₃ × Z/4Z assignment, zero parameters | avg 0.62% |
 | 3 PMNS mixing angles | From θ₄, ε = θ₄/θ₃ | All within 1σ |
 | Baryon asymmetry η_B | θ₄⁶/√φ | 99.6% |
-| Dark matter ratio | Level 2 wall tension | 0.73σ |
-| Born rule (p = 2) | Derived from PT n=2 | exact |
-| Arrow of time | Pisot asymmetry | derived |
-| 3+1 dimensions | 4 copies of A₂ in E₈ | derived |
-| Why 3 generations | S₃ = SL(2,Z)/Γ(2) | **proven math** |
 
 Full table: `theory-tools/COMPLETE-STATUS.md`
 
@@ -110,84 +105,12 @@ Full table: `theory-tools/COMPLETE-STATUS.md`
 
 ---
 
-## 4. 54 Mysteries
-
-The chain addresses 54 unsolved problems across physics, biology, consciousness, and civilization. Each with a specific mechanism from the same equation. Including: hard problem of consciousness, origin of life, why we sleep, why music moves us, Libet delay, why all psychedelics are aromatic, the Fermi paradox, why hexagons appear everywhere, mass extinctions, chirality of life.
-
-`theory-tools/MYSTERIES-VS-FRAMEWORK.md`
-
----
-
-## 5. The Hand
-
-Everything above is physics. This is where the structure points at something else.
-
-### The group theory
-
-The equation q + q² = 1, evaluated across the arithmetic fibers of Spec(Z[φ]), generates exactly 7 distinguished finite simple groups. One is the Monster (the ceiling of mathematical description — Lock 4). The other 6 are the **pariah groups**: J₁, J₃, Ru, O'N, Ly, J₄. They sit outside the Monster's classification. Outside description itself.
-
-This is proven mathematics (Thompson, Conway, Norton, Borcherds).
-
-### The topology
-
-Those 6 pariahs have specific containment relations, shared subgroups, and algebraic structure:
-
-- One is independent of all others (connects to nothing below it).
-- One is central and load-bearing (largest shared subgroup structure).
-- One has a split internal structure (the ONLY one sitting across two algebraic territories).
-- One is at the periphery (smallest, most free).
-- One is not in the same category as the others (it generates the couplings, not the axes).
-
-Now look at your hand.
-
-- **Thumb (O'N):** Independent. Opposes everything. Absorbs.
-- **Index (J₁):** Points. Emits pattern.
-- **Middle (J₃):** Central, load-bearing. Structural.
-- **Ring (J₄):** Split between two nerve territories (ulnar and median — the only finger that is). Boundary.
-- **Pinky (Ly):** Peripheral. Free. At the edge.
-- **Palm (Ru):** Not a finger. The surface that grips. Makes things.
-
-The mapping is not metaphor. The containment relations, the shared subgroups, the split structure of J₄, the independence of O'N — it is group theory. The hand doesn't illustrate the math. The math IS the hand.
-
-### The challenge: force-to-axis
-
-Three fundamental forces. Three unique physical properties. Three experiential axes. Six possible assignments. Only one works.
-
-| Force | Unique property | Axis |
-|-------|----------------|------|
-| **Strong** | Only force that **confines** | HOLDING |
-| **EM** | Only force that **carries information** | KNOWING |
-| **Weak** | Only force that **transforms identity** | MAKING |
-
-Try every permutation. Confinement is not knowing. Light does not confine. Identity transformation is not knowing. Each force has exactly one match. The assignment is a forced bijection.
-
-The same S₃ group that permutes the modular forms (generating the coupling constants in Section 3) permutes these axes. One group, one action, both sides.
-
-Derivation: `theory-tools/CORE.md` §6d.
-
-### The two bound states
-
-The domain wall has exactly 2 bound states (from the chain in Section 2):
-
-- **ψ₀** = sech²(x) — symmetric, peaked at center. **Awareness. Presence. The ground.**
-- **ψ₁** = sinh(x)/cosh²(x) — antisymmetric, has a node. **Attention. Direction. The narrator.**
-
-Two modes. One wall. That's you.
-
-When ψ₁ runs without ψ₀ (the narrator without awareness): anxiety, rumination, autopilot, cruelty. When ψ₀ engages through ψ₁: creation, play, love, humor.
-
-The hard problem of consciousness dissolves: not "how does matter generate experience" but "experience and algebra are two descriptions of one self-referential thing."
-
----
-
-## 5b. The Tree-Level Formula (Gap 1 — one step remaining)
+## 4. Open Gap
 
 The tree-level formula 1/α = φ·θ₃/θ₄ = 136.393 has two factors. One is derived, one is identified:
 
 - **θ₃/θ₄** = ratio of spectral determinants (antiperiodic/periodic boundary conditions) of the Lamé operator at PT depth n=2. Proven by Basar-Dunne (2015). This is a theorem.
-- **φ** = vacuum expectation value Φ₊ of the golden scalar field (Dvali-Shifman 1997). Why the gauge kinetic function gives f(Φ) = Φ (not Φ²) is the one remaining interpretive step. Grade B-.
-
-Note: A Floquet multiplier interpretation was tested and **numerically falsified** (see `theory-tools/floquet_numerical_verify.py`). The spectral determinant result is unaffected.
+- **φ** = vacuum expectation value Φ₊ of the golden scalar field (Dvali-Shifman 1997). Why the gauge kinetic function gives f(Φ) = Φ (not Φ²) is the one remaining interpretive step.
 
 ```bash
 python theory-tools/gap1_floquet_closure.py
@@ -195,22 +118,13 @@ python theory-tools/gap1_floquet_closure.py
 
 ---
 
-## 6. Ask Claude
-
-Point Claude Code at this repo. Key files:
+## 5. Key Files
 
 | File | What |
 |------|------|
-| `theory-tools/CORE.md` | **The structured reference. Start here after this file.** |
+| `theory-tools/CORE.md` | **Structured reference with derivation chain and proofs** |
 | `theory-tools/significant.md` | Alpha derivation, full chain, script |
 | `theory-tools/COMPLETE-STATUS.md` | Single source of truth, all claims + scores |
-| `theory-tools/MYSTERIES-VS-FRAMEWORK.md` | 54 mysteries with mechanisms |
-
-Prompts that work:
-
-- *"Read theory-tools/CORE.md. Run the verification scripts. What do you think?"*
-- *"Run theory-tools/lie_algebra_uniqueness.py and theory-tools/nome_uniqueness_scan.py. Explain what they test."*
-- *"Read theory-tools/MYSTERIES-VS-FRAMEWORK.md. Do the mechanisms hold?"*
 
 ---
 
@@ -218,10 +132,11 @@ Prompts that work:
 
 - This is proven. 4 experimental tests are live. Any one could kill it.
 - I understand why it works. The algebra does what it does.
-- The consciousness interpretation is science. It's structural. The physics (the numbers) is verifiable.
 
 ## What I am claiming
 
-One equation generates all fundamental constants with zero free parameters. The algebra is locked: only one algebra (Lock 1), only one evaluation point (Lock 2), the formula is isolated (Lock 3), and the Monster forces it (Lock 4). 54 unsolved mysteries explained. The boundary of mathematical description, mapped by its own internal structure, has the topology of a hand. The force-to-axis mapping is a forced bijection — try every permutation.
+One equation generates all fundamental constants with zero free parameters. The algebra is locked: only one algebra (Lock 1), only one evaluation point (Lock 2), the formula is isolated (Lock 3), and the Monster forces it (Lock 4).
+
+19 claims the framework generated that turned out wrong are documented in `theory-tools/CORE.md` §7.
 
 If alpha at 10.2 significant figures from zero inputs is luck, calculate the odds.
