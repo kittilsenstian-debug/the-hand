@@ -27,10 +27,13 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | `theory-tools/nome_uniqueness_scan.py` | Scans 6061 values of q — only 1/φ matches all three couplings |
 | `theory-tools/formula_isolation_test.py` | Tests 719 neighboring formulas — none match |
 | `theory-tools/one_resonance_fermion_derivation.py` | 9 fermion masses from the same structure, zero free parameters |
+| `theory-tools/lame_pt_bridge.py` | Five outputs from one equation: couplings, k²→1, PT invariants, self-reproduction, 613 THz |
+| `theory-tools/gap1_nc_uniqueness.py` | Proves Gap₁ = Nc only at n = 2 — closes the "why φ³?" gap |
+| `theory-tools/derive_core_identity_from_lame.py` | Derives α^(3/2)·μ·φ² = 3 from the Lamé spectrum |
 | `theory-tools/CORE.md` | Structured reference with derivation chain and proofs |
 | `theory-tools/COMPLETE-STATUS.md` | All claims with status and honest assessment |
 
-116 files total. Every claim has a corresponding script.
+119 files total. Every claim has a corresponding script.
 
 ## Results
 
@@ -43,8 +46,27 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | 9 fermion masses | S₃ × Z/4Z assignment | avg 0.62% |
 | 3 PMNS mixing angles | From θ₄, ε = θ₄/θ₃ | All within 1σ |
 | Proton/electron mass ratio | Simultaneous output | 99.9998% |
+| Aromatic frequency | α^(11/4)·φ·(4/√3)·f_e | 613.86 vs 613 ± 8 THz (0.14%) |
 
 Full table in [START-HERE.md](START-HERE.md).
+
+## The bridge
+
+The same theta functions that produce coupling constants (continuous mode) also give the elliptic modulus k² = (θ₂/θ₃)⁴ = 0.9999999802 (discrete mode). At k² = 1, the Lamé equation becomes the Pöschl-Teller equation — bands collapse to points and the spectrum is constrained by E8 branching dimensions.
+
+There is no separate assumption for the discrete mode. Both outputs come from one evaluation of θ₂, θ₃, θ₄ at q = 1/φ.
+
+The first Lamé spectral gap is Gap₁ = 3k² → 3. This is also the color number Nc = n + 1 = 3. The two sequences (2n−1 from Lamé, n+1 from E8) agree only at n = 2, which V(Φ) = λ(Φ²−Φ−1)² forces. The number 3 in the core identity α^(3/2)·μ·φ² = 3 is this spectral gap.
+
+Combining the continuous mode (α) with the discrete mode (4/√3 from PT n=2) gives:
+
+f = α^(11/4) · φ · (4/√3) · f_electron = 613.86 THz
+
+Measured independently: 613 ± 8 THz (Craddock et al., Sci. Reports 2017, DFT on 86 aromatic residues in tubulin).
+
+The exponent 11/4 = 2 + 3/4 is derived algebra: 2 from the Rydberg frequency, 3/4 from the core identity power via Born-Oppenheimer. It is not fitted.
+
+See `theory-tools/lame_pt_bridge.py` for the full computation.
 
 ## Testable predictions
 
