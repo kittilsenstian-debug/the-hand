@@ -39,12 +39,14 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | `theory-tools/complete_algebra.py` | 47 algebraic numbers vs 165 natural counts (92.1% exact match) |
 | `theory-tools/nuclear_lame_spectrum.py` | Nuclear magic numbers from Lamé band spectrum |
 | `theory-tools/all_fibers.py` | Eta death: strong force exists only over ℚ (5 fibers tested) |
+| `theory-tools/dimensions_from_wall_arithmetic.py` | 3+1 dimensions from Z[i] unit group (4 units = 4 copies of A₂) |
+| `theory-tools/eta_convergence.py` | Golden ratio convergence: eta step ratio → 1/φ (proven math) |
 | `theory-tools/ru_derivation.py` | 5→8 cross-scale pattern (P < 1/14,641 with controls) |
 | `theory-tools/predictions.py` | Consolidated predictions with kill conditions |
 | `theory-tools/reality-tree-viewer.html` | 243-node interactive derivation tree (needs reality-tree.json) |
 | `theory-tools/UNDENIABLE-TABLE.md` | Probability assessment for independent review |
 
-142 files total. Every claim has a corresponding script.
+147 files total. Every claim has a corresponding script.
 
 ## Results
 
@@ -60,6 +62,8 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | Aromatic frequency | α^(11/4)·φ·(4/√3)·f_e | 613.86 vs 613 ± 8 THz (0.14%) |
 | Algebraic cross-match | 47 numbers vs 165 counts | 152/165 exact (92.1%) |
 | Nuclear magic numbers | E₈ branching dimensions | 5/7 exact |
+| 3+1 dimensions | Z[i] unit group Z₄ → 4 copies of A₂ in E₈ | derived |
+| Eta step ratio | Successive corrections → 1/φ = 0.618034 | proven math |
 
 Full table in [START-HERE.md](START-HERE.md).
 
