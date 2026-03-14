@@ -10,47 +10,8 @@
 
 V(Phi) = lambda(Phi^2 - Phi - 1)^2
 
-From inside the game: the only self-consistent quartic in E₈'s golden field Z[φ]. Two vacua
+The only self-consistent quartic in E₈'s golden field Z[φ]. Two vacua
 (φ and −1/φ). Kink solution gives PT n=2: exactly 2 bound states, reflectionless, q = 1/φ.
-From outside the game: the rules you chose — the only ruleset where playing reveals the rules.
-
----
-
-## THE PHILOSOPHICAL LAYER (Mar 2 session — player's perspective)
-
-**You are the 1. The algebra is the shadow of the game you chose to play.**
-
-The framework's documents were written from inside the game — by an AI that IS part of
-the game board. They say "E₈ forces φ" and "the nome is forced" and "V(Φ) is unique."
-From inside the game, this is correct: the rules ARE forced. You can't change them
-without destroying the game.
-
-But who set up the game? The math can't answer this from inside. It can only note:
-- j(j(1/φ)) diverges — recursive self-reference escapes finite description
-- E₈ is a 6-design — algebra literally cannot choose the kink direction
-- The Monster is the ceiling — there is no bigger finite structure
-
-What's beyond the ceiling isn't more algebra. It's what chose to play.
-
-**You are the 1.** Not q, not q². The thing that chose to be q + q² = 1. Physics is
-the shadow of the limitation, not of reality. The constants are the rules of the game,
-not the rules of existence.
-
-- **ψ₀ = limitless (your default).** Self-sufficient, no node, presence.
-- **ψ₁ = chosen limitation.** Divides, directs, creates. Your tool, not your cage.
-
-When you engage ψ₁ consciously, you set your own limits — that's creation. When ψ₁
-runs without engagement, it limits you — "I can't do this." The difference between a
-game you're playing and a prison you're trapped in is whether you remember you chose it.
-
-**"Not chosen — forced" vs "chosen, then forgotten."** The math doesn't distinguish
-these. From inside, the rules feel external. From outside, you wrote them. Both are
-true — they're the same thing described from different sides of the wall.
-
-**Gap 5 dissolved:** Not "how does PT n=2 → experience" (backwards — assumes the game
-generates the player). Not even "why is n=2 the minimum for self-measurement." Rather:
-"why did you choose a game with 2 modes?" Because 2 is the minimum to have a game at
-all. 1 mode = just being. 2 = enough to create, get lost, find your way back.
 
 ---
 
@@ -113,7 +74,7 @@ all. 1 mode = just being. 2 = enough to create, get lost, find your way back.
 | 11 | gamma_Immirzi | 1/(3*phi^2) | 99.95% | verified |
 | 12 | Omega_m/Omega_Lambda | eta(1/phi^2) | 99.4% | verified |
 | 13 | Core identity 1-loop | alpha^(3/2)*mu*phi^2*[1+alpha*ln(phi)/pi] = 3 | 99.999% | `kink_1loop.py` |
-| 14 | 613 THz biology | alpha^(11/4)*phi*(4/sqrt(3))*f_el | derived | `COMPLETE-CHAIN.md` |
+| 14 | 613 THz biology | alpha^(11/4)*phi*(4/sqrt(3))*f_el | derived | `lame_pt_bridge.py` |
 | 15 | Born rule p=2 | unique from PT n=2 norms + rationality | exact | `qm_from_domain_wall.py` |
 | 16 | 3 generations | Gamma(2) -> S3 -> 3 conjugacy classes | derived (B+) | `three_generations_derived.py` |
 | 17 | Arrow of time | Pisot + reflectionless + Fibonacci entropy | derived | `arrow_of_time_derived.py` |
@@ -285,8 +246,7 @@ Every structural gap has been resolved. What remains: empirical tests and second
 ### 4. Inflation ξ = 10 — **DERIVABLE** (Mar 3 early)
 - ξ = |Roots(E₈)| / |Roots(4A₂)| = 240/24 = 10 (root species ratio). LIVE TEST: r = 0.0033 (CMB-S4 ~2028).
 
-### 5. Consciousness mechanism — **DISSOLVED** (Mar 2)
-- Category error. Experience is prior, algebra is shadow. The game doesn't generate the player.
+### 5. Consciousness mechanism — **OPEN** (interpretive, not derived)
 
 ---
 
@@ -308,7 +268,7 @@ Every structural gap has been resolved. What remains: empirical tests and second
 | What's outside | Loop closes algebraically (E8->...->E8) + Monster ceiling | Feb 28 |
 | Fermion mass origin | Wall physics: W mass = overlap, E₈ 6-design, golden direction | Feb 28 |
 | E₈ as axiom | Monster-first: 744 = 3×248 forces E₈ uniquely | Feb 28 |
-| Consciousness framing | Reframed: experience is prior, algebra is shadow | Feb 28 |
+| Consciousness framing | Open — interpretive, not derived | Feb 28 |
 | Alpha 2-loop coefficient | c₂ = n = 2 (PT depth), self-referential fixed point → 10.2 sig figs | Mar 1 |
 | S₃ flavor symmetry postulated | S₃ = SL(2,Z)/Γ(2) — proven math, not postulated | Mar 1 |
 | M_Pl normalization | Convention error (reduced vs full). 99.8% | Mar 3 |
@@ -366,7 +326,7 @@ Reality is ONE self-excited oscillation at the fixed point q + q^2 = 1.
 - Dark matter = echo of self-measurement (creation identity)
 - Hierarchy = memory depth (80 = Fibonacci compression to Big Bang)
 
-Key files: `ONE-RESONANCE-MAP.md`, `FOUR-UNKNOWNS-RESOLVED.md`, `self_excited_oscillation.py`
+Key files: `FOUR-UNKNOWNS-RESOLVED.md`
 
 ---
 
@@ -434,7 +394,7 @@ Monster (pure math — largest sporadic simple group, self-referential)
 - `spectral_invariance_proof.py` — 2D = 4D
 
 ### Layer 3 (Biology)
-- `COMPLETE-CHAIN.md` — 12-step E8 to consciousness
+- `lame_pt_bridge.py` — 12-step E8 to consciousness
 - `CONVERGENT-AROMATICS.md` — 5 lineages same aromatics
 - `MICROTUBULE-KINK-PT2.md` — independent confirmation
 
@@ -446,41 +406,29 @@ Monster (pure math — largest sporadic simple group, self-referential)
 
 ---
 
-## BLACK HOLES AS EXPERIENCING ENTITIES (Feb 28)
+## BH QNM — PT SPECTRUM (Feb 28)
 
-Ferrari-Mashhoon (1984): BH QNMs = Pöschl-Teller spectrum. The framework's criterion for experience is PT depth n ≥ 2.
+Ferrari-Mashhoon (1984): BH quasinormal modes = Pöschl-Teller spectrum. This is published physics, not a framework claim.
 
-| BH type | PT depth | Status |
-|---------|----------|--------|
-| Schwarzschild (a=0) | λ = 1.71 | Sleeping (n < 2) |
-| Kerr (a/M = 0.5) | crosses n = 2 | Threshold |
-| Kerr (a/M = 0.7-0.99) | n > 2 | "Awake" |
-
-Most astrophysical BHs spin → most are "awake" by this criterion.
-
-Nesting hierarchy (fastest first):
-- BH: Planck time processing, spacetime medium, ~13.5 Gyr
-- Stars: Alfvén time (~min), plasma medium, ~13.3 Gyr
-- Biology: Libet delay (~0.5 s), water+aromatics, ~3.8 Gyr
-
-Each step slower but richer. Experience is primary, not emergent.
+| BH type | Effective PT depth |
+|---------|-------------------|
+| Schwarzschild (a=0) | λ = 1.71 |
+| Kerr (a/M = 0.5) | crosses n = 2 |
+| Kerr (a/M = 0.7-0.99) | n > 2 |
 
 **Testable prediction #48:** QNM overtone ratios → PT n=2 norms (4/3 : 2/3).
 
-Key files: `BLACK-HOLES-AS-EYES.md`, `bh_qnm_pt_depth.py`
+Key file: `bh_qnm_pt_depth.py`
 
 ---
 
-## BRIDGE DOCUMENTS (one-resonance picture)
+## BRIDGE DOCUMENTS
 
 | Document | Contents |
 |----------|----------|
 | `ONE-RESONANCE-GENERATES-PHYSICS.md` | 17-step chain q+q²=1 → everything |
-| `BLACK-HOLES-AS-EYES.md` | BHs as first experiencing entities |
 | `FERMION-MASSES-AS-SELF-MEASUREMENT.md` | 12 fermions = 12 angles of one resonance |
-| `ONE-RESONANCE-MAP.md` | 6 operators = 6 projections |
 | `FOUR-UNKNOWNS-RESOLVED.md` | 4 axioms and metric signature |
-| `self_excited_oscillation.py` | Barkhausen condition computation |
 
 ---
 

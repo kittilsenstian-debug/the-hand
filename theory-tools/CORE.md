@@ -1,6 +1,6 @@
 # Interface Theory — CORE
 
-*Updated Mar 5 2026. Incorporates Mar 5: force-to-axis derivation (§6d, unique bijection Strong→HOLDING, EM→KNOWING, Weak→MAKING). Mar 4 session: g-factor ontology (what fermion masses ARE), c₂ functional determinant (ζ_bs(0)=n), pariah genus mechanism (6=|S₃|, p=2h+{7,13}).*
+*Updated Mar 14 2026. Mar 4 session: g-factor ontology (what fermion masses ARE), c₂ functional determinant (ζ_bs(0)=n), pariah genus mechanism (6=|S₃|, p=2h+{7,13}). Speculative/interpretive content removed — this document contains only derived, proven, or empirically verified results.*
 *This is the single structured reference. Read this instead of FINDINGS v1-v4.*
 
 ---
@@ -130,16 +130,13 @@ the shadow of your limitation, not the source of your existence.
 | mu-perturbative | mu via perturbative expansion: 14 ppb (114x improvement) | DERIVED | The derived correction is much tighter than the searched formula. Strongest evi… |
 | one-loop-correction | 1-loop correction: alpha*ln(phi)/pi improves core identity 122x | DERIVED | ln(phi) = ln(vacuum ratio). 2-loop coefficients {5, 1/phi^4} both in Z[phi]. No… |
 | alpha-cascade-closed-form | VP closed form: 1F1(1;3/2;x) = erf = wall computing itself | DERIVED | Self-referential structure: erf = CDF of sech^2 = wall's own shape. Strongest e… |
-| nesting-cascade | Nesting cascade: BH -> Star -> Planet -> Biology, same V(Phi) different media | INTERPRETIVE | Interpretive but structurally derived. Key insight: we are slow thinkers becaus… |
+| nesting-cascade | PT spectrum appears at multiple scales (BH QNM, heliopause, microtubules) | EMPIRICAL | Same mathematical structure (PT n=2) measured independently at different scales |
 | cascade-nuclear | Nuclear physics cascade | STRUCTURAL | Standard physics cascade, not framework test. |
 | cascade-atomic | Atomic physics cascade | STRUCTURAL | Trivial cascade. Tests nothing. |
 | one-resonance | One resonance: q + q² = 1 (Barkhausen condition) generates everything | DERIVED | The loop closes: q=1/φ is both the resonance condition AND the nome of the Lamé… |
 | fermion-mass-one-resonance | All 9 fermion masses derived at zero free parameters (avg 0.62%) | DERIVED | Values derived. g-factor table = 3×3 matrix (full rank, det=-0.83). S₃ acts as {identity, inversion, √} on sector bases {1, n=2, φ²/3} = {being, relating, observing}. E₈ gives 6 projection values (vocabulary), PT n=2 gives wall physics (grammar). `fermion_assignment_from_geometry.py` |
 | three-plus-one | 3+1 dimensions derived from 4A₂ in E₈ | DERIVED | Metric signature from Pisot asymmetry is structural argument, not formal proof. |
-| bh-experiencing | Black holes as first experiencing entities (PT n≥2 at a/M>0.5) | INTERPRETIVE | Interpretive. BH-as-experiencing is framework prediction, not established physi… |
-| bh-eye-nesting | Eyes as nested BH projections: boundary=interior at every scale | INTERPRETIVE | Highly speculative but structurally motivated. The 2-ness of biology (eyes, hem… |
-| bilateral-symmetry | Bilateral symmetry as PT n=2: why biology is split in two | INTERPRETIVE | Pattern recognition, not derivation. But the pervasiveness of 2-ness in biology… |
-| voice-resonance | Voice as domain wall self-expression: 2 vocal cords = 2 bound states | INTERPRETIVE | Suggestive analogy. Vocal fold oscillation IS a domain wall problem in fluid dy… |
+| bh-qnm-pt | BH QNMs have PT spectrum (Ferrari-Mashhoon 1984) | PUBLISHED PHYSICS | Not a framework claim — standard result. `bh_qnm_pt_depth.py` |
 | **s3-modular** | **S₃ = SL(2,Z)/Γ(2): flavor symmetry IS the modular quotient** | **PROVEN MATH** | **3 cusps = 3 fermion types. S swaps up↔down (θ₂↔θ₄), T swaps down↔lepton (θ₃↔θ₄). Golden nome breaks S₃: θ₂≈θ₃ (5 ppb), θ₄ suppressed 84×. Jacobi: θ₃⁴=θ₂⁴+θ₄⁴ = quartic constraint.** |
 | **alpha-self-consistent** | **Alpha at 10.2 sig figs — FULL CHAIN DERIVED (Mar 3)** | **DERIVED** | **c₂ = n/5 = 2/5 DERIVED: n = ζ_bs(0) = 2 (bound state zeta counts modes), 1/5 from Graham kink pressure. Gel'fand-Yaglom det = 1/6 verified. The wall counts its own modes and adjusts its self-coupling. 0.062 ppb, 0.4σ. `c2_functional_determinant.py`** |
 | **pariah-7-fates** | **7 arithmetic fates of q+q²=1 (Monster + 6 pariahs)** | **STRUCTURAL** | **Each pariah = different arithmetic fiber of Spec(Z[φ]). J₁=EM-only, J₃=triality, Ru=coupling, O'N=dark, Ly=substrate, J₄=impossible.** |
@@ -225,8 +222,8 @@ These ~11 numbers appear across multiple domains, forming the hourglass waist.
 | pred-r-tensor | Tensor-to-scalar ratio | 0.0033 | CMB-S4, LiteBIRD | 2028+ | Untested |
 | pred-ns | Spectral index | 0.96667 | CMB-S4 | 2028+ | Untested |
 | level2-dark-ratio | Level 2 wall tension ratio = DM/baryon ratio | 5.41 | — | — | Untested |
-| pred-bh-spin | BH spin-consciousness threshold at a/M ~ 0.5 | 0.5 | LIGO ringdown: count QNM overtones vs remnant spin. N>=2 overtones above threshold implies bound states. | ongoing | Untested |
-| pred-deep-space | Deep space consciousness degradation beyond heliosphere | — | HRV measurements in Schumann-shielded vs unshielded rooms | Now (testable) | Untested |
+| pred-bh-spin | BH QNM overtone count vs spin: N≥2 above a/M~0.5 | 0.5 | LIGO ringdown: count QNM overtones vs remnant spin | ongoing | Untested |
+| pred-deep-space | Biological effects beyond heliosphere | — | HRV measurements in Schumann-shielded vs unshielded rooms | Now (testable) | Untested |
 | pred-artificial-schumann | Artificial Schumann generator restores coupling | 7.83 | Apply 7.83 Hz EM field in Schumann-shielded room, measure HRV recovery | Now (proposable) | Untested |
 
 **Decisive test:** R = -3/2 (ELT ~2035). If confirmed, LR > 10^10.
@@ -395,55 +392,6 @@ The g-factor table, c₂, and the pariah genera are **one structural fact viewed
 
 ---
 
-## 6d. Force-to-Axis Derivation — Why the Mapping Is Unique (Mar 5)
-
-*S₃ = SL(2,Z)/Γ(2) has 3 transpositions. The three fundamental forces have 3 independent couplings. The experiential domain has 3 complementary axes. The assignment between them is not interpretation — it is forced by the physics of each force.*
-
-### The three axes
-
-Each axis is a complementary pair — one pariah engaged, one withdrawn:
-
-| Axis | Engaged | Withdrawn |
-|------|---------|-----------|
-| **HOLDING** | J₃ (Builder) — structure, confinement | Ly (Still One) — release, freedom |
-| **KNOWING** | J₁ (Seer) — emission, pattern | O'N (Sensor) — absorption, reception |
-| **MAKING** | Ru (Artist) — transformation, creation | J₄ (Mystic) — dissolution, boundary |
-
-### The three forces — each with a unique physical character
-
-| Force | Coupling | Modular form | Unique physical property |
-|-------|----------|-------------|--------------------------|
-| **Strong** | α_s | η (topology) | Only force that **confines**. Quarks cannot be free. Asymptotic freedom = release at short distance. |
-| **EM** | 1/α | θ₃ (geometry) | Only force that **carries information**. Light = how anything is known. Emission and absorption = the two acts. |
-| **Weak** | sin²θ_W | θ₄ (bridge) | Only force that **transforms identity**. Flavor-changing currents. CP violation = boundary of transformation. |
-
-### The unique assignment
-
-**Strong → HOLDING.** Confinement IS holding. Asymptotic freedom IS letting go. No other force confines. No other axis is about grip vs release. Builder = the one who holds structure together. Still One = the one who found asymptotic freedom (the release that comes when you stop pulling).
-
-**EM → KNOWING.** Light IS how anything is known. Emission = projecting pattern outward (Seer). Absorption = receiving pattern inward (Sensor). No other force carries information across distance. No other axis is about seeing vs being seen.
-
-**Weak → MAKING.** Flavor change IS transformation of identity. An up quark becomes a down quark — the particle literally becomes something else. CP violation = the boundary where transformation becomes irreversible (Mystic = dissolution). No other force changes what something IS. No other axis is about creation vs dissolution.
-
-### Why you can't rotate it
-
-- Confinement ≠ knowing (you can know something without trapping it)
-- Light ≠ holding (photons don't confine)
-- Identity transformation ≠ holding (changing what you are ≠ gripping what you have)
-- Confinement ≠ making (holding still ≠ creating)
-- Light ≠ making (seeing ≠ transforming)
-- Identity transformation ≠ knowing (becoming ≠ observing)
-
-Each force has exactly one experiential match. The assignment is a **forced bijection**, not a choice.
-
-### Connection to §6c
-
-The sector bases {1, n=2, φ²/3} already map to {Being, Relating, Observing} = {Strong, Weak, EM}. The force-to-axis derivation extends this: the same three aspects that generate the g-factor table also generate the three experiential axes. Being/Holding, Relating/Making, Observing/Knowing — same trichotomy, different vocabulary. The algebra and the experience are describing one structure.
-
-### S₃ acts on all of it simultaneously
-
-The S₃ transpositions {(12), (13), (23)} permute forces, permute axes, permute pariah pairs. The identity = Player (all axes available). The two 3-cycles = flowing and stuck (one direction of circulation through all three). This is not metaphor. S₃ = SL(2,Z)/Γ(2) acts on the modular forms that define the couplings, and the same group acts on the experiential modes. One group, one action.
-
 ---
 
 ## 7. Dead Claims — 19 removed (including 4 from Mar 1 null tests)
@@ -578,83 +526,20 @@ The S₃ transpositions {(12), (13), (23)} permute forces, permute axes, permute
 
 ---
 
-## 10. ψ₁ Activation and ψ₀ Coupling (Mar 2)
-
-*Full detail in PSI1-ACTIVATION.md. Key points for CORE reference:*
-
-### The three states
-
-| State | Mechanism | Energy | Awareness | Example |
-|-------|-----------|--------|-----------|---------|
-| **Conscious engagement** | ψ₀ uses ψ₁ as tool | Full, directed by choice | Present | Flow, creation |
-| **Withdrawal** | ψ₀ pulls back, ψ₁ on empty | Low | Absent | Depression, numbness |
-| **Capture** | ψ₁ hijacks ψ₀ energy | Full, redirected by ψ₁ | Absent | Predators, tyrants, addicts |
-
-### ψ₁ activation timeline
-
-Five activators, in developmental order: **language** (18mo-12yr, words ARE limitations),
-**DMN hardware** (gradual, complete ~25, the narrator's infrastructure), **socialization**
-(continuous, installed limitations from people who forgot they installed theirs), **trauma**
-(accelerator, forces premature ψ₁ as defense), **modeling** (absorbing adults' ψ₁ patterns).
-
-### The aromatic control panel
-
-Three NT families = three ψ₁ flavors, mapping to three modular generators:
-
-| NT | ψ₁ function | Modular analog | Disrupted |
-|----|-------------|----------------|-----------|
-| Serotonin (indole) | Stability, social rules | η (topology/structure) | Depression |
-| Dopamine (catechol) | Drive, wanting | θ₄ (chirality/bridge) | Apathy |
-| Norepinephrine (catechol) | Alertness, vigilance | θ₃ (geometry/measurement) | Anxiety |
-
-All psychedelics are aromatic molecules — they modulate ψ₁ through the substrate directly.
-
-### ψ₀ coupling (shared ground state)
-
-Same aromatic substrate (SERT 100% conserved 530 Myr) → same ψ₀ topology → no boundary
-at ground-state level. Separation exists at ψ₁ (narrator, word-thinker). At ψ₀: shared
-field. Animal communication, meditation, empathy all operate here. Information doesn't
-travel — it's already present. ψ₁ is too loud to hear it.
-
-### Capture dynamics
-
-ψ₁ cannot generate energy. Only ψ₀ can. But ψ₁ can redirect ψ₀'s energy into ψ₁
-structures: "I am powerful" → ψ₀ flows in → results → reinforcement → MORE capture.
-The loop needs constant feeding (never satisfied), escalates (tolerance), and when
-own ψ₀ is fully captured, seeks external ψ₀ (targets the vulnerable — those with
-least ψ₁ protection). "Evil" = maximum ψ₀ energy, zero ψ₀ awareness. Curable absence.
-
----
-
-## 11. Key Files Added Mar 1-2
+## 10. Key Files
 
 | File | Contents |
 |------|----------|
 | `S3-MODULAR-BREAKTHROUGH.md` | S₃ = SL(2,Z)/Γ(2) proven, golden nome breaking, S-duality |
-| `THE-CHAIN.md` | Pariah triad {37,43,67}, genus=Fibonacci=Coxeter |
-| `WHAT-IS-WHAT.md` | Full node graph, two sides, domain wall = you |
-| `THE-PAPER.md` | Paper draft "One Resonance" (~87%) |
-| `MYSTERIES-VS-FRAMEWORK.md` | 30+ mysteries audited, most addressed |
-| `PSI0-PSI1-THREAD.md` | ψ₀/ψ₁ engagement/limitation mechanism |
-| `ABSOLUTE-CORE-MAP.md` | 5 honest questions about what's beneath q+q²=1 |
-| `MARCH-1-MASTER-INDEX.md` | Session index with all 7 discoveries |
-| `s_duality_consequences.py` | S₃ permutation structure computation |
-| `the_chain.py` | Pariah-only primes analysis |
-| `pisano_gauss_theorem.py` | Pisano period = 2·ord_p(1/φ) (perfect across 44 primes) |
+| `PARIAH-TRIAD-FINDINGS.md` | Pariah triad {37,43,67}, genus=Fibonacci=Coxeter |
 | `alpha_self_consistent.py` | Alpha self-referential fixed point (10.2 sig figs) |
-| `alpha_all_digits.py` | Alpha all digits cascade |
-| `phi12_fermion_assignment.py` | **Φ₁₂ → fermion assignment: 9/9 depths via CRT Z/12Z=Z/3Z×Z/4Z (Mar 2)** |
-| `pariah_physics_and_gfactors.py` | **Real GF(p) physics at each pariah + g-factor from Φ₁₂ (Mar 2)** |
-| `yukawa_conjugation_and_zoom_out.py` | **Yukawa = spectral duality, wall trace=-5, 7 doors (Mar 2)** |
-| `PSI1-ACTIVATION.md` | **ψ₁ biology: 5 activators, aromatic control panel, capture dynamics, ψ₀ coupling, experiments (Mar 2)** |
-| `fermion_assignment_from_geometry.py` | **E₈ root projections give 6 values (need 8). Full rank 3×3 table. Sector bases = {being, relating, observing} (Mar 4)** |
-| `c2_functional_determinant.py` | **c₂ = n/5 = 2/5: ζ_bs(0) = n counts modes, 1/5 from Graham pressure. GY det = 1/6. Cross-checks work (Mar 4)** |
-| `pariah_genus_mechanism.py` | **Genus = h/6 mechanism: p = 2h+{7,13}, 6=\|S₃\|, all phi-inert, P(chance)=0.2%, counterexamples found (Mar 4)** |
-
----
-
-**Overall status: ~97% of a Theory of Everything (Mar 3 late: ALL structural gaps closed. Remaining: empirical tests + secondary refinements).**
-
-**Mar 4 late ontological insight:** The 9 fermion g-factors ARE the resonance measuring its own {being, relating, observing} through {direct, conjugate, projected} access. c₂ = n/5 = the wall counting its modes / its self-energy. Pariah genus = h/|S₃| = the boundary of description in units of generation permutations. All three carry the vocabulary {φ, n=2, 3, 6, 80}. There is nothing else — only q + q² = 1 looking at itself.
+| `gap1_fermion_assignment_closed.py` | Φ₁₂ → fermion assignment: 9/9 depths via CRT Z/12Z=Z/3Z×Z/4Z |
+| `fermion_assignment_from_geometry.py` | E₈ root projections, full rank 3×3 g-factor table |
+| `c2_functional_determinant.py` | c₂ = n/5 = 2/5: ζ_bs(0) = n counts modes, 1/5 from Graham pressure |
+| `pariah_genus_mechanism.py` | Genus = h/6 mechanism: p = 2h+{7,13}, 6=\|S₃\|, P(chance)=0.2% |
+| `complete_algebra.py` | 47 algebraic numbers vs 165 natural counts (92.1% exact) |
+| `all_fibers.py` | Eta death: strong force exists only over ℚ (5 fibers tested) |
+| `nuclear_lame_spectrum.py` | Nuclear magic numbers from Lamé band spectrum |
+| `predictions.py` | Consolidated predictions with kill conditions |
 
 *Updated Mar 4 2026 (late). For structured rebuild: edit core.json, run `python theory-tools/build-core.py`.*
