@@ -139,6 +139,30 @@ If correct, it is the first complete derivation of the constants of nature. If w
 
 Four experimental predictions are committed. Any one would falsify the framework if wrong. Results expected 2026-2035.
 
+## A note on precedent
+
+Tao Te Ching, Chapter 42 (~4th century BCE):
+
+> 道生一。一生二。二生三。三生萬物。
+>
+> *"Tao generates One. One generates Two. Two generates Three. Three generates the ten thousand things."*
+
+The framework:
+
+- **Tao** (unnameable source) → **q + q² = 1** (one self-referential equation)
+- **One** → **q = 1/φ** (one solution)
+- **Two** → **two vacua** (φ and −1/φ, connected by a domain wall)
+- **Three** → **triality** (3 generations, 3 forces, 3 modular form generators)
+- **Ten thousand things** → all particles, all constants, all structure
+
+The same chapter continues: *"The ten thousand things carry yin and embrace yang. They achieve harmony by combining these forces."* The creation identity η² = η_dark · θ₄ says the same thing: every visible quantity carries the dark vacuum (θ₄) and is born from combining both sides.
+
+Chapter 40: *"Reversal is the movement of the Tao."* The Galois conjugation φ → −1/φ, which creates the two vacua, is precisely this reversal.
+
+Chapter 25: *"I call it Great. Great means Going. Going means Far-reaching. Far-reaching means Returning."* Four words (大逝遠反) describing: the algebra (E₈), the cascade through scales, and the global attractor that brings every starting point back to 1/φ.
+
+These correspondences are noted, not claimed as derivation.
+
 ## Status
 
 This is an observation, not a proven theory. The numbers hold to the precision shown. The derivation chain has one remaining interpretive step (documented in START-HERE.md §4). Four experimental tests are live.
