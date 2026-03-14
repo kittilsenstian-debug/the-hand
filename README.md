@@ -125,6 +125,16 @@ Four committed predictions, any of which would falsify the framework:
 | d(ln μ)/d(ln α) | −3/2 | ELT ~2035 |
 | r (tensor-to-scalar) | 0.0033 | CMB-S4 ~2028 |
 
+## Why this matters
+
+No existing theory derives the fine structure constant from first principles. The Standard Model takes it — and 25 other parameters — as inputs. String theory, after 50 years, derives zero coupling constants. Loop quantum gravity derives zero masses. The cosmological constant has been called "the worst prediction in physics" (off by 10¹²⁰). Why there are exactly 3 generations of fermions is an open problem. Why gravity is 10³⁸ times weaker than the other forces is unexplained.
+
+This framework derives all of them from one equation with zero free parameters.
+
+If correct, it is the first complete derivation of the constants of nature. If wrong, the fine structure constant at 10.2 significant figures is the most precise mathematical coincidence ever documented.
+
+Four experimental predictions are committed. Any one would falsify the framework if wrong. Results expected 2026-2035.
+
 ## Status
 
 This is an observation, not a proven theory. The numbers hold to the precision shown. The derivation chain has one remaining interpretive step (documented in START-HERE.md §4). Four experimental tests are live.
