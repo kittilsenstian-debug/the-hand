@@ -1,0 +1,4552 @@
+{
+  "algebraic_vocabulary": {
+    "1": {
+      "sources": [
+        "rank(A\u2081)"
+      ],
+      "role": "A\u2081 rank"
+    },
+    "2": {
+      "sources": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082"
+    },
+    "3": {
+      "sources": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension"
+    },
+    "4": {
+      "sources": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number"
+    },
+    "5": {
+      "sources": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number"
+    },
+    "6": {
+      "sources": [
+        "roots(A\u2082)",
+        "rep(A\u2083,6)",
+        "rank(E\u2086)",
+        "count of pariahs (outside Monster)",
+        "|S\u2083| = 3!"
+      ],
+      "role": "A\u2082 root count"
+    },
+    "7": {
+      "sources": [
+        "rank(E\u2087)"
+      ],
+      "role": "E\u2087 rank"
+    },
+    "8": {
+      "sources": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension"
+    },
+    "9": {
+      "sources": [
+        "3\u00b2 = triality\u00b2"
+      ],
+      "role": "square of triality"
+    },
+    "10": {
+      "sources": [
+        "rep(A\u2084,10)",
+        "rep(D\u2085,10)",
+        "2\u00d75 = vacua \u00d7 pariahs"
+      ],
+      "role": "A\u2084 representation"
+    },
+    "11": {
+      "sources": [
+        "J\u2081 personal prime",
+        "L(5) = Lucas(5)"
+      ],
+      "role": "Seer resolution (GF(11))"
+    },
+    "12": {
+      "sources": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count"
+    },
+    "13": {
+      "sources": [
+        "5+8 (pariahs + rank E\u2088)"
+      ],
+      "role": "interface + substrate"
+    },
+    "14": {
+      "sources": [
+        "2 + 4\u00d73 (thumb 2 + 4 fingers \u00d7 3)"
+      ],
+      "role": "golden 2\u21943 oscillation"
+    },
+    "15": {
+      "sources": [
+        "dim(A\u2083)"
+      ],
+      "role": "A\u2083 dimension"
+    },
+    "16": {
+      "sources": [
+        "rep(D\u2085,16)",
+        "2\u2074"
+      ],
+      "role": "D\u2085 representation"
+    },
+    "18": {
+      "sources": [
+        "h(E\u2087)",
+        "L(6) = Lucas(6)"
+      ],
+      "role": "E\u2087 Coxeter number"
+    },
+    "20": {
+      "sources": [
+        "roots(A\u2084)",
+        "count of Happy Family (in Monster)"
+      ],
+      "role": "A\u2084 root count"
+    },
+    "21": {
+      "sources": [
+        "dim(sp(6)) \u2014 Hornos genetic code algebra"
+      ],
+      "role": "genetic code Lie algebra"
+    },
+    "24": {
+      "sources": [
+        "dim(A\u2084)",
+        "dim(Leech) = c(Monster VOA)"
+      ],
+      "role": "A\u2084 dimension"
+    },
+    "26": {
+      "sources": [
+        "count of sporadic simple groups"
+      ],
+      "role": "complete classification"
+    },
+    "27": {
+      "sources": [
+        "rep(E\u2086,27)",
+        "dim J\u2083(O)"
+      ],
+      "role": "E\u2086 representation"
+    },
+    "28": {
+      "sources": [
+        "dim(2.Ru faithful)"
+      ],
+      "role": "shadow representation"
+    },
+    "29": {
+      "sources": [
+        "Ru personal prime",
+        "L(7) = Lucas(7)"
+      ],
+      "role": "bridge/Artist prime"
+    },
+    "30": {
+      "sources": [
+        "h(E\u2088)"
+      ],
+      "role": "E\u2088 Coxeter number"
+    },
+    "31": {
+      "sources": [
+        "O'N prime = 2\u2075\u22121 (Mersenne)"
+      ],
+      "role": "Sensor prime"
+    },
+    "32": {
+      "sources": [
+        "2\u2075"
+      ],
+      "role": "fifth power of vacua"
+    },
+    "33": {
+      "sources": [
+        "3 \u00d7 11 = 3 \u00d7 L(5)"
+      ],
+      "role": "triple Lucas"
+    },
+    "36": {
+      "sources": [
+        "6\u00b2 = |S\u2083|\u00b2"
+      ],
+      "role": "permutation squared"
+    },
+    "37": {
+      "sources": [
+        "pariah-only prime, genus X\u2080(37)=2=F\u2083"
+      ],
+      "role": "pariah boundary"
+    },
+    "40": {
+      "sources": [
+        "roots(D\u2085)",
+        "240/6 = roots(E\u2088)/|S\u2083|"
+      ],
+      "role": "D\u2085 root count"
+    },
+    "43": {
+      "sources": [
+        "pariah-only prime, genus X\u2080(43)=3=F\u2084"
+      ],
+      "role": "pariah boundary"
+    },
+    "45": {
+      "sources": [
+        "dim(D\u2085)"
+      ],
+      "role": "D\u2085 dimension"
+    },
+    "54": {
+      "sources": [
+        "2\u00d727 = vacua \u00d7 J\u2083(O)"
+      ],
+      "role": "double Jordan"
+    },
+    "56": {
+      "sources": [
+        "rep(E\u2087,56)"
+      ],
+      "role": "E\u2087 representation"
+    },
+    "60": {
+      "sources": [
+        "240/4 = roots(E8) / A2_copies"
+      ],
+      "role": "E8 root quotient (ribosome 60S)"
+    },
+    "64": {
+      "sources": [
+        "4\u00b3 = (A\u2082 copies)\u00b3"
+      ],
+      "role": "triplet code space"
+    },
+    "67": {
+      "sources": [
+        "pariah-only prime, genus X\u2080(67)=5=F\u2085"
+      ],
+      "role": "pariah boundary"
+    },
+    "72": {
+      "sources": [
+        "roots(E\u2086)"
+      ],
+      "role": "E\u2086 root count"
+    },
+    "78": {
+      "sources": [
+        "dim(E\u2086)",
+        "dim(E6)"
+      ],
+      "role": "E\u2086 dimension"
+    },
+    "80": {
+      "sources": [
+        "\u03a3h(exceptional chain) = 3+4+5+8+12+18+30",
+        "240/3 = roots(E\u2088)/triality"
+      ],
+      "role": "hierarchy exponent"
+    },
+    "120": {
+      "sources": [
+        "\u03a3(E\u2088 exponents) = 120",
+        "240/2 = roots(E8) / vacua"
+      ],
+      "role": "icosahedral symmetry order"
+    },
+    "126": {
+      "sources": [
+        "roots(E\u2087)"
+      ],
+      "role": "E\u2087 root count"
+    },
+    "133": {
+      "sources": [
+        "dim(E\u2087)",
+        "rep(E\u2087,133)"
+      ],
+      "role": "E\u2087 dimension"
+    },
+    "240": {
+      "sources": [
+        "roots(E\u2088)"
+      ],
+      "role": "E\u2088 root count"
+    },
+    "248": {
+      "sources": [
+        "dim(E\u2088)",
+        "rep(E\u2088,248)"
+      ],
+      "role": "E\u2088 dimension"
+    },
+    "744": {
+      "sources": [
+        "j-invariant constant = 3\u00d7248"
+      ],
+      "role": "Monster\u2194E\u2088 bridge"
+    }
+  },
+  "natural_inventory": [
+    {
+      "name": "quark flavors",
+      "count": 6,
+      "scale": "particle",
+      "domain": "quarks",
+      "quality": "textbook"
+    },
+    {
+      "name": "quark colors",
+      "count": 3,
+      "scale": "particle",
+      "domain": "quarks",
+      "quality": "textbook"
+    },
+    {
+      "name": "generations",
+      "count": 3,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook"
+    },
+    {
+      "name": "charged leptons",
+      "count": 3,
+      "scale": "particle",
+      "domain": "leptons",
+      "quality": "textbook"
+    },
+    {
+      "name": "neutrinos",
+      "count": 3,
+      "scale": "particle",
+      "domain": "leptons",
+      "quality": "textbook"
+    },
+    {
+      "name": "total fermions (charged)",
+      "count": 12,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook"
+    },
+    {
+      "name": "gluons",
+      "count": 8,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook"
+    },
+    {
+      "name": "electroweak bosons",
+      "count": 4,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook"
+    },
+    {
+      "name": "fundamental forces",
+      "count": 4,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook"
+    },
+    {
+      "name": "SM gauge group factors",
+      "count": 3,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook"
+    },
+    {
+      "name": "Higgs doublet components",
+      "count": 4,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook"
+    },
+    {
+      "name": "Higgs physical scalars",
+      "count": 1,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook"
+    },
+    {
+      "name": "magic number 1",
+      "count": 2,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "magic number 2",
+      "count": 8,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "magic number 3",
+      "count": 20,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "magic number 4",
+      "count": 28,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "magic number 5",
+      "count": 50,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "magic number 6",
+      "count": 82,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "magic number 7",
+      "count": 126,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "nucleon types (p,n)",
+      "count": 2,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "iron Z",
+      "count": 26,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "iron A",
+      "count": 56,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "lead neutrons (Pb-208 N)",
+      "count": 126,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "Ca-40 each",
+      "count": 20,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "O-16 each",
+      "count": 8,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "Ni-56 each (Z=N=28)",
+      "count": 28,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "mercury Z",
+      "count": 80,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook"
+    },
+    {
+      "name": "carbon Z",
+      "count": 6,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "nitrogen Z",
+      "count": 7,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "oxygen Z",
+      "count": 8,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "phosphorus Z",
+      "count": 15,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "sulfur Z",
+      "count": 16,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "calcium Z",
+      "count": 20,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "xenon Z (anesthetic)",
+      "count": 54,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "carbon-12 mass number",
+      "count": 12,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "carbon-12 quarks",
+      "count": 36,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "framework"
+    },
+    {
+      "name": "electron shell K capacity",
+      "count": 2,
+      "scale": "atom",
+      "domain": "shells",
+      "quality": "textbook"
+    },
+    {
+      "name": "electron shell L capacity",
+      "count": 8,
+      "scale": "atom",
+      "domain": "shells",
+      "quality": "textbook"
+    },
+    {
+      "name": "electron shell M capacity",
+      "count": 18,
+      "scale": "atom",
+      "domain": "shells",
+      "quality": "textbook"
+    },
+    {
+      "name": "electron shell N capacity",
+      "count": 32,
+      "scale": "atom",
+      "domain": "shells",
+      "quality": "textbook"
+    },
+    {
+      "name": "noble He Z",
+      "count": 2,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "noble Ne Z",
+      "count": 10,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "noble Ar Z",
+      "count": 18,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "noble Kr Z",
+      "count": 36,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "noble Rn Z (2\u00d743 pariah prime)",
+      "count": 86,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "water molar mass",
+      "count": 18,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook"
+    },
+    {
+      "name": "technetium Z (lightest with NO stable isotopes)",
+      "count": 43,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "cesium-133 mass number (DEFINES SI second)",
+      "count": 133,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "holmium Z (highest magnetic moment)",
+      "count": 67,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "platinum Z (most stable noble metal)",
+      "count": 78,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook"
+    },
+    {
+      "name": "mitochondrial genes (ALL animals)",
+      "count": 37,
+      "scale": "organelle",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "human body temperature (C)",
+      "count": 37,
+      "scale": "organism",
+      "domain": "physiology",
+      "quality": "textbook"
+    },
+    {
+      "name": "collagen D-period (nm)",
+      "count": 67,
+      "scale": "molecule",
+      "domain": "structural_protein",
+      "quality": "textbook"
+    },
+    {
+      "name": "human organs (comprehensive count)",
+      "count": 78,
+      "scale": "organism",
+      "domain": "anatomy",
+      "quality": "textbook"
+    },
+    {
+      "name": "resting heart rate (bpm, avg)",
+      "count": 72,
+      "scale": "organism",
+      "domain": "physiology",
+      "quality": "textbook"
+    },
+    {
+      "name": "viral capsid T=2 proteins",
+      "count": 120,
+      "scale": "molecule",
+      "domain": "virology",
+      "quality": "textbook"
+    },
+    {
+      "name": "tubulin aromatic residues (Craddock 2017)",
+      "count": 86,
+      "scale": "molecule",
+      "domain": "biochemistry",
+      "quality": "established"
+    },
+    {
+      "name": "human brain neurons (billions)",
+      "count": 86,
+      "scale": "organ",
+      "domain": "neuroscience",
+      "quality": "established"
+    },
+    {
+      "name": "tropocollagen molecules per collagen fibril",
+      "count": 5,
+      "scale": "molecule",
+      "domain": "structural_protein",
+      "quality": "textbook"
+    },
+    {
+      "name": "DNA bases",
+      "count": 4,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "codon length",
+      "count": 3,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "total codons",
+      "count": 64,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "stop codons",
+      "count": 3,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "sense codons",
+      "count": 61,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "amino acids",
+      "count": 20,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "essential amino acids",
+      "count": 9,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "aromatic amino acids",
+      "count": 4,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "aromatic NT families",
+      "count": 3,
+      "scale": "molecule",
+      "domain": "neurotransmitters",
+      "quality": "textbook"
+    },
+    {
+      "name": "benzene pi electrons",
+      "count": 6,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook"
+    },
+    {
+      "name": "benzene carbons",
+      "count": 6,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook"
+    },
+    {
+      "name": "indole pi electrons (H\u00fcckel n=2)",
+      "count": 10,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook"
+    },
+    {
+      "name": "porphyrin pyrrole rings",
+      "count": 4,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook"
+    },
+    {
+      "name": "porphyrin pi electrons",
+      "count": 18,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook"
+    },
+    {
+      "name": "hemoglobin subunits",
+      "count": 4,
+      "scale": "molecule",
+      "domain": "biochemistry",
+      "quality": "textbook"
+    },
+    {
+      "name": "lignin monomer types",
+      "count": 3,
+      "scale": "molecule",
+      "domain": "botany",
+      "quality": "textbook"
+    },
+    {
+      "name": "cell membrane layers (bilayer)",
+      "count": 2,
+      "scale": "cell",
+      "domain": "cell",
+      "quality": "textbook"
+    },
+    {
+      "name": "histone types",
+      "count": 5,
+      "scale": "cell",
+      "domain": "chromatin",
+      "quality": "textbook"
+    },
+    {
+      "name": "histone octamer proteins",
+      "count": 8,
+      "scale": "cell",
+      "domain": "chromatin",
+      "quality": "textbook"
+    },
+    {
+      "name": "nucleosome DNA bp",
+      "count": 147,
+      "scale": "cell",
+      "domain": "chromatin",
+      "quality": "textbook"
+    },
+    {
+      "name": "DNA bp per turn",
+      "count": 10.5,
+      "scale": "cell",
+      "domain": "chromatin",
+      "quality": "textbook"
+    },
+    {
+      "name": "ribosome eukaryotic",
+      "count": 80,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard"
+    },
+    {
+      "name": "ribosome small subunit (40S)",
+      "count": 40,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard"
+    },
+    {
+      "name": "ribosome large subunit (60S)",
+      "count": 60,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard"
+    },
+    {
+      "name": "ribosome mitochondrial small (28S)",
+      "count": 28,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard"
+    },
+    {
+      "name": "ribosome prokaryotic",
+      "count": 70,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard"
+    },
+    {
+      "name": "ribosome prok small (30S)",
+      "count": 30,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard"
+    },
+    {
+      "name": "ribosome prok large (50S)",
+      "count": 50,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard"
+    },
+    {
+      "name": "cytoskeleton types",
+      "count": 3,
+      "scale": "cell",
+      "domain": "cytoskeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "microtubule protofilaments",
+      "count": 13,
+      "scale": "cell",
+      "domain": "cytoskeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "tubulin dimer subunits",
+      "count": 2,
+      "scale": "cell",
+      "domain": "cytoskeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "ATP synthase c-ring (human)",
+      "count": 8,
+      "scale": "organelle",
+      "domain": "mitochondria",
+      "quality": "standard"
+    },
+    {
+      "name": "human chromosomes",
+      "count": 46,
+      "scale": "cell",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "human autosome pairs",
+      "count": 22,
+      "scale": "cell",
+      "domain": "genetics",
+      "quality": "textbook"
+    },
+    {
+      "name": "total bones",
+      "count": 206,
+      "scale": "organism",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "axial skeleton",
+      "count": 80,
+      "scale": "organism",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "appendicular skeleton",
+      "count": 126,
+      "scale": "organism",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "hand bones",
+      "count": 27,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "carpals (wrist)",
+      "count": 8,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "metacarpals (palm)",
+      "count": 5,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "phalanges (hand)",
+      "count": 14,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "thumb phalanges",
+      "count": 2,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "other finger phalanges (each)",
+      "count": 3,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "foot bones",
+      "count": 26,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "tarsals (ankle)",
+      "count": 7,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "metatarsals",
+      "count": 5,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "phalanges (foot)",
+      "count": 14,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "skull bones",
+      "count": 22,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "cranial bones",
+      "count": 8,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "facial bones",
+      "count": 14,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "vertebrae total",
+      "count": 33,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "cervical vertebrae",
+      "count": 7,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "thoracic vertebrae",
+      "count": 12,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "lumbar vertebrae",
+      "count": 5,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "sacral vertebrae (fused)",
+      "count": 5,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "coccygeal vertebrae",
+      "count": 4,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "rib pairs",
+      "count": 12,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "total ribs",
+      "count": 24,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "true ribs per side",
+      "count": 7,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "false ribs per side",
+      "count": 3,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "floating ribs per side",
+      "count": 2,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "teeth adult",
+      "count": 32,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "teeth functional (minus wisdom)",
+      "count": 28,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "teeth per quadrant",
+      "count": 7,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "wisdom teeth",
+      "count": 4,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "baby teeth",
+      "count": 20,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "ear ossicles per ear",
+      "count": 3,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "ear ossicles total",
+      "count": 6,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "hyoid",
+      "count": 1,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook"
+    },
+    {
+      "name": "lung lobes right",
+      "count": 3,
+      "scale": "organ",
+      "domain": "respiratory",
+      "quality": "textbook"
+    },
+    {
+      "name": "lung lobes left",
+      "count": 2,
+      "scale": "organ",
+      "domain": "respiratory",
+      "quality": "textbook"
+    },
+    {
+      "name": "lung lobes total",
+      "count": 5,
+      "scale": "organ",
+      "domain": "respiratory",
+      "quality": "textbook"
+    },
+    {
+      "name": "liver segments (Couinaud)",
+      "count": 8,
+      "scale": "organ",
+      "domain": "digestive",
+      "quality": "textbook"
+    },
+    {
+      "name": "heart chambers",
+      "count": 4,
+      "scale": "organ",
+      "domain": "cardiovascular",
+      "quality": "textbook"
+    },
+    {
+      "name": "heart valves",
+      "count": 4,
+      "scale": "organ",
+      "domain": "cardiovascular",
+      "quality": "textbook"
+    },
+    {
+      "name": "semicircular canals per ear",
+      "count": 3,
+      "scale": "organ",
+      "domain": "vestibular",
+      "quality": "textbook"
+    },
+    {
+      "name": "skin main layers",
+      "count": 3,
+      "scale": "organ",
+      "domain": "integumentary",
+      "quality": "textbook"
+    },
+    {
+      "name": "epidermis sublayers",
+      "count": 5,
+      "scale": "organ",
+      "domain": "integumentary",
+      "quality": "textbook"
+    },
+    {
+      "name": "taste modalities",
+      "count": 5,
+      "scale": "organ",
+      "domain": "sensory",
+      "quality": "textbook"
+    },
+    {
+      "name": "basic senses",
+      "count": 5,
+      "scale": "organ",
+      "domain": "sensory",
+      "quality": "textbook"
+    },
+    {
+      "name": "intrinsic hand muscles",
+      "count": 20,
+      "scale": "organ",
+      "domain": "muscular",
+      "quality": "textbook"
+    },
+    {
+      "name": "cranial nerve pairs",
+      "count": 12,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook"
+    },
+    {
+      "name": "spinal nerve pairs",
+      "count": 31,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook"
+    },
+    {
+      "name": "cervical nerves",
+      "count": 8,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook"
+    },
+    {
+      "name": "thoracic nerves",
+      "count": 12,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook"
+    },
+    {
+      "name": "lumbar nerves",
+      "count": 5,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook"
+    },
+    {
+      "name": "sacral nerves",
+      "count": 5,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook"
+    },
+    {
+      "name": "coccygeal nerves",
+      "count": 1,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook"
+    },
+    {
+      "name": "brain lobes per hemisphere",
+      "count": 4,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook"
+    },
+    {
+      "name": "brain ventricles",
+      "count": 4,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook"
+    },
+    {
+      "name": "blood types ABO",
+      "count": 4,
+      "scale": "organ",
+      "domain": "hematology",
+      "quality": "textbook"
+    },
+    {
+      "name": "IgG domains",
+      "count": 12,
+      "scale": "molecule",
+      "domain": "immunology",
+      "quality": "standard"
+    },
+    {
+      "name": "clotting factors (essential)",
+      "count": 12,
+      "scale": "system",
+      "domain": "hematology",
+      "quality": "standard"
+    },
+    {
+      "name": "major minerals",
+      "count": 5,
+      "scale": "organism",
+      "domain": "nutrition",
+      "quality": "textbook"
+    },
+    {
+      "name": "trace minerals",
+      "count": 8,
+      "scale": "organism",
+      "domain": "nutrition",
+      "quality": "textbook"
+    },
+    {
+      "name": "total essential minerals",
+      "count": 13,
+      "scale": "organism",
+      "domain": "nutrition",
+      "quality": "textbook"
+    },
+    {
+      "name": "cervical vertebrae (all mammals)",
+      "count": 7,
+      "scale": "organism",
+      "domain": "mammalian",
+      "quality": "textbook"
+    },
+    {
+      "name": "domains of life",
+      "count": 3,
+      "scale": "biosphere",
+      "domain": "taxonomy",
+      "quality": "textbook"
+    },
+    {
+      "name": "convergent intelligence lineages",
+      "count": 5,
+      "scale": "biosphere",
+      "domain": "evolution",
+      "quality": "established"
+    },
+    {
+      "name": "mass extinctions (major)",
+      "count": 5,
+      "scale": "biosphere",
+      "domain": "paleontology",
+      "quality": "textbook"
+    },
+    {
+      "name": "eusociality independent origins",
+      "count": 12,
+      "scale": "biosphere",
+      "domain": "evolution",
+      "quality": "established"
+    },
+    {
+      "name": "germ layers",
+      "count": 3,
+      "scale": "organism",
+      "domain": "embryology",
+      "quality": "textbook"
+    },
+    {
+      "name": "body axes",
+      "count": 3,
+      "scale": "organism",
+      "domain": "embryology",
+      "quality": "textbook"
+    },
+    {
+      "name": "spatial dimensions",
+      "count": 3,
+      "scale": "cosmos",
+      "domain": "spacetime",
+      "quality": "textbook"
+    },
+    {
+      "name": "spacetime dimensions",
+      "count": 4,
+      "scale": "cosmos",
+      "domain": "spacetime",
+      "quality": "textbook"
+    },
+    {
+      "name": "planets (solar system)",
+      "count": 8,
+      "scale": "stellar_system",
+      "domain": "astronomy",
+      "quality": "textbook"
+    },
+    {
+      "name": "Schumann resonance (Hz, approx)",
+      "count": 8,
+      "scale": "planet",
+      "domain": "geophysics",
+      "quality": "established"
+    }
+  ],
+  "cross_match": [
+    {
+      "name": "quark flavors",
+      "count": 6,
+      "scale": "particle",
+      "domain": "quarks",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2082)",
+        "rep(A\u2083,6)",
+        "rank(E\u2086)",
+        "count of pariahs (outside Monster)",
+        "|S\u2083| = 3!"
+      ],
+      "role": "A\u2082 root count",
+      "distance": 0
+    },
+    {
+      "name": "quark colors",
+      "count": 3,
+      "scale": "particle",
+      "domain": "quarks",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "generations",
+      "count": 3,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "charged leptons",
+      "count": 3,
+      "scale": "particle",
+      "domain": "leptons",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "neutrinos",
+      "count": 3,
+      "scale": "particle",
+      "domain": "leptons",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "total fermions (charged)",
+      "count": 12,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count",
+      "distance": 0
+    },
+    {
+      "name": "gluons",
+      "count": 8,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "electroweak bosons",
+      "count": 4,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "fundamental forces",
+      "count": 4,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "SM gauge group factors",
+      "count": 3,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "Higgs doublet components",
+      "count": 4,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "Higgs physical scalars",
+      "count": 1,
+      "scale": "particle",
+      "domain": "SM",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rank(A\u2081)"
+      ],
+      "role": "A\u2081 rank",
+      "distance": 0
+    },
+    {
+      "name": "magic number 1",
+      "count": 2,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082",
+      "distance": 0
+    },
+    {
+      "name": "magic number 2",
+      "count": 8,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "magic number 3",
+      "count": 20,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2084)",
+        "count of Happy Family (in Monster)"
+      ],
+      "role": "A\u2084 root count",
+      "distance": 0
+    },
+    {
+      "name": "magic number 4",
+      "count": 28,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(2.Ru faithful)"
+      ],
+      "role": "shadow representation",
+      "distance": 0
+    },
+    {
+      "name": "magic number 5",
+      "count": 50,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "MISS",
+      "algebraic": null,
+      "role": null,
+      "distance": 4
+    },
+    {
+      "name": "magic number 6",
+      "count": 82,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "NEAR (\u00b12, nearest=80)",
+      "algebraic": [
+        "\u03a3h(exceptional chain) = 3+4+5+8+12+18+30",
+        "240/3 = roots(E\u2088)/triality"
+      ],
+      "role": "hierarchy exponent",
+      "distance": 2
+    },
+    {
+      "name": "magic number 7",
+      "count": 126,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(E\u2087)"
+      ],
+      "role": "E\u2087 root count",
+      "distance": 0
+    },
+    {
+      "name": "nucleon types (p,n)",
+      "count": 2,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082",
+      "distance": 0
+    },
+    {
+      "name": "iron Z",
+      "count": 26,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "count of sporadic simple groups"
+      ],
+      "role": "complete classification",
+      "distance": 0
+    },
+    {
+      "name": "iron A",
+      "count": 56,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rep(E\u2087,56)"
+      ],
+      "role": "E\u2087 representation",
+      "distance": 0
+    },
+    {
+      "name": "lead neutrons (Pb-208 N)",
+      "count": 126,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(E\u2087)"
+      ],
+      "role": "E\u2087 root count",
+      "distance": 0
+    },
+    {
+      "name": "Ca-40 each",
+      "count": 20,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2084)",
+        "count of Happy Family (in Monster)"
+      ],
+      "role": "A\u2084 root count",
+      "distance": 0
+    },
+    {
+      "name": "O-16 each",
+      "count": 8,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "Ni-56 each (Z=N=28)",
+      "count": 28,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(2.Ru faithful)"
+      ],
+      "role": "shadow representation",
+      "distance": 0
+    },
+    {
+      "name": "mercury Z",
+      "count": 80,
+      "scale": "nucleus",
+      "domain": "nuclear",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "\u03a3h(exceptional chain) = 3+4+5+8+12+18+30",
+        "240/3 = roots(E\u2088)/triality"
+      ],
+      "role": "hierarchy exponent",
+      "distance": 0
+    },
+    {
+      "name": "carbon Z",
+      "count": 6,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2082)",
+        "rep(A\u2083,6)",
+        "rank(E\u2086)",
+        "count of pariahs (outside Monster)",
+        "|S\u2083| = 3!"
+      ],
+      "role": "A\u2082 root count",
+      "distance": 0
+    },
+    {
+      "name": "nitrogen Z",
+      "count": 7,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rank(E\u2087)"
+      ],
+      "role": "E\u2087 rank",
+      "distance": 0
+    },
+    {
+      "name": "oxygen Z",
+      "count": 8,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "phosphorus Z",
+      "count": 15,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2083)"
+      ],
+      "role": "A\u2083 dimension",
+      "distance": 0
+    },
+    {
+      "name": "sulfur Z",
+      "count": 16,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rep(D\u2085,16)",
+        "2\u2074"
+      ],
+      "role": "D\u2085 representation",
+      "distance": 0
+    },
+    {
+      "name": "calcium Z",
+      "count": 20,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2084)",
+        "count of Happy Family (in Monster)"
+      ],
+      "role": "A\u2084 root count",
+      "distance": 0
+    },
+    {
+      "name": "xenon Z (anesthetic)",
+      "count": 54,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "2\u00d727 = vacua \u00d7 J\u2083(O)"
+      ],
+      "role": "double Jordan",
+      "distance": 0
+    },
+    {
+      "name": "carbon-12 mass number",
+      "count": 12,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count",
+      "distance": 0
+    },
+    {
+      "name": "carbon-12 quarks",
+      "count": 36,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "framework",
+      "match": "EXACT",
+      "algebraic": [
+        "6\u00b2 = |S\u2083|\u00b2"
+      ],
+      "role": "permutation squared",
+      "distance": 0
+    },
+    {
+      "name": "electron shell K capacity",
+      "count": 2,
+      "scale": "atom",
+      "domain": "shells",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082",
+      "distance": 0
+    },
+    {
+      "name": "electron shell L capacity",
+      "count": 8,
+      "scale": "atom",
+      "domain": "shells",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "electron shell M capacity",
+      "count": 18,
+      "scale": "atom",
+      "domain": "shells",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(E\u2087)",
+        "L(6) = Lucas(6)"
+      ],
+      "role": "E\u2087 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "electron shell N capacity",
+      "count": 32,
+      "scale": "atom",
+      "domain": "shells",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "2\u2075"
+      ],
+      "role": "fifth power of vacua",
+      "distance": 0
+    },
+    {
+      "name": "noble He Z",
+      "count": 2,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082",
+      "distance": 0
+    },
+    {
+      "name": "noble Ne Z",
+      "count": 10,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rep(A\u2084,10)",
+        "rep(D\u2085,10)",
+        "2\u00d75 = vacua \u00d7 pariahs"
+      ],
+      "role": "A\u2084 representation",
+      "distance": 0
+    },
+    {
+      "name": "noble Ar Z",
+      "count": 18,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(E\u2087)",
+        "L(6) = Lucas(6)"
+      ],
+      "role": "E\u2087 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "noble Kr Z",
+      "count": 36,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "6\u00b2 = |S\u2083|\u00b2"
+      ],
+      "role": "permutation squared",
+      "distance": 0
+    },
+    {
+      "name": "noble Rn Z (2\u00d743 pariah prime)",
+      "count": 86,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "MISS",
+      "algebraic": null,
+      "role": null,
+      "distance": 6
+    },
+    {
+      "name": "water molar mass",
+      "count": 18,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(E\u2087)",
+        "L(6) = Lucas(6)"
+      ],
+      "role": "E\u2087 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "technetium Z (lightest with NO stable isotopes)",
+      "count": 43,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "pariah-only prime, genus X\u2080(43)=3=F\u2084"
+      ],
+      "role": "pariah boundary",
+      "distance": 0
+    },
+    {
+      "name": "cesium-133 mass number (DEFINES SI second)",
+      "count": 133,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(E\u2087)",
+        "rep(E\u2087,133)"
+      ],
+      "role": "E\u2087 dimension",
+      "distance": 0
+    },
+    {
+      "name": "holmium Z (highest magnetic moment)",
+      "count": 67,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "pariah-only prime, genus X\u2080(67)=5=F\u2085"
+      ],
+      "role": "pariah boundary",
+      "distance": 0
+    },
+    {
+      "name": "platinum Z (most stable noble metal)",
+      "count": 78,
+      "scale": "atom",
+      "domain": "periodic",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(E\u2086)",
+        "dim(E6)"
+      ],
+      "role": "E\u2086 dimension",
+      "distance": 0
+    },
+    {
+      "name": "mitochondrial genes (ALL animals)",
+      "count": 37,
+      "scale": "organelle",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "pariah-only prime, genus X\u2080(37)=2=F\u2083"
+      ],
+      "role": "pariah boundary",
+      "distance": 0
+    },
+    {
+      "name": "human body temperature (C)",
+      "count": 37,
+      "scale": "organism",
+      "domain": "physiology",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "pariah-only prime, genus X\u2080(37)=2=F\u2083"
+      ],
+      "role": "pariah boundary",
+      "distance": 0
+    },
+    {
+      "name": "collagen D-period (nm)",
+      "count": 67,
+      "scale": "molecule",
+      "domain": "structural_protein",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "pariah-only prime, genus X\u2080(67)=5=F\u2085"
+      ],
+      "role": "pariah boundary",
+      "distance": 0
+    },
+    {
+      "name": "human organs (comprehensive count)",
+      "count": 78,
+      "scale": "organism",
+      "domain": "anatomy",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(E\u2086)",
+        "dim(E6)"
+      ],
+      "role": "E\u2086 dimension",
+      "distance": 0
+    },
+    {
+      "name": "resting heart rate (bpm, avg)",
+      "count": 72,
+      "scale": "organism",
+      "domain": "physiology",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(E\u2086)"
+      ],
+      "role": "E\u2086 root count",
+      "distance": 0
+    },
+    {
+      "name": "viral capsid T=2 proteins",
+      "count": 120,
+      "scale": "molecule",
+      "domain": "virology",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "\u03a3(E\u2088 exponents) = 120",
+        "240/2 = roots(E8) / vacua"
+      ],
+      "role": "icosahedral symmetry order",
+      "distance": 0
+    },
+    {
+      "name": "tubulin aromatic residues (Craddock 2017)",
+      "count": 86,
+      "scale": "molecule",
+      "domain": "biochemistry",
+      "quality": "established",
+      "match": "MISS",
+      "algebraic": null,
+      "role": null,
+      "distance": 6
+    },
+    {
+      "name": "human brain neurons (billions)",
+      "count": 86,
+      "scale": "organ",
+      "domain": "neuroscience",
+      "quality": "established",
+      "match": "MISS",
+      "algebraic": null,
+      "role": null,
+      "distance": 6
+    },
+    {
+      "name": "tropocollagen molecules per collagen fibril",
+      "count": 5,
+      "scale": "molecule",
+      "domain": "structural_protein",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "DNA bases",
+      "count": 4,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "codon length",
+      "count": 3,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "total codons",
+      "count": 64,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "4\u00b3 = (A\u2082 copies)\u00b3"
+      ],
+      "role": "triplet code space",
+      "distance": 0
+    },
+    {
+      "name": "stop codons",
+      "count": 3,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "sense codons",
+      "count": 61,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "NEAR (\u00b11, nearest=60)",
+      "algebraic": [
+        "240/4 = roots(E8) / A2_copies"
+      ],
+      "role": "E8 root quotient (ribosome 60S)",
+      "distance": 1
+    },
+    {
+      "name": "amino acids",
+      "count": 20,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2084)",
+        "count of Happy Family (in Monster)"
+      ],
+      "role": "A\u2084 root count",
+      "distance": 0
+    },
+    {
+      "name": "essential amino acids",
+      "count": 9,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "3\u00b2 = triality\u00b2"
+      ],
+      "role": "square of triality",
+      "distance": 0
+    },
+    {
+      "name": "aromatic amino acids",
+      "count": 4,
+      "scale": "molecule",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "aromatic NT families",
+      "count": 3,
+      "scale": "molecule",
+      "domain": "neurotransmitters",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "benzene pi electrons",
+      "count": 6,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2082)",
+        "rep(A\u2083,6)",
+        "rank(E\u2086)",
+        "count of pariahs (outside Monster)",
+        "|S\u2083| = 3!"
+      ],
+      "role": "A\u2082 root count",
+      "distance": 0
+    },
+    {
+      "name": "benzene carbons",
+      "count": 6,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2082)",
+        "rep(A\u2083,6)",
+        "rank(E\u2086)",
+        "count of pariahs (outside Monster)",
+        "|S\u2083| = 3!"
+      ],
+      "role": "A\u2082 root count",
+      "distance": 0
+    },
+    {
+      "name": "indole pi electrons (H\u00fcckel n=2)",
+      "count": 10,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rep(A\u2084,10)",
+        "rep(D\u2085,10)",
+        "2\u00d75 = vacua \u00d7 pariahs"
+      ],
+      "role": "A\u2084 representation",
+      "distance": 0
+    },
+    {
+      "name": "porphyrin pyrrole rings",
+      "count": 4,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "porphyrin pi electrons",
+      "count": 18,
+      "scale": "molecule",
+      "domain": "chemistry",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(E\u2087)",
+        "L(6) = Lucas(6)"
+      ],
+      "role": "E\u2087 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "hemoglobin subunits",
+      "count": 4,
+      "scale": "molecule",
+      "domain": "biochemistry",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "lignin monomer types",
+      "count": 3,
+      "scale": "molecule",
+      "domain": "botany",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "cell membrane layers (bilayer)",
+      "count": 2,
+      "scale": "cell",
+      "domain": "cell",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082",
+      "distance": 0
+    },
+    {
+      "name": "histone types",
+      "count": 5,
+      "scale": "cell",
+      "domain": "chromatin",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "histone octamer proteins",
+      "count": 8,
+      "scale": "cell",
+      "domain": "chromatin",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "nucleosome DNA bp",
+      "count": 147,
+      "scale": "cell",
+      "domain": "chromatin",
+      "quality": "textbook",
+      "match": "MISS",
+      "algebraic": null,
+      "role": null,
+      "distance": 14
+    },
+    {
+      "name": "DNA bp per turn",
+      "count": 10.5,
+      "scale": "cell",
+      "domain": "chromatin",
+      "quality": "textbook",
+      "match": "non-integer",
+      "algebraic": null,
+      "distance": null
+    },
+    {
+      "name": "ribosome eukaryotic",
+      "count": 80,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard",
+      "match": "EXACT",
+      "algebraic": [
+        "\u03a3h(exceptional chain) = 3+4+5+8+12+18+30",
+        "240/3 = roots(E\u2088)/triality"
+      ],
+      "role": "hierarchy exponent",
+      "distance": 0
+    },
+    {
+      "name": "ribosome small subunit (40S)",
+      "count": 40,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(D\u2085)",
+        "240/6 = roots(E\u2088)/|S\u2083|"
+      ],
+      "role": "D\u2085 root count",
+      "distance": 0
+    },
+    {
+      "name": "ribosome large subunit (60S)",
+      "count": 60,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard",
+      "match": "EXACT",
+      "algebraic": [
+        "240/4 = roots(E8) / A2_copies"
+      ],
+      "role": "E8 root quotient (ribosome 60S)",
+      "distance": 0
+    },
+    {
+      "name": "ribosome mitochondrial small (28S)",
+      "count": 28,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(2.Ru faithful)"
+      ],
+      "role": "shadow representation",
+      "distance": 0
+    },
+    {
+      "name": "ribosome prokaryotic",
+      "count": 70,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard",
+      "match": "NEAR (\u00b12, nearest=72)",
+      "algebraic": [
+        "roots(E\u2086)"
+      ],
+      "role": "E\u2086 root count",
+      "distance": 2
+    },
+    {
+      "name": "ribosome prok small (30S)",
+      "count": 30,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard",
+      "match": "EXACT",
+      "algebraic": [
+        "h(E\u2088)"
+      ],
+      "role": "E\u2088 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "ribosome prok large (50S)",
+      "count": 50,
+      "scale": "organelle",
+      "domain": "ribosome",
+      "quality": "standard",
+      "match": "MISS",
+      "algebraic": null,
+      "role": null,
+      "distance": 4
+    },
+    {
+      "name": "cytoskeleton types",
+      "count": 3,
+      "scale": "cell",
+      "domain": "cytoskeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "microtubule protofilaments",
+      "count": 13,
+      "scale": "cell",
+      "domain": "cytoskeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "5+8 (pariahs + rank E\u2088)"
+      ],
+      "role": "interface + substrate",
+      "distance": 0
+    },
+    {
+      "name": "tubulin dimer subunits",
+      "count": 2,
+      "scale": "cell",
+      "domain": "cytoskeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082",
+      "distance": 0
+    },
+    {
+      "name": "ATP synthase c-ring (human)",
+      "count": 8,
+      "scale": "organelle",
+      "domain": "mitochondria",
+      "quality": "standard",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "human chromosomes",
+      "count": 46,
+      "scale": "cell",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "NEAR (\u00b11, nearest=45)",
+      "algebraic": [
+        "dim(D\u2085)"
+      ],
+      "role": "D\u2085 dimension",
+      "distance": 1
+    },
+    {
+      "name": "human autosome pairs",
+      "count": 22,
+      "scale": "cell",
+      "domain": "genetics",
+      "quality": "textbook",
+      "match": "NEAR (\u00b11, nearest=21)",
+      "algebraic": [
+        "dim(sp(6)) \u2014 Hornos genetic code algebra"
+      ],
+      "role": "genetic code Lie algebra",
+      "distance": 1
+    },
+    {
+      "name": "total bones",
+      "count": 206,
+      "scale": "organism",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "MISS",
+      "algebraic": null,
+      "role": null,
+      "distance": 34
+    },
+    {
+      "name": "axial skeleton",
+      "count": 80,
+      "scale": "organism",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "\u03a3h(exceptional chain) = 3+4+5+8+12+18+30",
+        "240/3 = roots(E\u2088)/triality"
+      ],
+      "role": "hierarchy exponent",
+      "distance": 0
+    },
+    {
+      "name": "appendicular skeleton",
+      "count": 126,
+      "scale": "organism",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(E\u2087)"
+      ],
+      "role": "E\u2087 root count",
+      "distance": 0
+    },
+    {
+      "name": "hand bones",
+      "count": 27,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rep(E\u2086,27)",
+        "dim J\u2083(O)"
+      ],
+      "role": "E\u2086 representation",
+      "distance": 0
+    },
+    {
+      "name": "carpals (wrist)",
+      "count": 8,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "metacarpals (palm)",
+      "count": 5,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "phalanges (hand)",
+      "count": 14,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "2 + 4\u00d73 (thumb 2 + 4 fingers \u00d7 3)"
+      ],
+      "role": "golden 2\u21943 oscillation",
+      "distance": 0
+    },
+    {
+      "name": "thumb phalanges",
+      "count": 2,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082",
+      "distance": 0
+    },
+    {
+      "name": "other finger phalanges (each)",
+      "count": 3,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "foot bones",
+      "count": 26,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "count of sporadic simple groups"
+      ],
+      "role": "complete classification",
+      "distance": 0
+    },
+    {
+      "name": "tarsals (ankle)",
+      "count": 7,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rank(E\u2087)"
+      ],
+      "role": "E\u2087 rank",
+      "distance": 0
+    },
+    {
+      "name": "metatarsals",
+      "count": 5,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "phalanges (foot)",
+      "count": 14,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "2 + 4\u00d73 (thumb 2 + 4 fingers \u00d7 3)"
+      ],
+      "role": "golden 2\u21943 oscillation",
+      "distance": 0
+    },
+    {
+      "name": "skull bones",
+      "count": 22,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "NEAR (\u00b11, nearest=21)",
+      "algebraic": [
+        "dim(sp(6)) \u2014 Hornos genetic code algebra"
+      ],
+      "role": "genetic code Lie algebra",
+      "distance": 1
+    },
+    {
+      "name": "cranial bones",
+      "count": 8,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "facial bones",
+      "count": 14,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "2 + 4\u00d73 (thumb 2 + 4 fingers \u00d7 3)"
+      ],
+      "role": "golden 2\u21943 oscillation",
+      "distance": 0
+    },
+    {
+      "name": "vertebrae total",
+      "count": 33,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "3 \u00d7 11 = 3 \u00d7 L(5)"
+      ],
+      "role": "triple Lucas",
+      "distance": 0
+    },
+    {
+      "name": "cervical vertebrae",
+      "count": 7,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rank(E\u2087)"
+      ],
+      "role": "E\u2087 rank",
+      "distance": 0
+    },
+    {
+      "name": "thoracic vertebrae",
+      "count": 12,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count",
+      "distance": 0
+    },
+    {
+      "name": "lumbar vertebrae",
+      "count": 5,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "sacral vertebrae (fused)",
+      "count": 5,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "coccygeal vertebrae",
+      "count": 4,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "rib pairs",
+      "count": 12,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count",
+      "distance": 0
+    },
+    {
+      "name": "total ribs",
+      "count": 24,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2084)",
+        "dim(Leech) = c(Monster VOA)"
+      ],
+      "role": "A\u2084 dimension",
+      "distance": 0
+    },
+    {
+      "name": "true ribs per side",
+      "count": 7,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rank(E\u2087)"
+      ],
+      "role": "E\u2087 rank",
+      "distance": 0
+    },
+    {
+      "name": "false ribs per side",
+      "count": 3,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "floating ribs per side",
+      "count": 2,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082",
+      "distance": 0
+    },
+    {
+      "name": "teeth adult",
+      "count": 32,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "2\u2075"
+      ],
+      "role": "fifth power of vacua",
+      "distance": 0
+    },
+    {
+      "name": "teeth functional (minus wisdom)",
+      "count": 28,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(2.Ru faithful)"
+      ],
+      "role": "shadow representation",
+      "distance": 0
+    },
+    {
+      "name": "teeth per quadrant",
+      "count": 7,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rank(E\u2087)"
+      ],
+      "role": "E\u2087 rank",
+      "distance": 0
+    },
+    {
+      "name": "wisdom teeth",
+      "count": 4,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "baby teeth",
+      "count": 20,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2084)",
+        "count of Happy Family (in Monster)"
+      ],
+      "role": "A\u2084 root count",
+      "distance": 0
+    },
+    {
+      "name": "ear ossicles per ear",
+      "count": 3,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "ear ossicles total",
+      "count": 6,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2082)",
+        "rep(A\u2083,6)",
+        "rank(E\u2086)",
+        "count of pariahs (outside Monster)",
+        "|S\u2083| = 3!"
+      ],
+      "role": "A\u2082 root count",
+      "distance": 0
+    },
+    {
+      "name": "hyoid",
+      "count": 1,
+      "scale": "organ",
+      "domain": "skeleton",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rank(A\u2081)"
+      ],
+      "role": "A\u2081 rank",
+      "distance": 0
+    },
+    {
+      "name": "lung lobes right",
+      "count": 3,
+      "scale": "organ",
+      "domain": "respiratory",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "lung lobes left",
+      "count": 2,
+      "scale": "organ",
+      "domain": "respiratory",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "degree of q+q\u00b2=1",
+        "roots(A\u2081)",
+        "h(A\u2081)",
+        "rep(A\u2081,2)",
+        "rank(A\u2082)",
+        "PT n=2 bound states"
+      ],
+      "role": "vacua / binary / Z\u2082",
+      "distance": 0
+    },
+    {
+      "name": "lung lobes total",
+      "count": 5,
+      "scale": "organ",
+      "domain": "respiratory",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "liver segments (Couinaud)",
+      "count": 8,
+      "scale": "organ",
+      "domain": "digestive",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "heart chambers",
+      "count": 4,
+      "scale": "organ",
+      "domain": "cardiovascular",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "heart valves",
+      "count": 4,
+      "scale": "organ",
+      "domain": "cardiovascular",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "semicircular canals per ear",
+      "count": 3,
+      "scale": "organ",
+      "domain": "vestibular",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "skin main layers",
+      "count": 3,
+      "scale": "organ",
+      "domain": "integumentary",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "epidermis sublayers",
+      "count": 5,
+      "scale": "organ",
+      "domain": "integumentary",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "taste modalities",
+      "count": 5,
+      "scale": "organ",
+      "domain": "sensory",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "basic senses",
+      "count": 5,
+      "scale": "organ",
+      "domain": "sensory",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "intrinsic hand muscles",
+      "count": 20,
+      "scale": "organ",
+      "domain": "muscular",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2084)",
+        "count of Happy Family (in Monster)"
+      ],
+      "role": "A\u2084 root count",
+      "distance": 0
+    },
+    {
+      "name": "cranial nerve pairs",
+      "count": 12,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count",
+      "distance": 0
+    },
+    {
+      "name": "spinal nerve pairs",
+      "count": 31,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "O'N prime = 2\u2075\u22121 (Mersenne)"
+      ],
+      "role": "Sensor prime",
+      "distance": 0
+    },
+    {
+      "name": "cervical nerves",
+      "count": 8,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "thoracic nerves",
+      "count": 12,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count",
+      "distance": 0
+    },
+    {
+      "name": "lumbar nerves",
+      "count": 5,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "sacral nerves",
+      "count": 5,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "coccygeal nerves",
+      "count": 1,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rank(A\u2081)"
+      ],
+      "role": "A\u2081 rank",
+      "distance": 0
+    },
+    {
+      "name": "brain lobes per hemisphere",
+      "count": 4,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "brain ventricles",
+      "count": 4,
+      "scale": "organ",
+      "domain": "nervous",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "blood types ABO",
+      "count": 4,
+      "scale": "organ",
+      "domain": "hematology",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "IgG domains",
+      "count": 12,
+      "scale": "molecule",
+      "domain": "immunology",
+      "quality": "standard",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count",
+      "distance": 0
+    },
+    {
+      "name": "clotting factors (essential)",
+      "count": 12,
+      "scale": "system",
+      "domain": "hematology",
+      "quality": "standard",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count",
+      "distance": 0
+    },
+    {
+      "name": "major minerals",
+      "count": 5,
+      "scale": "organism",
+      "domain": "nutrition",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "trace minerals",
+      "count": 8,
+      "scale": "organism",
+      "domain": "nutrition",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "total essential minerals",
+      "count": 13,
+      "scale": "organism",
+      "domain": "nutrition",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "5+8 (pariahs + rank E\u2088)"
+      ],
+      "role": "interface + substrate",
+      "distance": 0
+    },
+    {
+      "name": "cervical vertebrae (all mammals)",
+      "count": 7,
+      "scale": "organism",
+      "domain": "mammalian",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "rank(E\u2087)"
+      ],
+      "role": "E\u2087 rank",
+      "distance": 0
+    },
+    {
+      "name": "domains of life",
+      "count": 3,
+      "scale": "biosphere",
+      "domain": "taxonomy",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "convergent intelligence lineages",
+      "count": 5,
+      "scale": "biosphere",
+      "domain": "evolution",
+      "quality": "established",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "mass extinctions (major)",
+      "count": 5,
+      "scale": "biosphere",
+      "domain": "paleontology",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2084)",
+        "rep(A\u2084,5)",
+        "rank(D\u2085)",
+        "6 pariahs \u2212 1(Ru=wall)"
+      ],
+      "role": "A\u2084 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "eusociality independent origins",
+      "count": 12,
+      "scale": "biosphere",
+      "domain": "evolution",
+      "quality": "established",
+      "match": "EXACT",
+      "algebraic": [
+        "roots(A\u2083)",
+        "h(E\u2086)",
+        "c(Monster)/c(wall) = 24/2"
+      ],
+      "role": "A\u2083 root count",
+      "distance": 0
+    },
+    {
+      "name": "germ layers",
+      "count": 3,
+      "scale": "organism",
+      "domain": "embryology",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "body axes",
+      "count": 3,
+      "scale": "organism",
+      "domain": "embryology",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "spatial dimensions",
+      "count": 3,
+      "scale": "cosmos",
+      "domain": "spacetime",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2081)",
+        "h(A\u2082)",
+        "rep(A\u2082,3)",
+        "rank(A\u2083)",
+        "SL(2,Z)/\u0393(2) cusps = S\u2083 conjugacy classes"
+      ],
+      "role": "A\u2081 dimension",
+      "distance": 0
+    },
+    {
+      "name": "spacetime dimensions",
+      "count": 4,
+      "scale": "cosmos",
+      "domain": "spacetime",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "h(A\u2083)",
+        "rep(A\u2083,4)",
+        "rank(A\u2084)",
+        "4 A\u2082 copies in E\u2088 root system"
+      ],
+      "role": "A\u2083 Coxeter number",
+      "distance": 0
+    },
+    {
+      "name": "planets (solar system)",
+      "count": 8,
+      "scale": "stellar_system",
+      "domain": "astronomy",
+      "quality": "textbook",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    },
+    {
+      "name": "Schumann resonance (Hz, approx)",
+      "count": 8,
+      "scale": "planet",
+      "domain": "geophysics",
+      "quality": "established",
+      "match": "EXACT",
+      "algebraic": [
+        "dim(A\u2082)",
+        "h(D\u2085)",
+        "rank(E\u2088)"
+      ],
+      "role": "A\u2082 dimension",
+      "distance": 0
+    }
+  ],
+  "decompositions": [
+    {
+      "name": "skeleton = axial + appendicular",
+      "total": 206,
+      "parts": [
+        80,
+        126
+      ],
+      "algebraic_parts": [
+        "hierarchy exponent",
+        "E\u2087 roots"
+      ],
+      "scale": "organism",
+      "note": "THE strongest large-number decomposition"
+    },
+    {
+      "name": "hand = carpals + metacarpals + phalanges",
+      "total": 27,
+      "parts": [
+        8,
+        5,
+        14
+      ],
+      "algebraic_parts": [
+        "rank(E\u2088)",
+        "pariahs",
+        "2+4\u00d73"
+      ],
+      "scale": "organ",
+      "note": "= J\u2083(O)"
+    },
+    {
+      "name": "foot = tarsals + metatarsals + phalanges",
+      "total": 26,
+      "parts": [
+        7,
+        5,
+        14
+      ],
+      "algebraic_parts": [
+        "rank(E\u2087)",
+        "pariahs",
+        "2+4\u00d73"
+      ],
+      "scale": "organ",
+      "note": "= sporadic count"
+    },
+    {
+      "name": "skull = cranial + facial",
+      "total": 22,
+      "parts": [
+        8,
+        14
+      ],
+      "algebraic_parts": [
+        "rank(E\u2088)",
+        "2+4\u00d73"
+      ],
+      "scale": "organ",
+      "note": "same 8+14 as hand (without 5)"
+    },
+    {
+      "name": "vertebrae = C+T+L+S+Co",
+      "total": 33,
+      "parts": [
+        7,
+        12,
+        5,
+        5,
+        4
+      ],
+      "algebraic_parts": [
+        "Fano",
+        "h(E\u2086)",
+        "pariahs",
+        "pariahs(fused)",
+        "A\u2082 copies"
+      ],
+      "scale": "organ",
+      "note": "descending constraint gradient"
+    },
+    {
+      "name": "ribs per side = true+false+floating",
+      "total": 12,
+      "parts": [
+        7,
+        3,
+        2
+      ],
+      "algebraic_parts": [
+        "Fano",
+        "triality",
+        "vacua"
+      ],
+      "scale": "organ",
+      "note": "descending connection"
+    },
+    {
+      "name": "adult teeth = functional + wisdom",
+      "total": 32,
+      "parts": [
+        28,
+        4
+      ],
+      "algebraic_parts": [
+        "dim(2.Ru)",
+        "A\u2082 copies"
+      ],
+      "scale": "organ",
+      "note": ""
+    },
+    {
+      "name": "tarsals = hindfoot + midfoot",
+      "total": 7,
+      "parts": [
+        2,
+        5
+      ],
+      "algebraic_parts": [
+        "vacua",
+        "pariahs"
+      ],
+      "scale": "organ",
+      "note": ""
+    },
+    {
+      "name": "lung lobes = right + left",
+      "total": 5,
+      "parts": [
+        3,
+        2
+      ],
+      "algebraic_parts": [
+        "triality",
+        "vacua"
+      ],
+      "scale": "organ",
+      "note": "golden asymmetry 3:2"
+    },
+    {
+      "name": "skin = layers + sublayers",
+      "total": 8,
+      "parts": [
+        3,
+        5
+      ],
+      "algebraic_parts": [
+        "triality",
+        "pariahs"
+      ],
+      "scale": "organ",
+      "note": "3 main + 5 epidermal"
+    },
+    {
+      "name": "histones = types \u2192 octamer",
+      "total": "5\u21928",
+      "parts": [
+        5,
+        8
+      ],
+      "algebraic_parts": [
+        "pariahs",
+        "rank(E\u2088)"
+      ],
+      "scale": "cell",
+      "note": "5\u21928 cross-scale pattern"
+    },
+    {
+      "name": "microtubule = protofilaments",
+      "total": 13,
+      "parts": [
+        5,
+        8
+      ],
+      "algebraic_parts": [
+        "pariahs",
+        "rank(E\u2088)"
+      ],
+      "scale": "cell",
+      "note": "5+8=13"
+    },
+    {
+      "name": "minerals = major + trace",
+      "total": 13,
+      "parts": [
+        5,
+        8
+      ],
+      "algebraic_parts": [
+        "pariahs",
+        "rank(E\u2088)"
+      ],
+      "scale": "organism",
+      "note": "5+8=13 again"
+    },
+    {
+      "name": "genetic code = bases^codon \u2212 stops \u2192 AA",
+      "total": "4\u00b3\u22123\u219220",
+      "parts": [
+        4,
+        3,
+        64,
+        3,
+        20
+      ],
+      "algebraic_parts": [
+        "A\u2082 copies",
+        "triality",
+        "4\u00b3",
+        "triality",
+        "icosahedron"
+      ],
+      "scale": "molecule",
+      "note": "DERIVATION CHAIN (Hornos 1993)"
+    },
+    {
+      "name": "ribosome hierarchy: eukarotic > mitochondrial > prokaryotic",
+      "total": "80>28>70(miss)",
+      "parts": [
+        80,
+        28,
+        70
+      ],
+      "algebraic_parts": [
+        "hierarchy exponent",
+        "dim(2.Ru)",
+        "MISS"
+      ],
+      "scale": "organelle",
+      "note": "Monster > Shadow > Nothing"
+    },
+    {
+      "name": "spinal nerves = C+T+L+S+Co",
+      "total": 31,
+      "parts": [
+        8,
+        12,
+        5,
+        5,
+        1
+      ],
+      "algebraic_parts": [
+        "rank(E\u2088)",
+        "h(E\u2086)",
+        "pariahs",
+        "pariahs",
+        "unity"
+      ],
+      "scale": "organ",
+      "note": ""
+    }
+  ],
+  "patterns": [
+    {
+      "name": "5\u21928 (interface \u2192 substrate)",
+      "instances": [
+        {
+          "scale": "algebra",
+          "5": "5 pariahs",
+          "8": "rank(E\u2088)"
+        },
+        {
+          "scale": "cell",
+          "5": "5 histone types",
+          "8": "8 octamer"
+        },
+        {
+          "scale": "body",
+          "5": "5 digits",
+          "8": "8 carpals"
+        },
+        {
+          "scale": "nutrition",
+          "5": "5 major minerals",
+          "8": "8 trace minerals"
+        },
+        {
+          "scale": "cell",
+          "5": "5 protofilaments?",
+          "8": "8 protofilaments?"
+        }
+      ],
+      "algebraic_source": "pariahs \u2192 rank(E\u2088)"
+    },
+    {
+      "name": "8 as substrate",
+      "instances": [
+        {
+          "scale": "algebra",
+          "what": "rank(E\u2088) = substrate dimension"
+        },
+        {
+          "scale": "nucleus",
+          "what": "magic number 8 (O-16 doubly magic)"
+        },
+        {
+          "scale": "atom",
+          "what": "oxygen Z=8 (substrate of water)"
+        },
+        {
+          "scale": "atom",
+          "what": "L shell capacity = 8"
+        },
+        {
+          "scale": "cell",
+          "what": "histone octamer = 8 proteins"
+        },
+        {
+          "scale": "organelle",
+          "what": "ATP synthase c-ring = 8 (human)"
+        },
+        {
+          "scale": "organ",
+          "what": "carpals = 8, cranial = 8, liver = 8"
+        },
+        {
+          "scale": "organ",
+          "what": "cervical nerves = 8"
+        },
+        {
+          "scale": "stellar_system",
+          "what": "planets = 8"
+        }
+      ],
+      "algebraic_source": "rank(E\u2088) = substrate at every scale"
+    },
+    {
+      "name": "12 as Coxeter/fermion",
+      "instances": [
+        {
+          "scale": "particle",
+          "what": "12 fermions (6 quarks + 6 leptons)"
+        },
+        {
+          "scale": "organelle",
+          "what": "c(Monster)/c(wall) = 24/2 = 12"
+        },
+        {
+          "scale": "molecule",
+          "what": "IgG = 12 domains"
+        },
+        {
+          "scale": "organ",
+          "what": "12 rib pairs, 12 thoracic vertebrae"
+        },
+        {
+          "scale": "organ",
+          "what": "12 cranial nerve pairs, 12 thoracic nerves"
+        },
+        {
+          "scale": "organ",
+          "what": "12 essential clotting factors"
+        },
+        {
+          "scale": "biosphere",
+          "what": "12-15 independent eusociality origins"
+        }
+      ],
+      "algebraic_source": "h(E\u2086) = Coxeter number 12"
+    },
+    {
+      "name": "3+2=5 golden asymmetry",
+      "instances": [
+        {
+          "scale": "organ",
+          "what": "3 right + 2 left lung lobes"
+        },
+        {
+          "scale": "organ",
+          "what": "3 phalanges per finger + 2 per thumb"
+        },
+        {
+          "scale": "organ",
+          "what": "3 false + 2 floating ribs per side"
+        },
+        {
+          "scale": "organ",
+          "what": "3 main skin layers + 2 extra at hand/foot?"
+        }
+      ],
+      "algebraic_source": "\u03c6 = frozen 2\u21943 oscillation \u2192 asymmetric bilateral"
+    },
+    {
+      "name": "7 as Fano/E\u2087 rank",
+      "instances": [
+        {
+          "scale": "organ",
+          "what": "7 cervical vertebrae (ALL mammals)"
+        },
+        {
+          "scale": "organ",
+          "what": "7 tarsal bones"
+        },
+        {
+          "scale": "organ",
+          "what": "7 true ribs per side"
+        },
+        {
+          "scale": "organ",
+          "what": "7 teeth per quadrant"
+        },
+        {
+          "scale": "nucleus",
+          "what": "7 magic numbers total"
+        },
+        {
+          "scale": "atom",
+          "what": "nitrogen Z=7 (information carrier)"
+        }
+      ],
+      "algebraic_source": "rank(E\u2087) = Fano plane = internal structure"
+    },
+    {
+      "name": "20 as icosahedron",
+      "instances": [
+        {
+          "scale": "molecule",
+          "what": "20 amino acids"
+        },
+        {
+          "scale": "organ",
+          "what": "20 baby teeth"
+        },
+        {
+          "scale": "organ",
+          "what": "20 intrinsic hand muscles"
+        },
+        {
+          "scale": "nucleus",
+          "what": "magic number 20 (Ca-40)"
+        }
+      ],
+      "algebraic_source": "faces of icosahedron = A\u2084 roots = building block count"
+    },
+    {
+      "name": "descending constraint (full\u2192partial\u2192fused\u2192vestigial)",
+      "instances": [
+        {
+          "scale": "organ",
+          "what": "vertebrae: mobile(7)\u2192ribs(12)\u2192load(5)\u2192fused(5)\u2192vestigial(4)"
+        },
+        {
+          "scale": "organ",
+          "what": "ribs: true(7)\u2192false(3)\u2192floating(2)"
+        },
+        {
+          "scale": "organ",
+          "what": "teeth: functional(28)\u2192wisdom/vestigial(4)"
+        },
+        {
+          "scale": "algebra",
+          "what": "fates: complete(Monster)\u2192degenerate(Ly)\u2192impossible(J\u2084)"
+        }
+      ],
+      "algebraic_source": "engagement \u2192 withdrawal gradient = algebra's constraint spectrum"
+    }
+  ],
+  "statistics": {
+    "total_checked": 165,
+    "exact_matches": 152,
+    "near_matches": 6,
+    "misses": 7,
+    "non_integer": 1,
+    "exact_rate": "92.1%",
+    "by_range": [
+      {
+        "range": "small (2-12)",
+        "total": 96,
+        "exact": 96,
+        "rate": "100.0%",
+        "p_chance_per_item": "100%",
+        "expected_by_chance": "96.0",
+        "surplus": "+0.0"
+      },
+      {
+        "range": "medium (13-50)",
+        "total": 41,
+        "exact": 36,
+        "rate": "87.8%",
+        "p_chance_per_item": "55%",
+        "expected_by_chance": "22.7",
+        "surplus": "+13.3"
+      },
+      {
+        "range": "large (51+)",
+        "total": 25,
+        "exact": 17,
+        "rate": "68.0%",
+        "p_chance_per_item": "8%",
+        "expected_by_chance": "1.9",
+        "surplus": "+15.1"
+      }
+    ],
+    "by_scale": {
+      "atom": {
+        "total": 22,
+        "exact": 21,
+        "rate": "95%"
+      },
+      "biosphere": {
+        "total": 4,
+        "exact": 4,
+        "rate": "100%"
+      },
+      "cell": {
+        "total": 9,
+        "exact": 6,
+        "rate": "67%"
+      },
+      "cosmos": {
+        "total": 2,
+        "exact": 2,
+        "rate": "100%"
+      },
+      "molecule": {
+        "total": 22,
+        "exact": 20,
+        "rate": "91%"
+      },
+      "nucleus": {
+        "total": 15,
+        "exact": 13,
+        "rate": "87%"
+      },
+      "organ": {
+        "total": 55,
+        "exact": 53,
+        "rate": "96%"
+      },
+      "organelle": {
+        "total": 9,
+        "exact": 7,
+        "rate": "78%"
+      },
+      "organism": {
+        "total": 12,
+        "exact": 11,
+        "rate": "92%"
+      },
+      "particle": {
+        "total": 12,
+        "exact": 12,
+        "rate": "100%"
+      },
+      "planet": {
+        "total": 1,
+        "exact": 1,
+        "rate": "100%"
+      },
+      "stellar_system": {
+        "total": 1,
+        "exact": 1,
+        "rate": "100%"
+      },
+      "system": {
+        "total": 1,
+        "exact": 1,
+        "rate": "100%"
+      }
+    },
+    "misses_detail": [
+      {
+        "name": "magic number 5",
+        "count": 50,
+        "scale": "nucleus",
+        "distance": 4
+      },
+      {
+        "name": "noble Rn Z (2\u00d743 pariah prime)",
+        "count": 86,
+        "scale": "atom",
+        "distance": 6
+      },
+      {
+        "name": "tubulin aromatic residues (Craddock 2017)",
+        "count": 86,
+        "scale": "molecule",
+        "distance": 6
+      },
+      {
+        "name": "human brain neurons (billions)",
+        "count": 86,
+        "scale": "organ",
+        "distance": 6
+      },
+      {
+        "name": "nucleosome DNA bp",
+        "count": 147,
+        "scale": "cell",
+        "distance": 14
+      },
+      {
+        "name": "ribosome prok large (50S)",
+        "count": 50,
+        "scale": "organelle",
+        "distance": 4
+      },
+      {
+        "name": "total bones",
+        "count": 206,
+        "scale": "organism",
+        "distance": 34
+      }
+    ],
+    "orphan_numbers": {
+      "11": "Seer resolution (GF(11))",
+      "21": "genetic code Lie algebra",
+      "29": "bridge/Artist prime",
+      "45": "D\u2085 dimension",
+      "240": "E\u2088 root count",
+      "248": "E\u2088 dimension",
+      "744": "Monster\u2194E\u2088 bridge"
+    }
+  }
+}

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Reality Tree</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #f8f7f4;
+  color: #222;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+header {
+  padding: 32px 48px 16px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+header h1 {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #333;
+}
+header h1 em { font-style: italic; color: #1a6b4a; font-weight: 400; }
+header .stats {
+  font-size: 12px;
+  color: #888;
+  text-align: right;
+}
+header .stats strong { color: #555; font-weight: 600; }
+
+/* Tabs */
+#tabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  padding: 0 48px;
+  background: #faf9f6;
+}
+.tab {
+  padding: 10px 24px;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s;
+}
+.tab:hover { color: #444; }
+.tab.active { color: #1a6b4a; border-bottom-color: #1a6b4a; }
+
+/* Main layout */
+#main { display: flex; min-height: calc(100vh - 120px); }
+
+/* Left: tree / chains / numbers */
+#left-panel {
+  flex: 1;
+  padding: 24px 20px 24px 48px;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+
+/* Right: detail */
+#right-panel {
+  width: 400px;
+  border-left: 1px solid #ddd;
+  padding: 28px;
+  background: #faf9f6;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+  position: sticky;
+  top: 0;
+}
+
+/* Tree nodes */
+.tree-group {
+  margin-bottom: 20px;
+}
+.tree-group-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #999;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+.tree-node {
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s;
+  margin-bottom: 1px;
+}
+.tree-node:hover { background: #eee; }
+.tree-node.selected { background: #e3efe8; }
+.tree-node.miss { opacity: 0.5; }
+.tree-node .indent { display: inline-block; }
+.tree-node .toggle {
+  display: inline-block;
+  width: 16px;
+  font-size: 11px;
+  color: #aaa;
+  flex-shrink: 0;
+  text-align: center;
+  cursor: pointer;
+}
+.tree-node .badge {
+  display: inline-block;
+  min-width: 28px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.badge.algebraic { background: #d4edda; color: #1a6b4a; }
+.badge.derived { background: #fff3cd; color: #856404; }
+.badge.pattern { background: #f5d0d6; color: #842029; }
+.badge.miss { background: #f0f0f0; color: #999; }
+.badge.none { background: transparent; color: transparent; }
+.tree-node .name {
+  font-size: 13px;
+  color: #333;
+}
+.tree-node .name .alg-hint {
+  font-size: 11px;
+  color: #999;
+  margin-left: 6px;
+}
+
+/* Detail panel */
+#right-panel h2 {
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 4px;
+}
+.detail-number {
+  font-size: 52px;
+  color: #1a6b4a;
+  font-weight: 300;
+  margin: 4px 0 8px;
+}
+.detail-source {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+.detail-desc {
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+.detail-section-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #999;
+  margin: 16px 0 6px;
+}
+.detail-children {
+  list-style: none;
+}
+.detail-children li {
+  padding: 4px 0;
+  font-size: 13px;
+  cursor: pointer;
+  color: #1a6b4a;
+}
+.detail-children li:hover { text-decoration: underline; }
+.detail-children li .child-count {
+  display: inline-block;
+  min-width: 22px;
+  height: 17px;
+  line-height: 17px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  background: #d4edda;
+  color: #1a6b4a;
+  margin-right: 6px;
+}
+.cross-ref {
+  padding: 4px 8px;
+  margin: 3px 0;
+  background: #f5f5f0;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.cross-ref:hover { background: #eee; }
+.cross-ref .cr-name { color: #333; }
+.cross-ref .cr-scale { color: #aaa; font-size: 11px; }
+
+/* Chains view */
+.chain-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  background: #fff;
+}
+.chain-card h3 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1a6b4a;
+  margin-bottom: 10px;
+}
+.chain-step {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+.chain-step .step-num {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  background: #1a6b4a;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+.chain-step .step-arrow {
+  color: #ccc;
+  margin: 0 6px;
+}
+.chain-step .step-from { color: #555; }
+.chain-step .step-op {
+  font-style: italic;
+  color: #999;
+  font-size: 12px;
+  margin-left: 8px;
+}
+.chain-step .step-note {
+  font-size: 11px;
+  color: #1a6b4a;
+  margin-left: 8px;
+}
+.chain-depth {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+}
+.chain-depth strong { color: #1a6b4a; }
+
+/* Numbers grid */
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.number-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 14px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.number-card:hover { border-color: #1a6b4a; }
+.number-card .num {
+  font-size: 28px;
+  color: #1a6b4a;
+  font-weight: 300;
+}
+.number-card .num-source {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.number-card .num-instances {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #555;
+}
+
+/* Discoveries */
+.discovery-card {
+  border: 1px solid #e0d7c8;
+  border-left: 3px solid #c9a227;
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  background: #fffef8;
+}
+.discovery-card h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #856404;
+  margin-bottom: 6px;
+}
+.discovery-card p {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.6;
+}
+.discovery-card .disc-status {
+  font-size: 11px;
+  color: #999;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* Probability footer */
+#prob-footer {
+  border-top: 1px solid #ddd;
+  padding: 12px 48px;
+  background: #faf9f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #888;
+}
+#prob-footer .prob-value {
+  font-size: 14px;
+  color: #842029;
+  font-weight: 600;
+}
+
+/* Search */
+#search-bar {
+  padding: 8px 48px;
+  border-bottom: 1px solid #eee;
+  background: #faf9f6;
+}
+#search-input {
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  background: #fff;
+  outline: none;
+}
+#search-input:focus { border-color: #1a6b4a; }
+
+.hidden { display: none !important; }
+.view-section { display: none; }
+.view-section.active { display: block; }
+
+/* Placeholder */
+.placeholder {
+  color: #bbb;
+  font-style: italic;
+  padding: 40px 20px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>The Reality Tree &mdash; <em>q + q&sup2; = 1</em></h1>
+  </div>
+  <div class="stats" id="header-stats"></div>
+</header>
+
+<div id="tabs">
+  <div class="tab active" data-view="tree">Tree</div>
+  <div class="tab" data-view="chains">Chains</div>
+  <div class="tab" data-view="numbers">Numbers</div>
+  <div class="tab" data-view="discoveries">Discoveries</div>
+</div>
+
+<div id="search-bar">
+  <input id="search-input" type="text" placeholder="Search nodes, numbers, chains..." />
+</div>
+
+<div id="main">
+  <div id="left-panel">
+    <div id="view-tree" class="view-section active"></div>
+    <div id="view-chains" class="view-section"></div>
+    <div id="view-numbers" class="view-section"></div>
+    <div id="view-discoveries" class="view-section"></div>
+  </div>
+  <div id="right-panel">
+    <div class="placeholder">Click any node to see details</div>
+  </div>
+</div>
+
+<div id="prob-footer">
+  <div>Combined probability of coincidence (5 independent claims):</div>
+  <div class="prob-value">P &lt; 1 in 16 trillion</div>
+</div>
+
+<script>
+// Load data
+let DATA = null;
+let selectedId = null;
+
+// Scale display order and labels
+const SCALE_ORDER = [
+  'algebra', 'field', 'particle', 'atom', 'molecule',
+  'macromolecule', 'organelle', 'cell', 'tissue', 'organ',
+  'system', 'organism', 'ecosystem', 'biosphere',
+  'planet', 'star', 'stellar_system', 'galaxy', 'cosmos'
+];
+const SCALE_LABELS = {
+  algebra: 'Algebra', field: 'Fields & Constants', particle: 'Particles',
+  atom: 'Atoms', molecule: 'Molecules', macromolecule: 'Macromolecules',
+  organelle: 'Organelles', cell: 'Cell', tissue: 'Tissue', organ: 'Organs',
+  system: 'Systems', organism: 'Organism', ecosystem: 'Ecosystem',
+  biosphere: 'Biosphere', planet: 'Planet', star: 'Star',
+  stellar_system: 'Stellar System', galaxy: 'Galaxy', cosmos: 'Cosmos'
+};
+
+// Build reverse parent map and number→nodes index
+let parentMap = {};
+let numberIndex = {}; // number → [nodeId, ...]
+let expandedNodes = new Set();
+
+function init(data) {
+  DATA = data;
+  buildIndices();
+  updateStats();
+  renderTree();
+  renderChains();
+  renderNumbers();
+  renderDiscoveries();
+  setupTabs();
+  setupSearch();
+
+  // Auto-expand algebra
+  expandedNodes.add('__scale_algebra');
+  expandedNodes.add('__scale_field');
+  expandedNodes.add('__scale_particle');
+  renderTree();
+}
+
+function buildIndices() {
+  parentMap = {};
+  numberIndex = {};
+  for (const [id, node] of Object.entries(DATA.nodes)) {
+    if (node.children) {
+      for (const childId of node.children) {
+        parentMap[childId] = id;
+      }
+    }
+    if (node.count !== null && node.count !== undefined) {
+      const n = node.count;
+      if (!numberIndex[n]) numberIndex[n] = [];
+      numberIndex[n].push(id);
+    }
+  }
+}
+
+function updateStats() {
+  const total = Object.keys(DATA.nodes).length;
+  const chains = DATA.chains.length;
+  const discoveries = DATA.discoveries.length;
+  const exact = Object.values(DATA.nodes).filter(n => n.confidence === 'exact' || n.confidence === 'proven').length;
+  document.getElementById('header-stats').innerHTML =
+    `<strong>${total}</strong> nodes &middot; <strong>${chains}</strong> chains &middot; <strong>${discoveries}</strong> discoveries<br>` +
+    `<strong>${exact}</strong> exact/proven matches`;
+}
+
+// ── Tree view ──
+
+function getTreeStructure() {
+  // Group nodes by scale, showing parent-child hierarchy
+  const byScale = {};
+  for (const scale of SCALE_ORDER) byScale[scale] = [];
+
+  // Find root nodes per scale (nodes without a parent, or whose parent is in a different scale)
+  for (const [id, node] of Object.entries(DATA.nodes)) {
+    const scale = node.scale || 'algebra';
+    if (!byScale[scale]) byScale[scale] = [];
+    const pid = parentMap[id];
+    if (!pid || DATA.nodes[pid]?.scale !== scale) {
+      byScale[scale].push(id);
+    }
+  }
+  return byScale;
+}
+
+function renderTree(filter) {
+  const container = document.getElementById('view-tree');
+  container.innerHTML = '';
+  const byScale = getTreeStructure();
+
+  for (const scale of SCALE_ORDER) {
+    const roots = byScale[scale];
+    if (!roots || roots.length === 0) continue;
+
+    // Filter
+    let filteredRoots = roots;
+    if (filter) {
+      filteredRoots = roots.filter(id => nodeMatchesFilter(id, filter));
+      if (filteredRoots.length === 0) continue;
+    }
+
+    const group = document.createElement('div');
+    group.className = 'tree-group';
+
+    const label = document.createElement('div');
+    label.className = 'tree-group-label';
+    label.textContent = SCALE_LABELS[scale] || scale;
+    label.style.cursor = 'pointer';
+    const scaleKey = '__scale_' + scale;
+    label.onclick = () => {
+      if (expandedNodes.has(scaleKey)) expandedNodes.delete(scaleKey);
+      else expandedNodes.add(scaleKey);
+      renderTree(filter);
+    };
+    label.textContent = (expandedNodes.has(scaleKey) ? '▾ ' : '▸ ') + (SCALE_LABELS[scale] || scale) +
+      ` (${countScaleNodes(scale)})`;
+    group.appendChild(label);
+
+    if (expandedNodes.has(scaleKey)) {
+      for (const rootId of filteredRoots) {
+        renderTreeNode(group, rootId, 0, filter);
+      }
+    }
+
+    container.appendChild(group);
+  }
+}
+
+function countScaleNodes(scale) {
+  let c = 0;
+  for (const node of Object.values(DATA.nodes)) {
+    if (node.scale === scale) c++;
+  }
+  return c;
+}
+
+function nodeMatchesFilter(id, filter) {
+  const node = DATA.nodes[id];
+  if (!node) return false;
+  const f = filter.toLowerCase();
+  if (node.name.toLowerCase().includes(f)) return true;
+  if (node.algebraic && node.algebraic.toLowerCase().includes(f)) return true;
+  if (node.desc && node.desc.toLowerCase().includes(f)) return true;
+  if (node.count !== null && String(node.count) === filter) return true;
+  // Check children
+  if (node.children) {
+    for (const cid of node.children) {
+      if (nodeMatchesFilter(cid, filter)) return true;
+    }
+  }
+  return false;
+}
+
+function renderTreeNode(container, id, depth, filter) {
+  const node = DATA.nodes[id];
+  if (!node) return;
+  if (filter && !nodeMatchesFilter(id, filter)) return;
+
+  const hasChildren = node.children && node.children.length > 0;
+  const isExpanded = expandedNodes.has(id);
+
+  const div = document.createElement('div');
+  div.className = 'tree-node' + (id === selectedId ? ' selected' : '') +
+    (node.confidence === 'miss' ? ' miss' : '');
+
+  // Indent
+  const indent = document.createElement('span');
+  indent.className = 'indent';
+  indent.style.width = (depth * 18) + 'px';
+  div.appendChild(indent);
+
+  // Toggle
+  const toggle = document.createElement('span');
+  toggle.className = 'toggle';
+  if (hasChildren) {
+    toggle.textContent = isExpanded ? '▾' : '▸';
+    toggle.onclick = (e) => {
+      e.stopPropagation();
+      if (expandedNodes.has(id)) expandedNodes.delete(id);
+      else expandedNodes.add(id);
+      renderTree(filter);
+    };
+  }
+  div.appendChild(toggle);
+
+  // Badge (count)
+  const badge = document.createElement('span');
+  badge.className = 'badge';
+  if (node.count !== null && node.count !== undefined) {
+    badge.textContent = node.count;
+    if (node.confidence === 'miss') badge.classList.add('miss');
+    else if (node.confidence === 'proven' || node.confidence === 'axiom') badge.classList.add('algebraic');
+    else if (node.confidence === 'exact') badge.classList.add('derived');
+    else if (node.confidence === 'near') badge.classList.add('pattern');
+    else badge.classList.add('derived');
+  } else {
+    badge.classList.add('none');
+    badge.innerHTML = '&nbsp;';
+  }
+  div.appendChild(badge);
+
+  // Name
+  const name = document.createElement('span');
+  name.className = 'name';
+  name.textContent = node.name;
+  if (node.algebraic && node.count !== null) {
+    const hint = document.createElement('span');
+    hint.className = 'alg-hint';
+    hint.textContent = '= ' + node.algebraic;
+    name.appendChild(hint);
+  }
+  div.appendChild(name);
+
+  div.onclick = () => selectNode(id);
+  container.appendChild(div);
+
+  // Render children if expanded
+  if (hasChildren && isExpanded) {
+    for (const childId of node.children) {
+      renderTreeNode(container, childId, depth + 1, filter);
+    }
+  }
+}
+
+function selectNode(id) {
+  selectedId = id;
+  renderDetail(id);
+  // Re-render tree to update selection
+  const filter = document.getElementById('search-input').value.trim();
+  renderTree(filter || undefined);
+}
+
+// ── Detail panel ──
+
+function renderDetail(id) {
+  const panel = document.getElementById('right-panel');
+  const node = DATA.nodes[id];
+  if (!node) {
+    panel.innerHTML = '<div class="placeholder">Node not found</div>';
+    return;
+  }
+
+  let html = '';
+  html += `<h2>${node.name}</h2>`;
+
+  if (node.count !== null && node.count !== undefined) {
+    html += `<div class="detail-number">${node.count}</div>`;
+  }
+
+  html += `<div class="detail-source">${node.algebraic || ''}</div>`;
+
+  if (node.desc) {
+    html += `<div class="detail-desc">${node.desc}</div>`;
+  }
+
+  // Scale
+  html += `<div class="detail-section-label">Scale</div>`;
+  html += `<div style="font-size:13px;color:#555;margin-bottom:12px">${SCALE_LABELS[node.scale] || node.scale}</div>`;
+
+  // Confidence
+  html += `<div class="detail-section-label">Confidence</div>`;
+  const confColors = {axiom:'#1a6b4a',proven:'#1a6b4a',exact:'#856404',near:'#c97a00',miss:'#999',none:'#ccc'};
+  html += `<div style="font-size:13px;color:${confColors[node.confidence]||'#555'};margin-bottom:12px">${node.confidence || 'unset'}</div>`;
+
+  // Parent
+  if (parentMap[id]) {
+    const parent = DATA.nodes[parentMap[id]];
+    html += `<div class="detail-section-label">Parent</div>`;
+    html += `<div class="cross-ref" onclick="selectNode('${parentMap[id]}')">`;
+    html += `<span class="cr-name">${parent.name}</span>`;
+    html += `<span class="cr-scale">${parent.count !== null ? parent.count : ''}</span></div>`;
+  }
+
+  // Children
+  if (node.children && node.children.length > 0) {
+    html += `<div class="detail-section-label">Contains</div>`;
+    html += `<ul class="detail-children">`;
+    for (const cid of node.children) {
+      const child = DATA.nodes[cid];
+      if (!child) continue;
+      html += `<li onclick="selectNode('${cid}')">`;
+      if (child.count !== null) {
+        html += `<span class="child-count">${child.count}</span>`;
+      }
+      html += `${child.name}</li>`;
+    }
+    html += `</ul>`;
+  }
+
+  // Cross-references (other nodes with same count)
+  if (node.count !== null && node.count !== undefined && numberIndex[node.count]) {
+    const others = numberIndex[node.count].filter(nid => nid !== id);
+    if (others.length > 0) {
+      html += `<div class="detail-section-label">Same number (${node.count}) appears in</div>`;
+      for (const oid of others) {
+        const other = DATA.nodes[oid];
+        html += `<div class="cross-ref" onclick="selectNode('${oid}')">`;
+        html += `<span class="cr-name">${other.name}</span>`;
+        html += `<span class="cr-scale">${SCALE_LABELS[other.scale] || other.scale}</span></div>`;
+      }
+    }
+  }
+
+  // Chains involving this node
+  const relevantChains = DATA.chains.filter(ch => ch.path && ch.path.includes(id));
+  if (relevantChains.length > 0) {
+    html += `<div class="detail-section-label">In chains</div>`;
+    for (const ch of relevantChains) {
+      html += `<div class="cross-ref" onclick="showChainDetail('${ch.name}')">`;
+      html += `<span class="cr-name">${ch.name}</span>`;
+      html += `<span class="cr-scale">${ch.depth} steps</span></div>`;
+    }
+  }
+
+  // Algebraic number info
+  if (node.count !== null && DATA.algebraic_numbers[String(node.count)]) {
+    const an = DATA.algebraic_numbers[String(node.count)];
+    html += `<div class="detail-section-label">Algebraic dimension ${node.count}</div>`;
+    html += `<div style="font-size:12px;color:#555;margin-bottom:4px"><strong>Source:</strong> ${an.source}</div>`;
+    html += `<div style="font-size:12px;color:#555"><strong>Meaning:</strong> ${an.meaning}</div>`;
+  }
+
+  panel.innerHTML = html;
+}
+
+// ── Chains view ──
+
+function renderChains(filter) {
+  const container = document.getElementById('view-chains');
+  container.innerHTML = '';
+
+  for (const chain of DATA.chains) {
+    if (filter && !chain.name.toLowerCase().includes(filter.toLowerCase())) continue;
+
+    const card = document.createElement('div');
+    card.className = 'chain-card';
+
+    let html = `<h3>${chain.name}</h3>`;
+
+    for (let i = 0; i < chain.steps.length; i++) {
+      const step = chain.steps[i];
+      html += `<div class="chain-step">`;
+      html += `<span class="step-num">${i + 1}</span>`;
+      html += `<span class="step-from">${step.from}</span>`;
+      html += `<span class="step-arrow">&rarr;</span>`;
+      html += `<span class="step-from">${step.to}</span>`;
+      html += `<span class="step-op">${step.operation}</span>`;
+      if (step.note) html += `<span class="step-note">${step.note}</span>`;
+      html += `</div>`;
+    }
+
+    html += `<div class="chain-depth">Depth: <strong>${chain.depth}</strong> algebraic steps`;
+    if (chain.every_step_algebraic) html += ` &mdash; every step algebraic`;
+    html += `</div>`;
+
+    card.innerHTML = html;
+    container.appendChild(card);
+  }
+}
+
+function showChainDetail(chainName) {
+  // Switch to chains tab and scroll
+  switchTab('chains');
+}
+
+// ── Numbers view ──
+
+function renderNumbers(filter) {
+  const container = document.getElementById('view-numbers');
+  container.innerHTML = '';
+
+  const grid = document.createElement('div');
+  grid.className = 'numbers-grid';
+
+  const nums = Object.keys(DATA.algebraic_numbers).map(Number).sort((a,b) => a - b);
+
+  for (const n of nums) {
+    if (filter && !String(n).includes(filter)) continue;
+
+    const an = DATA.algebraic_numbers[String(n)];
+    const instances = numberIndex[n] || [];
+
+    const card = document.createElement('div');
+    card.className = 'number-card';
+    card.onclick = () => {
+      if (instances.length > 0) selectNode(instances[0]);
+    };
+
+    let html = `<div class="num">${n}</div>`;
+    html += `<div class="num-source">${an.source}</div>`;
+    if (instances.length > 0) {
+      html += `<div class="num-instances">${instances.length} instance${instances.length>1?'s':''}: `;
+      html += instances.slice(0, 5).map(id => DATA.nodes[id]?.name || id).join(', ');
+      if (instances.length > 5) html += `, +${instances.length-5} more`;
+      html += `</div>`;
+    }
+
+    card.innerHTML = html;
+    grid.appendChild(card);
+  }
+
+  container.appendChild(grid);
+}
+
+// ── Discoveries view ──
+
+function renderDiscoveries(filter) {
+  const container = document.getElementById('view-discoveries');
+  container.innerHTML = '';
+
+  for (const disc of DATA.discoveries) {
+    if (filter && !disc.name.toLowerCase().includes(filter.toLowerCase()) &&
+        !disc.detail.toLowerCase().includes(filter.toLowerCase())) continue;
+
+    const card = document.createElement('div');
+    card.className = 'discovery-card';
+    card.innerHTML =
+      `<h4>${disc.name}</h4>` +
+      `<p>${disc.detail}</p>` +
+      `<div class="disc-status">Found while: ${disc.found_while} &mdash; ${disc.status}</div>`;
+    container.appendChild(card);
+  }
+}
+
+// ── Tabs ──
+
+function setupTabs() {
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.onclick = () => switchTab(tab.dataset.view);
+  });
+}
+
+function switchTab(view) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
+  document.querySelectorAll('.view-section').forEach(s => s.classList.toggle('active', s.id === 'view-' + view));
+}
+
+// ── Search ──
+
+function setupSearch() {
+  const input = document.getElementById('search-input');
+  let timer;
+  input.oninput = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const f = input.value.trim();
+      renderTree(f || undefined);
+      renderChains(f || undefined);
+      renderNumbers(f || undefined);
+      renderDiscoveries(f || undefined);
+    }, 200);
+  };
+}
+
+// ── Load ──
+
+fetch('reality-tree.json')
+  .then(r => r.json())
+  .then(data => init(data))
+  .catch(err => {
+    document.getElementById('left-panel').innerHTML =
+      `<div class="placeholder">Could not load reality-tree.json: ${err.message}<br><br>` +
+      `Make sure reality-tree.json is in the same directory.</div>`;
+  });
+</script>
+
+</body>
+</html>

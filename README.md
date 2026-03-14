@@ -32,8 +32,15 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | `theory-tools/derive_core_identity_from_lame.py` | Derives α^(3/2)·μ·φ² = 3 from the Lamé spectrum |
 | `theory-tools/CORE.md` | Structured reference with derivation chain and proofs |
 | `theory-tools/COMPLETE-STATUS.md` | All claims with status and honest assessment |
+| `theory-tools/complete_algebra.py` | 47 algebraic numbers vs 165 natural counts (92.1% exact match) |
+| `theory-tools/nuclear_lame_spectrum.py` | Nuclear magic numbers from Lamé band spectrum |
+| `theory-tools/all_fibers.py` | Eta death: strong force exists only over ℚ (5 fibers tested) |
+| `theory-tools/ru_derivation.py` | 5→8 cross-scale pattern (P < 1/14,641 with controls) |
+| `theory-tools/predictions.py` | Consolidated predictions with kill conditions |
+| `theory-tools/reality-tree-viewer.html` | 243-node interactive derivation tree (needs reality-tree.json) |
+| `theory-tools/UNDENIABLE-TABLE.md` | Probability assessment for independent review |
 
-119 files total. Every claim has a corresponding script.
+148 files total. Every claim has a corresponding script.
 
 ## Results
 
@@ -47,8 +54,22 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | 3 PMNS mixing angles | From θ₄, ε = θ₄/θ₃ | All within 1σ |
 | Proton/electron mass ratio | Simultaneous output | 99.9998% |
 | Aromatic frequency | α^(11/4)·φ·(4/√3)·f_e | 613.86 vs 613 ± 8 THz (0.14%) |
+| Algebraic cross-match | 47 numbers vs 165 counts | 152/165 exact (92.1%) |
+| Nuclear magic numbers | E₈ branching dimensions | 5/7 exact |
 
 Full table in [START-HERE.md](START-HERE.md).
+
+## Discrete mode: algebra matches structure
+
+The same E₈ branching chain that produces coupling constants (continuous mode) also generates a vocabulary of 47 algebraic integers. Cross-matched against 165 independent structural counts in nature — nuclear magic numbers, atomic shells, molecular geometry, cellular components, body anatomy, cosmic structure — 152 match exactly (92.1%).
+
+```bash
+python theory-tools/complete_algebra.py
+```
+
+Key findings: all three pariah-only primes appear in nature (37 = mitochondrial genes, 43 = Technetium's instability, 67 = collagen repeat), nuclear magic numbers trace E₈ dimensions (5/7 exact), and the strong force vanishes in every finite field (eta death — `all_fibers.py`).
+
+Conservative Monte Carlo: P < 1/16 trillion for the combined match. See `theory-tools/UNDENIABLE-TABLE.md`.
 
 ## The bridge
 

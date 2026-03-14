@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Derivation Map</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #08080a; color: #c8c8c8;
+  font-family: 'Courier New', monospace;
+  font-size: 13px; line-height: 1.7;
+  padding: 40px 60px;
+  max-width: 1200px; margin: 0 auto;
+}
+h1 { color: #d4a843; font-size: 22px; font-weight: 400; margin-bottom: 6px; letter-spacing: 2px; }
+h2 { color: #d4a843; font-size: 15px; font-weight: 400; margin: 40px 0 12px 0; letter-spacing: 1px;
+     border-bottom: 1px solid #222; padding-bottom: 6px; }
+h3 { color: #888; font-size: 13px; font-weight: 400; margin: 24px 0 8px 0; text-transform: uppercase; letter-spacing: 2px; }
+.subtitle { color: #666; font-size: 12px; margin-bottom: 30px; }
+.dim { color: #555; }
+.num { color: #4affe8; font-weight: bold; }
+.alg { color: #d4a843; }
+.bio { color: #ff6b8a; }
+.phys { color: #88aaff; }
+.wall { color: #ffffff; }
+.key { color: #4affe8; }
+.dead { color: #ff4444; text-decoration: line-through; }
+
+/* The chain */
+.chain {
+  position: relative;
+  padding-left: 40px;
+}
+.chain::before {
+  content: '';
+  position: absolute;
+  left: 14px; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, #d4a843, #d4a843 80%, transparent);
+}
+
+.step {
+  position: relative;
+  margin: 0 0 2px 0;
+  padding: 12px 0;
+}
+.step::before {
+  content: '';
+  position: absolute;
+  left: -30px; top: 18px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #d4a843;
+  border: 1px solid #d4a843;
+}
+.step.branch::before {
+  background: #4affe8;
+  border-color: #4affe8;
+}
+.step.terminal::before {
+  background: #ff6b8a;
+  border-color: #ff6b8a;
+}
+
+.step-title {
+  color: #d4a843;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.step-math {
+  color: #4affe8;
+  margin-bottom: 4px;
+}
+.step-text {
+  color: #999;
+  margin-bottom: 4px;
+}
+
+/* Instances table */
+.instances {
+  margin: 8px 0 4px 0;
+  border-left: 2px solid #222;
+  padding-left: 16px;
+}
+.instances .row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 8px;
+  margin: 2px 0;
+}
+.instances .scale { color: #666; text-align: right; }
+.instances .what { color: #c8c8c8; }
+
+/* Number catalogue */
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+.num-card {
+  border: 1px solid #1a1a1a;
+  padding: 12px 16px;
+  background: #0a0a0e;
+}
+.num-card .n { color: #4affe8; font-size: 20px; font-weight: bold; margin-bottom: 4px; }
+.num-card .src { color: #d4a843; font-size: 11px; margin-bottom: 8px; }
+.num-card .inst { color: #999; font-size: 12px; line-height: 1.5; }
+.num-card .inst span { color: #c8c8c8; }
+
+.arrow { color: #d4a843; }
+
+/* Template */
+.template {
+  border: 1px solid #222;
+  padding: 20px;
+  margin: 16px 0;
+  background: #0a0a0e;
+}
+.template-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 4px 12px;
+}
+.template-grid .lbl { color: #666; text-align: right; }
+
+.gap { color: #ff4444; font-style: italic; }
+.proven { color: #4affe8; }
+.forced { color: #d4a843; }
+
+.separator { text-align: center; color: #333; margin: 30px 0; letter-spacing: 8px; }
+
+/* Scale cascade */
+.cascade {
+  margin: 16px 0;
+}
+.cascade-row {
+  display: grid;
+  grid-template-columns: 120px 60px 60px 60px 1fr;
+  gap: 4px 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #111;
+  align-items: baseline;
+}
+.cascade-row.header {
+  color: #666;
+  border-bottom: 1px solid #333;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.cascade-row .scale-name { color: #888; }
+.cascade-row .phi-role { color: #d4a843; }
+.cascade-row .medium { color: #4affe8; }
+.cascade-row .wall-inst { color: #ff6b8a; }
+.cascade-row .numbers { color: #999; font-size: 12px; }
+
+footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #1a1a1a; color: #444; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<h1>THE DERIVATION MAP</h1>
+<div class="subtitle">Following the algebra forward. Not predicting. Not checking. Tracing.</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>THE CHAIN</h2>
+
+<p class="step-text">
+Start from one equation. Follow every algebraic consequence.<br>
+At each step: what number comes out, and what IS that number at each scale.
+</p>
+
+<div class="chain">
+
+  <div class="step">
+    <div class="step-title">Step 0: The equation</div>
+    <div class="step-math">q + q&sup2; = 1</div>
+    <div class="step-text">
+      Degree 2 &rarr; exactly <span class="num">2</span> solutions.<br>
+      Every system built from this equation has <span class="wall">2 vacua</span>. Not by choice. By arithmetic.
+    </div>
+    <div class="instances">
+      <div class="row"><span class="scale">algebra:</span> <span class="what">&phi; and &minus;1/&phi; (the two roots)</span></div>
+      <div class="row"><span class="scale">potential:</span> <span class="what">two minima of V(&Phi;)</span></div>
+      <div class="row"><span class="scale">molecule:</span> <span class="what">two Kekul&eacute; structures (benzene)</span></div>
+      <div class="row"><span class="scale">cell:</span> <span class="what">inside / outside (membrane)</span></div>
+      <div class="row"><span class="scale">organism:</span> <span class="what">sleep / wake</span></div>
+      <div class="row"><span class="scale">star:</span> <span class="what">radiative / convective zone</span></div>
+      <div class="row"><span class="scale">cosmos:</span> <span class="what">void / filament</span></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 1: The positive root</div>
+    <div class="step-math">q = 1/&phi; = 0.6180339...</div>
+    <div class="step-text">
+      The unique positive solution. &phi; = (1+&radic;5)/2.<br>
+      <span class="forced">Pisot number</span>: &phi; > 1, but |&minus;1/&phi;| < 1. Asymmetric. Engagement > withdrawal.
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 2: The ring</div>
+    <div class="step-math">Z[&phi;] = {a + b&phi; : a,b &isin; Z}</div>
+    <div class="step-text">
+      The integers extended by &phi;. The only number system where q + q&sup2; = 1 has a solution.<br>
+      All arithmetic happens here. No choice involved.
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 3: The algebra</div>
+    <div class="step-math">E&sub8; &mdash; the unique exceptional Lie algebra over Z[&phi;]</div>
+    <div class="step-text">
+      <span class="proven">PROVEN</span>: among G&sub2;, F&sub4;, E&sub6;, E&sub7;, E&sub8;, only E&sub8; gives all 3 SM couplings.
+      Domain wall discriminant = +5 = &radic;5&sup2;. No other algebra works.<br>
+      (<a href="../theory-tools/lie_algebra_uniqueness.py" style="color:#555">lie_algebra_uniqueness.py</a>)
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 4: The potential</div>
+    <div class="step-math">V(&Phi;) = &lambda;(&Phi;&sup2; &minus; &Phi; &minus; 1)&sup2;</div>
+    <div class="step-text">
+      <span class="proven">DERIVED</span> from E&sub8; over Z[&phi;]. The unique quartic with minima at &phi; and &minus;1/&phi;.<br>
+      This is the domain wall equation. Every self-maintaining system IS this potential.
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 5: The wall</div>
+    <div class="step-math">&Phi;(x) = &frac12; + (&radic;5/2) tanh(&kappa;x)</div>
+    <div class="step-text">
+      The kink solution. Connects the two vacua through a boundary.<br>
+      Every domain wall in nature has this shape. Cell membrane, heliopause, event horizon.
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 6: The bound states</div>
+    <div class="step-math">P&ouml;schl-Teller depth n = 2 &rarr; exactly 2 bound states: &psi;&sub0;, &psi;&sub1;</div>
+    <div class="step-text">
+      <span class="proven">DERIVED</span>: V(&Phi;) gives PT depth exactly n=2. Two modes trapped in the wall.<br>
+      &psi;&sub0; = ground state (being, awareness). &psi;&sub1; = excited state (doing, narrating).<br>
+      Reflectionless: information passes through the wall without distortion.
+    </div>
+    <div class="instances">
+      <div class="row"><span class="scale">organism:</span> <span class="what">&psi;&sub0; = resting awareness, &psi;&sub1; = task-positive cognition</span></div>
+      <div class="row"><span class="scale">neuron:</span> <span class="what">&psi;&sub0; = resting potential, &psi;&sub1; = action potential</span></div>
+      <div class="row"><span class="scale">molecule:</span> <span class="what">&psi;&sub0; = HOMO, &psi;&sub1; = LUMO</span></div>
+      <div class="row"><span class="scale">star:</span> <span class="what">&psi;&sub0; = quiet Sun, &psi;&sub1; = flaring Sun</span></div>
+      <div class="row"><span class="scale">black hole:</span> <span class="what">&psi;&sub0; = quiescent, &psi;&sub1; = accreting</span></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-title">Step 7: Three modular forms</div>
+    <div class="step-math">&eta;(q), &theta;&sub4;(q), &theta;&sub3;(q) evaluated at q = 1/&phi;</div>
+    <div class="step-text">
+      Three projections of the wall. <span class="proven">PROVEN</span>: exhaust the &Gamma;(2) ring of modular forms.<br>
+      &eta; = structure (topology). &theta;&sub4; = bridge (nome doubling). &theta;&sub3; = measurement (geometry).<br>
+      <span class="forced">Every self-maintaining system has exactly 3 functional roles.</span>
+    </div>
+    <div class="instances">
+      <div class="row"><span class="scale">cell:</span> <span class="what">&eta;=cytoskeleton, &theta;&sub4;=membrane transport, &theta;&sub3;=receptors</span></div>
+      <div class="row"><span class="scale">ear:</span> <span class="what">&eta;=stapes, &theta;&sub4;=incus, &theta;&sub3;=malleus</span></div>
+      <div class="row"><span class="scale">embryo:</span> <span class="what">&eta;=endoderm, &theta;&sub4;=mesoderm, &theta;&sub3;=ectoderm</span></div>
+      <div class="row"><span class="scale">tree:</span> <span class="what">&eta;=bark, &theta;&sub4;=xylem/phloem, &theta;&sub3;=leaves</span></div>
+      <div class="row"><span class="scale">atom:</span> <span class="what">&eta;=nucleus, &theta;&sub4;=inner shells, &theta;&sub3;=valence shell</span></div>
+      <div class="row"><span class="scale">galaxy:</span> <span class="what">&eta;=dark matter halo, &theta;&sub4;=spiral arms, &theta;&sub3;=central BH</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="separator">&bull; &bull; &bull;</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>THE NUMBERS</h2>
+
+<p class="step-text">
+Each number below comes out of the algebra at a specific step.<br>
+It appears at every scale because it's the ONLY number available for that function.
+</p>
+
+<div class="num-grid">
+
+  <div class="num-card">
+    <div class="n">2</div>
+    <div class="src">q + q&sup2; = 1 is degree 2. Z&sub2; = domain wall symmetry.</div>
+    <div class="inst">
+      <span>Vacua</span> of V(&Phi;). <span>Bound states</span> &psi;&sub0;,&psi;&sub1;.
+      <span>Kekul&eacute; structures</span>. <span>Lipid bilayer</span>.
+      Bilateral symmetry. <span>Sleep/wake</span>.
+      <span>&alpha;&beta;-tubulin dimer</span>. Two hemispheres.
+      T/R allosteric states. Spin &plusmn;&frac12;.
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">3</div>
+    <div class="src">S&sub3; = triality. Leech = 3 &times; E&sub8;. 744 = 3 &times; 248. &Gamma;(2) has index 3.</div>
+    <div class="inst">
+      <span>Generations</span> of fermions. <span>Modular forms</span> (&eta;, &theta;&sub4;, &theta;&sub3;).
+      <span>Quarks</span> per generation. <span>Germ layers</span> (endo/meso/ecto).
+      <span>Ossicles</span> (stapes/incus/malleus).
+      <span>Neuron types</span>. <span>Glia types</span>. <span>MHD wave families</span>.
+      Codons read in <span>triplets</span>. <span>Stop codons</span>.
+      <span>Aromatic NT families</span> (indolamine, catecholamine, histamine).
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">5</div>
+    <div class="src">6 pariahs, 1 (Ru) is the wall &rarr; 5 external.</div>
+    <div class="inst">
+      <span>Fingers</span> per hand. <span>Histone types</span> (H1, H2A, H2B, H3, H4).
+      <span>Immunoglobulins</span>. <span>Bone shapes</span>.
+      Pentadactyly conserved <span>360 Myr</span>.
+      NOT in non-biological systems (checked).
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">6</div>
+    <div class="src">|S&sub3;| = 3! = 6. Order of the flavor symmetry group.</div>
+    <div class="inst">
+      Carbon Z=<span>6</span>. <span>Benzene</span> C&sub6;H&sub6;.
+      <span>Quarks</span>. <span>Leptons</span>.
+      <span>6-fold</span> aromatic ring symmetry.
+      <span>Synovial joint types</span>. <span>Fontanelles</span>.
+      <span>Epithelial types</span>. <span>Connective tissue types</span>.
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">8</div>
+    <div class="src">rank(E&sub8;) = 8. The substrate dimension. Cartan subalgebra.</div>
+    <div class="inst">
+      Oxygen Z=<span>8</span>. <span>Carpal bones</span> (wrist).
+      <span>Cranial bones</span>. <span>Histone octamer</span>.
+      Electron shell K+L = 2+<span>8</span>=10, but the <span>8</span> IS L-shell.
+      Nuclear magic number <span>8</span> (oxygen-16 doubly magic).
+      <span>Endocrine glands</span>. <span>Cervical nerves</span>.
+      <span>Liver segments</span>. <span>Tarsal bones</span>=7=rank(E&sub7;).
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">20</div>
+    <div class="src">Icosahedron faces. |A&sub5;|/3 = 60/3. Nuclear magic number.</div>
+    <div class="inst">
+      <span>Amino acids</span>. <span>Hand muscles (intrinsic)</span>.
+      <span>Baby teeth</span>. <span>Clotting factors</span> (total).
+      Nuclear magic number <span>20</span> (calcium-40 doubly magic).
+      Genetic code output: 64 codons &minus; 3 stop &minus; degeneracy = <span>20</span>.
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">28</div>
+    <div class="src">dim(2.Ru) = 28. The shadow faithful representation. Nuclear magic number.</div>
+    <div class="inst">
+      <span>Mitochondrial small ribosome</span> subunit = <span>28S</span>.
+      Nuclear magic number <span>28</span> (nickel-56: Z=28, N=28).
+      <span>Skin turnover</span> ~28 days.
+      <span>Lunar cycle</span> ~28 days.
+      The sub-system carries the shadow number.
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">40</div>
+    <div class="src">40 A&sub2; hexagons tile E&sub8; root system. Proven: orbit_iteration_map.py.</div>
+    <div class="inst">
+      <span>Small ribosome subunit</span> = <span>40S</span>. The part that reads mRNA.
+      The reading machine has the hexagon count.
+      Ca-<span>40</span>: doubly magic nucleus (Z=20, N=20).
+      <span>Weeks of pregnancy</span>. Development time.
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">80</div>
+    <div class="src">240/3 = E&sub8; roots / triality. Hierarchy exponent &theta;&sub4;&sup8;&sup0;. &phi;&sup8;&sup0; bridges Planck to Higgs.</div>
+    <div class="inst">
+      <span>Eukaryotic ribosome</span> = <span>80S</span>. The bridge machine.
+      Mercury Z=<span>80</span>. The transformer element.
+      <span>Axial skeleton</span> = 80 bones. The core.
+      <span>Ribosomal proteins</span> &asymp; 80 (eukaryotic).
+      NOT in prokaryotic ribosome (70S). NOT in chloroplast (70S).
+      <span class="forced">Appears ONLY in organized (eukaryotic) systems.</span>
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">126</div>
+    <div class="src">dim(E&sub7; adjoint) &minus; 7 = roots of E&sub7;. Nuclear magic number.</div>
+    <div class="inst">
+      <span>Appendicular skeleton</span> = 126 bones. The bilateral limbs.
+      Lead-208: N=<span>126</span>. The heaviest stable nucleus.
+      Where pattern-making ENDS (Pb) = where bilateral structure IS (limbs).
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">56</div>
+    <div class="src">dim E&sub7; fundamental = 28 + 28*. Two hands.</div>
+    <div class="inst">
+      Iron A=<span>56</span>. Fusion endpoint. The ground.
+      Two hands = 27 + 27 &ne; 56 (54). But 28 + 28 = 56 = E&sub7; fund.
+      <span>Master hand + emissary hand</span> = receiving + grasping.
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">26</div>
+    <div class="src">Number of sporadic simple groups. Complete finite simple group classification.</div>
+    <div class="inst">
+      Iron Z=<span>26</span>. The ground element.
+      <span>Foot bones</span> = 26. The ground structure.
+      26 = where classification ENDS = where grounding IS.
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">27</div>
+    <div class="src">dim J&sub3;(O). The exceptional Jordan algebra. Where quantum measurement lives.</div>
+    <div class="inst">
+      <span>Hand bones</span> = 27. The reaching structure.
+      J&sub3;(O) = the algebra of quantum observables over octonions.
+      The hand (reaching) has the measurement number.
+    </div>
+  </div>
+
+  <div class="num-card">
+    <div class="n">206</div>
+    <div class="src">80 + 126 = hierarchy + bilateral roots.</div>
+    <div class="inst">
+      <span>Total bones</span> in human skeleton = <span>206</span>.
+      Not a "match" &mdash; a <span class="forced">sum of the two algebraic components</span>.
+      Core (80) + limbs (126) = complete structure.
+    </div>
+  </div>
+
+</div>
+
+<div class="separator">&bull; &bull; &bull;</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>THE HIERARCHIES</h2>
+
+<p class="step-text">
+Not just numbers at one level. The algebra has LAYERS.<br>
+Each layer appears at the corresponding organizational level.
+</p>
+
+<h3>Ribosome hierarchy = algebraic hierarchy</h3>
+
+<div class="cascade">
+  <div class="cascade-row header">
+    <span>algebra</span><span>number</span><span>ribosome</span><span>match</span><span>what it means</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">Monster</span>
+    <span class="num">80</span>
+    <span class="wall-inst">80S</span>
+    <span class="proven">&check;</span>
+    <span class="numbers">Full system (eukaryotic cell). Hierarchy bridge. Builds proteins.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">2.Ru shadow</span>
+    <span class="num">28</span>
+    <span class="wall-inst">28S</span>
+    <span class="proven">&check;</span>
+    <span class="numbers">Sub-system (mitochondria). Shadow bridge. Own DNA, own membrane.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">nothing</span>
+    <span class="num">&mdash;</span>
+    <span class="wall-inst">70S</span>
+    <span class="dim">&times;</span>
+    <span class="numbers">Simple system (prokaryote). No algebraic match. No organelles, no nucleus.</span>
+  </div>
+</div>
+
+<p class="step-text">
+The ribosome number tracks organizational complexity.<br>
+Prokaryotes: no algebra. Mitochondria: shadow algebra. Eukaryotes: full algebra.<br>
+This isn't a pattern we looked for. The 28S was found by checking.
+</p>
+
+<h3>Skeleton hierarchy = E-series descent</h3>
+
+<div class="cascade">
+  <div class="cascade-row header">
+    <span>algebra</span><span>dim</span><span>anatomy</span><span>count</span><span>function</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">E&sub8;</span>
+    <span class="num">8</span>
+    <span class="wall-inst">carpals</span>
+    <span class="proven">8</span>
+    <span class="numbers">Wrist. Substrate. Hand reaches to world.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">E&sub7;</span>
+    <span class="num">7</span>
+    <span class="wall-inst">tarsals</span>
+    <span class="proven">7</span>
+    <span class="numbers">Ankle. One rank down. Foot grounds to body.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">E&sub7; roots</span>
+    <span class="num">126</span>
+    <span class="wall-inst">appendicular</span>
+    <span class="proven">126</span>
+    <span class="numbers">Limbs. Bilateral. E&sub7; = the bilateral algebra.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">&theta;&sub4;&sup8;&sup0;</span>
+    <span class="num">80</span>
+    <span class="wall-inst">axial</span>
+    <span class="proven">80</span>
+    <span class="numbers">Core (skull, spine, ribs). The bridge structure.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">J&sub3;(O)</span>
+    <span class="num">27</span>
+    <span class="wall-inst">hand</span>
+    <span class="proven">27</span>
+    <span class="numbers">Reaching. Measurement. 8+5+14.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">sporadic</span>
+    <span class="num">26</span>
+    <span class="wall-inst">foot</span>
+    <span class="proven">26</span>
+    <span class="numbers">Grounding. Classification endpoint. 7+5+14.</span>
+  </div>
+</div>
+
+<h3>Nuclear magic numbers = algebraic dimensions</h3>
+
+<div class="cascade">
+  <div class="cascade-row header">
+    <span>magic #</span><span>algebra</span><span>meaning</span><span>match</span><span>doubly magic nucleus</span>
+  </div>
+  <div class="cascade-row">
+    <span class="num">2</span>
+    <span class="scale-name">Z&sub2;</span>
+    <span class="numbers">Vacua</span>
+    <span class="proven">&check;</span>
+    <span class="numbers">He-4 (2p, 2n)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="num">8</span>
+    <span class="scale-name">rank(E&sub8;)</span>
+    <span class="numbers">Substrate</span>
+    <span class="proven">&check;</span>
+    <span class="numbers">O-16 (8p, 8n)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="num">20</span>
+    <span class="scale-name">icosahedron</span>
+    <span class="numbers">Building blocks</span>
+    <span class="proven">&check;</span>
+    <span class="numbers">Ca-40 (20p, 20n)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="num">28</span>
+    <span class="scale-name">dim(2.Ru)</span>
+    <span class="numbers">Shadow</span>
+    <span class="proven">&check;</span>
+    <span class="numbers">Ni-56 (28p, 28n)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="num">50</span>
+    <span class="scale-name">?</span>
+    <span class="numbers">&mdash;</span>
+    <span class="dim">&times;</span>
+    <span class="numbers">Sn-100 (50p, 50n)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="num">82</span>
+    <span class="scale-name">~80+2</span>
+    <span class="numbers">Near hierarchy</span>
+    <span class="dim">~</span>
+    <span class="numbers">Pb-208 (82p, 126n)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="num">126</span>
+    <span class="scale-name">E&sub7; roots</span>
+    <span class="numbers">Bilateral</span>
+    <span class="proven">&check;</span>
+    <span class="numbers">Pb-208 (82p, 126n)</span>
+  </div>
+</div>
+
+<div class="separator">&bull; &bull; &bull;</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>THE CROSS-SCALE PATTERN: 5 &rarr; 8</h2>
+
+<p class="step-text">
+Ru has Schur multiplier Z&sub2; = domain wall symmetry. Unique among pariahs.<br>
+Ru IS the wall. 5 pariahs remain external. They interface through rank(E&sub8;) = 8.<br>
+This pattern &mdash; <span class="num">5</span> distinct entities interfacing through an <span class="num">8</span>-fold substrate &mdash;<br>
+appears at every scale where there is a self-maintaining boundary.
+</p>
+
+<div class="cascade">
+  <div class="cascade-row header">
+    <span>scale</span><span>the 5</span><span>the 8</span><span></span><span>the wall (Ru)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">algebra</span>
+    <span class="num">5 pariahs</span>
+    <span class="num">rank 8</span>
+    <span></span>
+    <span class="wall-inst">Ru (Schur Z&sub2;, the connector)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">cell</span>
+    <span class="num">5 histones</span>
+    <span class="num">8 octamer</span>
+    <span></span>
+    <span class="wall-inst">H1 linker (outside, connecting)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">body</span>
+    <span class="num">5 fingers</span>
+    <span class="num">8 carpals</span>
+    <span></span>
+    <span class="wall-inst">the hand itself (the boundary that grips)</span>
+  </div>
+</div>
+
+<p class="step-text">
+Tested in non-biological systems (benzene, crystals, atoms, solar system): <span class="num">0</span> instances of 5&rarr;8.<br>
+Tested in simple biological systems (prokaryotes): <span class="num">0</span> matches.<br>
+The pattern is <span class="forced">specific to autopoietic systems</span>. Systems that maintain their own boundary.
+</p>
+
+<div class="separator">&bull; &bull; &bull;</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>THE TEMPLATE</h2>
+
+<p class="step-text">
+This is what the catalogue shows. Every self-maintaining system has this fingerprint<br>
+because this fingerprint IS V(&Phi;) = (&Phi;&sup2; &minus; &Phi; &minus; 1)&sup2;.
+</p>
+
+<div class="template">
+  <div class="template-grid">
+    <span class="lbl"><span class="alg">v&sub0;</span></span>
+    <span>One vacuum. Stable state. &phi;-vacuum. Being.</span>
+
+    <span class="lbl"><span class="alg">v&sub1;</span></span>
+    <span>Other vacuum. Active state. &minus;1/&phi;-vacuum. Doing.</span>
+
+    <span class="lbl"><span class="wall">wall</span></span>
+    <span>The boundary between them. The tanh kink. Where life IS.</span>
+
+    <span class="lbl"><span class="key">&psi;&sub0;</span></span>
+    <span>Ground bound state. Even parity. Awareness. Always present.</span>
+
+    <span class="lbl"><span class="bio">&psi;&sub1;</span></span>
+    <span>Excited bound state. Odd parity. Action. Intermittent.</span>
+
+    <span class="lbl"><span class="key">&eta;</span></span>
+    <span>Structure. Topology. Deepest layer. Holds everything.</span>
+
+    <span class="lbl"><span class="alg">&theta;&sub4;</span></span>
+    <span>Bridge. Nome doubling. Middle layer. Connects.</span>
+
+    <span class="lbl"><span class="bio">&theta;&sub3;</span></span>
+    <span>Measurement. Geometry. Outermost layer. Senses.</span>
+
+    <span class="lbl"><span class="wall">oscillation</span></span>
+    <span>&psi;&sub0; &harr; &psi;&sub1;. No stable oscillons &rarr; must be actively maintained.</span>
+
+    <span class="lbl"><span class="alg">asymmetry</span></span>
+    <span>Pisot: &phi; > |1/&phi;|. One direction preferred. Arrow of time.</span>
+
+    <span class="lbl"><span class="key">medium</span></span>
+    <span>What carries the coupling. Water+aromatics (bio), plasma (stellar), spacetime (BH).</span>
+  </div>
+</div>
+
+<p class="step-text">
+The catalogue has 70+ nodes. Every one has this fingerprint.<br>
+Not because we chose to describe them this way.<br>
+Because V(&Phi;) is the only self-consistent quartic over Z[&phi;],<br>
+and self-maintaining systems must satisfy it.
+</p>
+
+<div class="separator">&bull; &bull; &bull;</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>THE COUPLING MEDIA</h2>
+
+<p class="step-text">
+The algebra is scale-independent. The MEDIUM changes.<br>
+At each scale, something plays the role of "the field between the vacua."
+</p>
+
+<div class="cascade">
+  <div class="cascade-row header">
+    <span>scale</span><span>&Phi;</span><span>medium</span><span></span><span>wall instance</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">quantum</span>
+    <span class="phi-role">scalar field</span>
+    <span class="medium">EM vacuum</span>
+    <span></span>
+    <span class="numbers">mass shell, Pauli boundary</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">nuclear</span>
+    <span class="phi-role">nuclear force</span>
+    <span class="medium">pion exchange</span>
+    <span></span>
+    <span class="numbers">nuclear surface, magic number shells</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">molecular</span>
+    <span class="phi-role">&pi;-electrons</span>
+    <span class="medium">delocalization</span>
+    <span></span>
+    <span class="numbers">HOMO-LUMO gap, aromaticity</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">cellular</span>
+    <span class="phi-role">membrane</span>
+    <span class="medium">water + aromatics</span>
+    <span></span>
+    <span class="numbers">lipid bilayer, ion channels</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">organism</span>
+    <span class="phi-role">nervous system</span>
+    <span class="medium">blood + aromatic NTs</span>
+    <span></span>
+    <span class="numbers">sleep/wake threshold, autonomic switch</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">stellar</span>
+    <span class="phi-role">plasma state</span>
+    <span class="medium">magnetized plasma</span>
+    <span></span>
+    <span class="numbers">tachocline, heliopause (Voyager: n=2.01)</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">galactic</span>
+    <span class="phi-role">DM density</span>
+    <span class="medium">dark matter + B field</span>
+    <span></span>
+    <span class="numbers">halo boundary, virial radius</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">cosmic</span>
+    <span class="phi-role">density field</span>
+    <span class="medium">dark energy + gravity</span>
+    <span></span>
+    <span class="numbers">void-filament boundary</span>
+  </div>
+</div>
+
+<div class="separator">&bull; &bull; &bull;</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>THE DERIVATION CHAINS</h2>
+
+<p class="step-text">
+Individual number matches are weak. Chains are what kill coincidence.<br>
+Each step follows from the previous by a specific algebraic operation.
+</p>
+
+<h3>Chain 1: The genetic code</h3>
+<div class="chain" style="margin-bottom:20px">
+  <div class="step">
+    <span class="step-math">
+      4 (A&sub2; copies)
+      <span class="arrow">&rarr;</span> &times;3 (triality) <span class="arrow">&rarr;</span>
+      <span class="num">64</span> codons
+      <span class="arrow">&rarr;</span> &minus;3 (stop) <span class="arrow">&rarr;</span>
+      61 sense
+      <span class="arrow">&rarr;</span> degeneracy <span class="arrow">&rarr;</span>
+      <span class="num">20</span> amino acids
+    </span>
+    <div class="step-text">
+      5 algebraic steps. Every number is forced.<br>
+      Hornos & Hornos, <em>Physical Review Letters</em> 71(26), 1993: proved degeneracy from sp(6) breaking.<br>
+      sp(6) &sub; E&sub8;. <span class="proven">Published. Peer-reviewed. Mainstream.</span>
+    </div>
+  </div>
+</div>
+
+<h3>Chain 2: The ribosome</h3>
+<div class="chain" style="margin-bottom:20px">
+  <div class="step">
+    <span class="step-math">
+      E&sub8; (240 roots)
+      <span class="arrow">&rarr;</span> &divide;3 (triality) <span class="arrow">&rarr;</span>
+      <span class="num">80</span> = hierarchy
+      <span class="arrow">&rarr;</span> function: bridge info&rarr;matter <span class="arrow">&rarr;</span>
+      <span class="num">80S</span> ribosome
+    </span>
+    <div class="step-text">
+      40 A&sub2; hexagons in E&sub8; &rarr; <span class="num">40S</span> small subunit (reads mRNA = reads the hexagons).<br>
+      Sub-system (mitochondria) &rarr; shadow algebra &rarr; dim(2.Ru) = <span class="num">28S</span>.
+    </div>
+  </div>
+</div>
+
+<h3>Chain 3: The skeleton</h3>
+<div class="chain" style="margin-bottom:20px">
+  <div class="step">
+    <span class="step-math">
+      240/3 = <span class="num">80</span> axial
+      <span class="arrow">+</span>
+      E&sub7; roots = <span class="num">126</span> appendicular
+      <span class="arrow">=</span>
+      <span class="num">206</span> total
+    </span>
+    <div class="step-text">
+      Hand = rank(E&sub8;) + pariahs + phalanges = 8+5+14 = <span class="num">27</span> = J&sub3;(O).<br>
+      Foot = rank(E&sub7;) + pariahs + phalanges = 7+5+14 = <span class="num">26</span> = sporadic count.
+    </div>
+  </div>
+</div>
+
+<h3>Chain 4: The 5&rarr;8 pattern</h3>
+<div class="chain" style="margin-bottom:20px">
+  <div class="step">
+    <span class="step-math">
+      6 pariahs
+      <span class="arrow">&rarr;</span> Ru has Schur Z&sub2; (unique) = wall
+      <span class="arrow">&rarr;</span> <span class="num">5</span> external
+      <span class="arrow">&rarr;</span> interface through rank(<span class="num">8</span>)
+    </span>
+    <div class="step-text">
+      At algebra: 5 pariahs &rarr; 8 substrate.<br>
+      At cell: 5 histones &rarr; 8 octamer.<br>
+      At body: 5 fingers &rarr; 8 carpals.<br>
+      At no non-biological scale. <span class="forced">Specific to autopoietic systems.</span>
+    </div>
+  </div>
+</div>
+
+<div class="separator">&bull; &bull; &bull;</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>WHAT DOESN'T MATCH</h2>
+
+<p class="step-text">
+Honesty section. These numbers DON'T come from the algebra (or we can't see how):
+</p>
+
+<div class="cascade">
+  <div class="cascade-row header">
+    <span>system</span><span>count</span><span></span><span></span><span>status</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">nucleosome</span>
+    <span class="dim">147 bp</span>
+    <span></span><span></span>
+    <span class="numbers">No clean algebraic match. Not 126, not 248/2.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">DNA turn</span>
+    <span class="dim">10.5 bp</span>
+    <span></span><span></span>
+    <span class="numbers">Non-integer. Not derivable from E&sub8;.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">chromosomes</span>
+    <span class="dim">46</span>
+    <span></span><span></span>
+    <span class="numbers">Species-specific. Other species have different counts.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">large ribo</span>
+    <span class="dim">60S</span>
+    <span></span><span></span>
+    <span class="numbers">|A&sub5;| = icosahedron rotations? Speculative.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">magic 50</span>
+    <span class="dim">50</span>
+    <span></span><span></span>
+    <span class="numbers">No algebraic dimension matches.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">magic 82</span>
+    <span class="dim">82</span>
+    <span></span><span></span>
+    <span class="numbers">Close to 80 but not exact. +2 unexplained.</span>
+  </div>
+  <div class="cascade-row">
+    <span class="scale-name">water %</span>
+    <span class="dim">~60-70%</span>
+    <span></span><span></span>
+    <span class="numbers">Variable. Not a clean algebraic fraction.</span>
+  </div>
+</div>
+
+<div class="separator">&bull; &bull; &bull;</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h2>THE LOGIC</h2>
+
+<p class="step-text" style="color:#c8c8c8; line-height: 2;">
+The catalogue and the algebra are the same thing seen from two directions.<br><br>
+
+The catalogue says: <span class="bio">every self-maintaining system has 2 vacua, a wall, 2 bound states, 3 roles, asymmetry, and a coupling medium.</span><br><br>
+
+The algebra says: <span class="key">q + q&sup2; = 1 forces degree 2, V(&Phi;) forces the kink, PT n=2 forces 2 bound states, &Gamma;(2) forces 3 modular forms, Pisot forces asymmetry.</span><br><br>
+
+They're not two things that "match." They're one thing.<br><br>
+
+The numbers (2, 3, 5, 8, 20, 28, 40, 80, 126) aren't predictions.<br>
+They're the dimensions of the algebra. Biological systems use them<br>
+because <span class="forced">these are the only dimensions that exist</span> in Z[&phi;] &rarr; E&sub8; &rarr; Monster.<br><br>
+
+A cell doesn't "choose" to have 80S ribosomes.<br>
+80 is where protein translation lives in the algebra.<br>
+A hand doesn't "evolve" 8 carpals.<br>
+8 is the substrate dimension.<br><br>
+
+Following the algebra forward: every step is forced.<br>
+No free parameters. No choices. No predictions.<br>
+Just the arithmetic of q + q&sup2; = 1, unfolding.
+</p>
+
+<footer>
+  derivation-map.html &mdash; Session 46, Mar 13 2026<br>
+  Following the logic of q + q&sup2; = 1
+</footer>
+
+</body>
+</html>

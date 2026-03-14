@@ -1,0 +1,853 @@
+{
+  "vocabulary_size": 42,
+  "systems": [
+    {
+      "name": "Icosahedral Virus Capsids",
+      "results": [
+        {
+          "name": "T=1: protein subunits",
+          "value": 60,
+          "note": "60T, T=1",
+          "match_type": "EXACT",
+          "explanation": "240/4 = |A₅| = icosahedral group order",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 60"
+        },
+        {
+          "name": "T=1: pentamers",
+          "value": 12,
+          "note": "Always 12 at vertices",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "T=1: hexamers",
+          "value": 0,
+          "note": "None for T=1",
+          "match_type": "TRIVIAL",
+          "explanation": "zero",
+          "fm_path": null
+        },
+        {
+          "name": "T=1: capsomeres",
+          "value": 12,
+          "note": "10T+2 = 12",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "T=3: protein subunits",
+          "value": 180,
+          "note": "60×3",
+          "match_type": "PRODUCT",
+          "explanation": "3 × 60 = triality = generations = dim(A₁) × 240/4 = |A₅| = icosahedral group order",
+          "fm_path": null
+        },
+        {
+          "name": "T=3: pentamers",
+          "value": 12,
+          "note": "Always 12",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "T=3: hexamers",
+          "value": 20,
+          "note": "10(T-1) = 20",
+          "match_type": "EXACT",
+          "explanation": "roots(A₄) = icosahedron faces",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 20"
+        },
+        {
+          "name": "T=3: capsomeres",
+          "value": 32,
+          "note": "10T+2 = 32",
+          "match_type": "PRODUCT",
+          "explanation": "2 × 16 = Z₂ (domain wall symmetry) × spinor rep(D₅)",
+          "fm_path": null
+        },
+        {
+          "name": "T=4: protein subunits",
+          "value": 240,
+          "note": "60×4  ★★★",
+          "match_type": "EXACT",
+          "explanation": "roots(E₈) = kissing number in 8D",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 240"
+        },
+        {
+          "name": "T=4: pentamers",
+          "value": 12,
+          "note": "Always 12",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "T=4: hexamers",
+          "value": 30,
+          "note": "10(T-1) = 30",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₈)",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 30"
+        },
+        {
+          "name": "T=4: capsomeres",
+          "value": 42,
+          "note": "10T+2 = 42",
+          "match_type": "PRODUCT",
+          "explanation": "2 × 21 = Z₂ (domain wall symmetry) × dim(sp(6)) — Hornos genetic code",
+          "fm_path": null
+        },
+        {
+          "name": "T=7: protein subunits",
+          "value": 420,
+          "note": "60×7",
+          "match_type": "PRODUCT",
+          "explanation": "7 × 60 = rank(E₇) = Fano plane points × 240/4 = |A₅| = icosahedral group order",
+          "fm_path": null
+        },
+        {
+          "name": "T=7: pentamers",
+          "value": 12,
+          "note": "Always 12",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "T=7: hexamers",
+          "value": 60,
+          "note": "10(T-1) = 60",
+          "match_type": "EXACT",
+          "explanation": "240/4 = |A₅| = icosahedral group order",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 60"
+        },
+        {
+          "name": "T=7: capsomeres",
+          "value": 72,
+          "note": "10T+2 = 72",
+          "match_type": "EXACT",
+          "explanation": "roots(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 72"
+        },
+        {
+          "name": "T=13: protein subunits",
+          "value": 780,
+          "note": "60×13",
+          "match_type": "PRODUCT",
+          "explanation": "10 × 78 = vector rep(D₅) × dim(E₆)",
+          "fm_path": null
+        },
+        {
+          "name": "T=13: pentamers",
+          "value": 12,
+          "note": "Always 12",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "T=13: hexamers",
+          "value": 120,
+          "note": "10(T-1) = 120",
+          "match_type": "EXACT",
+          "explanation": "|S₅| = 240/2",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 120"
+        },
+        {
+          "name": "T=13: capsomeres",
+          "value": 132,
+          "note": "10T+2 = 132",
+          "match_type": "DECOMPOSITION",
+          "explanation": "60 + 72 = 240/4 = |A₅| = icosahedral group order + roots(E₆)",
+          "fm_path": null
+        },
+        {
+          "name": "T-number: T=1",
+          "value": 1,
+          "note": "h²+hk+k², (1,0)",
+          "match_type": "EXACT",
+          "explanation": "unity",
+          "fm_path": "Op0(Axiom): Self-reference (feedback) → 1"
+        },
+        {
+          "name": "T-number: T=3",
+          "value": 3,
+          "note": "(1,1) = triality",
+          "match_type": "EXACT",
+          "explanation": "triality = generations = dim(A₁)",
+          "fm_path": "Op6(SM): 24 = (8,1) + (1,3) + (3,2) + (3*,2) → 3"
+        },
+        {
+          "name": "T-number: T=4",
+          "value": 4,
+          "note": "(2,0)",
+          "match_type": "EXACT",
+          "explanation": "rank(A₄)",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 4"
+        },
+        {
+          "name": "T-number: T=7",
+          "value": 7,
+          "note": "(2,1) = Fano",
+          "match_type": "EXACT",
+          "explanation": "rank(E₇) = Fano plane points",
+          "fm_path": "Op2(E₇): 248 = 133 + 56 + 56* + 1 + 1 + 1 → 7"
+        },
+        {
+          "name": "T-number: T=13",
+          "value": 13,
+          "note": "(3,1)",
+          "match_type": "DECOMPOSITION",
+          "explanation": "5 + 8 = rank(D₅) = pariah count + rank(E₈)",
+          "fm_path": null
+        },
+        {
+          "name": "Vertices of icosahedron",
+          "value": 12,
+          "note": "Forced by Platonic geometry",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "Faces of icosahedron",
+          "value": 20,
+          "note": "Forced",
+          "match_type": "EXACT",
+          "explanation": "roots(A₄) = icosahedron faces",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 20"
+        },
+        {
+          "name": "Edges of icosahedron",
+          "value": 30,
+          "note": "Forced",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₈)",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 30"
+        }
+      ],
+      "stats": {
+        "total": 28,
+        "exact": 20,
+        "root_quotient": 0,
+        "decomposition": 2,
+        "product": 5,
+        "near": 0,
+        "miss": 0,
+        "trivial": 1,
+        "algebraic_total": 20,
+        "large_total": 16,
+        "large_exact": 9,
+        "expected_rate": 0.040364583333333336,
+        "expected_large": 0.6458333333333334,
+        "p_value": 1.3244140721366383e-26
+      }
+    },
+    {
+      "name": "PhiX174 Bacteriophage",
+      "results": [
+        {
+          "name": "Major coat protein gpF copies",
+          "value": 60,
+          "note": "T=1 icosahedral",
+          "match_type": "EXACT",
+          "explanation": "240/4 = |A₅| = icosahedral group order",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 60"
+        },
+        {
+          "name": "Spike protein gpG copies",
+          "value": 60,
+          "note": "12 pentameric spikes × 5",
+          "match_type": "EXACT",
+          "explanation": "240/4 = |A₅| = icosahedral group order",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 60"
+        },
+        {
+          "name": "Pentameric spikes",
+          "value": 12,
+          "note": "At 5-fold vertices",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "DNA-binding protein gpJ copies",
+          "value": 60,
+          "note": "One per F subunit",
+          "match_type": "EXACT",
+          "explanation": "240/4 = |A₅| = icosahedral group order",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 60"
+        },
+        {
+          "name": "Pilot protein gpH copies",
+          "value": 12,
+          "note": "One per vertex",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "Distinct structural protein types",
+          "value": 4,
+          "note": "F, G, H, J",
+          "match_type": "EXACT",
+          "explanation": "rank(A₄)",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 4"
+        },
+        {
+          "name": "Genes",
+          "value": 11,
+          "note": "A, A*, B-K",
+          "match_type": "DECOMPOSITION",
+          "explanation": "3 + 8 = triality = generations = dim(A₁) + rank(E₈)",
+          "fm_path": null
+        },
+        {
+          "name": "Total virion proteins",
+          "value": 192,
+          "note": "60+60+60+12",
+          "match_type": "PRODUCT",
+          "explanation": "4 × 48 = rank(A₄) × 240/5",
+          "fm_path": null
+        },
+        {
+          "name": "Genome size (nt)",
+          "value": 5386,
+          "note": "ssDNA circular",
+          "match_type": "MISS",
+          "explanation": "No algebraic match found",
+          "fm_path": null
+        }
+      ],
+      "stats": {
+        "total": 9,
+        "exact": 6,
+        "root_quotient": 0,
+        "decomposition": 1,
+        "product": 1,
+        "near": 0,
+        "miss": 1,
+        "trivial": 0,
+        "algebraic_total": 6,
+        "large_total": 5,
+        "large_exact": 3,
+        "expected_rate": 0.0057685150725716415,
+        "expected_large": 0.028842575362858208,
+        "p_value": 3.231549437452288e-69
+      }
+    },
+    {
+      "name": "Eukaryotic 80S Ribosome (human)",
+      "results": [
+        {
+          "name": "Complete ribosome (Svedberg)",
+          "value": 80,
+          "note": "80S",
+          "match_type": "EXACT",
+          "explanation": "240/3 = hierarchy exponent",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 80"
+        },
+        {
+          "name": "Small subunit (Svedberg)",
+          "value": 40,
+          "note": "40S",
+          "match_type": "EXACT",
+          "explanation": "240/6 = roots(D₅)",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 40"
+        },
+        {
+          "name": "Large subunit (Svedberg)",
+          "value": 60,
+          "note": "60S",
+          "match_type": "EXACT",
+          "explanation": "240/4 = |A₅| = icosahedral group order",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 60"
+        },
+        {
+          "name": "Small subunit proteins (RPS)",
+          "value": 33,
+          "note": "Human 40S",
+          "match_type": "DECOMPOSITION",
+          "explanation": "5 + 28 = rank(D₅) = pariah count + dim(so(8)) = T(7) = perfect number",
+          "fm_path": null
+        },
+        {
+          "name": "Large subunit proteins (RPL)",
+          "value": 47,
+          "note": "Human 60S",
+          "match_type": "DECOMPOSITION",
+          "explanation": "4 + 43 = rank(A₄) + pariah prime — J₄ at GF(2), X₀(43) genus = F₄",
+          "fm_path": null
+        },
+        {
+          "name": "Total ribosomal proteins",
+          "value": 80,
+          "note": "33 + 47",
+          "match_type": "EXACT",
+          "explanation": "240/3 = hierarchy exponent",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 80"
+        },
+        {
+          "name": "rRNA molecules",
+          "value": 4,
+          "note": "18S, 5.8S, 28S, 5S",
+          "match_type": "EXACT",
+          "explanation": "rank(A₄)",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 4"
+        },
+        {
+          "name": "5S rRNA length (nt)",
+          "value": 120,
+          "note": "Conserved across ALL eukaryotes",
+          "match_type": "EXACT",
+          "explanation": "|S₅| = 240/2",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 120"
+        },
+        {
+          "name": "Prokaryotic ribosome (Svedberg)",
+          "value": 70,
+          "note": "70S (E. coli)",
+          "match_type": "PRODUCT",
+          "explanation": "2 × 35 = Z₂ (domain wall symmetry) × dim(B₃) = dim(so(7))",
+          "fm_path": null
+        },
+        {
+          "name": "Prokaryotic small subunit",
+          "value": 30,
+          "note": "30S",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₈)",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 30"
+        },
+        {
+          "name": "Prokaryotic large subunit",
+          "value": 50,
+          "note": "50S",
+          "match_type": "PRODUCT",
+          "explanation": "5 × 10 = rank(D₅) = pariah count × vector rep(D₅)",
+          "fm_path": null
+        },
+        {
+          "name": "Prok→Euk jump per subunit",
+          "value": 10,
+          "note": "30→40, 50→60, 70→80",
+          "match_type": "EXACT",
+          "explanation": "vector rep(D₅)",
+          "fm_path": "Op4(D₅): 78 = 45 + 16 + 16* + 1 → 10"
+        },
+        {
+          "name": "Mitochondrial small subunit",
+          "value": 28,
+          "note": "28S (mammalian)",
+          "match_type": "EXACT",
+          "explanation": "dim(2.Ru faithful rep) — shadow",
+          "fm_path": "Op4(D₅): 78 = 45 + 16 + 16* + 1 → 28"
+        },
+        {
+          "name": "Amino acids translated",
+          "value": 20,
+          "note": "Universal genetic code",
+          "match_type": "EXACT",
+          "explanation": "roots(A₄) = icosahedron faces",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 20"
+        }
+      ],
+      "stats": {
+        "total": 14,
+        "exact": 10,
+        "root_quotient": 0,
+        "decomposition": 2,
+        "product": 2,
+        "near": 0,
+        "miss": 0,
+        "trivial": 0,
+        "algebraic_total": 10,
+        "large_total": 12,
+        "large_exact": 8,
+        "expected_rate": 0.24074074074074073,
+        "expected_large": 2.888888888888889,
+        "p_value": 0.00029973937246248835
+      }
+    },
+    {
+      "name": "20S Proteasome Core Particle",
+      "results": [
+        {
+          "name": "Total subunits",
+          "value": 28,
+          "note": "α₇β₇β₇α₇",
+          "match_type": "EXACT",
+          "explanation": "dim(2.Ru faithful rep) — shadow",
+          "fm_path": "Op4(D₅): 78 = 45 + 16 + 16* + 1 → 28"
+        },
+        {
+          "name": "Heptameric rings",
+          "value": 4,
+          "note": "Stacked rings",
+          "match_type": "EXACT",
+          "explanation": "rank(A₄)",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 4"
+        },
+        {
+          "name": "Subunits per ring",
+          "value": 7,
+          "note": "Heptameric symmetry",
+          "match_type": "EXACT",
+          "explanation": "rank(E₇) = Fano plane points",
+          "fm_path": "Op2(E₇): 248 = 133 + 56 + 56* + 1 + 1 + 1 → 7"
+        },
+        {
+          "name": "Unique α subunit types",
+          "value": 7,
+          "note": "α1-α7",
+          "match_type": "EXACT",
+          "explanation": "rank(E₇) = Fano plane points",
+          "fm_path": "Op2(E₇): 248 = 133 + 56 + 56* + 1 + 1 + 1 → 7"
+        },
+        {
+          "name": "Unique β subunit types",
+          "value": 7,
+          "note": "β1-β7",
+          "match_type": "EXACT",
+          "explanation": "rank(E₇) = Fano plane points",
+          "fm_path": "Op2(E₇): 248 = 133 + 56 + 56* + 1 + 1 + 1 → 7"
+        },
+        {
+          "name": "Total unique protein types",
+          "value": 14,
+          "note": "7α + 7β",
+          "match_type": "EXACT",
+          "explanation": "dim(G₂)",
+          "fm_path": "Op4(D₅): 78 = 45 + 16 + 16* + 1 → 14"
+        },
+        {
+          "name": "Catalytic β per ring",
+          "value": 3,
+          "note": "β1, β2, β5 active",
+          "match_type": "EXACT",
+          "explanation": "triality = generations = dim(A₁)",
+          "fm_path": "Op6(SM): 24 = (8,1) + (1,3) + (3,2) + (3*,2) → 3"
+        },
+        {
+          "name": "Total catalytic sites",
+          "value": 6,
+          "note": "3 per β-ring × 2 rings",
+          "match_type": "EXACT",
+          "explanation": "rank(E₆) = |S₃|",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 6"
+        },
+        {
+          "name": "19S regulatory particle subunits",
+          "value": 19,
+          "note": "~19 (lid 9 + base 10)",
+          "match_type": "DECOMPOSITION",
+          "explanation": "4 + 15 = rank(A₄) + dim(A₃) = dim(su(4))",
+          "fm_path": null
+        },
+        {
+          "name": "26S complete (Svedberg)",
+          "value": 26,
+          "note": "20S + 19S",
+          "match_type": "EXACT",
+          "explanation": "count of sporadic groups",
+          "fm_path": "Op7(Pariah): 6 sporadics not in Monster → 26"
+        }
+      ],
+      "stats": {
+        "total": 10,
+        "exact": 9,
+        "root_quotient": 0,
+        "decomposition": 1,
+        "product": 0,
+        "near": 0,
+        "miss": 0,
+        "trivial": 0,
+        "algebraic_total": 9,
+        "large_total": 4,
+        "large_exact": 3,
+        "expected_rate": 0.625,
+        "expected_large": 2.5,
+        "p_value": 0.6761137508906019
+      }
+    },
+    {
+      "name": "Nucleosome",
+      "results": [
+        {
+          "name": "Histone proteins (octamer)",
+          "value": 8,
+          "note": "(H2A,H2B,H3,H4) × 2",
+          "match_type": "EXACT",
+          "explanation": "dim(su(3)) = gluons",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 8"
+        },
+        {
+          "name": "Histone types",
+          "value": 4,
+          "note": "H2A, H2B, H3, H4",
+          "match_type": "EXACT",
+          "explanation": "rank(A₄)",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 4"
+        },
+        {
+          "name": "Copies of each type",
+          "value": 2,
+          "note": "Dimeric symmetry",
+          "match_type": "EXACT",
+          "explanation": "Z₂ (domain wall symmetry)",
+          "fm_path": "Op0(Axiom): Self-reference (feedback) → 2"
+        },
+        {
+          "name": "DNA wrapped (bp)",
+          "value": 147,
+          "note": "~1.65 superhelical turns",
+          "match_type": "PRODUCT",
+          "explanation": "7 × 21 = rank(E₇) = Fano plane points × dim(sp(6)) — Hornos genetic code",
+          "fm_path": null
+        },
+        {
+          "name": "Linker histone H1 (chromatosome)",
+          "value": 1,
+          "note": "Seals entry/exit",
+          "match_type": "EXACT",
+          "explanation": "unity",
+          "fm_path": "Op0(Axiom): Self-reference (feedback) → 1"
+        },
+        {
+          "name": "Chromatosome proteins",
+          "value": 9,
+          "note": "Octamer + H1",
+          "match_type": "PRODUCT",
+          "explanation": "3 × 3 = triality = generations = dim(A₁) × triality = generations = dim(A₁)",
+          "fm_path": null
+        }
+      ],
+      "stats": {
+        "total": 6,
+        "exact": 4,
+        "root_quotient": 0,
+        "decomposition": 0,
+        "product": 2,
+        "near": 0,
+        "miss": 0,
+        "trivial": 0,
+        "algebraic_total": 4,
+        "large_total": 1,
+        "large_exact": 0,
+        "expected_rate": 0.2074074074074074,
+        "expected_large": 0.2074074074074074,
+        "p_value": 1.0
+      }
+    },
+    {
+      "name": "ATP Synthase (F₁F₀, mammalian)",
+      "results": [
+        {
+          "name": "F₁ α subunits",
+          "value": 3,
+          "note": "Catalytic hexamer",
+          "match_type": "EXACT",
+          "explanation": "triality = generations = dim(A₁)",
+          "fm_path": "Op6(SM): 24 = (8,1) + (1,3) + (3,2) + (3*,2) → 3"
+        },
+        {
+          "name": "F₁ β subunits",
+          "value": 3,
+          "note": "Catalytic hexamer",
+          "match_type": "EXACT",
+          "explanation": "triality = generations = dim(A₁)",
+          "fm_path": "Op6(SM): 24 = (8,1) + (1,3) + (3,2) + (3*,2) → 3"
+        },
+        {
+          "name": "F₁ catalytic sites",
+          "value": 3,
+          "note": "One per β",
+          "match_type": "EXACT",
+          "explanation": "triality = generations = dim(A₁)",
+          "fm_path": "Op6(SM): 24 = (8,1) + (1,3) + (3,2) + (3*,2) → 3"
+        },
+        {
+          "name": "Rotation per catalytic event (°)",
+          "value": 120,
+          "note": "360°/3",
+          "match_type": "EXACT",
+          "explanation": "|S₅| = 240/2",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 120"
+        },
+        {
+          "name": "c-ring subunits (human)",
+          "value": 8,
+          "note": "Species-specific: 8 mammals",
+          "match_type": "EXACT",
+          "explanation": "dim(su(3)) = gluons",
+          "fm_path": "Op1(E₈): Z[φ] → E₈ lattice → 8"
+        },
+        {
+          "name": "F₁ total subunits (α₃β₃γδε)",
+          "value": 9,
+          "note": "3+3+1+1+1",
+          "match_type": "PRODUCT",
+          "explanation": "3 × 3 = triality = generations = dim(A₁) × triality = generations = dim(A₁)",
+          "fm_path": null
+        },
+        {
+          "name": "Central stalk subunits",
+          "value": 3,
+          "note": "γ + δ + ε",
+          "match_type": "EXACT",
+          "explanation": "triality = generations = dim(A₁)",
+          "fm_path": "Op6(SM): 24 = (8,1) + (1,3) + (3,2) + (3*,2) → 3"
+        }
+      ],
+      "stats": {
+        "total": 7,
+        "exact": 6,
+        "root_quotient": 0,
+        "decomposition": 0,
+        "product": 1,
+        "near": 0,
+        "miss": 0,
+        "trivial": 0,
+        "algebraic_total": 6,
+        "large_total": 1,
+        "large_exact": 1,
+        "expected_rate": 0.24074074074074073,
+        "expected_large": 0.24074074074074073,
+        "p_value": 0.04641312632837307
+      }
+    },
+    {
+      "name": "Collagen (Type I)",
+      "results": [
+        {
+          "name": "Polypeptide chains (triple helix)",
+          "value": 3,
+          "note": "Always 3 (Gly-X-Y)",
+          "match_type": "EXACT",
+          "explanation": "triality = generations = dim(A₁)",
+          "fm_path": "Op6(SM): 24 = (8,1) + (1,3) + (3,2) + (3*,2) → 3"
+        },
+        {
+          "name": "D-period spacing (nm)",
+          "value": 67,
+          "note": "67 nm axial repeat",
+          "match_type": "EXACT",
+          "explanation": "pariah prime — X₀(67) genus = F₅",
+          "fm_path": "Op7(Pariah): 6 sporadics not in Monster → 67"
+        },
+        {
+          "name": "Tropocollagen per microfibril cross-section",
+          "value": 5,
+          "note": "Quarter-stagger model",
+          "match_type": "EXACT",
+          "explanation": "rank(D₅) = pariah count",
+          "fm_path": "Op4(D₅): 78 = 45 + 16 + 16* + 1 → 5"
+        },
+        {
+          "name": "Gly-X-Y tripeptide repeat unit",
+          "value": 3,
+          "note": "Every 3rd residue is Gly",
+          "match_type": "EXACT",
+          "explanation": "triality = generations = dim(A₁)",
+          "fm_path": "Op6(SM): 24 = (8,1) + (1,3) + (3,2) + (3*,2) → 3"
+        }
+      ],
+      "stats": {
+        "total": 4,
+        "exact": 4,
+        "root_quotient": 0,
+        "decomposition": 0,
+        "product": 0,
+        "near": 0,
+        "miss": 0,
+        "trivial": 0,
+        "algebraic_total": 4,
+        "large_total": 1,
+        "large_exact": 1,
+        "expected_rate": 0.38181818181818183,
+        "expected_large": 0.38181818181818183,
+        "p_value": 0.13954315284370913
+      }
+    },
+    {
+      "name": "Immunoglobulin G (IgG)",
+      "results": [
+        {
+          "name": "Ig domains per molecule",
+          "value": 12,
+          "note": "4 on each heavy + 2 on each light",
+          "match_type": "EXACT",
+          "explanation": "Coxeter h(E₆)",
+          "fm_path": "Op3(E₆): 133 = 78 + 27 + 27* + 1 → 12"
+        },
+        {
+          "name": "Polypeptide chains",
+          "value": 4,
+          "note": "2 heavy + 2 light",
+          "match_type": "EXACT",
+          "explanation": "rank(A₄)",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 4"
+        },
+        {
+          "name": "Fab arms",
+          "value": 2,
+          "note": "Antigen-binding",
+          "match_type": "EXACT",
+          "explanation": "Z₂ (domain wall symmetry)",
+          "fm_path": "Op0(Axiom): Self-reference (feedback) → 2"
+        },
+        {
+          "name": "Fc stem",
+          "value": 1,
+          "note": "Effector function",
+          "match_type": "EXACT",
+          "explanation": "unity",
+          "fm_path": "Op0(Axiom): Self-reference (feedback) → 1"
+        },
+        {
+          "name": "Disulfide bonds (inter-chain)",
+          "value": 4,
+          "note": "Varies by subclass, IgG1=4",
+          "match_type": "EXACT",
+          "explanation": "rank(A₄)",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 4"
+        },
+        {
+          "name": "Heavy chain Ig domains",
+          "value": 4,
+          "note": "VH, CH1, CH2, CH3",
+          "match_type": "EXACT",
+          "explanation": "rank(A₄)",
+          "fm_path": "Op5(A₄): 45 = 24 + 10 + 10* + 1 → 4"
+        },
+        {
+          "name": "Light chain Ig domains",
+          "value": 2,
+          "note": "VL, CL",
+          "match_type": "EXACT",
+          "explanation": "Z₂ (domain wall symmetry)",
+          "fm_path": "Op0(Axiom): Self-reference (feedback) → 2"
+        }
+      ],
+      "stats": {
+        "total": 7,
+        "exact": 7,
+        "root_quotient": 0,
+        "decomposition": 0,
+        "product": 0,
+        "near": 0,
+        "miss": 0,
+        "trivial": 0,
+        "algebraic_total": 7,
+        "large_total": 0,
+        "large_exact": 0,
+        "expected_rate": 0,
+        "expected_large": 0,
+        "p_value": 1.0
+      }
+    }
+  ]
+}

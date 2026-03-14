@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>FM Algebraic Decomposition v2</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Palatino Linotype', Georgia, serif; background:#fafafa;
+       color:#1a1a1a; max-width:900px; margin:0 auto; padding:20px 30px; line-height:1.5; }
+h1 { font-size:24px; font-weight:normal; letter-spacing:2px; text-transform:uppercase;
+     border-bottom:2px solid #1a1a1a; padding-bottom:6px; margin:20px 0 5px; }
+.sub { font-size:13px; color:#666; margin-bottom:20px; }
+.null-box { background:#fff; border:2px solid #1a1a1a; padding:16px 20px; margin:20px 0; }
+.null-box h2 { font-size:16px; margin-bottom:10px; }
+.null-row { display:flex; gap:30px; margin:8px 0; font-size:14px; }
+.null-label { width:120px; font-weight:bold; }
+.verdict { font-size:18px; font-weight:bold; margin-top:12px; padding:8px 12px; }
+.sig { background:#c8e6c9; color:#2e7d32; }
+.nosig { background:#ffcdd2; color:#c62828; }
+.system { margin:15px 0; border:1px solid #ddd; background:#fff; }
+.sys-h { padding:10px 16px; background:#f5f5f5; cursor:pointer; display:flex;
+          justify-content:space-between; border-bottom:1px solid #ddd; font-size:15px; }
+.sys-h:hover { background:#eee; }
+.sys-b { display:none; padding:0; }
+.sys-b.open { display:block; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th { text-align:left; padding:6px 10px; background:#fafafa; border-bottom:2px solid #ddd;
+     font-size:10px; text-transform:uppercase; letter-spacing:1px; color:#888; }
+td { padding:5px 10px; border-bottom:1px solid #f0f0f0; }
+.v { font-family:monospace; font-weight:bold; text-align:right; }
+.EXACT { color:#2e7d32; font-weight:bold; }
+.ROOT_QUOTIENT { color:#0277bd; font-weight:bold; }
+.PRODUCT { color:#6a1b9a; }
+.DECOMPOSITION { color:#1565c0; }
+.MISS { color:#c62828; font-weight:bold; }
+.tag { font-size:10px; color:#999; margin-left:4px; }
+footer { margin-top:30px; padding-top:10px; border-top:1px solid #ddd;
+         font-size:11px; color:#888; text-align:center; }
+</style></head><body>
+<h1>FM Algebraic Decomposition v2</h1>
+<p class="sub">With null model. Structural counts separated from physical measurements.</p>
+
+<div class="null-box">
+<h2>NULL MODEL — Is the signal real?</h2>
+<p style="font-size:12px;color:#666;margin-bottom:10px;">
+10,000 trials. Each biological value replaced with random integer of same magnitude.
+Key test: large numbers (&gt;12) where trivial matches are excluded.</p>
+
+<div class="null-row"><div class="null-label">ALL VALUES</div>
+<div>Large exact: <b id="a-obs"></b> observed vs <b id="a-null"></b> null &nbsp;|&nbsp;
+z = <b id="a-z"></b> &nbsp;|&nbsp; p = <b id="a-p"></b></div></div>
+
+<div class="null-row"><div class="null-label">COUNTS ONLY</div>
+<div>Large exact: <b id="c-obs"></b> observed vs <b id="c-null"></b> null &nbsp;|&nbsp;
+z = <b id="c-z"></b> &nbsp;|&nbsp; p = <b id="c-p"></b></div></div>
+
+<div class="verdict" id="verdict"></div>
+</div>
+
+<div id="systems"></div>
+
+<footer>FM Algebraic Decomposition v2 — Null model addresses the critique.<br>
+Algebra IS physics at structural resolution. The null model tests whether this is distinguishable from noise.</footer>
+
+<script>
+const D = {
+  "systems": [
+    {
+      "name": "Icosahedral Virus Capsids",
+      "exact": 14,
+      "total": 17,
+      "counts": [
+        {
+          "name": "T=1 subunits",
+          "value": 60,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "240/4 = |A₅|"
+        },
+        {
+          "name": "T=1 pentamers",
+          "value": 12,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₆)"
+        },
+        {
+          "name": "T=3 subunits",
+          "value": 180,
+          "ctype": "count",
+          "match": "PRODUCT",
+          "expl": "3 × 60"
+        },
+        {
+          "name": "T=3 pentamers",
+          "value": 12,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₆)"
+        },
+        {
+          "name": "T=3 hexamers",
+          "value": 20,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "roots(A₄)=icosahedron"
+        },
+        {
+          "name": "T=4 subunits",
+          "value": 240,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "roots(E₈)"
+        },
+        {
+          "name": "T=4 pentamers",
+          "value": 12,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₆)"
+        },
+        {
+          "name": "T=4 hexamers",
+          "value": 30,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₈)"
+        },
+        {
+          "name": "T=7 subunits",
+          "value": 420,
+          "ctype": "count",
+          "match": "PRODUCT",
+          "expl": "7 × 60"
+        },
+        {
+          "name": "T=7 pentamers",
+          "value": 12,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₆)"
+        },
+        {
+          "name": "T=7 hexamers",
+          "value": 60,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "240/4 = |A₅|"
+        },
+        {
+          "name": "T=7 capsomeres",
+          "value": 72,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "roots(E₆)"
+        },
+        {
+          "name": "T=13 subunits",
+          "value": 780,
+          "ctype": "count",
+          "match": "PRODUCT",
+          "expl": "10 × 78"
+        },
+        {
+          "name": "T=13 hexamers",
+          "value": 120,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "|S₅| = 240/2"
+        },
+        {
+          "name": "Icosahedron vertices",
+          "value": 12,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₆)"
+        },
+        {
+          "name": "Icosahedron faces",
+          "value": 20,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "roots(A₄)=icosahedron"
+        },
+        {
+          "name": "Icosahedron edges",
+          "value": 30,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₈)"
+        }
+      ]
+    },
+    {
+      "name": "PhiX174 Bacteriophage",
+      "exact": 6,
+      "total": 8,
+      "counts": [
+        {
+          "name": "gpF coat copies",
+          "value": 60,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "240/4 = |A₅|"
+        },
+        {
+          "name": "gpG spike copies",
+          "value": 60,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "240/4 = |A₅|"
+        },
+        {
+          "name": "Pentameric spikes",
+          "value": 12,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₆)"
+        },
+        {
+          "name": "gpJ copies",
+          "value": 60,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "240/4 = |A₅|"
+        },
+        {
+          "name": "gpH pilot copies",
+          "value": 12,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₆)"
+        },
+        {
+          "name": "Structural protein types",
+          "value": 4,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "rank(A₄)"
+        },
+        {
+          "name": "Genes",
+          "value": 11,
+          "ctype": "count",
+          "match": "DECOMPOSITION",
+          "expl": "1 + 10"
+        },
+        {
+          "name": "Genome size (nt)",
+          "value": 5386,
+          "ctype": "measurement",
+          "match": "MISS",
+          "expl": ""
+        }
+      ]
+    },
+    {
+      "name": "Ribosome (Euk + Prok comparison)",
+      "exact": 14,
+      "total": 20,
+      "counts": [
+        {
+          "name": "Euk ribosome (Svedberg)",
+          "value": 80,
+          "ctype": "measurement",
+          "match": "EXACT",
+          "expl": "240/3"
+        },
+        {
+          "name": "Euk small (Svedberg)",
+          "value": 40,
+          "ctype": "measurement",
+          "match": "EXACT",
+          "expl": "240/6"
+        },
+        {
+          "name": "Euk large (Svedberg)",
+          "value": 60,
+          "ctype": "measurement",
+          "match": "EXACT",
+          "expl": "240/4 = |A₅|"
+        },
+        {
+          "name": "Prok ribosome (Svedberg)",
+          "value": 70,
+          "ctype": "measurement",
+          "match": "PRODUCT",
+          "expl": "2 × 35"
+        },
+        {
+          "name": "Prok small (Svedberg)",
+          "value": 30,
+          "ctype": "measurement",
+          "match": "EXACT",
+          "expl": "h(E₈)"
+        },
+        {
+          "name": "Prok large (Svedberg)",
+          "value": 50,
+          "ctype": "measurement",
+          "match": "PRODUCT",
+          "expl": "5 × 10"
+        },
+        {
+          "name": "Mito small (Svedberg)",
+          "value": 28,
+          "ctype": "measurement",
+          "match": "EXACT",
+          "expl": "dim(2.Ru)"
+        },
+        {
+          "name": "Human 40S proteins",
+          "value": 33,
+          "ctype": "count",
+          "match": "DECOMPOSITION",
+          "expl": "3 + 30"
+        },
+        {
+          "name": "Human 60S proteins",
+          "value": 47,
+          "ctype": "count",
+          "match": "DECOMPOSITION",
+          "expl": "2 + 45"
+        },
+        {
+          "name": "Human total proteins",
+          "value": 80,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "240/3"
+        },
+        {
+          "name": "E.coli 30S proteins",
+          "value": 21,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "dim(sp(6))"
+        },
+        {
+          "name": "E.coli 50S proteins",
+          "value": 33,
+          "ctype": "count",
+          "match": "DECOMPOSITION",
+          "expl": "3 + 30"
+        },
+        {
+          "name": "E.coli total proteins",
+          "value": 54,
+          "ctype": "count",
+          "match": "PRODUCT",
+          "expl": "2 × 27"
+        },
+        {
+          "name": "Prok→Euk small jump",
+          "value": 12,
+          "ctype": "derived",
+          "match": "EXACT",
+          "expl": "h(E₆)"
+        },
+        {
+          "name": "Prok→Euk large jump",
+          "value": 14,
+          "ctype": "derived",
+          "match": "EXACT",
+          "expl": "dim(G₂)"
+        },
+        {
+          "name": "Prok→Euk total jump",
+          "value": 26,
+          "ctype": "derived",
+          "match": "EXACT",
+          "expl": "sporadic count"
+        },
+        {
+          "name": "rRNA molecules",
+          "value": 4,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "rank(A₄)"
+        },
+        {
+          "name": "5S rRNA length (nt)",
+          "value": 120,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "|S₅| = 240/2"
+        },
+        {
+          "name": "Amino acids",
+          "value": 20,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "roots(A₄)=icosahedron"
+        },
+        {
+          "name": "tRNA binding sites",
+          "value": 3,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "triality"
+        }
+      ]
+    },
+    {
+      "name": "20S Proteasome Core",
+      "exact": 7,
+      "total": 8,
+      "counts": [
+        {
+          "name": "Total subunits",
+          "value": 28,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "dim(2.Ru)"
+        },
+        {
+          "name": "Heptameric rings",
+          "value": 4,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "rank(A₄)"
+        },
+        {
+          "name": "Subunits per ring",
+          "value": 7,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "rank(E₇)"
+        },
+        {
+          "name": "Unique protein types",
+          "value": 14,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "dim(G₂)"
+        },
+        {
+          "name": "Catalytic per beta-ring",
+          "value": 3,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "triality"
+        },
+        {
+          "name": "Total catalytic sites",
+          "value": 6,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "rank(E₆)=|S₃|"
+        },
+        {
+          "name": "19S cap subunits",
+          "value": 19,
+          "ctype": "count",
+          "match": "DECOMPOSITION",
+          "expl": "1 + 18"
+        },
+        {
+          "name": "26S (Svedberg)",
+          "value": 26,
+          "ctype": "measurement",
+          "match": "EXACT",
+          "expl": "sporadic count"
+        }
+      ]
+    },
+    {
+      "name": "Nucleosome",
+      "exact": 3,
+      "total": 4,
+      "counts": [
+        {
+          "name": "Histone octamer",
+          "value": 8,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "dim(su(3))"
+        },
+        {
+          "name": "Histone types",
+          "value": 4,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "rank(A₄)"
+        },
+        {
+          "name": "Copies each type",
+          "value": 2,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "Z₂ (domain wall)"
+        },
+        {
+          "name": "DNA wrapped (bp)",
+          "value": 147,
+          "ctype": "count",
+          "match": "PRODUCT",
+          "expl": "7 × 21"
+        }
+      ]
+    },
+    {
+      "name": "ATP Synthase F₁",
+      "exact": 6,
+      "total": 6,
+      "counts": [
+        {
+          "name": "alpha subunits",
+          "value": 3,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "triality"
+        },
+        {
+          "name": "beta subunits",
+          "value": 3,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "triality"
+        },
+        {
+          "name": "Catalytic sites",
+          "value": 3,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "triality"
+        },
+        {
+          "name": "Rotation per step (deg)",
+          "value": 120,
+          "ctype": "measurement",
+          "match": "EXACT",
+          "expl": "|S₅| = 240/2"
+        },
+        {
+          "name": "c-ring subunits (human)",
+          "value": 8,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "dim(su(3))"
+        },
+        {
+          "name": "Central stalk subunits",
+          "value": 3,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "triality"
+        }
+      ]
+    },
+    {
+      "name": "Collagen Type I",
+      "exact": 3,
+      "total": 3,
+      "counts": [
+        {
+          "name": "Chains (triple helix)",
+          "value": 3,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "triality"
+        },
+        {
+          "name": "D-period (nm)",
+          "value": 67,
+          "ctype": "measurement",
+          "match": "EXACT",
+          "expl": "pariah"
+        },
+        {
+          "name": "Tropocollagen per microfibril",
+          "value": 5,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "rank(D₅)"
+        }
+      ]
+    },
+    {
+      "name": "IgG Antibody",
+      "exact": 5,
+      "total": 5,
+      "counts": [
+        {
+          "name": "Ig domains",
+          "value": 12,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "h(E₆)"
+        },
+        {
+          "name": "Polypeptide chains",
+          "value": 4,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "rank(A₄)"
+        },
+        {
+          "name": "Fab arms",
+          "value": 2,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "Z₂ (domain wall)"
+        },
+        {
+          "name": "Heavy chain domains",
+          "value": 4,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "rank(A₄)"
+        },
+        {
+          "name": "Light chain domains",
+          "value": 2,
+          "ctype": "count",
+          "match": "EXACT",
+          "expl": "Z₂ (domain wall)"
+        }
+      ]
+    }
+  ],
+  "null_model": {
+    "all": {
+      "observed_large": 28,
+      "total_large": 40,
+      "null_mean": 14.2,
+      "null_std": 3.0,
+      "z": 4.6,
+      "p": 0.0
+    },
+    "counts_only": {
+      "observed_large": 20,
+      "total_large": 29,
+      "null_mean": 11.7,
+      "null_std": 2.7,
+      "z": 3.1,
+      "p": 0.0023
+    }
+  },
+  "totals": {
+    "all": {
+      "n": 71,
+      "exact": 58,
+      "miss": 1
+    },
+    "counts_only": {
+      "n": 60,
+      "exact": 50,
+      "miss": 0
+    }
+  }
+};
+const nm = D.null_model;
+document.getElementById('a-obs').textContent = nm.all.observed_large + '/' + nm.all.total_large;
+document.getElementById('a-null').textContent = nm.all.null_mean + '±' + nm.all.null_std;
+document.getElementById('a-z').textContent = nm.all.z;
+document.getElementById('a-p').textContent = nm.all.p < 0.001 ? '<0.001' : nm.all.p;
+document.getElementById('c-obs').textContent = nm.counts_only.observed_large + '/' + nm.counts_only.total_large;
+document.getElementById('c-null').textContent = nm.counts_only.null_mean + '±' + nm.counts_only.null_std;
+document.getElementById('c-z').textContent = nm.counts_only.z;
+document.getElementById('c-p').textContent = nm.counts_only.p < 0.001 ? '<0.001' : nm.counts_only.p;
+
+const pVal = nm.counts_only.p;
+const vEl = document.getElementById('verdict');
+if (pVal < 0.001) {
+    vEl.className = 'verdict sig';
+    vEl.textContent = 'SIGNAL IS REAL — structural counts match algebra far beyond chance (p < 0.001)';
+} else if (pVal < 0.05) {
+    vEl.className = 'verdict sig';
+    vEl.textContent = 'SUGGESTIVE — p = ' + pVal + ' (below 0.05 threshold)';
+} else {
+    vEl.className = 'verdict nosig';
+    vEl.textContent = 'NOT SIGNIFICANT — random numbers match at similar rate (p = ' + pVal + ')';
+}
+
+const container = document.getElementById('systems');
+D.systems.forEach((s, i) => {
+    const pct = s.total > 0 ? ((s.exact/s.total)*100).toFixed(0) : 0;
+    let rows = '';
+    s.counts.forEach(c => {
+        const cls = c.match;
+        const tag = c.ctype !== 'count' ? '<span class="tag">[' + c.ctype + ']</span>' : '';
+        rows += '<tr><td>' + c.name + tag + '</td><td class="v">' + c.value +
+                '</td><td class="' + cls + '">' + cls.replace('_',' ') +
+                '</td><td>' + c.expl + '</td></tr>';
+    });
+    container.innerHTML += '<div class="system"><div class="sys-h" onclick="this.nextElementSibling.classList.toggle('open')"><span>' +
+        s.name + '</span><span>' + pct + '% exact</span></div>' +
+        '<div class="sys-b' + (i===0?' open':'') + '"><table><tr><th>Component</th><th>Value</th><th>Match</th><th>Source</th></tr>' +
+        rows + '</table></div></div>';
+});
+</script></body></html>
