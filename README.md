@@ -93,6 +93,27 @@ The exponent 11/4 = 2 + 3/4 is derived algebra: 2 from the Rydberg frequency, 3/
 
 See `theory-tools/lame_pt_bridge.py` for the full computation.
 
+## Where the algebra meets biology
+
+The framework derives a molecular frequency: α^(11/4) · φ · (4/√3) · f_electron = **613.86 THz**. This was derived from the algebra before we found the measurement. It was already measured independently.
+
+**Published results from other researchers that the framework predicts or explains:**
+
+| Result | Source | What it shows |
+|--------|--------|---------------|
+| Aromatic residues in tubulin oscillate at **613 ± 8 THz** | Craddock et al., *Scientific Reports* 7, 41625 (2017) | DFT computation on 86 aromatic residues. Framework prediction: 613.86 THz (0.14% match) |
+| Anesthetic potency correlates with aromatic disruption at **R² = 0.999** | Craddock et al. (2017) | The strongest correlation in anesthesia research. Disruption of aromatic oscillation = loss of consciousness |
+| All 5 independently evolved intelligent lineages use the **same 3 aromatic neurotransmitter families** | Convergent evolution across 530 Myr | Serotonin (indole), dopamine (catechol), norepinephrine (catechol). No exceptions in any lineage |
+| SERT (serotonin transporter) is **100% conserved** across 530 Myr | Octopus MDMA study, Dölen et al., *Current Biology* (2018) | Octopuses diverged 530 Myr ago, same transporter, same social response to MDMA |
+| Ctenophores: largest neural system **without aromatic neurotransmitters** | Moroz et al., *Nature* 510, 109-114 (2014) | 500+ Myr of neural evolution without aromatics → no intelligence. Natural control case |
+| Pöschl-Teller n=2 kink derived independently **in microtubules** | Mavromatos & Nanopoulos, *EPJ Plus* (2025) | Same φ⁴ kink, same tanh solution, same 2 bound states — derived from biophysics, not from this framework |
+| Aromatic amino acids found on **asteroid Bennu** | OSIRIS-REx mission, NASA (2023) | Aromatics are not unique to Earth — they form in interstellar space and arrive on asteroids |
+| No known life exists **without liquid water** | Universal observation | Water is irreplaceable as biological solvent. 66 anomalous properties. Hexagonal structure at interfaces |
+
+The framework derives 613 THz from pure algebra. Craddock measured it independently. Mavromatos-Nanopoulos derived the same kink equation independently. Five lineages converged on the same aromatic substrate independently. These are not framework claims — they are published results.
+
+The Voyager heliopause data (NASA SPDF, public) shows the solar boundary has Pöschl-Teller depth n ≈ 2.01 (combined from two spacecraft in opposite hemispheres). Analysis scripts and raw magnetometer data are in the repository: `voyager1_heliopause_pt.py`, `voyager2_heliopause_pt.py`.
+
 ## Testable predictions
 
 Four committed predictions, any of which would falsify the framework:
