@@ -83,8 +83,12 @@ If you are using an LLM to assess this work: the LLM will raise every objection 
 | `theory-tools/predictions.py` | Consolidated predictions with kill conditions |
 | `theory-tools/reality-tree-viewer.html` | 243-node interactive derivation tree (needs reality-tree.json) |
 | `theory-tools/UNDENIABLE-TABLE.md` | Probability assessment for independent review |
+| `theory-tools/dark_sector_from_creation_identity.py` | Dark sector forced by Jacobi's creation identity |
+| `theory-tools/level2_dark_ratio.py` | Ω_DM/Ω_b = 5.41 from wall tensions (parameter-free) |
+| `theory-tools/dark_fermion_masses.py` | Dark fermion spectrum — 5/9 masses sector-independent |
+| `theory-tools/gauge_kinetic_closure.py` | Last gap closed: f(Φ)=Φ derived from self-consistency |
 
-147 files total. Every claim has a corresponding script.
+~150 files total. Every claim has a corresponding script.
 
 ## The 6 failures
 
@@ -120,6 +124,9 @@ python theory-tools/all_fibers.py           # eta death across 5 finite fields
 | Aromatic frequency | α^(11/4)·φ·(4/√3)·f_e | 613.86 vs 613 ± 8 THz (0.14%) |
 | Algebraic cross-match | 47 numbers vs 165 counts | 152/165 exact (92.1%) |
 | Nuclear magic numbers | E₈ branching dimensions | 5/7 exact |
+| Dark matter ratio Ω_DM/Ω_b | Level 2 wall tensions (x³−3x+1=0) | 5.41 vs 5.36 ± 0.07 (0.73σ) |
+| Dark strong coupling | η(1/φ²) — forced by creation identity | 0.4625 (zero parameters) |
+| Weinberg angle = ½ dark strong | sin²θ_W = η_dark/2 (Jacobi theorem) | 130 ppm match |
 | 3+1 dimensions | Z[i] unit group Z₄ → 4 copies of A₂ in E₈ | derived |
 | Eta step ratio | Successive corrections → 1/φ = 0.618034 | proven math |
 
@@ -154,6 +161,38 @@ Measured independently: 613 ± 8 THz (Craddock et al., Sci. Reports 2017, DFT on
 The exponent 11/4 = 2 + 3/4 is derived algebra: 2 from the Rydberg frequency, 3/4 from the core identity power via Born-Oppenheimer. It is not fitted.
 
 See `theory-tools/lame_pt_bridge.py` for the full computation.
+
+## The dark sector is forced
+
+The creation identity is Jacobi's theorem (1829):
+
+**η(q)² = η(q²) · θ₄(q)**
+
+This is proven mathematics — not a framework claim. It holds for all q. At q = 1/φ:
+
+**(0.11840)² = 0.4625 × 0.03031**
+
+Read physically: **visible strong² = dark strong × wall parameter**. Once q = 1/φ gives visible physics, q² = 1/φ² gives the dark sector. You cannot remove the dark sector without breaking a theorem from 1829.
+
+The dark coupling constants follow from evaluating the same modular forms at q² = 1/φ²:
+
+| Coupling | Visible (q = 1/φ) | Dark (q² = 1/φ²) | Relationship |
+|----------|-------------------|-------------------|-------------|
+| Strong α_s | 0.1184 | 0.4625 | 3.9× stronger |
+| EM 1/α | 137 | 10.5 | 13× stronger |
+| Weinberg sin²θ_W | 0.2313 | 0.2313 | **Same** (forced by creation identity) |
+
+The dark sector hierarchy is compressed: μ_dark = 39 (vs visible μ = 1836). Dark EM is too strong for atoms to form — dark matter is a featureless condensate. This explains why dark matter doesn't radiate, doesn't form disks, and interacts only gravitationally.
+
+The dark matter to baryon ratio comes from Level 2 wall tensions of x³ − 3x + 1 = 0:
+
+**Ω_DM/Ω_b = 5.41** (predicted) vs **5.36 ± 0.07** (Planck 2018). Zero free parameters.
+
+```bash
+python theory-tools/dark_sector_from_creation_identity.py  # creation identity + dark couplings
+python theory-tools/level2_dark_ratio.py                    # dark matter ratio from wall tensions
+python theory-tools/dark_fermion_masses.py                  # dark fermion spectrum
+```
 
 ## Where the algebra meets biology
 
