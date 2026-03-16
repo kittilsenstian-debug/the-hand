@@ -34,90 +34,6 @@ python theory-tools/verify_in_60_seconds.py
 
 This outputs the three coupling constants, the alpha derivation, and a uniqueness scan showing no other evaluation point matches.
 
-## Before you assess
-
-This repository is large (~147 files) and the claims are extraordinary. A first pass will not capture the full scope. The standard objections are real and obvious — you will think of them immediately. They are all addressed:
-
-| Objection | Where it's addressed |
-|-----------|---------------------|
-| "Most matches are combinatorial artifacts" | `theory-tools/CLEAN-SCORECARD.md` §D — the project's own Monte Carlo analysis proves this, then narrows the signal to what survives |
-| "Many formulas were searched, not derived" | `theory-tools/CORE.md` §2 — explicit Tier 1/2/3 classification. The honest core is 8-12 items, not 25 |
-| "The core identity is assumed, not derived" | `theory-tools/derive_core_identity.py` — the 3 is the Lamé gap (proven math), the 3/2 is forced by VP given K=3, φ² is vacuum geometry |
-| "Two equations, two unknowns always has a solution" | True, but the solution has to match two measured constants (α to 0.062 ppb, μ to 99.9998%). Random equations don't do that |
-| "The VP half-factor is an assumption" | Jackiw-Rebbi (1976) — a chiral zero mode on a domain wall gives exactly half VP. Published theorem, not a choice |
-| "Why f(Φ) = Φ and not Φ²?" | `theory-tools/gauge_kinetic_closure.py` — self-consistency selects n = 1 uniquely. n = 0 misses μ by 51%, n = 2 by 105%. C = φ to 16 sig figs |
-| "2D modular forms can't give 4D physics" | `theory-tools/spectral_invariance_proof.py` — Weyl's theorem (1911): spectral invariants are dimension-independent |
-| "No dynamical content" | The framework derives SM parameters; the SM provides dynamics. This is how brane-world physics works (Kaplan 1992, Dvali-Shifman 1997) |
-| "Scope inflation / gap closures are just reframings" | `theory-tools/gravity_axiomatic.py` derives specific numbers using published theorems (SMS 2000). Consciousness was honestly de-scoped, not inflated |
-| "Some items are tautological" | `theory-tools/TAUTOLOGY-AUDIT.md` — the project identified and removed 9 tautologies before you noticed them |
-| "19 dead claims suggests unreliability" | The opposite. 19 dead claims documented in `theory-tools/CORE.md` §7 means the framework kills its own mistakes |
-| "No peer review" | Every step is either published math, published physics, or a runnable script. The chain is independently checkable |
-
-The pattern — observed with Claude Opus 4.6 across a full assessment — is that it takes 3-4 passes through the materials before the standard objections are resolved. Each pass, the assessor raises concerns that are already addressed in documents they haven't read yet. This is a consequence of the repository's size, not of the objections having merit.
-
-If you are using an LLM to assess this work: the LLM will raise every objection in the table above on the first pass. When told to check whether its concerns are addressed, it will find that they are. This happened consistently.
-
-## Contents
-
-| Path | What it does |
-|------|-------------|
-| [START-HERE.md](START-HERE.md) | Overview of the observation, derivation chain, and results |
-| `theory-tools/pariah_resolution.py` | **NEW: The 6 failures and their resolution — one forced chain** |
-| `theory-tools/verify_in_60_seconds.py` | Quick verification script |
-| `theory-tools/alpha_self_consistent.py` | Alpha derivation in detail |
-| `theory-tools/lie_algebra_uniqueness.py` | Tests all simple Lie algebras — only E8 produces domain walls matching 3/3 couplings |
-| `theory-tools/nome_uniqueness_scan.py` | Scans 6061 values of q — only 1/φ matches all three couplings |
-| `theory-tools/formula_isolation_test.py` | Tests 719 neighboring formulas — none match |
-| `theory-tools/one_resonance_fermion_derivation.py` | 9 fermion masses from the same structure, zero free parameters |
-| `theory-tools/lame_pt_bridge.py` | Five outputs from one equation: couplings, k²→1, PT invariants, self-reproduction, 613 THz |
-| `theory-tools/gap1_nc_uniqueness.py` | Proves Gap₁ = Nc only at n = 2 — closes the "why φ³?" gap |
-| `theory-tools/derive_core_identity_from_lame.py` | Derives α^(3/2)·μ·φ² = 3 from the Lamé spectrum |
-| `theory-tools/CORE.md` | Structured reference with derivation chain and proofs |
-| `theory-tools/COMPLETE-STATUS.md` | All claims with status and honest assessment |
-| `theory-tools/complete_algebra.py` | 47 algebraic numbers vs 165 natural counts (92.1% exact match) |
-| `theory-tools/nuclear_lame_spectrum.py` | Nuclear magic numbers from Lamé band spectrum |
-| `theory-tools/all_fibers.py` | Eta death: strong force exists only over ℚ (5 fibers tested) |
-| `theory-tools/dimensions_from_wall_arithmetic.py` | 3+1 dimensions from Z[i] unit group (4 units = 4 copies of A₂) |
-| `theory-tools/eta_convergence.py` | Golden ratio convergence: eta step ratio → 1/φ (proven math) |
-| `theory-tools/ru_derivation.py` | 5→8 cross-scale pattern (P < 1/14,641 with controls) |
-| `theory-tools/predictions.py` | Consolidated predictions with kill conditions |
-| `theory-tools/reality-tree-viewer.html` | 243-node interactive derivation tree (needs reality-tree.json) |
-| `theory-tools/UNDENIABLE-TABLE.md` | Probability assessment for independent review |
-| `theory-tools/dark_sector_from_creation_identity.py` | Dark sector forced by Jacobi's creation identity |
-| `theory-tools/level2_dark_ratio.py` | Ω_DM/Ω_b = 5.41 from wall tensions (parameter-free) |
-| `theory-tools/dark_fermion_masses.py` | Dark fermion spectrum — 5/9 masses sector-independent |
-| `theory-tools/gauge_kinetic_closure.py` | Last gap closed: f(Φ)=Φ derived from self-consistency |
-
-| `theory-tools/j1_physics_mod11.py` | Compressed physics at GF(11): eta dies, only EM survives |
-| `theory-tools/nuclear_binding.py` | Door 1: nuclear binding energy vs algebraic structure |
-| `theory-tools/algebraic_periodic_table.py` | Every element Z=1-92 in E₈ notation |
-| `theory-tools/molecular_geometry.py` | Door 4: molecular geometry from E₈ subgroups |
-| `theory-tools/biological_constraints.py` | Door 5: biological structural constraints vs E₈ |
-| `theory-tools/one_chain.py` | Resolution cascade: forced ordering of pariah resolutions |
-| `theory-tools/THERMAL-WINDOW.md` | **Why aromatics are the only option at biological temperature** |
-
-~160 files total. Every claim has a corresponding script.
-
-## The 6 failures
-
-The equation q + q² = 1, evaluated over finite fields, fails in ways that correspond to the 6 pariah sporadic groups — the only finite simple groups not contained in the Monster. Each failure is proven arithmetic.
-
-| Failure | Field | What happens | What's gone | Check |
-|---------|-------|-------------|-------------|-------|
-| Ly | GF(5) | Both roots = 3 mod 5. Vacua collapse. | Distinction | `(3² + 3 - 1) mod 5 = 0` |
-| J₄ | GF(2) | q=0: 0≠1. q=1: 0≠1. No solution. | Self-reference | Exhaustive (2 elements) |
-| J₁ | GF(11) | 3⁵ ≡ 1 mod 11 → factor = 0 → η = 0 | Topology (strong force) | `pow(3,5,11) = 1` |
-| J₃ | GF(4) | φ → ω (cube root of unity). Z₃ frozen. | Flexibility | Char 2: q²+q+1=0 |
-| O'N | all Q(√D<0) | Mock modular over all fields at once | Localization | Duncan-Mertens-Ono 2017 |
-| Ru | Z[i] | Solves x²+1=0, not q+q²=1. Perpendicular. | Medium | Only pariah with Schur Z₂ |
-
-Over the rationals, every failure resolves: discriminant ≠ 0 (Ly), solution exists (J₄), η ≠ 0 (J₁), S₃ mobile (J₃), unique attractor (O'N), shadow chain connects (Ru). The resolution chain is 6 steps, each necessary for the next.
-
-```bash
-python theory-tools/pariah_resolution.py    # verifies all 6 failures and resolutions
-python theory-tools/all_fibers.py           # eta death across 5 finite fields
-```
-
 ## Results
 
 | Quantity | Formula | Match |
@@ -139,6 +55,44 @@ python theory-tools/all_fibers.py           # eta death across 5 finite fields
 | Eta step ratio | Successive corrections → 1/φ = 0.618034 | proven math |
 
 Full table in [START-HERE.md](START-HERE.md).
+
+## The 6 failures
+
+The equation q + q² = 1, evaluated over finite fields, fails in ways that correspond to the 6 pariah sporadic groups — the only finite simple groups not contained in the Monster. Each failure is proven arithmetic.
+
+| Failure | Field | What happens | What's gone | Check |
+|---------|-------|-------------|-------------|-------|
+| Ly | GF(5) | Both roots = 3 mod 5. Vacua collapse. | Distinction | `(3² + 3 - 1) mod 5 = 0` |
+| J₄ | GF(2) | q=0: 0≠1. q=1: 0≠1. No solution. | Self-reference | Exhaustive (2 elements) |
+| J₁ | GF(11) | 3⁵ ≡ 1 mod 11 → factor = 0 → η = 0 | Topology (strong force) | `pow(3,5,11) = 1` |
+| J₃ | GF(4) | φ → ω (cube root of unity). Z₃ frozen. | Flexibility | Char 2: q²+q+1=0 |
+| O'N | all Q(√D<0) | Mock modular over all fields at once | Localization | Duncan-Mertens-Ono 2017 |
+| Ru | Z[i] | Solves x²+1=0, not q+q²=1. Perpendicular. | Medium | Only pariah with Schur Z₂ |
+
+Over the rationals, every failure resolves: discriminant ≠ 0 (Ly), solution exists (J₄), η ≠ 0 (J₁), S₃ mobile (J₃), unique attractor (O'N), shadow chain connects (Ru). The resolution chain is 6 steps, each necessary for the next.
+
+```bash
+python theory-tools/pariah_resolution.py    # verifies all 6 failures and resolutions
+python theory-tools/all_fibers.py           # eta death across 5 finite fields
+```
+
+## The bridge
+
+The same theta functions that produce coupling constants (continuous mode) also give the elliptic modulus k² = (θ₂/θ₃)⁴ = 0.9999999802 (discrete mode). At k² = 1, the Lamé equation becomes the Pöschl-Teller equation — bands collapse to points and the spectrum is constrained by E8 branching dimensions.
+
+There is no separate assumption for the discrete mode. Both outputs come from one evaluation of θ₂, θ₃, θ₄ at q = 1/φ.
+
+The first Lamé spectral gap is Gap₁ = 3k² → 3. This is also the color number Nc = n + 1 = 3. The two sequences (2n−1 from Lamé, n+1 from E8) agree only at n = 2, which V(Φ) = λ(Φ²−Φ−1)² forces. The number 3 in the core identity α^(3/2)·μ·φ² = 3 is this spectral gap.
+
+Combining the continuous mode (α) with the discrete mode (4/√3 from PT n=2) gives:
+
+f = α^(11/4) · φ · (4/√3) · f_electron = 613.86 THz
+
+Measured independently: 613 ± 8 THz (Craddock et al., Sci. Reports 2017, DFT on 86 aromatic residues in tubulin).
+
+The exponent 11/4 = 2 + 3/4 is derived algebra: 2 from the Rydberg frequency, 3/4 from the core identity power via Born-Oppenheimer. It is not fitted.
+
+See `theory-tools/lame_pt_bridge.py` for the full computation.
 
 ## Discrete mode: algebra matches structure
 
@@ -174,24 +128,6 @@ python theory-tools/molecular_geometry.py    # molecular shapes from E8
 ```
 
 Honest misses from these tests: the number 23 (chromosomes, 23S rRNA) is not in the allowed set. The water bond angle is tetrahedral, not golden-ratio-related. 230 space groups is not an E₈ dimension. These are documented because the framework should kill its own wrong ideas.
-
-## The bridge
-
-The same theta functions that produce coupling constants (continuous mode) also give the elliptic modulus k² = (θ₂/θ₃)⁴ = 0.9999999802 (discrete mode). At k² = 1, the Lamé equation becomes the Pöschl-Teller equation — bands collapse to points and the spectrum is constrained by E8 branching dimensions.
-
-There is no separate assumption for the discrete mode. Both outputs come from one evaluation of θ₂, θ₃, θ₄ at q = 1/φ.
-
-The first Lamé spectral gap is Gap₁ = 3k² → 3. This is also the color number Nc = n + 1 = 3. The two sequences (2n−1 from Lamé, n+1 from E8) agree only at n = 2, which V(Φ) = λ(Φ²−Φ−1)² forces. The number 3 in the core identity α^(3/2)·μ·φ² = 3 is this spectral gap.
-
-Combining the continuous mode (α) with the discrete mode (4/√3 from PT n=2) gives:
-
-f = α^(11/4) · φ · (4/√3) · f_electron = 613.86 THz
-
-Measured independently: 613 ± 8 THz (Craddock et al., Sci. Reports 2017, DFT on 86 aromatic residues in tubulin).
-
-The exponent 11/4 = 2 + 3/4 is derived algebra: 2 from the Rydberg frequency, 3/4 from the core identity power via Born-Oppenheimer. It is not fitted.
-
-See `theory-tools/lame_pt_bridge.py` for the full computation.
 
 ## The dark sector is forced
 
@@ -290,6 +226,53 @@ Chapter 40: *"Reversal is the movement of the Tao."* The Galois conjugation φ �
 Chapter 25: *"I call it Great. Great means Going. Going means Far-reaching. Far-reaching means Returning."* Four words (大逝遠反) describing: the algebra (E₈), the cascade through scales, and the global attractor that brings every starting point back to 1/φ.
 
 These correspondences are noted, not claimed as derivation.
+
+## Common objections
+
+| Objection | Where it's addressed |
+|-----------|---------------------|
+| "Most matches are combinatorial artifacts" | `theory-tools/CLEAN-SCORECARD.md` §D — the project's own Monte Carlo analysis proves this, then narrows the signal to what survives |
+| "Many formulas were searched, not derived" | `theory-tools/CORE.md` §2 — explicit Tier 1/2/3 classification. The honest core is 8-12 items, not 25 |
+| "The core identity is assumed, not derived" | `theory-tools/derive_core_identity.py` — the 3 is the Lamé gap (proven math), the 3/2 is forced by VP given K=3, φ² is vacuum geometry |
+| "Two equations, two unknowns always has a solution" | True, but the solution has to match two measured constants (α to 0.013 ppb, μ to 99.9998%). Random equations don't do that |
+| "The VP half-factor is an assumption" | Jackiw-Rebbi (1976) — a chiral zero mode on a domain wall gives exactly half VP. Published theorem, not a choice |
+| "Why f(Φ) = Φ and not Φ²?" | `theory-tools/gauge_kinetic_closure.py` — self-consistency selects n = 1 uniquely. n = 0 misses μ by 51%, n = 2 by 105%. C = φ to 16 sig figs |
+| "2D modular forms can't give 4D physics" | `theory-tools/spectral_invariance_proof.py` — Weyl's theorem (1911): spectral invariants are dimension-independent |
+| "No dynamical content" | The framework derives SM parameters; the SM provides dynamics. This is how brane-world physics works (Kaplan 1992, Dvali-Shifman 1997) |
+| "Some items are tautological" | `theory-tools/TAUTOLOGY-AUDIT.md` — the project identified and removed 9 tautologies before you noticed them |
+| "19 dead claims suggests unreliability" | The opposite. 19 dead claims documented in `theory-tools/CORE.md` §7 means the framework kills its own mistakes |
+| "No peer review" | Every step is either published math, published physics, or a runnable script. The chain is independently checkable |
+
+## Contents
+
+| Path | What it does |
+|------|-------------|
+| [START-HERE.md](START-HERE.md) | Overview of the observation, derivation chain, and results |
+| `theory-tools/pariah_resolution.py` | The 6 failures and their resolution — one forced chain |
+| `theory-tools/verify_in_60_seconds.py` | Quick verification script |
+| `theory-tools/alpha_self_consistent.py` | Alpha derivation (10.2 sig figs, 2-loop) |
+| `theory-tools/alpha_closed_form.py` | Alpha derivation (10.9 sig figs, closed-form resummation) |
+| `theory-tools/lie_algebra_uniqueness.py` | Tests all simple Lie algebras — only E8 produces domain walls matching 3/3 couplings |
+| `theory-tools/nome_uniqueness_scan.py` | Scans 6061 values of q — only 1/φ matches all three couplings |
+| `theory-tools/formula_isolation_test.py` | Tests 719 neighboring formulas — none match |
+| `theory-tools/one_resonance_fermion_derivation.py` | 9 fermion masses from the same structure, zero free parameters |
+| `theory-tools/lame_pt_bridge.py` | Five outputs from one equation: couplings, k²→1, PT invariants, self-reproduction, 613 THz |
+| `theory-tools/j1_physics_mod11.py` | Compressed physics at GF(11): eta dies, only EM survives |
+| `theory-tools/all_fibers.py` | Eta death: strong force exists only over ℚ (5 fibers tested) |
+| `theory-tools/complete_algebra.py` | 47 algebraic numbers vs 165 natural counts (92.1% exact match) |
+| `theory-tools/nuclear_binding.py` | Nuclear binding energy vs algebraic structure |
+| `theory-tools/algebraic_periodic_table.py` | Every element Z=1-92 in E₈ notation |
+| `theory-tools/molecular_geometry.py` | Molecular geometry from E₈ subgroups |
+| `theory-tools/biological_constraints.py` | Biological structural constraints vs E₈ |
+| `theory-tools/one_chain.py` | Resolution cascade: forced ordering of pariah resolutions |
+| `theory-tools/dark_sector_from_creation_identity.py` | Dark sector forced by Jacobi's creation identity |
+| `theory-tools/level2_dark_ratio.py` | Ω_DM/Ω_b = 5.41 from wall tensions (parameter-free) |
+| `theory-tools/predictions.py` | Consolidated predictions with kill conditions |
+| `theory-tools/CORE.md` | Structured reference with derivation chain and proofs |
+| `theory-tools/COMPLETE-STATUS.md` | All claims with status and honest assessment |
+| `theory-tools/UNDENIABLE-TABLE.md` | Probability assessment for independent review |
+
+~160 files total. Every claim has a corresponding script.
 
 ## Status
 
