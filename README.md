@@ -274,6 +274,7 @@ These correspondences are noted, not claimed as derivation.
 | `theory-tools/THERMAL-WINDOW.md` | Why aromatics are the only option at biological temperature |
 | `theory-tools/ARROW-OF-TIME.md` | Arrow of time from Pisot asymmetry: direction + irreversibility + entropy |
 | `theory-tools/PT-N2-THREE-SCALES.md` | Same PT n=2 equation at 4 scales: algebra, microtubules, heliosphere, black holes |
+| `theory-tools/BREATHING-MODE-108.md` | 108.5 GeV scalar: √(3/4) × m_H, forced by PT n=2 eigenvalue spectrum |
 
 ~160 files total. Every claim has a corresponding script.
 
