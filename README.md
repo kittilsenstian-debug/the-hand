@@ -53,6 +53,8 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | Weinberg angle = ½ dark strong | sin²θ_W = η_dark/2 (Jacobi theorem) | 130 ppm match |
 | 3+1 dimensions | Z[i] unit group Z₄ → 4 copies of A₂ in E₈ | derived |
 | Eta step ratio | Successive corrections → 1/φ = 0.618034 | proven math |
+| N_c = disc − deg | 3 = disc(Z[φ]) − [Q(φ):Q] = 5 − 2 | **proven math** (unique among all real quadratic fields) |
+| VP cutoff Λ = m_p/φ³ | φ³ = φ^(N_c) = φ^(disc−deg), forced by trace form of Z[φ] | derived (zero empirical inputs remain) |
 
 Full table in [START-HERE.md](START-HERE.md).
 
@@ -83,6 +85,19 @@ The same theta functions that produce coupling constants (continuous mode) also 
 There is no separate assumption for the discrete mode. Both outputs come from one evaluation of θ₂, θ₃, θ₄ at q = 1/φ.
 
 The first Lamé spectral gap is Gap₁ = 3k² → 3. This is also the color number Nc = n + 1 = 3. The two sequences (2n−1 from Lamé, n+1 from E8) agree only at n = 2, which V(Φ) = λ(Φ²−Φ−1)² forces. The number 3 in the core identity α^(3/2)·μ·φ² = 3 is this spectral gap.
+
+The trace form matrix of Z[φ] encodes the structure of the alpha equation:
+
+```
+M = [[Tr(1), Tr(φ)], [Tr(φ), Tr(φ²)]] = [[2, 1], [1, 3]]
+
+det(M) = 5 = disc(Z[φ])     ← total φ exponent in self-consistent equation
+M[0,0] = 2                   ← core identity exponent (VEV²)
+M[1,1] = 3 = Nc              ← VP cutoff exponent (color suppression)
+disc − deg = 5 − 2 = 3 = Nc  ← unique among all real quadratic fields
+```
+
+This is pure number theory. N_c = disc(Z[φ]) − [Q(φ):Q]. No other real quadratic field gives disc − deg = 3. The number of colors is the discriminant minus the degree of the golden field — the unique such field embedded in E₈. See `theory-tools/derive_lambda_from_chain.py`.
 
 Combining the continuous mode (α) with the discrete mode (4/√3 from PT n=2) gives:
 
@@ -267,6 +282,7 @@ These correspondences are noted, not claimed as derivation.
 | `theory-tools/one_chain.py` | Resolution cascade: forced ordering of pariah resolutions |
 | `theory-tools/dark_sector_from_creation_identity.py` | Dark sector forced by Jacobi's creation identity |
 | `theory-tools/level2_dark_ratio.py` | Ω_DM/Ω_b = 5.41 from wall tensions (parameter-free) |
+| `theory-tools/derive_lambda_from_chain.py` | **NEW: VP cutoff Λ=m_p/φ³ derived — N_c = disc−deg, trace form = alpha equation** |
 | `theory-tools/predictions.py` | Consolidated predictions with kill conditions |
 | `theory-tools/CORE.md` | Structured reference with derivation chain and proofs |
 | `theory-tools/COMPLETE-STATUS.md` | All claims with status and honest assessment |
