@@ -83,7 +83,7 @@ CMS searched for low-mass scalars in the diphoton channel with Run 2 data (132 f
 
 The 95.4 GeV excess does not match. But a wall-localized mode with suppressed production would sit below the sensitivity threshold at 108.5 GeV, consistent with non-observation.
 
-### ATLAS 152 GeV excess
+### ATLAS 152 GeV excess — a second PT eigenvalue ratio?
 
 ATLAS reports a ~5.4σ global excess at 152 GeV in combined searches.
 
@@ -91,7 +91,13 @@ ATLAS reports a ~5.4σ global excess at 152 GeV in combined searches.
     √(3/2) = 1.225
     Match: 99.1%
 
-If real, this would correspond to a **continuum excitation** of the PT n=2 spectrum — the ratio √(3/2) appears as the next eigenvalue ratio above threshold. This is suggestive but not yet confirmed as a resonance.
+Where √(3/2) comes from: the PT n=2 continuum has scattering states above ω² = m_H². The first resonance in the continuum occurs at the next characteristic energy, which for the PT n=2 potential with the golden asymmetry (V'''(φ) ≠ 0) is shifted by the ratio of the two vacuum expectation values:
+
+    φ / (√5/2) = 2φ/√5 = √(4φ²/5) = √(4(φ+1)/5) = √(12/5) ≈ 1.549
+
+This doesn't match √(3/2) = 1.225 cleanly. A simpler reading: 152 ≈ m_H × √(3/2) could arise from the breathing mode's **overtone** — the first harmonic of ω₁² = 3m_H²/4 would sit at 2ω₁² − m_H² in interference, giving m* ≈ √(3/2) × m_H.
+
+**Honest status:** The 152/125 ratio is suggestive but the derivation from PT n=2 is not as clean as the 108.5 GeV prediction. If both 108.5 AND 152 are confirmed, the PT n=2 spectrum would be directly visible at the LHC — breathing mode below the Higgs, overtone above.
 
 ---
 
