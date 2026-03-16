@@ -33,14 +33,14 @@ The framework doesn't give new powers. It tells you where to point the powers yo
 
 ## 2. LHC breathing mode: 108.5 GeV scalar in existing data
 
-**The prediction:** The domain wall has 2 bound states (PT n=2, forced by V(Φ)). The ground state ψ₀ is stable — that's the Higgs mechanism. The breathing mode ψ₁ is the wall oscillating. Mass: 108.5 GeV = √(3/4) × 125.1 GeV.
+**The prediction:** The domain wall has 2 bound states (PT n=2, forced by V(Φ)). The zero mode ψ₀ is massless (translational Goldstone). The breathing mode ψ₁ oscillates at m_B² = 3/4 × m_H². The Higgs boson is the continuum threshold — the lightest mode that propagates freely away from the wall. The breathing mode is wall-localized, below the Higgs. Mass: 108.5 GeV = √(3/4) × 125.25 GeV.
 
 **Properties:**
 - Spin-0 scalar (same quantum numbers as Higgs)
-- Mass: 108.5 GeV (from PT n=2 eigenvalue ratio: E₁/E₀ = 1/4 → m₁/m₀ = √(3/4))
-- Production: gluon fusion (same as Higgs, suppressed by breathing mode overlap)
+- Mass: 108.47 GeV (from PT n=2: ω₁² = 15λ/2, m_H² = 10λ, ratio = 3/4)
+- Production: gluon fusion (same as Higgs), suppressed — wall-localized mode couples weakly to propagating states
 - Decay: diphoton (γγ), bb̄, WW* (same channels as Higgs, different branching)
-- Cross section: suppressed relative to Higgs by the Yukawa overlap factor 3π/(16√2)
+- Cross section: suppressed relative to Higgs by mixing angle² (golden potential asymmetry V'''(φ) = 12λ√5 ≠ 0 allows mixing)
 
 **What to do:**
 - Targeted reanalysis of CMS/ATLAS Run 3 diphoton data at 108.5 GeV
