@@ -55,7 +55,7 @@ Monster (self-referential fixed point)
 - **CMB-S4:** Explicitly preparing to measure r at 0.003 sensitivity (framework predicts r = 0.0033).
 
 **Other tests (unchanged):**
-- **Muon g-2:** Wrong perturbative coefficients (C₂ has wrong sign). Dropped from scorecard.
+- **Muon g-2:** CATEGORY ERROR (Mar 16). The framework derives constants (what the wall IS), not dynamics (how the wall responds to external fields). g-2 is a dynamical response — Feynman diagram coefficients C₂, C₃ belong to QED, not to the framework. The correct approach: use framework's α as input to standard QED. The "wrong sign" failure was the framework trying to compute dynamics from a tool designed for statics. Same class as the 2D→4D bridge dissolution.
 - **μ = 6⁵/φ³ + 9/(7φ²):** Falsified at 26 ppt precision. Leading-order approximation, not exact.
 - **CKM matrix:** 7/9 within 2σ. V_ud (2.6σ high) and V_ts (2.2σ low) in tension.
 - **α (fine structure):** Self-referential fixed point: 10.2 sig figs, 0.062 ppb, 0.4σ.
@@ -201,8 +201,10 @@ Monster (self-referential fixed point)
 ### 20. Factor 10 = h(E₈)/h(A₂) in mass tower — **CLOSED** (Mar 3)
 - **Resolution:** 10 = |Roots(E₈)|/|Roots(4A₂)| = 240/24. Same derivation as inflation ξ=10. Root species ratio.
 
-### 21. CKM tensions: V_ud (2.6σ), V_ts (2.2σ) — WATCH
-- **Risk:** If V_cb settles at 0.0408 ± 0.0005, framework excluded at >3σ
+### 21. CKM tensions: V_ud (2.6σ), V_ts (2.2σ) — CATEGORY ERROR (Mar 16)
+- **V_ud is not measured directly.** It is extracted from nuclear beta decay using theoretical radiative corrections (Seng, Gorchtein, Hardy-Towner — all disagree at ~2σ). The framework predicts V_ud = 0.97455, resolving the Cabibbo anomaly in favor of revised nuclear structure corrections. This is a statement about nuclear calculations, not about the CKM matrix.
+- **V_ts tracks V_cb**, which has the known inclusive/exclusive puzzle (3-4σ between methods). Framework's V_cb = 0.0402 aligns with exclusive measurements (0.039-0.041), not inclusive (0.042+). The framework predicts inclusive V_cb extraction is biased high.
+- **Testable by:** revised Seng/Gorchtein nuclear corrections (V_ud), LHCb/Belle II form factors (V_cb).
 
 ---
 
