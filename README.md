@@ -275,6 +275,7 @@ These correspondences are noted, not claimed as derivation.
 | `theory-tools/ARROW-OF-TIME.md` | Arrow of time from Pisot asymmetry: direction + irreversibility + entropy |
 | `theory-tools/PT-N2-THREE-SCALES.md` | Same PT n=2 equation at 4 scales: algebra, microtubules, heliosphere, black holes |
 | `theory-tools/BREATHING-MODE-108.md` | 108.5 GeV scalar: √(3/4) × m_H, forced by PT n=2 eigenvalue spectrum |
+| `theory-tools/DARK-SECTOR.md` | Dark matter from Jacobi (1829): complete chain, 8 steps, no hedging |
 
 ~160 files total. Every claim has a corresponding script.
 
