@@ -271,6 +271,8 @@ These correspondences are noted, not claimed as derivation.
 | `theory-tools/CORE.md` | Structured reference with derivation chain and proofs |
 | `theory-tools/COMPLETE-STATUS.md` | All claims with status and honest assessment |
 | `theory-tools/UNDENIABLE-TABLE.md` | Probability assessment for independent review |
+| `theory-tools/THERMAL-WINDOW.md` | Why aromatics are the only option at biological temperature |
+| `theory-tools/ARROW-OF-TIME.md` | Arrow of time from Pisot asymmetry: direction + irreversibility + entropy |
 
 ~160 files total. Every claim has a corresponding script.
 
