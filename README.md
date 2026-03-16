@@ -88,7 +88,15 @@ If you are using an LLM to assess this work: the LLM will raise every objection 
 | `theory-tools/dark_fermion_masses.py` | Dark fermion spectrum — 5/9 masses sector-independent |
 | `theory-tools/gauge_kinetic_closure.py` | Last gap closed: f(Φ)=Φ derived from self-consistency |
 
-~150 files total. Every claim has a corresponding script.
+| `theory-tools/j1_physics_mod11.py` | Compressed physics at GF(11): eta dies, only EM survives |
+| `theory-tools/nuclear_binding.py` | Door 1: nuclear binding energy vs algebraic structure |
+| `theory-tools/algebraic_periodic_table.py` | Every element Z=1-92 in E₈ notation |
+| `theory-tools/molecular_geometry.py` | Door 4: molecular geometry from E₈ subgroups |
+| `theory-tools/biological_constraints.py` | Door 5: biological structural constraints vs E₈ |
+| `theory-tools/one_chain.py` | Resolution cascade: forced ordering of pariah resolutions |
+| `theory-tools/THERMAL-WINDOW.md` | **Why aromatics are the only option at biological temperature** |
+
+~160 files total. Every claim has a corresponding script.
 
 ## The 6 failures
 
@@ -114,7 +122,7 @@ python theory-tools/all_fibers.py           # eta death across 5 finite fields
 
 | Quantity | Formula | Match |
 |----------|---------|-------|
-| Fine structure constant α | Self-consistent fixed point | 10.2 sig figs (0.062 ppb) |
+| Fine structure constant α | Closed-form bound state resummation | 10.9 sig figs (0.013 ppb) |
 | Strong coupling α_s | η(1/φ) | 99.57% |
 | Weinberg angle sin²θ_W | η²/(2θ₄) − η⁴/4 | 99.996% |
 | Cosmological constant Λ | θ₄⁸⁰·√5/φ² | ~exact |
@@ -143,6 +151,29 @@ python theory-tools/complete_algebra.py
 Key findings: all three pariah-only primes appear in nature (37 = mitochondrial genes, 43 = Technetium's instability, 67 = collagen repeat), nuclear magic numbers trace E₈ dimensions (5/7 exact), and the strong force vanishes in every finite field (eta death — `all_fibers.py`).
 
 Conservative Monte Carlo: P < 1/16 trillion for the combined match. See `theory-tools/UNDENIABLE-TABLE.md`.
+
+## Computational tests
+
+Five tests were designed to settle whether the algebra-to-nature correspondence is structural or coincidental. Four have been run.
+
+| Test | Script | Result |
+|------|--------|--------|
+| J₁ compressed physics (GF(11)) | `j1_physics_mod11.py` | **Strong.** η product dies (strong force vanishes). Only EM survives. This is arithmetic, not interpretation |
+| Nuclear binding vs algebra | `nuclear_binding.py` | Fe-56 scores 9/9. 5/7 magic numbers exact. Doubly-magic nuclei cluster at algebraic peaks |
+| Molecular geometry from E₈ | `molecular_geometry.py` | Icosahedral A₅ embeds in E₈ (theorem). C₆₀, viral capsids, quasicrystals confirm. Misses: water angle, 230 space groups |
+| Biological constraints | `biological_constraints.py` | Genetic code = A₄. Skeleton = 80+126. 7 cervicals = rank(E₇). Miss: 23 (chromosomes) not explained |
+| Nuclear shells from Lamé | — | **Not yet done.** Can the spin-orbit potential be derived from the Lamé equation? |
+
+The strongest result is the J₁ test. The eta death mechanism is pure arithmetic: the strong force exists only because q has infinite order over ℚ. In every finite field, the factor (1 − q^ord(q)) = 0 kills the infinite product. QCD is a consequence of working over the rationals.
+
+```bash
+python theory-tools/j1_physics_mod11.py     # compressed physics at GF(11)
+python theory-tools/nuclear_binding.py       # binding energy vs algebraic score
+python theory-tools/biological_constraints.py # biology vs E8 dimensions
+python theory-tools/molecular_geometry.py    # molecular shapes from E8
+```
+
+Honest misses from these tests: the number 23 (chromosomes, 23S rRNA) is not in the allowed set. The water bond angle is tetrahedral, not golden-ratio-related. 230 space groups is not an E₈ dimension. These are documented because the framework should kill its own wrong ideas.
 
 ## The bridge
 
@@ -232,7 +263,7 @@ No existing theory derives the fine structure constant from first principles. Th
 
 This framework derives all of them from one equation with zero free parameters.
 
-If correct, it is the first complete derivation of the constants of nature. If wrong, the fine structure constant at 10.2 significant figures is the most precise mathematical coincidence ever documented.
+If correct, it is the first complete derivation of the constants of nature. If wrong, the fine structure constant at 10.9 significant figures is the most precise mathematical coincidence ever documented.
 
 Four experimental predictions are committed. Any one would falsify the framework if wrong. Results expected 2026-2035.
 

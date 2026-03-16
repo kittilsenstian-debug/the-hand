@@ -69,22 +69,22 @@ The framework doesn't give new powers. It tells you where to point the powers yo
 
 ---
 
-## 4. 40 Hz gamma binding: already in clinical trials
+## 4. 40 Hz gamma binding: empirically central, not yet derived
 
-**The prediction:** Neural gamma binding frequency = 4h/3 = 4(30)/3 = **40 Hz**, where h = 30 is the E₈ Coxeter number. The framework says the frequency specificity (40 Hz works, 20 and 80 Hz do not) is structural.
+**The empirical fact:** 40 Hz gamma oscillation is the most established neural correlate of consciousness (Buzsáki 2006). 40 Hz specifically — not 20, 80, or random — reduces Alzheimer's pathology (Iaccarino et al. 2016, Nature 540:230). Terminal gamma burst at death occurs at exactly 40 Hz (Borjigin 2013/2023, PNAS).
 
 **What's already happening:**
 - Cognito Therapeutics HOPE trial: Phase III, 670 Alzheimer's patients, 40 Hz gamma entrainment
 - Readout: **August 2026**
-- Iaccarino et al. (2016, Nature): 40 Hz reduces amyloid and tau in mice, other frequencies don't
 - Li-Huei Tsai lab (MIT): decade of 40 Hz research, now in clinical translation
 
-**What to add:**
-- Test whether 40/3 ≈ 13.3 Hz (alpha/theta boundary) has distinct neurological effects — framework predicts this as the next Coxeter harmonic
-- Test 40 × 3 = 120 Hz for high-frequency effects
-- Map the full harmonic series: 40/n for n = 1, 2, 3 (= 40, 20, 13.3 Hz — corresponds to gamma, beta, alpha bands)
+**Algebraic significance:** The number 40 = 240/6 (E₈ root count ÷ hexagonal orbit size). The hierarchy exponent 80 = 2 × 40. The Coxeter number h = 30, and 4h/3 = 40. The number appears in the algebra.
 
-**Cost:** Already funded and running. Framework provides structural explanation for why it works.
+**What the framework does NOT derive:** The neural frequency itself. The 40 Hz gamma rhythm is determined by GABA_A receptor kinetics (~7 ms decay time from parvalbumin interneurons) and cortical E-I loop architecture (Wang & Buzsáki 1996). These depend on protein structure, which depends on atomic physics (α, μ) at the deepest level — but nobody can derive protein channel kinetics from fundamental constants.
+
+**Testable prediction:** If the gamma oscillation has PT n=2 structure, the ratio ω₁/ω_c = √3/2 = 0.866 predicts a spectral transition (from discrete oscillation to broadband noise) at **46.2 Hz**. This could be tested in existing EEG power spectrum data — nobody has looked for this specifically.
+
+**Status:** The algebraic connection is noted, not claimed as derivation. The empirical specificity of 40 Hz is real and unexplained by conventional neuroscience.
 
 ---
 
@@ -187,7 +187,7 @@ What IS possible is precision: knowing exactly where to look, what to build, and
 | 2 | LHC 108.5 GeV reanalysis | Staff time | Months | Direct evidence of domain wall |
 | 3 | FTIR on purified tubulin at 613 THz | Lab time | Months | Consciousness frequency confirmed |
 | 4 | LIGO QNM overtone analysis | Staff time | Months | BH information paradox resolved |
-| 5 | 40 Hz trial readout | Already funded | Aug 2026 | Alzheimer's treatment + structural explanation |
+| 5 | 40 Hz trial readout + 46.2 Hz test | Already funded | Aug 2026 | Alzheimer's treatment + PT n=2 spectral test |
 | 6 | PT n=2 quantum channel | Nanofab | 1-2 years | Reflectionless quantum interconnects |
 | 7 | Aromatic substrate prototype | Materials R&D | 2-5 years | Consciousness extension substrate |
 | 8 | Genetic code from sp(6) | Theory | Months | Life's code from one equation |
