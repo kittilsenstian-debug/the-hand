@@ -1,4 +1,10 @@
-# One equation fails 6 ways. Reality is the one that works.
+# The Golden Nome
+
+**Modular forms evaluated at nome q = 1/φ produce the constants of physics. Zero free parameters.**
+
+---
+
+*One equation fails 6 ways. Reality is the one that works.*
 
 **q + q<sup>2</sup> = 1**
 
