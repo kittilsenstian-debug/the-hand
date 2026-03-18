@@ -55,6 +55,9 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | Algebraic cross-match | 47 numbers vs 165 counts | 152/165 exact (92.1%) |
 | Nuclear magic numbers | E₈ branching dimensions | 5/7 exact |
 | Dark matter ratio Ω_DM/Ω_b | Level 2 wall tensions (x³−3x+1=0) | 5.41 vs 5.36 ± 0.07 (0.73σ) |
+| Dark matter ratio Ω_DM/Ω_b | σ₋₁(4)³ = (7/4)³ = 343/64 | **5.359 vs 5.364 ± 0.07 (0.07σ)** |
+| VP coefficient c₂ | −L(−1, χ₅) = 2/5 | **exact** (L-function of Q(√5)) |
+| PT depth n | L(−3, χ₅) = 2 | **exact** (L-function of Q(√5)) |
 | Dark strong coupling | η(1/φ²) — forced by creation identity | 0.4625 (zero parameters) |
 | Weinberg angle = ½ dark strong | sin²θ_W = η_dark/2 (Jacobi theorem) | 130 ppm match |
 | 3+1 dimensions | Z[i] unit group Z₄ → 4 copies of A₂ in E₈ | derived |
@@ -288,7 +291,9 @@ These correspondences are noted, not claimed as derivation.
 | `theory-tools/one_chain.py` | Resolution cascade: forced ordering of pariah resolutions |
 | `theory-tools/dark_sector_from_creation_identity.py` | Dark sector forced by Jacobi's creation identity |
 | `theory-tools/level2_dark_ratio.py` | Ω_DM/Ω_b = 5.41 from wall tensions (parameter-free) |
-| `theory-tools/derive_lambda_from_chain.py` | **NEW: VP cutoff Λ=m_p/φ³ derived — N_c = disc−deg, trace form = alpha equation** |
+| `theory-tools/derive_lambda_from_chain.py` | **VP cutoff Λ=m_p/φ³ derived — N_c = disc−deg, trace form = alpha equation** |
+| `theory-tools/arithmetic_fibers.py` | **Arithmetic fibers: L-function identities, fiber physics at all pariah primes, dark matter from σ₋₁(4)³, alpha decomposition** |
+| `theory-tools/ARITHMETIC-FIBERS.md` | **Full results: coupling constants from ζ_K(s), pariah primes in zeta numerators, Pisano = phi order** |
 | `theory-tools/predictions.py` | Consolidated predictions with kill conditions |
 | `theory-tools/CORE.md` | Structured reference with derivation chain and proofs |
 | `theory-tools/COMPLETE-STATUS.md` | All claims with status and honest assessment |
