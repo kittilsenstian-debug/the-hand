@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Golden Echo Explorer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Consolas','SF Mono',monospace;background:#0a0a10;color:#e0e0e8;padding:16px;max-width:1600px;margin:0 auto}
+h1{font-size:16px;font-weight:600;letter-spacing:1px;color:#e8e0d0}
+.sub{font-size:11px;color:#666;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.panel{background:#12121c;border:1px solid #2a2a3a;border-radius:5px;padding:10px}
+.pt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#607080;margin-bottom:6px}
+canvas{display:block;width:100%;border-radius:3px}
+.ctrls{background:#12121c;border:1px solid #2a2a3a;border-radius:5px;padding:12px;display:flex;flex-wrap:wrap;gap:14px;margin-bottom:12px}
+.cg{display:flex;align-items:center;gap:8px}
+.cg label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#607080;white-space:nowrap}
+.cg input[type=range]{width:140px;accent-color:#e0b040}
+.cg .v{font-size:11px;font-weight:700;min-width:40px;text-align:right;color:#d0c8b0}
+.ro{background:#12121c;border:1px solid #2a2a3a;border-radius:5px;padding:10px 14px;font-size:11px;line-height:1.7}
+.gold{color:#e0b040;font-weight:700}
+.red{color:#ff5050;font-weight:700}
+.blue{color:#50a0ff;font-weight:700}
+.grn{color:#40d870;font-weight:700}
+.gr{color:#556}
+</style>
+</head>
+<body>
+<h1>GOLDEN ECHO EXPLORER</h1>
+<div class="sub">q + q&sup2; = 1 &mdash; modular forms, domain wall, scattering channels</div>
+
+<div class="ctrls" id="ctrls">
+  <div class="cg"><label>Cobweb start</label><input type="range" id="s_start" min="0.05" max="5" step="0.01" value="3"><span class="v" id="d_start"></span></div>
+  <div class="cg"><label>Iterations</label><input type="range" id="s_iter" min="1" max="50" step="1" value="15"><span class="v" id="d_iter"></span></div>
+  <div class="cg"><label>Echo range</label><input type="range" id="s_zoom" min="80" max="2000" step="10" value="300"><span class="v" id="d_zoom"></span></div>
+  <div class="cg"><label>Wall width</label><input type="range" id="s_ww" min="0.5" max="4" step="0.1" value="1.5"><span class="v" id="d_ww"></span></div>
+</div>
+
+<div class="grid3">
+  <div class="panel"><div class="pt">Cobweb: f(x)=1/(1+x) &rarr; 1/&phi;</div><canvas id="c_cob" height="360"></canvas></div>
+  <div class="panel"><div class="pt">Domain wall: V(&Phi;) = (&Phi;&sup2;&minus;&Phi;&minus;1)&sup2;</div><canvas id="c_wall" height="360"></canvas></div>
+  <div class="panel"><div class="pt">Modular forms at q (slide q)</div><canvas id="c_mod" height="360"></canvas></div>
+</div>
+<div class="grid">
+  <div class="panel"><div class="pt">Golden echo: Fibonacci genera on the prime line</div><canvas id="c_echo" height="300"></canvas></div>
+  <div class="panel"><div class="pt">Newform values at 1/&phi; &mdash; all conductors</div><canvas id="c_scatter" height="300"></canvas></div>
+</div>
+<div class="grid">
+  <div class="panel"><div class="pt">Creation identity: &eta;&sup2; = &eta;<sub>dark</sub> &middot; &theta;&sub4;</div><canvas id="c_create" height="280"></canvas></div>
+  <div class="panel"><div class="pt">PT n=2 phase shift &amp; golden echo momenta</div><canvas id="c_phase" height="280"></canvas></div>
+</div>
+
+<div class="ro" id="ro"></div>
+
+<script>
+const PHI=(1+Math.sqrt(5))/2, PB=1/PHI, S5=Math.sqrt(5);
+const C={gold:'#e0b040',goldL:'#3a3020',blue:'#50a0ff',blueL:'#1a2a40',red:'#ff5050',grn:'#40d870',gray:'#556',gridL:'#1a1a28',gridM:'#2a2a3a',txt:'#c0c0d0',bg:'#0e0e18',pariah:'#ff5050',empty:'#50a0ff',ctrl:'#606880',monster:'#888'};
+
+// Precompute modular forms
+function eta_f(q,N){let p=1;for(let n=1;n<=N;n++)p*=(1-Math.pow(q,n));return Math.pow(q,1/24)*p}
+function th3_f(q,N){let s=1;for(let n=1;n<=N;n++)s+=2*Math.pow(q,n*n);return s}
+function th4_f(q,N){let s=1;for(let n=1;n<=N;n++)s+=2*Math.pow(-1,n)*Math.pow(q,n*n);return s}
+
+const DATA = {
+  echo:[
+    {p:23,t:'monster',g:2,h:3},{p:37,t:'pariah',g:2,h:2,grp:'J4,Ly'},
+    {p:43,t:'pariah',g:3,h:1,grp:'J4'},{p:67,t:'pariah',g:5,h:1,grp:'Ly'},
+    {p:73,t:'empty',g:5,h:4},{p:103,t:'empty',g:8,h:5},
+    {p:163,t:'empty',g:13,h:1},{p:257,t:'empty',g:21,h:16},
+    {p:673,t:'empty',g:55,h:12},{p:1733,t:'empty',g:144,h:34}
+  ],
+  scatter:[
+    {N:73,t:'empty',g:5,v:[-0.4042,-0.1847,0.6174,0.9974,1.2808]},
+    {N:103,t:'empty',g:8,v:[-0.2599,-0.0395,0.0565,0.5077,1.2414,1.3516,1.5174,1.6262]},
+    {N:163,t:'empty',g:13,v:[-0.0552,-0.0360,-0.0263,-0.0257,-0.0164,-0.0064,0.0100,0.3012,0.7079,1.3801,1.4869,1.5039,2.0492]},
+    {N:53,t:'ctrl',g:4,v:[-0.4399,0.4028,0.7215,0.8787]},
+    {N:59,t:'ctrl',g:5,v:[0.2076,0.5301,0.8135,0.9761,1.0719]},
+    {N:79,t:'ctrl',g:6,v:[-0.3320,0.0943,0.6626,0.8332,1.2247,1.2419]},
+    {N:89,t:'ctrl',g:7,v:[-0.2695,-0.1054,0.4817,0.4860,1.2376,1.2827,1.5142]},
+    {N:97,t:'ctrl',g:7,v:[-0.3153,-0.2197,-0.0216,0.2327,1.0219,1.4462,1.5033]},
+    {N:101,t:'ctrl',g:8,v:[-0.2836,-0.1178,0.4946,0.5621,1.1251,1.2453,1.4871,1.6655]},
+    {N:107,t:'ctrl',g:9,v:[-0.2992,-0.1372,0.0828,0.1476,0.5636,0.8386,1.3267,1.4412,1.5466]},
+    {N:127,t:'ctrl',g:10,v:[-0.2028,-0.1224,-0.0615,0.0012,0.5471,0.6451,1.2351,1.2825,1.6305,1.8444]}
+  ],
+  fibs:[2,3,5,8,13,21,34,55,89,144],
+  lucas:[2,1,3,4,7,11,18,29,47,76,123,199]
+};
+
+function gC(id){const c=document.getElementById(id),dpr=devicePixelRatio||1,r=c.getBoundingClientRect();c.width=r.width*dpr;c.height=r.height*dpr;const x=c.getContext('2d');x.scale(dpr,dpr);return{x,w:r.width,h:r.height}}
+function grd(x,w,h,x0,x1,y0,y1){
+  x.fillStyle=C.bg;x.fillRect(0,0,w,h);
+  const tx=v=>(v-x0)/(x1-x0)*w, ty=v=>h-(v-y0)/(y1-y0)*h;
+  x.strokeStyle=C.gridL;x.lineWidth=.5;
+  const dx=(x1-x0)/10,dy=(y1-y0)/10;
+  for(let v=Math.ceil(x0/dx)*dx;v<=x1;v+=dx){x.beginPath();x.moveTo(tx(v),0);x.lineTo(tx(v),h);x.stroke()}
+  for(let v=Math.ceil(y0/dy)*dy;v<=y1;v+=dy){x.beginPath();x.moveTo(0,ty(v));x.lineTo(w,ty(v));x.stroke()}
+  x.strokeStyle=C.gridM;x.lineWidth=.8;
+  if(y0<=0&&y1>=0){x.beginPath();x.moveTo(0,ty(0));x.lineTo(w,ty(0));x.stroke()}
+  if(x0<=0&&x1>=0){x.beginPath();x.moveTo(tx(0),0);x.lineTo(tx(0),h);x.stroke()}
+  return{tx,ty}
+}
+function lbl(x,t,px,py,c,s){x.fillStyle=c||C.txt;x.font=(s||10)+'px Consolas,monospace';x.fillText(t,px,py)}
+function vline(x,tx,ty,xv,y0,y1,col,dash){
+  x.strokeStyle=col;x.lineWidth=.7;if(dash)x.setLineDash(dash);
+  x.beginPath();x.moveTo(tx(xv),ty(y0));x.lineTo(tx(xv),ty(y1));x.stroke();
+  if(dash)x.setLineDash([])
+}
+function dot(x,tx,ty,xv,yv,r,col){x.fillStyle=col;x.beginPath();x.arc(tx(xv),ty(yv),r,0,Math.PI*2);x.fill()}
+
+// ============ COBWEB ============
+function dCob(){
+  const st=+document.getElementById('s_start').value,it=+document.getElementById('s_iter').value;
+  const mx=Math.max(st+.3,2.5),{x,w,h}=gC('c_cob'),{tx,ty}=grd(x,w,h,0,mx,0,mx);
+  // f(x)=1/(1+x)
+  x.strokeStyle=C.gold;x.lineWidth=2;x.beginPath();
+  for(let v=0;v<=mx;v+=.003){const y=1/(1+v);v?x.lineTo(tx(v),ty(y)):x.moveTo(tx(v),ty(y))}x.stroke();
+  // diagonal
+  x.strokeStyle=C.blue;x.lineWidth=1.2;x.setLineDash([5,3]);x.beginPath();x.moveTo(tx(0),ty(0));x.lineTo(tx(mx),ty(mx));x.stroke();x.setLineDash([]);
+  // cobweb
+  x.strokeStyle=C.red;x.lineWidth=.8;x.globalAlpha=.6;let cv=st;x.beginPath();x.moveTo(tx(cv),ty(0));
+  for(let i=0;i<it;i++){const y=1/(1+cv);x.lineTo(tx(cv),ty(y));x.lineTo(tx(y),ty(y));cv=y}
+  x.stroke();x.globalAlpha=1;
+  dot(x,tx,ty,PB,PB,5,C.red);
+  lbl(x,'1/\u03C6',tx(PB)+6,ty(PB)-6,C.red,11);
+  lbl(x,'f(x)=1/(1+x)',tx(.1),ty(.92),C.gold,11);
+}
+
+// ============ DOMAIN WALL ============
+function dWall(){
+  const ww=+document.getElementById('s_ww').value;
+  const{x,w,h}=gC('c_wall'),{tx,ty}=grd(x,w,h,-5,5,-1,3.5);
+  // V(Phi) = (Phi^2-Phi-1)^2
+  x.strokeStyle=C.gold;x.lineWidth=2;x.beginPath();
+  for(let p=-5;p<=5;p+=.02){const v=(p*p-p-1)**2;p===-5?x.moveTo(tx(p),ty(v)):x.lineTo(tx(p),ty(Math.min(v,3.5)))}x.stroke();
+  // Mark vacua
+  dot(x,tx,ty,PHI,0,6,C.grn);lbl(x,'\u03C6',tx(PHI)+6,ty(0)+4,C.grn,11);
+  dot(x,tx,ty,-PB,0,6,C.blue);lbl(x,'-1/\u03C6',tx(-PB)-40,ty(0)+4,C.blue,11);
+  // Kink profile: tanh(x/ww) rescaled
+  x.strokeStyle=C.red;x.lineWidth=1.5;x.setLineDash([4,3]);x.beginPath();
+  for(let xx=-5;xx<=5;xx+=.02){
+    const kink=-PB+(PHI+PB)/2*(1+Math.tanh(xx/ww));
+    xx===-5?x.moveTo(tx(xx),ty(kink)):x.lineTo(tx(xx),ty(kink))
+  }x.stroke();x.setLineDash([]);
+  // Bound states (small inset)
+  const by=2.5;
+  x.strokeStyle='#ff9050';x.lineWidth=1;x.globalAlpha=.5;x.beginPath();
+  for(let xx=-5;xx<=5;xx+=.03){const v=1/Math.cosh(xx/ww)**2;xx===-5?x.moveTo(tx(xx),ty(by+v*.8)):x.lineTo(tx(xx),ty(by+v*.8))}x.stroke();
+  lbl(x,'\u03C8\u2080 (sech\u00B2)',tx(1.5),ty(by+.9),'#ff9050',9);
+  x.strokeStyle='#b070ff';x.beginPath();
+  for(let xx=-5;xx<=5;xx+=.03){const v=Math.tanh(xx/ww)/Math.cosh(xx/ww);xx===-5?x.moveTo(tx(xx),ty(by+v*.8)):x.lineTo(tx(xx),ty(by+v*.8))}x.stroke();
+  lbl(x,'\u03C8\u2081 (sech\u00B7tanh)',tx(1.5),ty(by+.3),'#b070ff',9);
+  x.globalAlpha=1;
+  lbl(x,'V(\u03A6)=(\u03A6\u00B2\u2212\u03A6\u22121)\u00B2',tx(-4.5),ty(3.2),C.gold,11);
+  lbl(x,'kink',tx(2),ty(0.5),C.red,10);
+}
+
+// ============ MODULAR FORMS ============
+function dMod(){
+  const{x,w,h}=gC('c_mod'),{tx,ty}=grd(x,w,h,0,.95,-0.1,3);
+  // eta, th3, th4 as functions of q
+  const N=80;
+  for(const[fn,col,nm]of[[eta_f,C.gold,'\u03B7'],[th3_f,C.blue,'\u03B8\u2083'],[th4_f,C.grn,'\u03B8\u2084']]){
+    x.strokeStyle=col;x.lineWidth=1.8;x.beginPath();
+    for(let qi=.01;qi<=.93;qi+=.005){
+      const v=fn(qi,N);if(v<-0.1||v>3)continue;
+      qi<=.015?x.moveTo(tx(qi),ty(v)):x.lineTo(tx(qi),ty(v))
+    }x.stroke();
+    const yv=fn(0.5,N);lbl(x,nm,tx(.5)+3,ty(yv)-4,col,12)
+  }
+  // Mark golden nome
+  vline(x,tx,ty,PB,-0.1,3,C.red,[3,3]);
+  const ev=eta_f(PB,200),t3v=th3_f(PB,200),t4v=th4_f(PB,200);
+  dot(x,tx,ty,PB,ev,4,C.gold);dot(x,tx,ty,PB,t3v,4,C.blue);dot(x,tx,ty,PB,t4v,4,C.grn);
+  lbl(x,'q=1/\u03C6',tx(PB)+4,ty(2.8),C.red,10);
+  lbl(x,'\u03B1\u209B='+ev.toFixed(4),tx(PB)+4,ty(ev)+12,C.gold,9);
+  lbl(x,'\u03B8\u2083='+t3v.toFixed(3),tx(PB)+4,ty(t3v)-6,C.blue,9);
+  // Creation identity marker
+  const ed=eta_f(PB*PB,200);
+  lbl(x,'\u03B7\u00B2='+( ev*ev).toFixed(5),tx(.05),ty(.25),C.gray,9);
+  lbl(x,'\u03B7\u1D48\u00B7\u03B8\u2084='+(ed*t4v).toFixed(5),tx(.05),ty(.12),C.gray,9);
+}
+
+// ============ GOLDEN ECHO ============
+function dEcho(){
+  const zm=+document.getElementById('s_zoom').value;
+  const{x,w,h}=gC('c_echo');
+  x.fillStyle=C.bg;x.fillRect(0,0,w,h);
+  const m=36,tY=h*.3,tW=w-2*m,toX=p=>m+p/zm*tW;
+  // Track
+  x.strokeStyle=C.gridM;x.lineWidth=1;x.beginPath();x.moveTo(m,tY);x.lineTo(w-m,tY);x.stroke();
+  // Ticks
+  x.fillStyle=C.gray;x.font='8px Consolas';
+  for(let p=0;p<=zm;p+=50){const px=toX(p);x.beginPath();x.moveTo(px,tY-3);x.lineTo(px,tY+3);x.strokeStyle=C.gridM;x.stroke();x.fillText(p,px-8,tY+14)}
+  // Fibonacci genera bar
+  const fY=h*.58;
+  x.fillStyle='#1e1a10';x.fillRect(m,fY-2,tW,20);
+  x.font='9px Consolas';
+  const fibs=[2,3,5,8,13,21,34,55,89,144];
+  const fidx=['F\u2083','F\u2084','F\u2085','F\u2086','F\u2087','F\u2088','F\u2089','F\u2081\u2080','F\u2081\u2081','F\u2081\u2082'];
+  fibs.forEach((f,i)=>{
+    const px=m+i/(fibs.length-1)*tW;
+    x.fillStyle=C.gold;x.fillText(f+'='+fidx[i],px-10,fY+12);
+    x.strokeStyle=C.goldL;x.lineWidth=.5;x.beginPath();x.moveTo(px,fY-2);x.lineTo(px,fY+18);x.stroke()
+  });
+  lbl(x,'Fibonacci genera',m,fY-8,C.gray,9);
+  // Lucas genera bar
+  const lY=h*.78;
+  x.fillStyle='#101828';x.fillRect(m,lY-2,tW,16);
+  const luc=[4,7,11,18,29,47,76,123];
+  luc.forEach((l,i)=>{
+    const px=m+i/(luc.length-1)*tW;
+    x.fillStyle=C.blue;x.font='8px Consolas';x.fillText(l,px-4,lY+11)
+  });
+  lbl(x,'Lucas genera (both vacua)',m,lY-8,C.gray,9);
+  // Primes
+  DATA.echo.forEach(d=>{
+    const px=toX(d.p);if(px<m||px>w-m)return;
+    const col=d.t==='pariah'?C.pariah:d.t==='empty'?C.empty:C.monster;
+    const filled=d.t!=='empty';
+    x.beginPath();x.arc(px,tY,filled?6:5,0,Math.PI*2);
+    if(filled){x.fillStyle=col;x.fill()}else{x.strokeStyle=col;x.lineWidth=2;x.stroke()}
+    x.fillStyle=col;x.font='10px Consolas';x.textAlign='center';
+    x.fillText(d.p,px,tY-12);
+    x.font='8px Consolas';x.fillStyle=C.gray;
+    x.fillText('g='+d.g,px,tY+26);
+    if(d.grp){x.fillStyle=col;x.font='7px Consolas';x.fillText(d.grp,px,tY+36)}
+    x.textAlign='left'
+  });
+  // Genus 89 collapse annotation
+  if(zm>=80){
+    const g89x=toX(zm*.6);
+    x.fillStyle='#281810';x.fillRect(g89x-60,h*.92-12,130,14);
+    lbl(x,'F\u2089=34,F\u2081\u2081=89: GAPS (self-closure)',g89x-58,h*.92,'#ff8040',8)
+  }
+}
+
+// ============ SCATTER: newform values ============
+function dScatter(){
+  const{x,w,h}=gC('c_scatter'),{tx,ty}=grd(x,w,h,40,175,-0.6,2.2);
+  // 1/phi line
+  x.strokeStyle=C.red;x.lineWidth=.8;x.setLineDash([4,4]);
+  x.beginPath();x.moveTo(tx(40),ty(PB));x.lineTo(tx(175),ty(PB));x.stroke();
+  lbl(x,'1/\u03C6',tx(41),ty(PB)-4,C.red,9);
+  // eta line
+  x.strokeStyle=C.gold;x.beginPath();x.moveTo(tx(40),ty(eta_f(PB,200)));x.lineTo(tx(175),ty(eta_f(PB,200)));x.stroke();
+  lbl(x,'\u03B7',tx(41),ty(eta_f(PB,200))-4,C.gold,9);
+  // zero line
+  x.strokeStyle=C.gray;x.beginPath();x.moveTo(tx(40),ty(0));x.lineTo(tx(175),ty(0));x.stroke();
+  x.setLineDash([]);
+  // Plot all values
+  DATA.scatter.forEach(d=>{
+    const col=d.t==='empty'?C.empty:d.t==='ctrl'?C.ctrl:C.pariah;
+    const r=d.t==='empty'?4:3;
+    d.v.forEach(v=>{
+      if(v<-0.6||v>2.2)return;
+      x.globalAlpha=d.t==='ctrl'?.35:.8;
+      dot(x,tx,ty,d.N,v,r,col);
+      // Highlight N=73 closest to 1/phi
+      if(d.N===73&&Math.abs(v-PB)<0.001){
+        x.globalAlpha=1;
+        x.strokeStyle=C.red;x.lineWidth=1.5;
+        x.beginPath();x.arc(tx(73),ty(v),8,0,Math.PI*2);x.stroke();
+        lbl(x,'0.6174',tx(73)+10,ty(v)+3,C.red,9);
+      }
+    });
+    x.globalAlpha=1;
+    // Conductor label
+    x.fillStyle=col;x.font='8px Consolas';x.textAlign='center';
+    x.fillText(d.N,tx(d.N),ty(-0.45));
+    x.textAlign='left'
+  });
+  lbl(x,'Each dot = one newform embedding at q=1/\u03C6',tx(90),ty(2.05),C.gray,9);
+  lbl(x,'\u25CF golden echo',tx(42),ty(2.05),C.empty,9);
+  lbl(x,'\u25CF control',tx(42),ty(1.9),C.ctrl,9);
+}
+
+// ============ CREATION IDENTITY ============
+function dCreate(){
+  const{x,w,h}=gC('c_create'),{tx,ty}=grd(x,w,h,0,.9,0,.06);
+  const N=120;
+  // eta^2
+  x.strokeStyle=C.gold;x.lineWidth=2;x.beginPath();
+  for(let q=.01;q<=.88;q+=.003){const v=eta_f(q,N)**2;q<=.013?x.moveTo(tx(q),ty(v)):x.lineTo(tx(q),ty(Math.min(v,.06)))}x.stroke();
+  // eta_dark * theta4
+  x.strokeStyle=C.blue;x.lineWidth=1.5;x.setLineDash([5,3]);x.beginPath();
+  for(let q=.01;q<=.88;q+=.003){const v=eta_f(q*q,N)*th4_f(q,N);q<=.013?x.moveTo(tx(q),ty(v)):x.lineTo(tx(q),ty(Math.min(v,.06)))}x.stroke();x.setLineDash([]);
+  // They should overlap (Jacobi creation identity)
+  vline(x,tx,ty,PB,0,.06,C.red,[3,3]);
+  const e2=eta_f(PB,200)**2;
+  dot(x,tx,ty,PB,e2,5,C.red);
+  lbl(x,'\u03B7\u00B2 (visible)',tx(.6),ty(.045),C.gold,11);
+  lbl(x,'\u03B7_dark\u00B7\u03B8\u2084',tx(.6),ty(.038),C.blue,11);
+  lbl(x,'Jacobi 1829: identical',tx(.6),ty(.031),C.gray,9);
+  lbl(x,'\u03B7\u00B2='+e2.toFixed(6),tx(PB)+6,ty(e2)+12,C.red,9);
+  lbl(x,'\u03B1\u209B\u00B2 = visible coupling\u00B2',tx(.05),ty(.003),C.gray,9);
+  lbl(x,'= dark coupling \u00D7 bridge',tx(.05),ty(.001),C.gray,9);
+}
+
+// ============ PHASE SHIFT ============
+function dPhase(){
+  const{x,w,h}=gC('c_phase'),{tx,ty}=grd(x,w,h,0,15,-6.5,0.5);
+  // PT n=2 phase shift: delta(k) = -2*atan(k) - 2*atan(k/2)
+  x.strokeStyle=C.gold;x.lineWidth=2;x.beginPath();
+  for(let k=.01;k<=15;k+=.02){const d=-2*Math.atan(k)-2*Math.atan(k/2);k<=.03?x.moveTo(tx(k),ty(d)):x.lineTo(tx(k),ty(d))}x.stroke();
+  // -pi and -2pi lines
+  x.strokeStyle=C.gridM;x.lineWidth=.5;x.setLineDash([4,4]);
+  [-Math.PI,-2*Math.PI].forEach(v=>{x.beginPath();x.moveTo(tx(0),ty(v));x.lineTo(tx(15),ty(v));x.stroke()});
+  lbl(x,'-\u03C0',tx(.2),ty(-Math.PI)+12,C.gray,9);
+  lbl(x,'-2\u03C0',tx(.2),ty(-2*Math.PI)+12,C.gray,9);
+  x.setLineDash([]);
+  // Map golden echo primes to momenta: k = sqrt(genus)
+  const echoE=[{p:73,g:5},{p:103,g:8},{p:163,g:13},{p:257,g:21}];
+  echoE.forEach(d=>{
+    const k=Math.sqrt(d.g),delta=-2*Math.atan(k)-2*Math.atan(k/2);
+    dot(x,tx,ty,k,delta,5,C.empty);
+    x.strokeStyle=C.empty;x.lineWidth=.5;x.setLineDash([2,2]);
+    x.beginPath();x.moveTo(tx(k),ty(0));x.lineTo(tx(k),ty(delta));x.stroke();
+    x.setLineDash([]);
+    lbl(x,'p='+d.p,tx(k)-8,ty(0.3),C.empty,8);
+    lbl(x,'g='+d.g,tx(k)-6,ty(0.15),C.gray,7);
+  });
+  lbl(x,'\u03B4(k) = -2arctan(k) - 2arctan(k/2)',tx(5),ty(-0.5),C.gold,10);
+  lbl(x,'PT n=2: reflectionless, |T|\u00B2=1',tx(5),ty(-1),C.gray,9);
+  lbl(x,'k = \u221Agenus',tx(8),ty(-1.5),C.empty,9);
+}
+
+function update(){
+  document.getElementById('d_start').textContent=(+document.getElementById('s_start').value).toFixed(1);
+  document.getElementById('d_iter').textContent=document.getElementById('s_iter').value;
+  document.getElementById('d_zoom').textContent=document.getElementById('s_zoom').value;
+  document.getElementById('d_ww').textContent=(+document.getElementById('s_ww').value).toFixed(1);
+  dCob();dWall();dMod();dEcho();dScatter();dCreate();dPhase();
+  // Readout
+  const it=+document.getElementById('s_iter').value;
+  let cv=+document.getElementById('s_start').value;for(let i=0;i<it;i++)cv=1/(1+cv);
+  const ev=eta_f(PB,200),t4=th4_f(PB,200),ed=eta_f(PB*PB,200);
+  document.getElementById('ro').innerHTML=
+    '<span class="gr">1/\u03C6 =</span> <span class="gold">'+PB.toFixed(12)+'</span> &nbsp; '+
+    '<span class="gr">After '+it+' iter:</span> <span class="red">'+cv.toFixed(12)+'</span> &nbsp; '+
+    '<span class="gr">\u03B7 =</span> <span class="gold">'+ev.toFixed(8)+'</span> &nbsp; '+
+    '<span class="gr">\u03B8\u2084 =</span> <span class="grn">'+t4.toFixed(8)+'</span> &nbsp; '+
+    '<span class="gr">\u03B7\u00B2 =</span> '+( ev*ev).toFixed(8)+' &nbsp; '+
+    '<span class="gr">\u03B7<sub>dark</sub>\u00B7\u03B8\u2084 =</span> '+(ed*t4).toFixed(8)+' &nbsp; '+
+    '<span class="gr">|diff| =</span> '+Math.abs(ev*ev-ed*t4).toExponential(2)+'<br>'+
+    '<span class="gr">N=73 closest to 1/\u03C6:</span> <span class="blue">0.61737 (diff 6.7\u00D710\u207B\u2074)</span> &nbsp; '+
+    '<span class="gr">Pariah window:</span> <span class="red">{F\u2083,F\u2084,F\u2085} = {37,43,67}</span> &nbsp; '+
+    '<span class="gr">Sum(103 vals)/\u03B7 =</span> 50.68'
+}
+
+document.querySelectorAll('input[type=range]').forEach(e=>e.addEventListener('input',update));
+window.addEventListener('resize',update);
+update();
+</script>
+</body>
+</html>

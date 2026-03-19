@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(cd:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(python fibonacci_genus_frontier.py)",
+      "Bash(find /c/Aromatics/theory-tools -type f \\\\\\(-name *negative* -o -name *inverse* -o -name *anti* -o -name *conjugate* -o -name *Lucas* -o -name *ext* -o -name *CM* \\\\\\))",
+      "Bash(python empty_echo_analysis.py)",
+      "WebFetch(domain:www.lmfdb.org)",
+      "Bash(python conductor_103_curves.py)",
+      "Bash(pip show:*)",
+      "Bash(python -c \"import sage\")",
+      "Bash(python -c \"import sympy; print\\(sympy.__version__\\)\")",
+      "Bash(python hecke_103.py)",
+      "Bash(timeout 600 python find_curves_103.py)",
+      "Bash(timeout 500 python verify_103.py)",
+      "Bash(pip install:*)",
+      "Read(//c/Users/kitti/miniconda3/condabin/**)",
+      "Read(//c/Users/kitti/Miniconda3/condabin/**)",
+      "Read(//c/ProgramData/miniconda3/condabin/**)",
+      "Read(//c/Users/kitti/**)",
+      "Bash(wsl:*)",
+      "Bash(start golden-fixed-point.html)",
+      "Bash(start:*)"
+    ]
+  }
+}

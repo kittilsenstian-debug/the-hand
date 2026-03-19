@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Golden Node — All Curves Through 1/φ</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Consolas','SF Mono',monospace;background:#0a0a10;color:#e0e0e8;padding:8px;margin:0}
+h1{font-size:16px;font-weight:600;letter-spacing:1px;color:#e8e0d0}
+.sub{font-size:11px;color:#556;margin-bottom:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+.panel{background:#12121c;border:1px solid #2a2a3a;border-radius:5px;padding:6px}
+.pt{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#607080;margin-bottom:6px}
+canvas{display:block;width:100%;border-radius:3px;cursor:crosshair}
+.ctrls{background:#12121c;border:1px solid #2a2a3a;border-radius:5px;padding:8px 12px;display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px}
+.cg{display:flex;align-items:center;gap:8px}
+.cg label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#607080;white-space:nowrap}
+.cg input[type=range]{width:130px;accent-color:#e0b040}
+.cg .v{font-size:11px;font-weight:700;min-width:40px;text-align:right;color:#d0c8b0}
+.ro{background:#12121c;border:1px solid #2a2a3a;border-radius:5px;padding:10px 14px;font-size:11px;line-height:1.8}
+.gold{color:#e0b040}.red{color:#ff5050}.blue{color:#50a0ff}.grn{color:#40d870}.purp{color:#b070ff}.cyan{color:#40d0d0}.gr{color:#556}
+b{font-weight:700}
+</style>
+</head>
+<body>
+<h1>THE GOLDEN NODE</h1>
+<div class="sub">Three iterations, three modular forms, one point: q = 1/&phi; &mdash; all curves through the self-referential fixed point</div>
+
+<div class="ctrls">
+  <div class="cg"><label>Start</label><input type="range" id="s_start" min="0.05" max="3" step="0.01" value="0.9"><span class="v" id="d_start"></span></div>
+  <div class="cg"><label>Iterations</label><input type="range" id="s_iter" min="1" max="40" step="1" value="16"><span class="v" id="d_iter"></span></div>
+  <div class="cg"><label>3D rotate X</label><input type="range" id="s_rx" min="-90" max="90" step="1" value="25"><span class="v" id="d_rx"></span></div>
+  <div class="cg"><label>3D rotate Y</label><input type="range" id="s_ry" min="-180" max="180" step="1" value="-30"><span class="v" id="d_ry"></span></div>
+  <div class="cg"><label>Perspective</label><input type="range" id="s_persp" min="1" max="8" step="0.1" value="3.5"><span class="v" id="d_persp"></span></div>
+</div>
+
+<div class="row4">
+  <div class="panel">
+    <div class="pt">Three maps, one fixed point</div>
+    <canvas id="c_multi" height="560"></canvas>
+  </div>
+  <div class="panel">
+    <div class="pt">The fiber at 1/&phi;</div>
+    <canvas id="c_fiber" height="560"></canvas>
+  </div>
+  <div class="panel">
+    <div class="pt">3D: curves through the golden node</div>
+    <canvas id="c_3d" height="560"></canvas>
+  </div>
+  <div class="panel">
+    <div class="pt">Node coordinates</div>
+    <canvas id="c_info" height="560"></canvas>
+  </div>
+</div>
+
+<div class="ro" id="ro"></div>
+
+<script>
+const PHI=(1+Math.sqrt(5))/2, PB=1/PHI;
+const BG='#0e0e18',PBG='#12121c';
+
+function eta_f(q,N){let p=1;for(let n=1;n<=N;n++)p*=(1-Math.pow(q,n));return Math.pow(q,1/24)*p}
+function th3_f(q,N){let s=1;for(let n=1;n<=N;n++)s+=2*Math.pow(q,n*n);return s}
+function th4_f(q,N){let s=1;for(let n=1;n<=N;n++)s+=2*Math.pow(-1,n)*Math.pow(q,n*n);return s}
+
+const ETA=eta_f(PB,300), TH3=th3_f(PB,300), TH4=th4_f(PB,300), EPS=TH4/TH3;
+const SIN2TW=ETA*ETA/(2*TH4); // framework formula
+
+function gC(id){const c=document.getElementById(id),dpr=devicePixelRatio||1,r=c.getBoundingClientRect();c.width=r.width*dpr;c.height=r.height*dpr;const x=c.getContext('2d');x.scale(dpr,dpr);return{x,w:r.width,h:r.height}}
+
+function grid(x,w,h,x0,x1,y0,y1){
+  x.fillStyle=BG;x.fillRect(0,0,w,h);
+  const tx=v=>(v-x0)/(x1-x0)*w, ty=v=>h-(v-y0)/(y1-y0)*h;
+  x.strokeStyle='#1a1a28';x.lineWidth=.5;
+  for(let i=0;i<=10;i++){
+    const xv=x0+(x1-x0)*i/10,yv=y0+(y1-y0)*i/10;
+    x.beginPath();x.moveTo(tx(xv),0);x.lineTo(tx(xv),h);x.stroke();
+    x.beginPath();x.moveTo(0,ty(yv));x.lineTo(w,ty(yv));x.stroke();
+  }
+  x.strokeStyle='#2a2a3a';x.lineWidth=.8;
+  if(y0<=0&&y1>=0){x.beginPath();x.moveTo(0,ty(0));x.lineTo(w,ty(0));x.stroke()}
+  if(x0<=0&&x1>=0){x.beginPath();x.moveTo(tx(0),0);x.lineTo(tx(0),h);x.stroke()}
+  return{tx,ty}
+}
+function lbl(x,t,px,py,c,s){x.fillStyle=c;x.font=(s||10)+'px Consolas,monospace';x.fillText(t,px,py)}
+function dot(x,px,py,r,c){x.fillStyle=c;x.beginPath();x.arc(px,py,r,0,Math.PI*2);x.fill()}
+
+// ============ THREE COBWEBS ============
+function dMulti(){
+  const st=+document.getElementById('s_start').value, it=+document.getElementById('s_iter').value;
+  const{x,w,h}=gC('c_multi'),{tx,ty}=grid(x,w,h,-0.1,1.5,-0.1,1.5);
+
+  // Diagonal y=x
+  x.strokeStyle='#2a3a4a';x.lineWidth=1;
+  x.beginPath();x.moveTo(tx(-0.1),ty(-0.1));x.lineTo(tx(1.5),ty(1.5));x.stroke();
+
+  // MAP 1: f(x) = 1/(1+x) — gold
+  x.strokeStyle='#e0b040';x.lineWidth=2;x.beginPath();
+  for(let v=0.01;v<=1.5;v+=.003){const y=1/(1+v);v<=.013?x.moveTo(tx(v),ty(y)):x.lineTo(tx(v),ty(y))}x.stroke();
+
+  // MAP 2: f(x) = sqrt(1-x) — cyan (only defined for x<=1)
+  x.strokeStyle='#40d0d0';x.lineWidth=2;x.beginPath();
+  for(let v=0;v<=0.999;v+=.003){const y=Math.sqrt(1-v);v===0?x.moveTo(tx(v),ty(y)):x.lineTo(tx(v),ty(y))}x.stroke();
+
+  // MAP 3: f(x) = 1-x^2 — purple
+  x.strokeStyle='#b070ff';x.lineWidth=2;x.beginPath();
+  for(let v=0;v<=1.2;v+=.003){const y=1-v*v;v===0?x.moveTo(tx(v),ty(y)):x.lineTo(tx(v),ty(y))}x.stroke();
+
+  // y=1 line (the equation q+q²=1 target)
+  x.strokeStyle='#ff505040';x.lineWidth=1;x.setLineDash([4,4]);
+  x.beginPath();x.moveTo(tx(0),ty(1));x.lineTo(tx(1.5),ty(1));x.stroke();x.setLineDash([]);
+
+  // Cobweb for MAP 1
+  x.strokeStyle='#e0b04080';x.lineWidth=.7;let cv=st;x.beginPath();x.moveTo(tx(cv),ty(0));
+  for(let i=0;i<it;i++){const y=1/(1+cv);x.lineTo(tx(cv),ty(y));x.lineTo(tx(y),ty(y));cv=y}x.stroke();
+
+  // Cobweb for MAP 2
+  x.strokeStyle='#40d0d080';x.lineWidth=.7;cv=Math.min(st,0.99);x.beginPath();x.moveTo(tx(cv),ty(0));
+  for(let i=0;i<it;i++){const y=Math.sqrt(Math.max(0,1-cv));x.lineTo(tx(cv),ty(y));x.lineTo(tx(y),ty(y));cv=y}x.stroke();
+
+  // Cobweb for MAP 3
+  x.strokeStyle='#b070ff80';x.lineWidth=.7;cv=Math.min(st,1.1);x.beginPath();x.moveTo(tx(cv),ty(0));
+  for(let i=0;i<Math.min(it,30);i++){const y=1-cv*cv;if(y<-0.5)break;x.lineTo(tx(cv),ty(y));x.lineTo(tx(y),ty(y));cv=y}x.stroke();
+
+  // THE NODE — all three meet here
+  dot(x,tx(PB),ty(PB),8,'#ff5050');
+  x.strokeStyle='#ff5050';x.lineWidth=1;
+  x.beginPath();x.arc(tx(PB),ty(PB),14,0,Math.PI*2);x.stroke();
+
+  // Labels
+  lbl(x,'f\u2081(x) = 1/(1+x)',tx(0.8),ty(0.65),'#e0b040',11);
+  lbl(x,'f\u2082(x) = \u221A(1\u2212x)',tx(0.02),ty(1.35),'#40d0d0',11);
+  lbl(x,'f\u2083(x) = 1\u2212x\u00B2',tx(0.75),ty(1.35),'#b070ff',11);
+  lbl(x,'y = x',tx(1.2),ty(1.25),'#3a4a5a',10);
+  lbl(x,'1/\u03C6',tx(PB)+16,ty(PB)-10,'#ff5050',13);
+  lbl(x,'THREE MAPS',tx(0.02),ty(0.1),'#ff505080',9);
+  lbl(x,'ONE FIXED POINT',tx(0.02),ty(0.04),'#ff505080',9);
+}
+
+// ============ THE FIBER ============
+function dFiber(){
+  const{x,w,h}=gC('c_fiber');
+  x.fillStyle=BG;x.fillRect(0,0,w,h);
+
+  const m=50, fiberX=w*0.4;
+  const scaleY=v=>m+(h-2*m)*(1-v/3); // 0 at bottom, 3 at top
+
+  // The vertical fiber line
+  x.strokeStyle='#ff505060';x.lineWidth=2;
+  x.beginPath();x.moveTo(fiberX,m);x.lineTo(fiberX,h-m);x.stroke();
+  lbl(x,'q = 1/\u03C6',fiberX-20,m-8,'#ff5050',12);
+
+  // Mark coupling constants on the fiber
+  const marks = [
+    {v:ETA, name:'\u03B7 = \u03B1\u209B', col:'#e0b040', detail:'0.11840 (strong coupling)'},
+    {v:TH4, name:'\u03B8\u2084', col:'#40d870', detail:'0.03031 (bridge)'},
+    {v:EPS, name:'\u03B5 = \u03B8\u2084/\u03B8\u2083', col:'#40d0d0', detail:'0.01186 (hierarchy)'},
+    {v:PB, name:'1/\u03C6', col:'#ff5050', detail:'0.61803 (the nome itself)'},
+    {v:PB*PB, name:'1/\u03C6\u00B2', col:'#ff8040', detail:'0.38197 (dark nome)'},
+    {v:TH3, name:'\u03B8\u2083', col:'#50a0ff', detail:'2.55509 (geometry)'},
+    {v:ETA*ETA, name:'\u03B7\u00B2 = \u03B1\u209B\u00B2', col:'#c09030', detail:'0.01402'},
+    {v:SIN2TW, name:'sin\u00B2\u03B8_W', col:'#d050d0', detail:'0.23121 (Weinberg)'},
+  ];
+
+  marks.sort((a,b)=>a.v-b.v);
+
+  marks.forEach((mk,i)=>{
+    const py=scaleY(mk.v);
+    // Dot on fiber
+    dot(x,fiberX,py,5,mk.col);
+    // Horizontal line
+    x.strokeStyle=mk.col+'60';x.lineWidth=.8;
+    x.beginPath();x.moveTo(fiberX+8,py);x.lineTo(fiberX+60,py);x.stroke();
+    // Label
+    lbl(x,mk.name,fiberX+65,py+4,mk.col,11);
+    lbl(x,mk.detail,fiberX+65,py+16,'#556',9);
+  });
+
+  // Scale on left
+  x.fillStyle='#334';x.font='9px Consolas,monospace';
+  for(let v=0;v<=3;v+=0.5){
+    const py=scaleY(v);
+    x.fillText(v.toFixed(1),10,py+3);
+    x.strokeStyle='#1a1a28';x.lineWidth=.5;
+    x.beginPath();x.moveTo(35,py);x.lineTo(fiberX-5,py);x.stroke();
+  }
+
+  lbl(x,'All values live on this',fiberX-35,h-m+20,'#556',9);
+  lbl(x,'single vertical fiber',fiberX-30,h-m+32,'#556',9);
+}
+
+// ============ 3D VIEW ============
+function d3D(){
+  const rx=+document.getElementById('s_rx').value*Math.PI/180;
+  const ry=+document.getElementById('s_ry').value*Math.PI/180;
+  const persp=+document.getElementById('s_persp').value;
+  const{x,w,h}=gC('c_3d');
+  x.fillStyle=BG;x.fillRect(0,0,w,h);
+
+  const cx=w/2,cy=h/2,scale=Math.min(w,h)*0.3;
+
+  // 3D projection: x=q, y=f(q), z=eta(q)
+  function proj(px,py,pz){
+    // Center and normalize to [-1,1]
+    let ax=px-0.5, ay=py-0.5, az=pz*2-0.5;
+    // Rotate around Y
+    let x1=ax*Math.cos(ry)-az*Math.sin(ry), z1=ax*Math.sin(ry)+az*Math.cos(ry);
+    // Rotate around X
+    let y1=ay*Math.cos(rx)-z1*Math.sin(rx), z2=ay*Math.sin(rx)+z1*Math.cos(rx);
+    // Perspective
+    const d=persp+z2;
+    return{x:cx+x1/d*scale*persp, y:cy-y1/d*scale*persp, z:z2};
+  }
+
+  // Draw 3D axes
+  function drawAxis(p0,p1,col,label){
+    const a=proj(...p0),b=proj(...p1);
+    x.strokeStyle=col+'60';x.lineWidth=1;
+    x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();
+    lbl(x,label,b.x+4,b.y,col,10);
+  }
+  drawAxis([0,0,0],[1.1,0,0],'#e0b040','q');
+  drawAxis([0,0,0],[0,1.1,0],'#50a0ff','f(q)');
+  drawAxis([0,0,0],[0,0,0.5],'#40d870','\u03B7(q)');
+
+  // CURVE 1: f1(q) = 1/(1+q) in xy-plane, z = eta(q)
+  x.strokeStyle='#e0b040';x.lineWidth=1.5;x.beginPath();
+  let first=true;
+  for(let q=0.05;q<=1;q+=.005){
+    const fq=1/(1+q), eq=eta_f(q,60)*3;
+    const p=proj(q,fq,eq);
+    first?(x.moveTo(p.x,p.y),first=false):x.lineTo(p.x,p.y);
+  }x.stroke();
+
+  // CURVE 2: f2(q) = sqrt(1-q), z = eta(q)
+  x.strokeStyle='#40d0d0';x.lineWidth=1.5;x.beginPath();first=true;
+  for(let q=0.01;q<=0.99;q+=.005){
+    const fq=Math.sqrt(1-q), eq=eta_f(q,60)*3;
+    const p=proj(q,fq,eq);
+    first?(x.moveTo(p.x,p.y),first=false):x.lineTo(p.x,p.y);
+  }x.stroke();
+
+  // CURVE 3: f3(q) = 1-q^2, z = eta(q)
+  x.strokeStyle='#b070ff';x.lineWidth=1.5;x.beginPath();first=true;
+  for(let q=0.01;q<=1;q+=.005){
+    const fq=1-q*q, eq=eta_f(q,60)*3;
+    const p=proj(q,fq,eq);
+    first?(x.moveTo(p.x,p.y),first=false):x.lineTo(p.x,p.y);
+  }x.stroke();
+
+  // The DIAGONAL in xy-plane, lifted by eta: (q, q, eta(q))
+  x.strokeStyle='#ff505060';x.lineWidth=1;x.beginPath();first=true;
+  for(let q=0.05;q<=1;q+=.005){
+    const eq=eta_f(q,60)*3;
+    const p=proj(q,q,eq);
+    first?(x.moveTo(p.x,p.y),first=false):x.lineTo(p.x,p.y);
+  }x.stroke();
+
+  // Modular form curves: (q, theta3(q)/3, eta(q)) etc
+  x.strokeStyle='#50a0ff40';x.lineWidth=1;x.beginPath();first=true;
+  for(let q=0.05;q<=0.95;q+=.005){
+    const t3=th3_f(q,60)/3, eq=eta_f(q,60)*3;
+    const p=proj(q,t3,eq);
+    first?(x.moveTo(p.x,p.y),first=false):x.lineTo(p.x,p.y);
+  }x.stroke();
+
+  // THE GOLDEN NODE — where all curves intersect
+  const nodeP=proj(PB, PB, ETA*3);
+  // Glow
+  const grad=x.createRadialGradient(nodeP.x,nodeP.y,0,nodeP.x,nodeP.y,20);
+  grad.addColorStop(0,'#ff505080');grad.addColorStop(1,'#ff505000');
+  x.fillStyle=grad;x.fillRect(nodeP.x-20,nodeP.y-20,40,40);
+  // Dot
+  dot(x,nodeP.x,nodeP.y,6,'#ff5050');
+
+  // Vertical fiber at golden node
+  x.strokeStyle='#ff505040';x.lineWidth=1;x.setLineDash([3,3]);
+  const fBot=proj(PB,PB,0), fTop=proj(PB,PB,ETA*3*2);
+  x.beginPath();x.moveTo(fBot.x,fBot.y);x.lineTo(fTop.x,fTop.y);x.stroke();
+  x.setLineDash([]);
+
+  // Coupling constant dots on the fiber
+  [{v:ETA,c:'#e0b040'},{v:TH4,c:'#40d870'},{v:EPS,c:'#40d0d0'}].forEach(mk=>{
+    const p=proj(PB,PB,mk.v*3);
+    dot(x,p.x,p.y,3,mk.c);
+  });
+
+  lbl(x,'q=1/\u03C6: all curves converge here',10,h-30,'#ff505080',10);
+  lbl(x,'Drag 3D rotate sliders to explore',10,h-16,'#334',9);
+  lbl(x,'\u25CF 1/(1+q)',10,20,'#e0b040',10);
+  lbl(x,'\u25CF \u221A(1\u2212q)',10,34,'#40d0d0',10);
+  lbl(x,'\u25CF 1\u2212q\u00B2',10,48,'#b070ff',10);
+  lbl(x,'\u25CF \u03B8\u2083/3',10,62,'#50a0ff40',10);
+  lbl(x,'\u25CF diagonal',10,76,'#ff505060',10);
+}
+
+// ============ INFO PANEL ============
+function dInfo(){
+  const{x,w,h}=gC('c_info');
+  x.fillStyle=BG;x.fillRect(0,0,w,h);
+
+  const lines=[
+    ['THE GOLDEN NODE','#ff5050',14],
+    ['','',6],
+    ['q = 1/\u03C6 = '+PB.toFixed(10),'#e0b040',11],
+    ['','',8],
+    ['THREE ITERATIONS:','#607080',10],
+    ['f\u2081(x) = 1/(1+x)','#e0b040',11],
+    ['  continued fraction','#556',9],
+    ['  converges from ANY start','#556',9],
+    ['','',4],
+    ['f\u2082(x) = \u221A(1\u2212x)','#40d0d0',11],
+    ['  quadratic root','#556',9],
+    ['  q\u00B2 = 1\u2212q rearranged','#556',9],
+    ['','',4],
+    ['f\u2083(x) = 1\u2212x\u00B2','#b070ff',11],
+    ['  quadratic complement','#556',9],
+    ['  oscillating convergence','#556',9],
+    ['','',8],
+    ['ALL THREE ARE q+q\u00B2=1','#ff5050',11],
+    ['viewed from different sides.','#556',9],
+    ['','',8],
+    ['FIBER VALUES AT NODE:','#607080',10],
+    ['\u03B7 = '+ETA.toFixed(8)+' (\u03B1\u209B)','#e0b040',10],
+    ['\u03B8\u2083 = '+TH3.toFixed(6),'#50a0ff',10],
+    ['\u03B8\u2084 = '+TH4.toFixed(8),'#40d870',10],
+    ['\u03B5 = '+EPS.toFixed(8),'#40d0d0',10],
+    ['sin\u00B2\u03B8 = '+SIN2TW.toFixed(6),'#d050d0',10],
+    ['','',8],
+    ['The node is not 2D.','#ff505080',10],
+    ['It extends vertically through','#556',9],
+    ['ALL coupling constants.','#ff505080',10],
+    ['Each constant = a height','#556',9],
+    ['on the same fiber.','#556',9],
+    ['','',6],
+    ['3 iterations \u00D7 3 modular forms','#556',9],
+    ['= 9 curves through 1 point.','#ff505060',10],
+    ['The point IS the physics.','#ff5050',10],
+  ];
+
+  let y=16;
+  lines.forEach(([t,c,s])=>{
+    if(t)lbl(x,t,14,y,c,s);
+    y+=s+4;
+  });
+}
+
+function update(){
+  document.getElementById('d_start').textContent=(+document.getElementById('s_start').value).toFixed(2);
+  document.getElementById('d_iter').textContent=document.getElementById('s_iter').value;
+  document.getElementById('d_rx').textContent=document.getElementById('s_rx').value+'\u00B0';
+  document.getElementById('d_ry').textContent=document.getElementById('s_ry').value+'\u00B0';
+  document.getElementById('d_persp').textContent=(+document.getElementById('s_persp').value).toFixed(1);
+  dMulti();dFiber();d3D();dInfo();
+
+  const it=+document.getElementById('s_iter').value;
+  let c1=+document.getElementById('s_start').value,c2=Math.min(c1,.99),c3=Math.min(c1,1.1);
+  for(let i=0;i<it;i++){c1=1/(1+c1);c2=Math.sqrt(Math.max(0,1-c2));c3=1-c3*c3}
+  document.getElementById('ro').innerHTML=
+    '<span class="gr">After '+it+' iterations:</span> '+
+    '<span class="gold">f\u2081\u2192'+c1.toFixed(10)+'</span> &nbsp; '+
+    '<span class="cyan">f\u2082\u2192'+c2.toFixed(10)+'</span> &nbsp; '+
+    '<span class="purp">f\u2083\u2192'+c3.toFixed(10)+'</span> &nbsp; '+
+    '<span class="red">target: '+PB.toFixed(10)+'</span><br>'+
+    '<span class="gr">The three maps are three faces of one equation.</span> '+
+    '<span class="gr">The modular forms are the vertical structure above the fixed point.</span> '+
+    '<span class="gr">Together: 9+ curves through one node in high-dimensional space.</span>';
+}
+
+document.querySelectorAll('input[type=range]').forEach(e=>e.addEventListener('input',update));
+window.addEventListener('resize',update);
+update();
+</script>
+</body>
+</html>

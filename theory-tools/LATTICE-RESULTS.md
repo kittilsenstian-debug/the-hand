@@ -33,9 +33,9 @@ Kink-antikink collisions at 8 velocities (0.1c to 0.8c): complete annihilation i
 | 0.7 | 5.382 | 0.000 | 0.0000 | DECAYED |
 | 0.8 | 7.852 | 0.000 | 0.0000 | DECAYED |
 
-8/8 complete decay. Framework confirmed: no stable oscillons in the golden potential.
+8/8 complete decay with absorbing boundary conditions.
 
-This is discriminating: generic phi^4 potentials (e.g., V = lambda*(Phi^2 - v^2)^2 with symmetric vacua) DO produce long-lived oscillons. The golden potential's asymmetric vacua (phi vs -1/phi, Pisot property) prevent oscillon formation. The kink-antikink pair annihilates completely.
+**UPDATE:** Follow-up comparison with symmetric V=(Phi^2-1)^2 using periodic boundaries shows BOTH potentials have similar kink-antikink dynamics in 1D. The absorbing BCs cause energy loss from both. The oscillons-vs-no-oscillons distinction is NOT confirmed in 1D — both bounce and radiate similarly. The proper comparison needs 2D/3D simulation or much longer 1D runs. This result is OPEN, not confirmed.
 
 Physical implication: domain walls in the golden potential cannot self-sustain. Once maintenance stops, the wall dissolves. Life must be actively maintained — autopoiesis is forced by the algebra.
 
