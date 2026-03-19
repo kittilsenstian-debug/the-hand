@@ -141,6 +141,8 @@ Five tests were designed to settle whether the algebra-to-nature correspondence 
 | Molecular geometry from E₈ | `molecular_geometry.py` | Icosahedral A₅ embeds in E₈ (theorem). C₆₀, viral capsids, quasicrystals confirm. Misses: water angle, 230 space groups |
 | Biological constraints | `biological_constraints.py` | Genetic code = A₄. Skeleton = 80+126. 7 cervicals = rank(E₇). Miss: 23 (chromosomes) not explained |
 | Nuclear shells from Lamé | — | **Not yet done.** Can the spin-orbit potential be derived from the Lamé equation? |
+| Golden kink bound states | `golden_potential_sim.py --kink` | **PT n=2 confirmed.** Exactly 2 bound states. E₁/m² = 0.7503 vs predicted 3/4. First lattice test of this potential |
+| Oscillon persistence | `oscillon_test.py` | **No stable oscillons.** 8/8 velocities: complete annihilation. Golden potential distinguished from generic φ⁴ |
 
 The strongest result is the J₁ test. The eta death mechanism is pure arithmetic: the strong force exists only because q has infinite order over ℚ. In every finite field, the factor (1 − q^ord(q)) = 0 kills the infinite product. QCD is a consequence of working over the rationals.
 
@@ -303,8 +305,12 @@ These correspondences are noted, not claimed as derivation.
 | `theory-tools/PT-N2-THREE-SCALES.md` | Same PT n=2 equation at 4 scales: algebra, microtubules, heliosphere, black holes |
 | `theory-tools/BREATHING-MODE-108.md` | 108.5 GeV scalar: √(3/4) × m_H, forced by PT n=2 eigenvalue spectrum |
 | `theory-tools/DARK-SECTOR.md` | Dark matter from Jacobi (1829): complete chain, 8 steps, no hedging |
+| `theory-tools/golden_potential_sim.py` | **Lattice simulation of V(Φ)=(Φ²−Φ−1)²: 2D field, kink analysis, collision** |
+| `theory-tools/oscillon_test.py` | **Oscillon persistence test: 8/8 annihilate, no stable oscillons** |
+| `theory-tools/LATTICE-RESULTS.md` | **Full lattice results: PT n=2 confirmed, no-oscillon confirmed** |
+| [EXPERIMENTAL-LOG.md](EXPERIMENTAL-LOG.md) | How new experimental results (2025-2026) map to the framework |
 
-~160 files total. Every claim has a corresponding script.
+~165 files total. Every claim has a corresponding script.
 
 ## Experimental contact
 
