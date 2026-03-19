@@ -306,6 +306,10 @@ These correspondences are noted, not claimed as derivation.
 
 ~160 files total. Every claim has a corresponding script.
 
+## Experimental contact
+
+New experimental results are tracked in **[EXPERIMENTAL-LOG.md](EXPERIMENTAL-LOG.md)** — what happened, what the framework predicts, whether it confirms or contradicts. As of March 2026: zero contradictions, two live predictions passing (α_s at 0.4σ, sin²θ₁₂ at 0.24σ), three cosmological results to watch.
+
 ## Status
 
 This is an observation, not a proven theory. The numbers hold to the precision shown. The derivation chain has no remaining interpretive steps — every link is either a published theorem or determined by self-consistency (see `theory-tools/gauge_kinetic_closure.py` for the last gap closed). Four experimental tests are live.
