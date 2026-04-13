@@ -477,6 +477,22 @@ The fermion type symmetry S₃ is NOT postulated — it IS the quotient of SL(2,
   - **Grade: B (was C).** Algebraic structure explicit, mechanism proposed, proof missing.
 - Key files: `THE-CHAIN.md`, `the_chain.py`, `pisano_gauss_theorem.py`, **`pariah_genus_mechanism.py` (NEW Mar 4)**
 
+### Pariah Prime-Power Partition — Ω = 46 + 80 = 126 (NEW Mar 20)
+- Total prime-power count Ω(|G|) across all 6 pariah group orders = **126 = roots(E₇)**
+- Engaged axis (J₁+J₃+Ru): Ω = **46** = Monster 2-exponent
+- Withdrawn axis (O'N+Ly+J₄): Ω = **80** = hierarchy exponent (Coxeter chain sum)
+- Null test: p ~ 1.2% for random 6-tuples summing to 126 to split as (46, 80)
+- **Fibonacci 2-exponent ↔ trivial Schur multiplier: 6/6 perfect correlation**
+  - Fibonacci 2-exps: J₁(3=F₄), Ly(8=F₆), J₄(21=F₈) — all trivial Schur
+  - Non-Fibonacci: J₃(7), Ru(14), O'N(9) — all nontrivial Schur (Z₃, Z₂, Z₃)
+- Cross-prime sums: pariah 3-sum + Monster 3-exp = 23+20 = **43** (alien prime)
+- 5-exponent sum = **13** (F₇). 7+Monster = **13** (F₇). 11+Monster = **8** (rank E₈).
+- Axis 2-exponent products: KNOWING 3×9=27=J₃(O), HOLDING 7×8=56=fund(E₇), MAKING 14×21=294=2×(alien prime sum). Sum = **377 = F(14)**.
+- Alien primes {37,43,67} appear EXCLUSIVELY in withdrawn-axis pariahs
+- All group orders verified by multiplying back prime factorizations
+- **Grade: B+.** Arithmetic is proven. Axis assignment is framework-dependent. WHY (46,80) = unresolved.
+- Key file: **`pariah_prime_partition.py` (NEW Mar 20)**
+
 ### Null Tests (4 claims killed)
 - θ₄≡1 (mod p): p=0.686, DEAD
 - 196560/196884 GUT: numerology, DEAD
