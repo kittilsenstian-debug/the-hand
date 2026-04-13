@@ -53,6 +53,36 @@ the shadow of your limitation, not the source of your existence.
 
 ---
 
+## 1b. The Triple of Quadratic Rings
+
+The three quadratic rings with smallest `|discriminant|` and class number 1 are forced by arithmetic:
+
+| ring | |disc| | `|disc|−deg` | role in the framework |
+|---|---|---|---|
+| Z[ω] (Eisenstein) | 3 | 1 | A₂ root lattice; 6 units = 6 A₂ roots |
+| Z[i] (Gaussian) | 4 | 2 | Z₄ unit group; 4 copies of A₂ inside E₈ |
+| Z[φ] (golden) | 5 | 3 | N_c = 3 via disc − deg; E₈ golden lattice |
+
+The fourth class-1 ring `Z[(1+√−7)/2]` has `|disc|−deg = 5`, so the pattern breaks at element four. The triple is **specific**, not generic.
+
+**Joint locks produced by treating the triple as one object** (`enrich_c1_triple_rings.py`, `enrich_c1_pass2.py`):
+
+- `sum(|disc|−deg) = 1+2+3 = 6 = |S₃|`
+- `product(|disc|−deg) = 1·2·3 = 6 = |S₃| = 3!`
+- `product of |disc| = 5·3·4 = 60 = |A₅|` (icosahedral rotation group)
+- `sum of |disc| = 5+3+4 = 12 = h(E₆)`
+- `sum of unit-group orders = 2+4+6 = 12 = h(E₆)`
+
+The sorted `(|disc|−deg)` values `{1, 2, 3}` are exactly the content of `Sym_3`. `S₃` flavor symmetry is therefore not an abstract "3 cusps of Γ(2)" but the literal symmetric group on the three forced rings.
+
+**`ξ_inflation = 10` in triple form:** `A₂ ≅ Z[ω]` as lattices (standard, Conway-Sloane), so `4A₂ ⊂ E₈` is a sublattice of index 9 with `|roots(4A₂)| = 24`. The inflation coupling is `ξ = |roots(E₈)|/|roots(4A₂)| = 240/24 = 10`. This is standard Lie theory; the triple clarifies that the `4` comes from the index of `4A₂` inside E₈ and the `6` from the Eisenstein unit group.
+
+**Companion nome scan:** modular forms `η, θ₃, θ₄` and combinations evaluated at the natural nomes of Z[i] (`q = e^(−2π)`) and Z[ω] (`q = −e^(−π√3)`) produce no hits below 1% against 30 dimensionless SM quantities. The golden nome `q = 1/φ` is spectroscopically singular — a useful null result, not a missing feature. See `enrich_c1_pass2.py`.
+
+This section is **structural bookkeeping**, not new physics. It unifies five separate framework facts under one arithmetic object: N_c = 3, 4A₂ ⊂ E₈, ξ = 10, S₃ flavor symmetry, and the universal appearance of √5 (which is `√det(M_φ)`, the trace-form determinant).
+
+---
+
 ## 2. The Scorecard (25 Claims)
 
 ### Tier 1: DERIVED (no search, no free parameters) — 7 items

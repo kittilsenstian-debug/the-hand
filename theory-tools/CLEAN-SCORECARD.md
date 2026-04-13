@@ -127,9 +127,9 @@ These formulas were found by numerical search against measured values, then conn
 
 | # | Quantity | Formula | Predicted | Measured | Match | Category | Notes |
 |---|----------|---------|-----------|----------|-------|----------|-------|
-| 13 | V_us (Cabibbo) | (phi/7)*(1-theta4) | 0.2241 | 0.2243 | 99.49% | SEARCHED | Base phi/7 = sin^2(theta_W) to 99.95% (structural connection). theta4 power found by search. |
-| 14 | V_cb | (phi/7)*sqrt(theta4) | 0.0402 | 0.0405 | 99.35% | SEARCHED | Same phi/7 base. Currently in mild tension. |
-| 15 | V_ub | (phi/7)*3*theta4^(3/2)*(1+phi*theta4) | 0.00384 | 0.00382 | 99.50% | SEARCHED | More complex formula with more structure to search. |
+| 13 | V_us (Cabibbo) | (phi/L_4)*(1-theta4) | 0.2241 | 0.2243 | 99.49% | STRUCTURAL + SEARCHED | Base phi/L_4 where L_4 = phi^4 + phi^(-4) = 7 (4th Lucas number, exact). The "7" was never a free integer; it is forced by the Lucas tower. See `enrich_c6_lucas_zeckendorf.py`. theta4 power found by search. |
+| 14 | V_cb | (phi/L_4)*sqrt(theta4) | 0.0402 | 0.0405 | 99.35% | STRUCTURAL + SEARCHED | Same phi/L_4 base (L_4 = 7 = 4th Lucas). Currently in mild tension. |
+| 15 | V_ub | (phi/L_4)*3*theta4^(3/2)*(1+phi*theta4) | 0.00384 | 0.00382 | 99.50% | STRUCTURAL + SEARCHED | Same phi/L_4 base. More complex formula with more structure to search. |
 | 16 | delta_CP (CKM) | arctan(phi^2*(1-theta4)) | 68.50 deg | 68.4 deg | 99.9997% | SEARCHED | Standout match. But a searched formula with arctan can be quite flexible. |
 | 17 | sin^2(theta_12) (solar) | 1/3 - theta4*sqrt(3/4) | 0.3071 | 0.3092 +/- 0.0087 | 98.67% | SEARCHED + PREDICTION | Leading term 1/3 = tribimaximal (well-motivated). theta4 correction is specific. Live test at JUNO (currently 0.24 sigma). Formula is isolated (3/99 neighbors match). |
 | 18 | sin^2(theta_23) (atm.) | 1/2 + 40*C | 0.5718 | 0.572 +/- 0.020 | 99.96% | SEARCHED | Factor 40 = 240/6 is structural. C = eta*theta4/2 is the universal loop factor. But 40 as a geometry factor was found, not derived. |
@@ -223,11 +223,11 @@ From the Monte Carlo analysis (§256, `expected_match_count.py`):
 
 ## PART E: BOTTOM LINE NUMBERS
 
-### Items Removed: 9
+### Items Removed: 8
 1. pi formula (generic math)
 2. Coupling triangle (tautological)
 3. CKM unitarity (tautological)
-4. Creation identity (tautological)
+4. ~~Creation identity (tautological)~~ — **UN-RETIRED Apr 13.** The identity `η² = η(q²)·θ₄` is not tautological: it is the level-1↔level-2 bridge that makes sin²θ_W = η²/(2θ₄) (G3) and α_{s,dark} = η(1/φ²) (D3) the same result, not two independent derivations. See `enrich_c5_creation_identity.py`. Classified as PROVEN MATH (structural bridge).
 5. Muon g-2 (wrong)
 6. H0 from Lucas (decorative, no derivation)
 7. theta2 ~ theta3 (generic for large q)

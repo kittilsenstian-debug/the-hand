@@ -60,7 +60,7 @@ This outputs the three coupling constants, the alpha derivation, and a uniquenes
 | PT depth n | L(−3, χ₅) = 2 | **exact** (L-function of Q(√5)) |
 | Dark strong coupling | η(1/φ²) — forced by creation identity | 0.4625 (zero parameters) |
 | Weinberg angle = ½ dark strong | sin²θ_W = η_dark/2 (Jacobi theorem) | 130 ppm match |
-| 3+1 dimensions | Z[i] unit group Z₄ → 4 copies of A₂ in E₈ | derived |
+| 3+1 dimensions | 4A₂ ⊂ E₈ (standard, index 9); A₂ root lattice = Z[ω]; Z₄ ⊂ Aut permutes the 4 copies | derived |
 | Eta step ratio | Successive corrections → 1/φ = 0.618034 | proven math |
 | N_c = disc − deg | 3 = disc(Z[φ]) − [Q(φ):Q] = 5 − 2 | **proven math** (unique among all real quadratic fields) |
 | VP cutoff Λ = m_p/φ³ | φ³ = φ^(N_c) = φ^(disc−deg), forced by trace form of Z[φ] | derived (zero empirical inputs remain) |
@@ -108,6 +108,8 @@ disc − deg = 5 − 2 = 3 = Nc  ← unique among all real quadratic fields
 
 This is pure number theory. N_c = disc(Z[φ]) − [Q(φ):Q]. No other real quadratic field gives disc − deg = 3. The number of colors is the discriminant minus the degree of the golden field — the unique such field embedded in E₈. See `theory-tools/derive_lambda_from_chain.py`.
 
+The trace form is further distinguished twice over all real quadratic fields: **`Tr(M) = det(M) = disc = 5`** is unique to Z[φ] (closed-form proof: the condition `(m+5)/2 = m` forces `m = 5`), and the eigenvalues of M factor as **`√5 · {φ, 1/φ}` — the square root of the discriminant times the fundamental unit and its inverse**. The √5 that appears throughout the framework (in Λ, α, the hierarchy) is literally `√det(M_φ)`. See `theory-tools/enrich_c4_trace_form_operator.py`.
+
 Combining the continuous mode (α) with the discrete mode (4/√3 from PT n=2) gives:
 
 f = α^(11/4) · φ · (4/√3) · f_electron = 613.86 THz
@@ -129,6 +131,37 @@ python theory-tools/complete_algebra.py
 Key findings: all three pariah-only primes appear in nature (37 = mitochondrial genes, 43 = Technetium's instability, 67 = collagen repeat), nuclear magic numbers trace E₈ dimensions (5/7 exact), and the strong force vanishes in every finite field (eta death — `all_fibers.py`).
 
 Conservative Monte Carlo: P < 1/16 trillion for the combined match. See `theory-tools/UNDENIABLE-TABLE.md`.
+
+### Pariah prime-power partition (Mar 20)
+
+The total prime-power count Ω across all 6 pariah group orders equals **126 = roots of E₇**. The count splits by axis:
+
+| Axis | Pariahs | Ω | = |
+|------|---------|---|---|
+| Engaged | J₁ + J₃ + Ru | 46 | Monster 2-exponent |
+| Withdrawn | O'N + Ly + J₄ | 80 | Hierarchy exponent |
+| **Total** | **All 6** | **126** | **roots(E₇)** |
+
+Fibonacci 2-exponents correspond perfectly to trivial Schur multipliers (6/6). The pariah 3-exponent sum plus the Monster's 3-exponent equals 43 — an alien prime. Alien primes {37, 43, 67} appear exclusively in withdrawn-axis pariahs.
+
+**Gap and genus locks on {37, 43, 67}** (second independent arithmetic family, `enrich_c2_gap_identities.py`):
+
+| identity | value | named structure |
+|---|---|---|
+| `43 − 37` | 6 | `|S₃|` |
+| `67 − 43` | 24 | `c(Monster VOA)` |
+| `67 − 37` | 30 | `h(E₈)` Coxeter number |
+| `37 + 43` | 80 | `v/M_Pl` hierarchy exponent |
+| genera `(g(X₀(37)), g(X₀(43)), g(X₀(67)))` | `(2, 3, 5)` | icosahedral Schwarz triangle |
+| sum of genera | 10 | ξ_inflation = 240/24 |
+| product of genera | 30 | `h(E₈)` |
+
+Null test: of 13244 prime triples in [5, 200], exactly one — `{37, 43, 67}` — satisfies all four gap identities and the three genus values simultaneously.
+
+```bash
+python theory-tools/pariah_prime_partition.py
+python theory-tools/enrich_c2_gap_identities.py
+```
 
 ## Computational tests
 
